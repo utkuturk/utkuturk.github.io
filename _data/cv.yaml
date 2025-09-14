@@ -1,0 +1,127 @@
+name: utkuturk
+affiliation: Boğaziçi University
+address: İstanbul, Turkey
+email: utkuturk@umd.edu
+web: http://github.com/utkuturk/
+
+news:
+  - date: '04/2025'
+    description: 'advanced to candidacy at UMD by defending my QP on the timing of aggrement in sentence production'
+    slink: '/files/slides/qpTurk.pdf'
+  - date: '04/2025'
+    description: 'talk on syntactic alternatives in Turkish polar questions at PLC! (w/Aron Hirsch)'
+    alink: '/files/abstracts/TurkHirschPLC2025.pdf'
+  - date: '03/2025'
+    description: 'talk on register effects and response bias in agreement attraction at HSP2025!'
+    alink: '/files/abstracts/TurkHSP2025.pdf'
+    slink: '/files/slides/hsp2025.pdf'
+  - date: '03/2025'
+    description: 'talk on <a href="files/abstracts/TurkTU2025.pdf">register effects in agreement attraction</a> and a poster on <a href="files/abstracts/TurkHirschTU2025.pdf">scope freezing in Turkish</a> (w/Aron Hirsch) at TU+10 hosted in USC!'
+  - date: '01/2025'
+    description: 'talk on Superiority effects in Turkish at LSA2025 (w/Sadira Lewis)!'
+    slink: '/files/slides/LewisTurkLSA.pdf'
+  - date: '10/2024'
+    slink: '/files/abstracts/TurkEtAl-puzzles.pdf'
+    description: 'talk on relative timing of agreement and verb planning at <a href="https://sites.google.com/view/puzzlesofagreement">Puzzles of Agreement</a>!'
+  - date: '10/2024'
+    description: 'we are organizing HSP2025, and I made the website! Submit your work! '
+    extra: '<a href="https://hsp2025.github.io/">[website]</a>'
+  - date: '08/2024'
+    description: 'book chapter on suppletion and suspended affixation in press at OUP! '
+    pdf: '/files/papers/Turk2024.pdf'
+    extra: '<a href="https://lingbuzz.net/lingbuzz/008295">[lingbuzz]</a>'
+  - date: '07/2024'
+    description: 'designed and taught a workshop on production experiments in Oxford University  (w/Colin Phillips, Allison Dods and Eun-Kyoung Rosa Lee).'
+    hlink: 'https://utkuturk.com/mfa.html'
+  - date: '05/2024'
+    description: 'poster on agreement planning and task effects in production at HSP2024!'
+    extra: '<a href="files/abstracts/hsp-2024-task.pdf">[task effects]</a> & <a href="files/abstracts/hsp-2024-agree.pdf">[agreement planning]</a>'
+  - date: '03/2024'
+    description: 'case syncretism and agreement attraction paper (w/ Pavel Logačev) published on Language, Cognition, and Neuroscience!'
+    pdf: "/files/papers/TurkLogacev2024.pdf"
+    extra: ' [<a href="https://doi.org/10.1080/23273798.2024.2324766">CNL</a>]'
+  - date: '04/2024'
+    description: 'book chapter on the phonemic status of Turkish glide [j] published! '
+    pdf: '/files/pdfs/CanalisEtAl2024.pdf'
+  - date: '03/2023'
+    description: 'talk on response bias and agreement attraction in HSP2023!'
+    slink: '/files/slides/hsp2023.pdf'
+
+research_interests:
+    - Psycholinguistics
+    - Morphology - Semantics Interface
+    - Cognitive Modelling
+    - Underrepresented languages
+
+education:
+    - date:         2018-2022 (expected)
+      title:        MA in Linguistics
+      affiliation:  Bogazici University
+      location:     Istanbul, Turkey
+      mentor:       Pavel Logacev
+      thesis:       Agreement Attraction in Turkish
+    - date:         2012-2017
+      title:        BA in Translation Studies
+      affiliation:  Bogazici University
+      location:     Istanbul, Turkey
+
+positions:
+    - date:         2019-till date
+      title:        Research Assistant
+      affiliation:  Bogazici University
+      location:     Istanbul, Turkey
+      mentor:
+      notes:
+
+visiting_positions:
+    - date:         2020
+      title:        Visiting student
+      affiliation:  Masaryk University
+      location:     Brno, Czech
+      mentor:       Pavel Caha
+
+
+technical_skills:
+    - R
+    - Stan
+    - Python
+    - JavaScript
+    - LaTeX
+    - Git
+    - Bash
+    - Vim
+    - Visual Studio
+
+awards:
+    - date:   2018-2019
+      detail: 1.5 year research grant The Scientific and Technological Research Council of Turkey for Deep Learning Based Turkish Dependency Parsing project.
+    - date:   2012 - 2017
+      detail: 5 year scholarship based on the entrance exam.
+    - date:   Jun 2012
+      detail: All Turkey Rank 2 in LYS 2012 (entrance examination for Bogazici University) amongst more than 2 million students.
+
+
+reviews:
+    journal:
+        - title: Proceedings of TU+
+          years:
+            - year: 2020
+              url:  http://journals.linguisticsociety.org/proceedings/index.php/tu/issue/view/170
+            - year: 2021
+              url:
+
+    conference:
+        - title: Bogazici University Student Conference on Theoretical and Experimental Linguistics
+          years:
+            - year: 2020
+              url:  http://busctel.boun.edu.tr/
+            - year: 2019
+              url:  https://busctel18.weebly.com/
+            - year: 2018
+              url:  https://busctel18.weebly.com/
+
+references:
+#    - name:  Dr. George Drettakis
+#      title: Senior Researcher, INRIA Sophia Antipolis, France
+#      www:   http://www-sop.inria.fr/members/George.Drettakis/
+#      mail:  george.drettakis@inria.fr

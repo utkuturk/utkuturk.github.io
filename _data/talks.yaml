@@ -1,0 +1,249 @@
+
+conferences:
+    - title: Syntactic alternatives in Turkish polar questions
+      author: "**Turk, U., Aron, H.**"
+      conf: "PLC 49: The Penn Linguistics Conference"
+      year:    2025
+      month: April
+      istalk: TRUE
+      place:   "University of Pennsylvania: Philadelphia, PA, USA"
+      abs:     /files/abstracts/TurkHirschPLC2025.pdf
+    - title: Turkish register manipulation eliminates grammaticality asymmetry in attraction and challenges retrieval based accounts
+      author: "**Turk, U.**"
+      conf: "HSP 2025: Human Sentence Processing"
+      year:    2025
+      month: March
+      istalk: TRUE
+      place:   "UMD, College Park, MD, USA"
+      abs:     /files/abstracts/TurkHSP2025.pdf
+      slide: /files/slides/hsp2025.pdf
+    - title: Register modulates grammaticality asymmetry in Turkish agreement attraction
+      author: "**Turk, U.**"
+      conf: "the 10th Workshop on Turkic and languages in contact with Turkic"
+      year:    2025
+      month: March
+      istalk: TRUE
+      place:   "USC: Los Angeles, CA, USA"
+      abs:     /files/abstracts/TurkTU2025.pdf
+    - title: Turkish allows covert scrambling
+      author: "**Turk, U., Hirsch, A.**"
+      conf: "the 10th Workshop on Turkic and languages in contact with Turkic"
+      year:    2025
+      month: March
+      isposter: TRUE
+      place:   "USC: Los Angeles, CA, USA"
+      abs:     /files/abstracts/TurkHirschTU2025.pdf
+    - title: "Superiority Effects with Wh-Adjuncts in Turkish"
+      author: "Lewis, S., **Turk, U.**"
+      conf: "LSA 2025: Linguistic Society of America"
+      place: "Philadelphia, PA, USA"
+      month: January
+      year: 2025
+      istalk: TRUE
+      slide: /files/slides/LewisTurkLSA.pdf
+    - title: "When do we plan agreement in our speech: Case from agreement attraction in unaccusatives"
+      author: "**Turk, U.**, Lau, E., Phillips, C."
+      conf: "Puzzles of Agreement:Syntactic, Semantic, and Psycholinguistic Perspectives"
+      month: October
+      year: 2024
+      istalk: TRUE
+      abs: /files/abstracts/Turketal-puzzles.pdf
+      slide: /files/slides/Turketal-puzzles.pdf
+    - title: Speech timing evidence on the (in)dependence of root and inflection access in production
+      author: "**Turk, U.**, Phillips, C."
+      conf: Human Sentence Processing 2024
+      month: "May"
+      year: 2024
+      isposter: TRUE
+      abs:     /files/abstracts/hsp-2024-agree.pdf
+    - title: "Is the octopus regenerating?: Comparing timing effects in sentence recall and picture description tasks"
+      author: "Dods, A., Macdonald, A., **Turk, U.**, Mancha, S., Phillips, C."
+      conf: Human Sentence Processing 2024
+      month: "May"
+      year: 2024
+      isposter: TRUE
+      abs:     /files/abstracts/hsp-2024-task.pdf
+    - title: Novel analysis of response bias challenges representational accounts in attraction
+      author: "**Turk, U.**, Logacev, P."
+      conf: Human Sentence Processing 2023
+      month: "March"
+      year: 2023
+      istalk: TRUE
+      abs:     /files/abstracts/hsp-2023-bias.pdf
+    - title: Obviation Problem in Turkish
+      author: "**Turk, U.**"
+      conf: "the 8th Workshop on Turkic and languages in contact with Turkic"
+      year:    2023
+      month: March
+      isposter: TRUE
+      place:   "Harvard University: Cambridge, MA, USA"
+      abs:     /files/abstracts/obviation2023.pdf
+    - title:   "Defining borrowing hierarchies in the light of sociolinguistic and geodemographic causation: contact-induced morphosyntactic change in Asia Minor Greek"
+      author:  Sampanis, K., **Turk, U.**
+      conf:    "54th Annual Meeting of the Societas Linguistica Europaea"
+      month:   "September"
+      year:    2021
+      isvirtual: TRUE
+      istalk: TRUE
+    - title:   Response Bias Manipulation in Turkish Agreement Attraction
+      author:  "**Turk, U.**, Logacev, P."
+      conf:    "AMLaP 2021: Architectures and Mechanisms for Language Processing"
+      year:    2021
+      month: "September"
+      place:   Paris, France
+      isvirtual: TRUE
+      isposter: TRUE
+      abs:     /files/abstracts/amlap-2021-bias.pdf
+      slide:   /files/slides/AMLAP_2021-bias.pdf
+    - title:   Effects of Vowel Characteristics in Suspended Affixation with Root Allomorphy
+      author:  "**Turk, U.**"
+      conf:    "AMLaP 2021: Architectures and Mechanisms for Language Processing"
+      year:    2021
+      month: September
+      place:   Paris, France
+      isvirtual: TRUE
+      isposter: TRUE
+      abs:     /files/abstracts/amlap-2021-vh.pdf
+      slide:   /files/slides/AMLAP_2021-vh.pdf
+    - title:   "The more the merrier: a new dependency treebank for Turkish"
+      author:  "**Turk, U.**, Atmaca, F., Özateş, Ş. B., Berk, G., Bedir, S. T., Köksal, A., ÖzTurk Başaran, B., Güngör, T., Özgür, A."
+      conf:    "the 20th International Conference on Turkish Linguistics"
+      year:    2021
+      month: August
+      place:   Eskişehir, Turkey
+      isvirtual: TRUE
+      istalk: TRUE
+    - title:   "The phonological nature of the Turkish front glide"
+      author:  "Canalis, S., Özdemir, S., **Turk, U.**, Tunçer, Ü.C."
+      conf:    "the 20th International Conference on Turkish Linguistics"
+      year:    2021
+      month: August
+      place:   Eskişehir, Turkey
+      isvirtual: TRUE
+      istalk: TRUE
+    - title:   Hypothetical Comparison in Turkish
+      author:  "**Turk, U.**, Demirok, Ö."
+      conf:    "the 45th Penn Linguistics Conference"
+      year:    2021
+      month: March
+      istalk: TRUE
+      isvirtual: TRUE
+      place:   "University of Pennsylvania: Philadelphia, PA, USA"
+      abs:     /files/abstracts/hypocomparison2021.pdf
+      ho:      /files/handouts/hypocomparison2021.pdf
+    - title:   Hypothetical Comparison in Turkish
+      author:  "**Turk, U.**, Demirok, Ö."
+      conf:    "the 6th Workshop on Turkic and languages in contact with Turkic"
+      year:    2021
+      month: February
+      istalk: TRUE
+      isvirtual: TRUE
+      place:   "University of Toronto: Toronto, ON, Canada"
+      abs:     /files/abstracts/hypocomparison2021.pdf
+      ho:      /files/handouts/hypocomparison2021.pdf
+    - title:   Nanosyntactic Analysis of Turkish Cases
+      author:  "**Turk, U.**, Caha, P."
+      conf:    "the 6th Workshop on Turkic and languages in contact with Turkic"
+      year:    2021
+      month: February
+      isposter: TRUE
+      isvirtual: TRUE
+      place:   "University of Toronto: Toronto, ON, Canada"
+      abs:     /files/abstracts/nanocase2021.pdf
+      ho:      /files/handouts/nanocase2021.pdf
+    - title:   When vowel harmony has a say in morpho-syntax
+      author:  "**Turk, U.**"
+      conf:    "ConSOLE29: the 29th Conference of the Student Organization of Linguistics in Europe"
+      year:    2021
+      month: January
+      istalk: TRUE
+      isvirtual: TRUE
+      place:   "University of Leiden: Leiden, Netherlands"
+      abs:     /files/abstracts/vh_suspaffix.pdf
+      slide:   /files/slides/vh_suspaffix.pdf
+    - title:   When glides are obstruents, or Turkish [j]
+      author:  "Canalis, S., Özdemir, S., **Turk, U.**, Tunçer, Ü.C."
+      conf:    "the 18th Old World Phonology Conference"
+      year:    2021
+      month: January
+      istalk: TRUE
+      isvirtual: TRUE
+      place:   "University of the Balearic Islands: Palma, Spain"
+      abs:     /files/abstracts/glide2021.pdf
+      slide:   /files/slides/glidesocp.pdf
+    - title:   First steps towards Universal Dependencies for Laz
+      author:  "**Turk, U.**, Bayar, K., Özercan, A.D., Özateş, Ş.B."
+      conf:    the 4th Universal Dependencies Workshop, COLING 2020
+      year:    2020
+      month: December
+      place: Barcelona, Spain
+      isposter: TRUE
+      isvirtual: TRUE
+    - title:   The role of shallow processing in agreement attraction
+      author:  "**Turk, U.**, Logacev, P."
+      conf:    the 33rd annual CUNY Sentence Processing Conference
+      year:    2020
+      month: February
+      isposter: TRUE
+      isvirtual: TRUE
+      place:   University of Massachusetts
+      abs:     /files/abstracts/cuny_shallow.pdf
+    - title:   The role of shallow processing in agreement attraction
+      author:  "**Turk, U.**, Logacev, P."
+      conf:    "Linguistic Evidence: Linguistic Theory Enriched by Experimental Data"
+      year:    2020
+      month: February
+      istalk: TRUE
+      place:   "Universität Tübingen: Tübingen, Germany"
+      abs:     /files/abstracts/le2020_shallow.pdf
+    - title:   An investigation into the nature of Turkish glide [j]
+      author:  "Özdemir, S., **Turk, U.**"
+      conf:    "the 5th Workshop on Turkic and languages in contact with Turkic"
+      year:    2020
+      month: February
+      isposter: TRUE
+      place:   "University of Delaware: Newark, DE, USA"
+      abs:     /files/abstracts/glide2020.pdf
+    - title:   Tackling the augmentative puzzle in Turkish
+      author:  "**Turk, U.**"
+      conf:    "the 5th Workshop on Turkic and languages in contact with Turkic"
+      year:    2020
+      month: February
+      isposter: TRUE
+      place:   "University of Delaware: Newark, DE, USA"
+      abs:     /files/abstracts/augmentative_tuplus.pdf
+    - title:   Improving the annotations in the Turkish Universal Dependency Treebank
+      author:  "**Turk, U.**, Atmaca, F., Özateş, Ş.B., ÖzTurk, B., Güngör, T., Özgür A."
+      conf:    the 3rd Universal Dependencies Workshop, SyntaxFest2019
+      year:    2019
+      month: August
+      istalk: TRUE
+      place:   "Sorbonne Université: Paris, France"
+    - title:   'Turkish Treebanking: Unifying and Constructiong Efforts'
+      author:  "**Turk, U.**, Atmaca, F., Özateş, Ş.B., ÖzTurk, B., Güngör, T., Özgür A."
+      conf:    the 13th Linguistic Annotation Workshop, ACL 2019
+      year:    2019
+      isposter: TRUE
+      month: August
+      place:   Florence, Italy
+    - title:   Decomposing Turkish Augmentatives
+      author:  "**Turk, U.**"
+      conf:    the 16th Workshop on Syntax, Semantics, and Phonology
+      year:    2019
+      month: June
+      istalk: TRUE
+      place:   "Universidad Complutense de Madrid: Madrid, Spain"
+    - title:   "Nanosyntax of Augmentative in Turkish: Interfix Analysis"
+      author:  "**Turk, U.**"
+      conf:    "AIMM 4: the 4th American International Morphology Meeting"
+      year:    2019
+      month: May
+      place:   "Stony Brook University: NY, USA"
+      isposter: TRUE
+    - title:   "Obligatory Adjuncts within Turkish Impersonals"
+      author:  "**Turk, U.**, Dikmen, F."
+      conf:    "the 13th Linguistics Student Conference"
+      year:    2019
+      month: April
+      place:   "Ankara University: Ankara, Turkey"
+      istalk: TRUE

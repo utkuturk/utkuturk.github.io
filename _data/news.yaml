@@ -1,0 +1,72 @@
+news:
+  - date: '09/2025'
+    description: 'Visiting Researcher, UMass Amherst (Fall 2025); collaborating with Faruk Akkuş and Shota Momma on dissociating morphosyntactic vs. morphophonological timing.'
+    category: milestone
+
+  - date: '04/2025'
+    description: 'Advanced to candidacy at UMD after defending my QP on the timing of agreement in sentence production.'
+    slink: '/files/slides/qpTurk.pdf'
+    category: milestone
+
+  - date: '04/2025'
+    description: 'PLC 2025 talk: syntactic alternatives in Turkish polar questions (with Aron Hirsch).'
+    alink: '/files/abstracts/TurkHirschPLC2025.pdf'
+    category: talk
+
+  - date: '03/2025'
+    description: 'HSP 2025 talk: register effects and response bias in agreement attraction.'
+    alink: '/files/abstracts/TurkHSP2025.pdf'
+    slink: '/files/slides/hsp2025.pdf'
+    category: talk
+
+  - date: '03/2025'
+    description: 'TU+10 (USC): talk on register effects in agreement attraction; poster on scope freezing in Turkish (with Aron Hirsch).'
+    extra: '<a href="/files/abstracts/TurkTU2025.pdf">talk abstract</a> · <a href="/files/abstracts/TurkHirschTU2025.pdf">poster abstract</a>'
+    category: talk
+
+  - date: '01/2025'
+    description: 'LSA 2025 talk: Superiority effects in Turkish (with Sadira Lewis).'
+    slink: '/files/slides/LewisTurkLSA.pdf'
+    category: talk
+
+  - date: '10/2024'
+    description: 'Puzzles of Agreement: relative timing of agreement vs. verb planning.'
+    slink: '/files/abstracts/TurkEtAl-puzzles.pdf'
+    category: talk
+
+  - date: '10/2024'
+    description: 'HSP 2025 site is live—submit your work!'
+    extra: '<a href="https://hsp2025.github.io/">website</a>'
+    category: site
+
+  - date: '08/2024'
+    description: 'OUP chapter in press: suppletion and suspended affixation.'
+    pdf: '/files/papers/Turk2024.pdf'
+    extra: '<a href="https://lingbuzz.net/lingbuzz/008295">lingbuzz</a>'
+    category: publication
+
+  - date: '07/2024'
+    description: 'Designed and taught a workshop on production experiments at the University of Oxford (with Colin Phillips, Allison Dods, and Eun-Kyoung Rosa Lee).'
+    hlink: 'https://utkuturk.com/mfa.html'
+    category: talk
+
+  - date: '05/2024'
+    description: 'HSP 2024 posters: agreement planning and task effects in production.'
+    extra: '<a href="/files/abstracts/hsp-2024-agree.pdf">agreement planning</a> · <a href="/files/abstracts/hsp-2024-task.pdf">task effects</a>'
+    category: talk
+
+  - date: '04/2024'
+    description: 'Book chapter on the phonemic status of Turkish glide [j] published.'
+    pdf: '/files/pdfs/CanalisEtAl2024.pdf'
+    category: publication
+
+  - date: '03/2024'
+    description: 'Paper on case syncretism and agreement attraction (with Pavel Logačev) published in Language, Cognition and Neuroscience.'
+    pdf: '/files/papers/TurkLogacev2024.pdf'
+    extra: '<a href="https://doi.org/10.1080/23273798.2024.2324766">LCN</a>'
+    category: publication
+
+  - date: '03/2023'
+    description: 'HSP 2023: talk on response bias and agreement attraction.'
+    slink: '/files/slides/hsp2023.pdf'
+    category: talk

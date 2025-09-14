@@ -1,1 +1,17 @@
-Building the website.
+---
+title: ""
+page-layout: article
+title-block-banner: true
+comments: false
+
+listing:
+  contents: posts
+  sort: "date desc"
+  template: postcard.ejs  
+  categories: true
+  sort-ui: false
+  filter-ui: false
+  feed: true
+  # DO THE RSS https://forbo7.github.io/forblog/posts/7_blog_subscriptions.html
+---
+
