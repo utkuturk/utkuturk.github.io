@@ -79,9 +79,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: [{ data: ['index'] },{ data: ['categories'] }],
+      valueNames: ['listing-project','listing-website','listing-format','listing-margin-header','listing-language','listing-freeze','listing-title-block-banner','listing-title','listing-author','listing-date','listing-categories','listing-description','listing-image','listing-path','listing-outputHref','listing-date-modified','listing-filename','listing-file-modified','listing-reading-time','listing-word-count','listing-aliases','listing-execute',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-date-modified-sort'] },{ data: ['listing-file-modified-sort'] },{ data: ['listing-reading-time-sort'] },{ data: ['listing-word-count-sort'] }],
       
-      searchColumns: [],
+      searchColumns: ["listing-project","listing-website","listing-format","listing-margin-header","listing-language","listing-freeze","listing-title-block-banner","listing-title","listing-author","listing-date","listing-categories","listing-description","listing-image","listing-path","listing-outputHref","listing-date-modified","listing-filename","listing-file-modified","listing-reading-time","listing-word-count","listing-aliases","listing-execute"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -245,9 +245,13 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar"><div class="quarto-margin-header"><div class="margin-header-item">
+<div class="margin-spacer" aria-hidden="true" style="height:1px;">
+
+</div>
+</div></div>
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(0)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(4)</span></div><div class="category" data-category="YWdyZWVtZW50JTIwYXR0cmFjdGlvbg==">agreement attraction <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Y29kZQ==">code <span class="quarto-category-count">(2)</span></div><div class="category" data-category="ZGlzc2VydGF0aW9u">dissertation <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bGluZ3Vpc3RpY3M=">linguistics <span class="quarto-category-count">(2)</span></div><div class="category" data-category="bWVhbmluZw==">meaning <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cGFwZXJz">papers <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dGVjaG5pY2Fs">technical <span class="quarto-category-count">(2)</span></div></div></div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
 
@@ -274,6 +278,190 @@ window.Quarto = {
 <div class="quarto-listing quarto-listing-container-custom" id="listing-listing">
 
 <div class="postcard-list">
+  
+    <div class="postcard">
+      <!-- Invisible stretched link covers the whole card -->
+      <a href="./posts/server-recordings/index.html" class="stretched-link"></a>
+
+      
+      
+        <div class="postcard-thumb">
+          <a href="./posts/server-recordings/index.html">
+            <img src="./posts/server-recordings/bash.png" alt="Automating experimental recording management with bash">
+          </a>
+        </div>
+      
+
+      <div class="postcard-body">
+        <div class="postcard-main">
+          <h3 class="anchored"><a href="./posts/server-recordings/index.html">Automating experimental recording management with bash</a></h3>
+          
+            <p class="desc">it got really annoying after a while, so i wrote this code</p>
+          
+          
+          <div class="postcard-info-row">
+            
+              <p class="author">Utku Turk</p>
+            
+            
+              <p class="date">Feb 23, 2023</p>
+            
+          </div>
+
+          <div class="postcard-bottom-row">
+            
+              <div class="tags">
+                
+                  <span class="tag">technical</span>
+                
+                  <span class="tag">code</span>
+                
+              </div>
+            
+            <a href="./posts/server-recordings/index.html" class="read-btn">Read</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="postcard">
+      <!-- Invisible stretched link covers the whole card -->
+      <a href="./posts/ma-thesis/index.html" class="stretched-link"></a>
+
+      
+      
+        <div class="postcard-thumb">
+          <a href="./posts/ma-thesis/index.html">
+            <img src="./posts/ma-thesis/exp3_bias_our.png" alt="Agreement attraction in Turkish">
+          </a>
+        </div>
+      
+
+      <div class="postcard-body">
+        <div class="postcard-main">
+          <h3 class="anchored"><a href="./posts/ma-thesis/index.html">Agreement attraction in Turkish</a></h3>
+          
+            <p class="desc">resources for my masters thesis from Bogazici University.</p>
+          
+          
+          <div class="postcard-info-row">
+            
+              <p class="author">Utku Turk</p>
+            
+            
+              <p class="date">Aug 20, 2022</p>
+            
+          </div>
+
+          <div class="postcard-bottom-row">
+            
+              <div class="tags">
+                
+                  <span class="tag">linguistics</span>
+                
+                  <span class="tag">dissertation</span>
+                
+                  <span class="tag">agreement attraction</span>
+                
+              </div>
+            
+            <a href="./posts/ma-thesis/index.html" class="read-btn">Read</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="postcard">
+      <!-- Invisible stretched link covers the whole card -->
+      <a href="./posts/as-if/index.html" class="stretched-link"></a>
+
+      
+      
+        <div class="postcard-thumb">
+          <a href="./posts/as-if/index.html">
+            <img src="./posts/as-if/dancing.jpg" alt="Can ‘As if’ clauses be degree comparisons?">
+          </a>
+        </div>
+      
+
+      <div class="postcard-body">
+        <div class="postcard-main">
+          <h3 class="anchored"><a href="./posts/as-if/index.html">Can ‘As if’ clauses be degree comparisons?</a></h3>
+          
+            <p class="desc">evidence from Turkish shows that as if clauses target gradable adverbials and adjectives, pointing to a degree-based analysis</p>
+          
+          
+          <div class="postcard-info-row">
+            
+              <p class="author">Utku Turk</p>
+            
+            
+              <p class="date">May 10, 2022</p>
+            
+          </div>
+
+          <div class="postcard-bottom-row">
+            
+              <div class="tags">
+                
+                  <span class="tag">linguistics</span>
+                
+                  <span class="tag">papers</span>
+                
+                  <span class="tag">meaning</span>
+                
+              </div>
+            
+            <a href="./posts/as-if/index.html" class="read-btn">Read</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="postcard">
+      <!-- Invisible stretched link covers the whole card -->
+      <a href="./posts/yaml-rnotebook/index.html" class="stretched-link"></a>
+
+      
+      
+        <div class="postcard-thumb">
+          <a href="./posts/yaml-rnotebook/index.html">
+            <img src="./posts/yaml-rnotebook/yaml.png" alt="How to include R expressions in (quarto) YAML">
+          </a>
+        </div>
+      
+
+      <div class="postcard-body">
+        <div class="postcard-main">
+          <h3 class="anchored"><a href="./posts/yaml-rnotebook/index.html">How to include R expressions in (quarto) YAML</a></h3>
+          
+            <p class="desc">using YAML with embedded R expressions for cleaner, reusable Quarto configs.</p>
+          
+          
+          <div class="postcard-info-row">
+            
+              <p class="author">Utku Turk</p>
+            
+            
+              <p class="date">Jan 23, 2020</p>
+            
+          </div>
+
+          <div class="postcard-bottom-row">
+            
+              <div class="tags">
+                
+                  <span class="tag">technical</span>
+                
+                  <span class="tag">code</span>
+                
+              </div>
+            
+            <a href="./posts/yaml-rnotebook/index.html" class="read-btn">Read</a>
+          </div>
+        </div>
+      </div>
+    </div>
   
 </div>
 

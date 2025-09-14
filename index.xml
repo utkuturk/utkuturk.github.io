@@ -10,6 +10,1418 @@
 <atom:link href="https://utkuturk.github.io/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.8.21</generator>
-<lastBuildDate>Sun, 14 Sep 2025 19:48:55 GMT</lastBuildDate>
+<lastBuildDate>Thu, 23 Feb 2023 05:00:00 GMT</lastBuildDate>
+<item>
+  <title>Automating experimental recording management with bash</title>
+  <dc:creator>Utku Turk</dc:creator>
+  <link>https://utkuturk.github.io/posts/server-recordings/</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>I realized that most of my experimental time was being eaten up not by designing or running studies, but by the tedious task of downloading recordings from the server, unzipping them, converting formats, and filing them into the right participant folders. After a while, the frustration of repeating these steps by hand turned into procrastination and that procrastination produced some bash scripts to automate the whole process.</p>
+<section id="step-1-download-recordings" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-download-recordings">Step 1: Download recordings</h2>
+<p>First I grab all the zipped uploads from the server and drop them into a local directory.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"></span>
+<span id="cb1-2"><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">remote_host</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"myserver@myserver.umd.edu"</span></span>
+<span id="cb1-3"><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">remote_path</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"/Users/myserver/Phillips/Utku/corner_same_verb/uploads/*.zip"</span></span>
+<span id="cb1-4"><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">local_path</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"~/Downloads/rec_feb23"</span></span>
+<span id="cb1-5"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mkdir</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$local_path</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span></span>
+<span id="cb1-6"></span>
+<span id="cb1-7"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scp</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$remote_host</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">:</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$remote_path</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$local_path</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span></span></code></pre></div></div>
+</section>
+<section id="step-2-unzip-and-convert-formats" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-unzip-and-convert-formats">Step 2: Unzip and convert formats</h2>
+<p>Once the <code>.zip</code> files are on my machine, I unzip everything and convert the <code>.webm</code> files to <code>.wav</code> with ffmpeg. The originals go into a backup folder.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">cd</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$local_path</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span></span>
+<span id="cb2-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">unzip</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\*</span>.zip</span>
+<span id="cb2-3"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> i <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> <span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">*</span>.webm<span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">;</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">do</span> <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">ffmpeg</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-i</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$i</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">${i</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%</span>.<span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">*</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">}</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">.wav"</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">;</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">done</span></span>
+<span id="cb2-4"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mkdir</span> backup</span>
+<span id="cb2-5"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mv</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\*</span>.zip ,/backup</span>
+<span id="cb2-6"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rm</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\*</span>.webm</span></code></pre></div></div>
+</section>
+<section id="step-3-group-files-by-participant" class="level2">
+<h2 class="anchored" data-anchor-id="step-3-group-files-by-participant">Step 3: Group files by participant</h2>
+<p>My participant IDs are randomly generated 8-character strings, thus <code>{file:0:8}</code> and <code>^.{8}_</code>. I use the first eight characters of the filename as a prefix to create a directory per participant.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> file <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> <span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">*</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">;</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">do</span></span>
+<span id="cb3-2">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">[[</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">-f</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$file</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">]];</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">then</span></span>
+<span id="cb3-3">    <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">prefix</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">${file</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">8</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">}</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span></span>
+<span id="cb3-4">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">[[</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$file</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=~</span> <span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">^.</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">{</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">8</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">_</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">]];</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">then</span></span>
+<span id="cb3-5">      <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">[[</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">!</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">-d</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$prefix</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">]];</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">then</span></span>
+<span id="cb3-6">        <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mkdir</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$prefix</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span></span>
+<span id="cb3-7">      <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">fi</span></span>
+<span id="cb3-8">      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mv</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$file</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$prefix</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/"</span></span>
+<span id="cb3-9">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">fi</span></span>
+<span id="cb3-10">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">fi</span></span>
+<span id="cb3-11"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">done</span></span></code></pre></div></div>
+</section>
+<section id="step-4-sort-within-each-participant-folder" class="level2">
+<h2 class="anchored" data-anchor-id="step-4-sort-within-each-participant-folder">Step 4: Sort within each participant folder</h2>
+<p>Finally, within each participant’s folder, I move the recordings into two buckets: - <code>fam/</code> for habituation (familiarization) files (those with <em>fam</em>), - <code>misc/</code> for practice, intro, and test files.</p>
+<p>I use <code>nullglob</code> to avoid errors if a folder doesn’t contain a certain file type.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> prefix_dir <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> <span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">*</span>/<span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">;</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">do</span></span>
+<span id="cb4-2">  <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">prefix_dir</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">${prefix_dir</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%</span>/<span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">}</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span> </span>
+<span id="cb4-3">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">[[</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">-d</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$prefix_dir</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">]];</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">then</span></span>
+<span id="cb4-4"></span>
+<span id="cb4-5">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">[[</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">!</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">-d</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$prefix_dir</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/fam"</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">]];</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">then</span></span>
+<span id="cb4-6">      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mkdir</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$prefix_dir</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/fam"</span></span>
+<span id="cb4-7">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">fi</span></span>
+<span id="cb4-8">    <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">setopt</span> nullglob</span>
+<span id="cb4-9">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> fam_file <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$prefix_dir</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/"</span><span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">*</span>_<span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">*</span>fam_<span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">*</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">;</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">do</span></span>
+<span id="cb4-10">      <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">[[</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">-f</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$fam_file</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">]];</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">then</span></span>
+<span id="cb4-11">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">[[</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$fam_file</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=~</span> <span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">.*</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">_fam_</span><span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">.*</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">]];</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">then</span></span>
+<span id="cb4-12">          <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mv</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$fam_file</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$prefix_dir</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/fam/"</span></span>
+<span id="cb4-13">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">fi</span></span>
+<span id="cb4-14">      <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">fi</span></span>
+<span id="cb4-15">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">done</span></span>
+<span id="cb4-16">    <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">unsetopt</span> nullglob</span>
+<span id="cb4-17"></span>
+<span id="cb4-18">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">[[</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">!</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">-d</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$prefix_dir</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/misc"</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">]];</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">then</span></span>
+<span id="cb4-19">      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mkdir</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$prefix_dir</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/misc"</span></span>
+<span id="cb4-20">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">fi</span></span>
+<span id="cb4-21">    <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">setopt</span> nullglob</span>
+<span id="cb4-22">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> misc_file <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$prefix_dir</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/"</span><span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">*</span>_<span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">*</span>practice_<span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">*</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$prefix_dir</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/"</span><span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">*</span>_<span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">*</span>intro_<span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">*</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$prefix_dir</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/"</span><span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">*</span>_<span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">*</span>test-<span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">*</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">;</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">do</span></span>
+<span id="cb4-23">      <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">[[</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">-f</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$misc_file</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">]];</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">then</span></span>
+<span id="cb4-24">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">[[</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$misc_file</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=~</span> <span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">.*</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">_practice_</span><span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">.*</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">||</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$misc_file</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=~</span> <span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">.*</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">_intro_</span><span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">.*</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">||</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$misc_file</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=~</span> <span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">.*</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">_test-</span><span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">.*</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">]];</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">then</span></span>
+<span id="cb4-25">          <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">[[</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">!</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$misc_file</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=~</span> <span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">.*</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">_fam_</span><span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">.*</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">]];</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">then</span> </span>
+<span id="cb4-26">              <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mv</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$misc_file</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$prefix_dir</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/misc/"</span></span>
+<span id="cb4-27">          <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">fi</span></span>
+<span id="cb4-28">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">fi</span></span>
+<span id="cb4-29">      <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">fi</span></span>
+<span id="cb4-30">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">done</span></span>
+<span id="cb4-31">    <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">unsetopt</span> nullglob</span>
+<span id="cb4-32">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">fi</span></span>
+<span id="cb4-33"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">done</span></span></code></pre></div></div>
+<p>What started as procrastination ended up saving me hours of repetitive work. Probably, it is not a good code, but it turns file management into a background task and leaves more time to me for the actual science. If you have any comments how to make the code better, please reach out!</p>
+
+
+</section>
+
+ ]]></description>
+  <category>technical</category>
+  <category>code</category>
+  <guid>https://utkuturk.github.io/posts/server-recordings/</guid>
+  <pubDate>Thu, 23 Feb 2023 05:00:00 GMT</pubDate>
+  <media:content url="https://utkuturk.github.io/posts/server-recordings/bash.png" medium="image" type="image/png" height="144" width="144"/>
+</item>
+<item>
+  <title>Agreement attraction in Turkish</title>
+  <dc:creator>Utku Turk</dc:creator>
+  <link>https://utkuturk.github.io/posts/ma-thesis/</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>The term agreement attraction is used to describe either increased acceptability of ungrammatical sentences or reduced difficulty in reading ungrammatical sentences. This was made possible by an illusionary element which matches with the features of the verb, thus attracting the probe of the agreement from the head noun to itself. <br> <br> Consider the following sentence: “*The key to the cabinets are rusty.” Even though it is ungrammatical, people systematically accepted these sentences more often than the ones with the word “attractor.” They also spend less time when there is a plural nominal like “cabinets” rather than the word “cabinet.” <br> <br> This thesis tries to explore how the attraction phenomenon interacts with issues like case syncretism, form heuristics, response bias, and register, all of which are rarely investigated in the literature. This thesis also provides an extensive, but not exhaustive, picture of attraction effects in Turkish, an understudied language in psycholinguistics.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Abstract">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Abstract
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>In this thesis, I investigate the existing agreement attraction effects in Turkish and how these effects interact with various phenomenon such as (i) case syncretism and local ambiguity, (ii) form heuristics, (iii) response bias, and (iv) honorific readings. Previous studies have shown that speakers occasionally find ungrammatical sentences violating number agreement acceptable when there is another noun sharing same number with the verb, in other words exhibited agreement attraction. Lago et al.&nbsp;(2019) found that genitive-possessive structures were able to induce agreement attraction effects within native Turkish speakers in a speeded acceptability experiment. However, due to the nature of the Turkish and acceptability studies, there are multiple alternative explanations for the existing effects. This thesis aims to weed out possible confounds and clarify the effects by conducting four speeded acceptability judgment experiments. We showed (i) that case-ambiguity on the head noun does not play a role in Turkish agreement attraction (Experiment 1, N = 118), (ii) that participants do not use form-driven-processing-strategies to answer judgment questions (Experiments 2A, N = 80, and 2B, N = 95), (iii) that response bias induced ungrammaticality illusion and only decreased the magnitude of grammaticality illusion (Experiment 3, N = 114), and (iv) that a possible honorific reading does not license superfluous plural marking at the verb (Experiment 4, N = 174). Together, our results challenge cue-based retrieval accounts of agreement attraction and can be accommodated by accounts that assume attraction occurs due to erroneous encodings.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Defense Slides">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Defense Slides
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><embed src="slides.pdf" style="width:100.0%" height="400"></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled" title="Thesis">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Thesis
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><a href="http://seyhan.library.boun.edu.tr/record=b2776878~S5"><strong>Bogazici Page</strong></a> | <a href="thesis.pdf"><strong>Local PDF</strong></a> | <a href="https://www.overleaf.com/read/vdstcpwwvdpp"><strong>Overleaf</strong></a></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Plots from defense &amp; some more">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Plots from defense &amp; some more
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-18" class="callout-18-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="callout callout-style-simple callout-none no-icon callout-titled" title="Exp1 Averages">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">None</span>Exp1 Averages
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><img src="https://utkuturk.github.io/posts/ma-thesis/exp1A.png" class="img-fluid" style="width:85.0%"></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-none no-icon callout-titled" title="Exp1 Models">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">None</span>Exp1 Models
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Bayesian Model fitted to all experimental items<br>
+<img src="https://utkuturk.github.io/posts/ma-thesis/exp1M1.png" class="img-fluid" style="width:85.0%"></p>
+<p>Bayesian Model fitted to <strong>only ungrammatical</strong> experimental items<br>
+<img src="https://utkuturk.github.io/posts/ma-thesis/exp1M2.png" class="img-fluid" style="width:85.0%"></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-none no-icon callout-titled" title="Exp2A Averages">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">None</span>Exp2A Averages
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><img src="https://utkuturk.github.io/posts/ma-thesis/exp2AA.png" class="img-fluid" style="width:85.0%"></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-none no-icon callout-titled" title="Exp2A Models">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">None</span>Exp2A Models
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><img src="https://utkuturk.github.io/posts/ma-thesis/exp2AM2.png" class="img-fluid" style="width:85.0%"></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-none no-icon callout-titled" title="Exp2B Averages">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">None</span>Exp2B Averages
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><img src="https://utkuturk.github.io/posts/ma-thesis/exp2BA.png" class="img-fluid" style="width:85.0%"></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-none no-icon callout-titled" title="Exp2B Models">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">None</span>Exp2B Models
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Bayesian Model fitted to all experimental items<br>
+<img src="https://utkuturk.github.io/posts/ma-thesis/exp2BM1.png" class="img-fluid" style="width:85.0%"></p>
+<p>Bayesian Model fitted to <strong>only experimental items with RC attractors</strong><br>
+<img src="https://utkuturk.github.io/posts/ma-thesis/exp2BM2.png" class="img-fluid" style="width:85.0%"></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-none no-icon callout-titled" title="Exp3 Averages">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">None</span>Exp3 Averages
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><img src="https://utkuturk.github.io/posts/ma-thesis/exp3A.png" class="img-fluid" style="width:85.0%"></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-none no-icon callout-titled" title="Hammerly et al. (2019) Averages">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">None</span>Hammerly et al.&nbsp;(2019) Averages
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><img src="https://utkuturk.github.io/posts/ma-thesis/hamavgs.png" class="img-fluid" style="width:85.0%"></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-none no-icon callout-titled" title="Hammerly et al. (2019) Bias Informed Averages">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">None</span>Hammerly et al.&nbsp;(2019) Bias Informed Averages
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><img src="https://utkuturk.github.io/posts/ma-thesis/hamavgs_bias_informed.png" class="img-fluid" style="width:85.0%"></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-none no-icon callout-titled" title="Hammerly et al. (2019) Bias Informed Model">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">None</span>Hammerly et al.&nbsp;(2019) Bias Informed Model
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><img src="https://utkuturk.github.io/posts/ma-thesis/hM2.png" class="img-fluid" style="width:85.0%"></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-none no-icon callout-titled" title="Exp3 Bias-Related">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">None</span>Exp3 Bias-Related
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Participants Bias in our Experiment 3 using fillers and Bayes Factor for parametric t-test<br>
+<img src="https://utkuturk.github.io/posts/ma-thesis/exp3_bias_our.png" class="img-fluid" style="width:85.0%"></p>
+<p>Participants Bias in Hammerly et al.&nbsp;(2019) using fillers and experimental items as well as Bayes Factor for parametric t-tests<br>
+<img src="https://utkuturk.github.io/posts/ma-thesis/hammer_bias.png" class="img-fluid" style="width:85.0%"></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-none no-icon callout-titled" title="Exp3 Models">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">None</span>Exp3 Models
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Bayesian Model fitted to <strong>only ungrammatical</strong> experimental items<br>
+<img src="https://utkuturk.github.io/posts/ma-thesis/exp3M1.png" class="img-fluid" style="width:85.0%"></p>
+<p>Bayesian Model fitted to <strong>only grammatical</strong> experimental items<br>
+<img src="https://utkuturk.github.io/posts/ma-thesis/exp3M2.png" class="img-fluid" style="width:85.0%"></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-none no-icon callout-titled" title="Exp4 Averages">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">None</span>Exp4 Averages
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><img src="https://utkuturk.github.io/posts/ma-thesis/exp4.jpg" class="img-fluid" style="width:85.0%"></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-none no-icon callout-titled" title="Exp4 Models">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">None</span>Exp4 Models
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-17" class="callout-17-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Bayesian Model fitted to all experimental items<br>
+<img src="https://utkuturk.github.io/posts/ma-thesis/exp4M1.png" class="img-fluid" style="width:85.0%"></p>
+<p>Bayesian Model fitted to <strong>only informal</strong> experimental items<br>
+<img src="https://utkuturk.github.io/posts/ma-thesis/exp4M2.png" class="img-fluid" style="width:85.0%"></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section id="supplementary-links" class="level4">
+<h4 class="anchored" data-anchor-id="supplementary-links">Supplementary links</h4>
+<ul>
+<li><a href="https://github.com/utkuturk/ma-thesis/raw/main/ma_thesis_aug10.pdf">Download Full Thesis</a></li>
+<li><a href="https://github.com/utkuturk/ma-thesis">Github Repo</a></li>
+<li><a href="https://github.com/utkuturk/ma-thesis/tree/main/scripts">All Code (Grouped according to the chapters)</a></li>
+<li><a href="https://github.com/utkuturk/ma-thesis/tree/main/resources/raw">Experiment Raw Data</a></li>
+<li><a href="https://www.ingentaconnect.com/content/jbp/lab/2019/00000009/00000003/art00003?crawler=true&amp;mimetype=application/pdf&amp;casa_token=nL8v53m5GmsAAAAA:qI0dAbPjR7h42vijbp23x8myaJ1izLo1xWmPAtpGHlp5s2Uys7DUgJzmYffdbnknagUYS9mJhEmLQSRANIU">Lago et al.’s (2019) work</a></li>
+<li><a href="https://www.sciencedirect.com/science/article/pii/S0010028518303049?casa_token=XGe6pUW_ws0AAAAA:OzPmvvHWS7vN7_BWawGfdSeOy1fPoHiDKiKk667oAqULZ16tU-ZXVj97pc9IriqC6GJT0ru29K4">Hammerly et al.’s (2019) work</a></li>
+<li><a href="https://github.com/utkuturk/ma-thesis/tree/main/defense-plots">Code for nicer plots from the defense</a></li>
+<li><a href="https://farm.pcibex.net/p/HIekVL/">Experiment 1</a></li>
+<li><a href="https://farm.pcibex.net/p/gpVrBy/">Experiment 2A</a></li>
+<li><a href="https://farm.pcibex.net/p/cVZVuY/">Experiment 2B</a></li>
+<li><a href="https://farm.pcibex.net/p/yUyVON/">Experiment 3</a></li>
+<li><a href="https://farm.pcibex.net/p/xFMjLC/">Experiment 4</a></li>
+</ul>
+
+
+</section>
+
+ ]]></description>
+  <category>linguistics</category>
+  <category>dissertation</category>
+  <category>agreement attraction</category>
+  <guid>https://utkuturk.github.io/posts/ma-thesis/</guid>
+  <pubDate>Sat, 20 Aug 2022 04:00:00 GMT</pubDate>
+  <media:content url="https://utkuturk.github.io/posts/ma-thesis/exp3_bias_our.png" medium="image" type="image/png" height="90" width="144"/>
+</item>
+<item>
+  <title>Can ‘As if’ clauses be degree comparisons?</title>
+  <dc:creator>Utku Turk</dc:creator>
+  <link>https://utkuturk.github.io/posts/as-if/</link>
+  <description><![CDATA[ 
+
+
+
+
+<p><img src="https://utkuturk.github.io/posts/as-if/dancing.jpg" class="preview-image img-fluid"></p>
+<p>After reading <a href="https://www.jbledin.com/papers">Justin Bledin’s</a> work on English <em>as ifs</em>, we realized that Turkish counterparts of <em>as ifs</em> behave differently. It seemed that instead of a simple comparison of events, Turkish <em>as ifs</em> seems to be susceptible to <strong>gradability</strong> and <strong>degree</strong>.</p>
+<p>To account for Turkish facts, we proposed that a novel analysis of these sentences. While previous accounts were based on event similarity, our hypothesis is based on comparing degrees of gradable elements involved in the event.</p>
+<p>Consider this sentence: Pedro was dancing as if he was possessed by a demon. And, let’s take a look at the interpretations in (1) and (2). (1) is the simplified version of previous accounts. The key word for those analyses is the resemblance. On the other hand, (2) is our account in a simplified manner. Instead of using resemblance, we proposed an equatative approach. Our analysis compares two degrees of adverbials.</p>
+<div class="cell">
+<div class="cell-output-display">
+<ol class="example" type="1">
+<li>Pedro’s dancing in the actual world resembles his dancing in other possible worlds where he is possessed by a demon.</li>
+</ol>
+</div>
+<div class="cell-output-display">
+<ol start="2" class="example" type="1">
+<li>The level of craziness of Pedro’s dancing in the actual world is ≥ the level of craziness of his dancing in other possible worlds where he is possessed by a demon.</li>
+</ol>
+</div>
+</div>
+<p>Here’s the facts that support our analysis:</p>
+<p><em>Unlike English and German, Turkish does not have an overt conditional marker in as ifs constructions.</em></p>
+<div class="cell">
+<div class="cell-output-display">
+<ol start="3" class="example" type="1">
+<li>Pedro was dancing he was possessed by a demon.</li>
+</ol>
+</div>
+<div class="cell-output-display">
+<ol start="4" class="example" type="1">
+<li><style>.gloss__line--original {font-style:normal;font-weight:normal} .gloss__word .gloss__line:first-child {font-style:normal;font-weight:normal} .gloss__word .gloss__line--2 {font-style:normal;font-weight:normal} .gloss__word .gloss__line--3 {font-style:normal;font-weight:normal} .gloss__line--free {font-style:normal;font-weight:normal}</style>
+<div data-gloss="">
+<p class="gloss__line--original">
+&nbsp;
+</p>
+<p>
+Pedro içine cin kaç-mışcasına {dans ed-iyor-du}
+</p>
+<p>
+Pedro inside jhin escape-HCM dance-IMPF-PST.3SG
+</p>
+<p class="gloss__line--free">
+“Pedro was dancing as if he was possessed by a demon.”
+</p>
+</div>
+<script>document.addEventListener('DOMContentLoaded', function() {Leipzig({lastLineFree: false}).gloss();});</script></li>
+</ol>
+</div>
+</div>
+<p><em>It is frequently used with an adverbial in a matrix sentence with a verbal predicate.</em></p>
+<div class="cell">
+<div class="cell-output-display">
+<ol start="5" class="example" type="1">
+<li><style>.gloss__line--original {font-style:normal;font-weight:normal} .gloss__word .gloss__line:first-child {font-style:normal;font-weight:normal} .gloss__word .gloss__line--2 {font-style:normal;font-weight:normal} .gloss__word .gloss__line--3 {font-style:normal;font-weight:normal} .gloss__line--free {font-style:normal;font-weight:normal}</style>
+<div data-gloss="">
+<p class="gloss__line--original">
+&nbsp;
+</p>
+<p>
+Pedro içine cin kaç-mışcasına çılgınca {dans ed-iyor-du}
+</p>
+<p>
+Pedro inside jhin escape-HCM <strong>crazily</strong> dance-IMPF-PST.3SG
+</p>
+<p class="gloss__line--free">
+“Pedro was dancing as if he was possessed by a demon.”
+</p>
+</div></li>
+</ol>
+</div>
+</div>
+<p><em>Even when there is no overt adverbial, the use of -mışcasına phrase necessitates an adverbial reading to be accessed from the context. When we use -mışcasına phrase in a sentence where there is no possible adverbial is available in the context, the sentence become infelicitous.</em></p>
+<div class="cell">
+<div class="cell-output-display">
+<ol start="6" class="example" type="1">
+<li><style>.gloss__line--original {font-style:normal;font-weight:normal} .gloss__word .gloss__line:first-child {font-style:normal;font-weight:normal} .gloss__word .gloss__line--2 {font-style:normal;font-weight:normal} .gloss__word .gloss__line--3 {font-style:normal;font-weight:normal} .gloss__line--free {font-style:normal;font-weight:normal}</style>
+<div data-gloss="">
+<p class="gloss__line--original">
+*
+</p>
+<p>
+Yarın meteor yağ-acak-mışcasına dans ed-iyor-sun.
+</p>
+<p>
+tomorrow meteor rain-FUT-HCM dance-IMPF-2SG
+</p>
+<p class="gloss__line--free">
+“You are dancing [???] as if there will be a meteor shower tomorrow.”
+</p>
+</div></li>
+</ol>
+</div>
+</div>
+<p><em>More importantly, these adverbs are always <strong>gradable</strong> adverbials. Similarly, when the matrix predicate is non-verbal, it has to be a <strong>gradable</strong> adjective.</em></p>
+<div class="cell">
+<div class="cell-output-display">
+<ol start="7" class="example" type="1">
+<li><style>.gloss__line--original {font-style:normal;font-weight:normal} .gloss__word .gloss__line:first-child {font-style:normal;font-weight:normal} .gloss__word .gloss__line--2 {font-style:normal;font-weight:normal} .gloss__word .gloss__line--3 {font-style:normal;font-weight:normal} .gloss__line--free {font-style:normal;font-weight:normal}</style>
+<div data-gloss="">
+<p class="gloss__line--original">
+&nbsp;
+</p>
+<p>
+Helin pandemi bit-mişcesine mutlu.
+</p>
+<p>
+Helin pandemic end-HCM happy.3SG
+</p>
+<p class="gloss__line--free">
+“Helin is happy as if the pandemic is over.”
+</p>
+</div></li>
+</ol>
+</div>
+<div class="cell-output-display">
+<ol start="8" class="example" type="1">
+<li><style>.gloss__line--original {font-style:normal;font-weight:normal} .gloss__word .gloss__line:first-child {font-style:normal;font-weight:normal} .gloss__word .gloss__line--2 {font-style:normal;font-weight:normal} .gloss__word .gloss__line--3 {font-style:normal;font-weight:normal} .gloss__line--free {font-style:normal;font-weight:normal}</style>
+<div data-gloss="">
+<p class="gloss__line--original">
+*
+</p>
+<p>
+Cevab-ı soru-yu duy-ma-mışcasına yanlış-tı .
+</p>
+<p>
+answer-POSS.3SG question-ACC hear-NEG-HCM wrong-PST.3SG
+</p>
+<p class="gloss__line--free">
+“Intended: His answer was wrong as if he did not hear the question.”
+</p>
+</div></li>
+</ol>
+</div>
+</div>
+<p><em>Lastly, when there is an already established degree-related operation, we cannot use -mışcasına phrases. This is similar to the cases where we cannot use two degree operators most and more at the same time.</em></p>
+<div class="cell">
+<div class="cell-output-display">
+<ol start="9" class="example" type="1">
+<li><style>.gloss__line--original {font-style:normal;font-weight:normal} .gloss__word .gloss__line:first-child {font-style:normal;font-weight:normal} .gloss__word .gloss__line--2 {font-style:normal;font-weight:normal} .gloss__word .gloss__line--3 {font-style:normal;font-weight:normal} .gloss__line--free {font-style:normal;font-weight:normal}</style>
+<div data-gloss="">
+<p class="gloss__line--original">
+&nbsp;
+</p>
+<p>
+Mecidiyeköy cehennem-mışcesine kalabalık bir ilçe-miz-dir.
+</p>
+<p>
+Mecidiyeköy hell-HCM crowded a district-POSS.1PL-AOR
+</p>
+<p class="gloss__line--free">
+“Mecidiyeköy is a crowded district as if it was hell.”
+</p>
+</div></li>
+</ol>
+</div>
+<div class="cell-output-display">
+<ol start="10" class="example" type="1">
+<li><style>.gloss__line--original {font-style:normal;font-weight:normal} .gloss__word .gloss__line:first-child {font-style:normal;font-weight:normal} .gloss__word .gloss__line--2 {font-style:normal;font-weight:normal} .gloss__word .gloss__line--3 {font-style:normal;font-weight:normal} .gloss__line--free {font-style:normal;font-weight:normal}</style>
+<div data-gloss="">
+<p class="gloss__line--original">
+*
+</p>
+<p>
+Mecidiyeköy cehennem-mışcesine en kalabalık ilçe-miz-dir.
+</p>
+<p>
+Mecidiyeköy hell-HCM most crowded district-POSS.1PL-AOR
+</p>
+<p class="gloss__line--free">
+“Intended: Mecidiyeköy is the most crowded district as if it was hell.”
+</p>
+</div></li>
+</ol>
+</div>
+</div>
+<p>The distribution of -mışcasına clauses shows that Turkish “as if” does not simply signal resemblance between two events, but rather compares the degree of gradable properties across possible worlds. This degree-based perspective explains why such clauses pattern with adverbials and adjectives that admit gradability, and why they fail in contexts that already contain competing degree operators.</p>
+<style>
+      .preview-image {
+        display: block;
+        margin: 1.2rem auto;
+        max-width: 55%;      /* adjust size */
+        border-radius: 10px; /* optional rounded corners */
+        box-shadow: 0 4px 14px rgba(0,0,0,.08);
+      }
+</style>
+
+
+
+ ]]></description>
+  <category>linguistics</category>
+  <category>papers</category>
+  <category>meaning</category>
+  <guid>https://utkuturk.github.io/posts/as-if/</guid>
+  <pubDate>Tue, 10 May 2022 04:00:00 GMT</pubDate>
+  <media:content url="https://utkuturk.github.io/posts/as-if/dancing.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>How to include R expressions in (quarto) YAML</title>
+  <dc:creator>Utku Turk</dc:creator>
+  <link>https://utkuturk.github.io/posts/yaml-rnotebook/</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>When writing R Markdown or Quarto files, I’ve always disliked cluttering them with long file paths, fixed parameters, or small snippets of code. Many of these values are constants or things I don’t plan to change often, sometimes not even across projects. So I started looking for a way to move such information into a separate YAML file and refer to it from within Quarto. You could of course do this with a regular R script and source(), but I found that YAML makes these kinds of project-wide parameters easier to organize and read.</p>
+<section id="embedding-r-in-yaml" class="level2">
+<h2 class="anchored" data-anchor-id="embedding-r-in-yaml">Embedding R in YAML</h2>
+<p>While digging around, I came across <a href="https://stackoverflow.com/questions/64454623/r-read-yaml-reads-a-vector-as-parameter">this helpful StackOverflow post</a>, which pointed out that YAML can evaluate R expressions directly if marked with !expr. This means your config file can contain values that are not just static strings, but dynamically computed.</p>
+<p>For example, my <code>_paper.yaml</code> file looks like this:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">experiments</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span></span>
+<span id="cb1-2"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">first</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> </span></span>
+<span id="cb1-3"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">    </span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">path</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> !expr 'paste0("C:/Users/", Sys.info()[6], "/OneDrive/Science/experiments/first")'</span></span>
+<span id="cb1-4"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">    </span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">nsubject</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> !expr 'nrow(read.csv(file.path(paste0("C:/Users/", Sys.info()[6], "/OneDrive/Science/experiments/first"), "results.csv")))'</span></span>
+<span id="cb1-5"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">second</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> !expr 'paste0("C:/Users/", Sys.info()[6], "/OneDrive/Science/experiments/second")'</span></span>
+<span id="cb1-6"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">third</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> ...</span></span></code></pre></div></div>
+</section>
+<section id="reading-it-in-r" class="level2">
+<h2 class="anchored" data-anchor-id="reading-it-in-r">Reading it in R</h2>
+<p>To load the config file, you just need to enable expression evaluation when calling <code>yaml::read_yaml()</code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">config <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> yaml<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">read_yaml</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'_paper.yaml'</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">eval.expr =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>)</span></code></pre></div></div>
+</div>
+<p>Now, config behaves like a nested list, and you can access parameters directly. For example:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">config<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>experiments<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>first</span>
+<span id="cb3-2">config<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>experiments<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>first<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>nsubject</span></code></pre></div></div>
+</div>
+<p>This makes it easy to centralize all project-level constants and keep your Quarto documents cleaner.</p>
+</section>
+<section id="why-this-helps" class="level2">
+<h2 class="anchored" data-anchor-id="why-this-helps">Why This Helps</h2>
+<ul>
+<li>Cleaner documents: no repeated paths or magic numbers in your <code>.qmd</code> files.</li>
+<li>Reusability: the same YAML file can be shared across multiple projects.</li>
+<li>Flexibility: values can be static (like participant counts) or computed on the fly (like paths that depend on the username).</li>
+</ul>
+<p>It might feel a little fragile, since I am evaluating R code hidden in a config file, but it’s been reliable and I am finding it quite useful. For instance, I sometimes even compute the number of participants automatically from an Ibex CSV and store it in the YAML—then refer to it in my Quarto text.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>technical</category>
+  <category>code</category>
+  <guid>https://utkuturk.github.io/posts/yaml-rnotebook/</guid>
+  <pubDate>Thu, 23 Jan 2020 05:00:00 GMT</pubDate>
+  <media:content url="https://utkuturk.github.io/posts/yaml-rnotebook/yaml.png" medium="image" type="image/png" height="144" width="144"/>
+</item>
 </channel>
 </rss>

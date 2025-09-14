@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Utku Turk">
+<meta name="dcterms.date" content="2020-01-23">
+<meta name="description" content="using YAML with embedded R expressions for cleaner, reusable Quarto configs.">
 
-<title>about – utku turk</title>
+<title>How to include R expressions in (quarto) YAML – utku turk</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,25 +23,61 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-80e5dc6213cdaeb01bdc0923ba0d6823.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-4e044b3fe5165e83e0ad5a6dceb68c15.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-80e5dc6213cdaeb01bdc0923ba0d6823.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-4e044b3fe5165e83e0ad5a6dceb68c15.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,7 +107,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-sidebar floating nav-fixed quarto-light">
@@ -78,9 +117,9 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
     </a>
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">utku turk</span>
     </a>
   </div>
@@ -91,23 +130,23 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./about.html" aria-current="page"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">about</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./research.html"> 
+    <a class="nav-link" href="../../research.html"> 
 <span class="menu-text">research</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./papers.html"> 
+    <a class="nav-link" href="../../papers.html"> 
 <span class="menu-text">papers</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./talks.html"> 
+    <a class="nav-link" href="../../talks.html"> 
 <span class="menu-text">talks</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./teaching.html"> 
+    <a class="nav-link" href="../../teaching.html"> 
 <span class="menu-text">teaching</span></a>
   </li>  
   <li class="nav-item compact">
@@ -136,7 +175,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">How to include R expressions in (quarto) YAML</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -147,14 +186,14 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-center sidebar-header">
-      <a href="./index.html" class="sidebar-logo-link">
+      <a href="../../index.html" class="sidebar-logo-link">
       </a>
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
  <span class="menu-text"><div style="text-align:center; line-height:1.4;">
-  <img src="./images/utkuturkumd.jpeg" style="width:300px; margin-bottom:10px; display:block; margin-left:auto; margin-right:auto; transform:translateX(-50px);" alt="My photo">
+  <img src="../../images/utkuturkumd.jpeg" style="width:300px; margin-bottom:10px; display:block; margin-left:auto; margin-right:auto; transform:translateX(-50px);" alt="My photo">
   <p><strong>utku turk</strong><br>
   PhD Candidate, Linguistics<br>
   University of Maryland</p>
@@ -172,10 +211,10 @@ ul.task-list li input[type="checkbox"] {
     <li class="sidebar-news__item">
       <time class="sidebar-news__date">Apr 2025</time>
       Advanced to candidacy (QP: timing of agreement in production)
-      <span class="sidebar-news__links">· <a href="./files/slides/qpTurk.pdf">slides</a></span>
+      <span class="sidebar-news__links">· <a href="../../files/slides/qpTurk.pdf">slides</a></span>
     </li>
   </ul>
-  <a class="sidebar-news__more" href="./news/">More →</a>
+  <a class="sidebar-news__more" href="../../news/">More →</a>
 </div>
 </span>
   </li>
@@ -192,45 +231,95 @@ ul.task-list li input[type="checkbox"] {
         
     </div>
 <!-- main -->
-<div class="quarto-about-marquee">
-  <div class="about-image-container">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">How to include R expressions in (quarto) YAML</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">technical</div>
+    <div class="quarto-category">code</div>
   </div>
-  <div class="about-contents">
-    <header id="title-block-header" class="quarto-title-block"></header> <main class="content" id="quarto-document-content">
-<dl>
-<dt><img src="./images/arc.png" class="img-fluid quarto-figure quarto-figure-center" width="800"></dt>
-<dd>
-<p>Arcs in Şirince, Aug 2016, photo by me</p>
-</dd>
-</dl>
-<hr>
-<p>I am mostly interested in morphology and psycholinguistics. I am currently working on (i) morphological planning, i.e., when and how morphemes are planned in sentence production and (ii) how theories of generics/kind NPs can interact with the neurolinguistic findings.</p>
-<p>In June 2022, I defended my MA thesis titled <a href="../ma/">“Agreement Attraction in Turkish”</a> in Bogazici University, where I worked with <a href="https://scholar.google.com/citations?user=fhbdTJIAAAAJ&amp;hl=en">Pavel Logacev</a> and focused on case-ambiguity, response bias, and shallow processing in agreement attraction.</p>
-<p>During my time in Bogazici, I also worked on formal semantics of hypothetical comparisons, the phonemic status of Turkish glide [j], treebanking efforts in Turkish and Laz. I spent a semester in Masaryk University, as an invited researcher, where I worked with <a href="https://www.muni.cz/en/people/53172-pavel-caha/cv">Pavel Caha</a> and focused on the syntax-phonology interface of Turkish case system and augmentatives in Turkish using nanosyntactic framework.</p>
-<p>My favorite food is <a href="https://en.wikipedia.org/wiki/Gata_(food)">gata</a> with koritz and my favorite icecream flavor is <a href="https://explorepartsunknown.com/koreatown-la/koreatown-perfect-day/">saffron and rose (5pm snack of Anthony Bourdain)</a>. In my freetime, I try to do some <a href="../resources/calligraphy/">calligraphy</a>. I co-founded <a href="https://translateforjustice.wordpress.com/">Translate for Justice</a>, an independent platform of voluntary translators from all corners of the world to help raise awareness by providing information for the international public on the issues of restriction of basic human rights and freedom. <br><br></p>
+  </div>
 
-
-</main> 
-    <div class="about-footer"><div class="about-links">
-  <a href="https://twitter.com" class="about-link" rel="" target="">
-    <i class="bi bi-twitter"></i>
-     <span class="about-link-text">Twitter</span>
-  </a>
-  <a href="https://linkedin.com" class="about-link" rel="" target="">
-    <i class="bi bi-linkedin"></i>
-     <span class="about-link-text">LinkedIn</span>
-  </a>
-  <a href="https://github.com" class="about-link" rel="" target="">
-    <i class="bi bi-github"></i>
-     <span class="about-link-text">Github</span>
-  </a>
-</div>
-</div>
+<div>
+  <div class="description">
+    using YAML with embedded R expressions for cleaner, reusable Quarto configs.
   </div>
 </div>
- <!-- /main -->
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Utku Turk </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 23, 2020</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>When writing R Markdown or Quarto files, I’ve always disliked cluttering them with long file paths, fixed parameters, or small snippets of code. Many of these values are constants or things I don’t plan to change often, sometimes not even across projects. So I started looking for a way to move such information into a separate YAML file and refer to it from within Quarto. You could of course do this with a regular R script and source(), but I found that YAML makes these kinds of project-wide parameters easier to organize and read.</p>
+<section id="embedding-r-in-yaml" class="level2">
+<h2 class="anchored" data-anchor-id="embedding-r-in-yaml">Embedding R in YAML</h2>
+<p>While digging around, I came across <a href="https://stackoverflow.com/questions/64454623/r-read-yaml-reads-a-vector-as-parameter">this helpful StackOverflow post</a>, which pointed out that YAML can evaluate R expressions directly if marked with !expr. This means your config file can contain values that are not just static strings, but dynamically computed.</p>
+<p>For example, my <code>_paper.yaml</code> file looks like this:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">experiments</span><span class="kw">:</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">first</span><span class="kw">:</span><span class="at"> </span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">path</span><span class="kw">:</span><span class="at"> !expr 'paste0("C:/Users/", Sys.info()[6], "/OneDrive/Science/experiments/first")'</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">nsubject</span><span class="kw">:</span><span class="at"> !expr 'nrow(read.csv(file.path(paste0("C:/Users/", Sys.info()[6], "/OneDrive/Science/experiments/first"), "results.csv")))'</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">second</span><span class="kw">:</span><span class="at"> !expr 'paste0("C:/Users/", Sys.info()[6], "/OneDrive/Science/experiments/second")'</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">third</span><span class="kw">:</span><span class="at"> ...</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="reading-it-in-r" class="level2">
+<h2 class="anchored" data-anchor-id="reading-it-in-r">Reading it in R</h2>
+<p>To load the config file, you just need to enable expression evaluation when calling <code>yaml::read_yaml()</code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>config <span class="ot">&lt;-</span> yaml<span class="sc">::</span><span class="fu">read_yaml</span>(<span class="st">'_paper.yaml'</span>, <span class="at">eval.expr =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Now, config behaves like a nested list, and you can access parameters directly. For example:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>config<span class="sc">$</span>experiments<span class="sc">$</span>first</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>config<span class="sc">$</span>experiments<span class="sc">$</span>first<span class="sc">$</span>nsubject</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>This makes it easy to centralize all project-level constants and keep your Quarto documents cleaner.</p>
+</section>
+<section id="why-this-helps" class="level2">
+<h2 class="anchored" data-anchor-id="why-this-helps">Why This Helps</h2>
+<ul>
+<li>Cleaner documents: no repeated paths or magic numbers in your <code>.qmd</code> files.</li>
+<li>Reusability: the same YAML file can be shared across multiple projects.</li>
+<li>Flexibility: values can be static (like participant counts) or computed on the fly (like paths that depend on the username).</li>
+</ul>
+<p>It might feel a little fragile, since I am evaluating R code hidden in a config file, but it’s been reliable and I am finding it quite useful. For instance, I sometimes even compute the number of participants automatically from an Ibex CSV and store it in the YAML—then refer to it in my Quarto text.</p>
+
+
+</section>
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
     const isCodeAnnotation = (el) => {
       for (const clz of el.classList) {
         if (clz.startsWith('code-annotation-')) {                     

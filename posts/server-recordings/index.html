@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Utku Turk">
+<meta name="dcterms.date" content="2023-02-23">
+<meta name="description" content="it got really annoying after a while, so i wrote this code">
 
-<title>about – utku turk</title>
+<title>Automating experimental recording management with bash – utku turk</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,25 +23,61 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-80e5dc6213cdaeb01bdc0923ba0d6823.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-4e044b3fe5165e83e0ad5a6dceb68c15.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-80e5dc6213cdaeb01bdc0923ba0d6823.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-4e044b3fe5165e83e0ad5a6dceb68c15.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,7 +107,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-sidebar floating nav-fixed quarto-light">
@@ -78,9 +117,9 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
     </a>
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">utku turk</span>
     </a>
   </div>
@@ -91,23 +130,23 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./about.html" aria-current="page"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">about</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./research.html"> 
+    <a class="nav-link" href="../../research.html"> 
 <span class="menu-text">research</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./papers.html"> 
+    <a class="nav-link" href="../../papers.html"> 
 <span class="menu-text">papers</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./talks.html"> 
+    <a class="nav-link" href="../../talks.html"> 
 <span class="menu-text">talks</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./teaching.html"> 
+    <a class="nav-link" href="../../teaching.html"> 
 <span class="menu-text">teaching</span></a>
   </li>  
   <li class="nav-item compact">
@@ -136,7 +175,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Automating experimental recording management with bash</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -147,14 +186,14 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-center sidebar-header">
-      <a href="./index.html" class="sidebar-logo-link">
+      <a href="../../index.html" class="sidebar-logo-link">
       </a>
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
  <span class="menu-text"><div style="text-align:center; line-height:1.4;">
-  <img src="./images/utkuturkumd.jpeg" style="width:300px; margin-bottom:10px; display:block; margin-left:auto; margin-right:auto; transform:translateX(-50px);" alt="My photo">
+  <img src="../../images/utkuturkumd.jpeg" style="width:300px; margin-bottom:10px; display:block; margin-left:auto; margin-right:auto; transform:translateX(-50px);" alt="My photo">
   <p><strong>utku turk</strong><br>
   PhD Candidate, Linguistics<br>
   University of Maryland</p>
@@ -172,10 +211,10 @@ ul.task-list li input[type="checkbox"] {
     <li class="sidebar-news__item">
       <time class="sidebar-news__date">Apr 2025</time>
       Advanced to candidacy (QP: timing of agreement in production)
-      <span class="sidebar-news__links">· <a href="./files/slides/qpTurk.pdf">slides</a></span>
+      <span class="sidebar-news__links">· <a href="../../files/slides/qpTurk.pdf">slides</a></span>
     </li>
   </ul>
-  <a class="sidebar-news__more" href="./news/">More →</a>
+  <a class="sidebar-news__more" href="../../news/">More →</a>
 </div>
 </span>
   </li>
@@ -192,45 +231,137 @@ ul.task-list li input[type="checkbox"] {
         
     </div>
 <!-- main -->
-<div class="quarto-about-marquee">
-  <div class="about-image-container">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Automating experimental recording management with bash</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">technical</div>
+    <div class="quarto-category">code</div>
   </div>
-  <div class="about-contents">
-    <header id="title-block-header" class="quarto-title-block"></header> <main class="content" id="quarto-document-content">
-<dl>
-<dt><img src="./images/arc.png" class="img-fluid quarto-figure quarto-figure-center" width="800"></dt>
-<dd>
-<p>Arcs in Şirince, Aug 2016, photo by me</p>
-</dd>
-</dl>
-<hr>
-<p>I am mostly interested in morphology and psycholinguistics. I am currently working on (i) morphological planning, i.e., when and how morphemes are planned in sentence production and (ii) how theories of generics/kind NPs can interact with the neurolinguistic findings.</p>
-<p>In June 2022, I defended my MA thesis titled <a href="../ma/">“Agreement Attraction in Turkish”</a> in Bogazici University, where I worked with <a href="https://scholar.google.com/citations?user=fhbdTJIAAAAJ&amp;hl=en">Pavel Logacev</a> and focused on case-ambiguity, response bias, and shallow processing in agreement attraction.</p>
-<p>During my time in Bogazici, I also worked on formal semantics of hypothetical comparisons, the phonemic status of Turkish glide [j], treebanking efforts in Turkish and Laz. I spent a semester in Masaryk University, as an invited researcher, where I worked with <a href="https://www.muni.cz/en/people/53172-pavel-caha/cv">Pavel Caha</a> and focused on the syntax-phonology interface of Turkish case system and augmentatives in Turkish using nanosyntactic framework.</p>
-<p>My favorite food is <a href="https://en.wikipedia.org/wiki/Gata_(food)">gata</a> with koritz and my favorite icecream flavor is <a href="https://explorepartsunknown.com/koreatown-la/koreatown-perfect-day/">saffron and rose (5pm snack of Anthony Bourdain)</a>. In my freetime, I try to do some <a href="../resources/calligraphy/">calligraphy</a>. I co-founded <a href="https://translateforjustice.wordpress.com/">Translate for Justice</a>, an independent platform of voluntary translators from all corners of the world to help raise awareness by providing information for the international public on the issues of restriction of basic human rights and freedom. <br><br></p>
+  </div>
 
-
-</main> 
-    <div class="about-footer"><div class="about-links">
-  <a href="https://twitter.com" class="about-link" rel="" target="">
-    <i class="bi bi-twitter"></i>
-     <span class="about-link-text">Twitter</span>
-  </a>
-  <a href="https://linkedin.com" class="about-link" rel="" target="">
-    <i class="bi bi-linkedin"></i>
-     <span class="about-link-text">LinkedIn</span>
-  </a>
-  <a href="https://github.com" class="about-link" rel="" target="">
-    <i class="bi bi-github"></i>
-     <span class="about-link-text">Github</span>
-  </a>
-</div>
-</div>
+<div>
+  <div class="description">
+    it got really annoying after a while, so i wrote this code
   </div>
 </div>
- <!-- /main -->
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Utku Turk </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 23, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>I realized that most of my experimental time was being eaten up not by designing or running studies, but by the tedious task of downloading recordings from the server, unzipping them, converting formats, and filing them into the right participant folders. After a while, the frustration of repeating these steps by hand turned into procrastination and that procrastination produced some bash scripts to automate the whole process.</p>
+<section id="step-1-download-recordings" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-download-recordings">Step 1: Download recordings</h2>
+<p>First I grab all the zipped uploads from the server and drop them into a local directory.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="va">remote_host</span><span class="op">=</span><span class="st">"myserver@myserver.umd.edu"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="va">remote_path</span><span class="op">=</span><span class="st">"/Users/myserver/Phillips/Utku/corner_same_verb/uploads/*.zip"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="va">local_path</span><span class="op">=</span><span class="st">"~/Downloads/rec_feb23"</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="st">"</span><span class="va">$local_path</span><span class="st">"</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">scp</span> <span class="st">"</span><span class="va">$remote_host</span><span class="st">:</span><span class="va">$remote_path</span><span class="st">"</span> <span class="st">"</span><span class="va">$local_path</span><span class="st">"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="step-2-unzip-and-convert-formats" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-unzip-and-convert-formats">Step 2: Unzip and convert formats</h2>
+<p>Once the <code>.zip</code> files are on my machine, I unzip everything and convert the <code>.webm</code> files to <code>.wav</code> with ffmpeg. The originals go into a backup folder.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> <span class="st">"</span><span class="va">$local_path</span><span class="st">"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">unzip</span> <span class="dt">\*</span>.zip</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="pp">*</span>.webm<span class="kw">;</span> <span class="cf">do</span> <span class="ex">ffmpeg</span> <span class="at">-i</span> <span class="st">"</span><span class="va">$i</span><span class="st">"</span> <span class="st">"</span><span class="va">${i</span><span class="op">%</span>.<span class="pp">*</span><span class="va">}</span><span class="st">.wav"</span><span class="kw">;</span> <span class="cf">done</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> backup</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> <span class="dt">\*</span>.zip ,/backup</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="dt">\*</span>.webm</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="step-3-group-files-by-participant" class="level2">
+<h2 class="anchored" data-anchor-id="step-3-group-files-by-participant">Step 3: Group files by participant</h2>
+<p>My participant IDs are randomly generated 8-character strings, thus <code>{file:0:8}</code> and <code>^.{8}_</code>. I use the first eight characters of the filename as a prefix to create a directory per participant.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> file <span class="kw">in</span> <span class="pp">*</span><span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="kw">[[</span> <span class="ot">-f</span> <span class="st">"</span><span class="va">$file</span><span class="st">"</span> <span class="kw">]];</span> <span class="cf">then</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="va">prefix</span><span class="op">=</span><span class="st">"</span><span class="va">${file</span><span class="op">:</span><span class="dv">0</span><span class="op">:</span><span class="dv">8</span><span class="va">}</span><span class="st">"</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">[[</span> <span class="st">"</span><span class="va">$file</span><span class="st">"</span> <span class="ot">=~</span> <span class="pp">^.</span><span class="va">{</span><span class="dv">8</span><span class="va">}</span><span class="ss">_</span> <span class="kw">]];</span> <span class="cf">then</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> <span class="kw">[[</span> <span class="ot">!</span> <span class="ot">-d</span> <span class="st">"</span><span class="va">$prefix</span><span class="st">"</span> <span class="kw">]];</span> <span class="cf">then</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mkdir</span> <span class="st">"</span><span class="va">$prefix</span><span class="st">"</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>      <span class="cf">fi</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mv</span> <span class="st">"</span><span class="va">$file</span><span class="st">"</span> <span class="st">"</span><span class="va">$prefix</span><span class="st">/"</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">fi</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">fi</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="step-4-sort-within-each-participant-folder" class="level2">
+<h2 class="anchored" data-anchor-id="step-4-sort-within-each-participant-folder">Step 4: Sort within each participant folder</h2>
+<p>Finally, within each participant’s folder, I move the recordings into two buckets: - <code>fam/</code> for habituation (familiarization) files (those with <em>fam</em>), - <code>misc/</code> for practice, intro, and test files.</p>
+<p>I use <code>nullglob</code> to avoid errors if a folder doesn’t contain a certain file type.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> prefix_dir <span class="kw">in</span> <span class="pp">*</span>/<span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">prefix_dir</span><span class="op">=</span><span class="st">"</span><span class="va">${prefix_dir</span><span class="op">%</span>/<span class="va">}</span><span class="st">"</span> </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="kw">[[</span> <span class="ot">-d</span> <span class="st">"</span><span class="va">$prefix_dir</span><span class="st">"</span> <span class="kw">]];</span> <span class="cf">then</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">[[</span> <span class="ot">!</span> <span class="ot">-d</span> <span class="st">"</span><span class="va">$prefix_dir</span><span class="st">/fam"</span> <span class="kw">]];</span> <span class="cf">then</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mkdir</span> <span class="st">"</span><span class="va">$prefix_dir</span><span class="st">/fam"</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">fi</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="ex">setopt</span> nullglob</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> fam_file <span class="kw">in</span> <span class="st">"</span><span class="va">$prefix_dir</span><span class="st">/"</span><span class="pp">*</span>_<span class="pp">*</span>fam_<span class="pp">*</span><span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> <span class="kw">[[</span> <span class="ot">-f</span> <span class="st">"</span><span class="va">$fam_file</span><span class="st">"</span> <span class="kw">]];</span> <span class="cf">then</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">[[</span> <span class="st">"</span><span class="va">$fam_file</span><span class="st">"</span> <span class="ot">=~</span> <span class="pp">.*</span><span class="ss">_fam_</span><span class="pp">.*</span> <span class="kw">]];</span> <span class="cf">then</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>          <span class="fu">mv</span> <span class="st">"</span><span class="va">$fam_file</span><span class="st">"</span> <span class="st">"</span><span class="va">$prefix_dir</span><span class="st">/fam/"</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">fi</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>      <span class="cf">fi</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">done</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="ex">unsetopt</span> nullglob</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">[[</span> <span class="ot">!</span> <span class="ot">-d</span> <span class="st">"</span><span class="va">$prefix_dir</span><span class="st">/misc"</span> <span class="kw">]];</span> <span class="cf">then</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mkdir</span> <span class="st">"</span><span class="va">$prefix_dir</span><span class="st">/misc"</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">fi</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="ex">setopt</span> nullglob</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> misc_file <span class="kw">in</span> <span class="st">"</span><span class="va">$prefix_dir</span><span class="st">/"</span><span class="pp">*</span>_<span class="pp">*</span>practice_<span class="pp">*</span> <span class="st">"</span><span class="va">$prefix_dir</span><span class="st">/"</span><span class="pp">*</span>_<span class="pp">*</span>intro_<span class="pp">*</span> <span class="st">"</span><span class="va">$prefix_dir</span><span class="st">/"</span><span class="pp">*</span>_<span class="pp">*</span>test-<span class="pp">*</span><span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> <span class="kw">[[</span> <span class="ot">-f</span> <span class="st">"</span><span class="va">$misc_file</span><span class="st">"</span> <span class="kw">]];</span> <span class="cf">then</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">[[</span> <span class="st">"</span><span class="va">$misc_file</span><span class="st">"</span> <span class="ot">=~</span> <span class="pp">.*</span><span class="ss">_practice_</span><span class="pp">.*</span> <span class="kw">||</span> <span class="st">"</span><span class="va">$misc_file</span><span class="st">"</span> <span class="ot">=~</span> <span class="pp">.*</span><span class="ss">_intro_</span><span class="pp">.*</span> <span class="kw">||</span> <span class="st">"</span><span class="va">$misc_file</span><span class="st">"</span> <span class="ot">=~</span> <span class="pp">.*</span><span class="ss">_test-</span><span class="pp">.*</span> <span class="kw">]];</span> <span class="cf">then</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>          <span class="cf">if</span> <span class="kw">[[</span> <span class="ot">!</span> <span class="st">"</span><span class="va">$misc_file</span><span class="st">"</span> <span class="ot">=~</span> <span class="pp">.*</span><span class="ss">_fam_</span><span class="pp">.*</span> <span class="kw">]];</span> <span class="cf">then</span> </span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>              <span class="fu">mv</span> <span class="st">"</span><span class="va">$misc_file</span><span class="st">"</span> <span class="st">"</span><span class="va">$prefix_dir</span><span class="st">/misc/"</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>          <span class="cf">fi</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">fi</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>      <span class="cf">fi</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">done</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>    <span class="ex">unsetopt</span> nullglob</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>  <span class="cf">fi</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>What started as procrastination ended up saving me hours of repetitive work. Probably, it is not a good code, but it turns file management into a background task and leaves more time to me for the actual science. If you have any comments how to make the code better, please reach out!</p>
+
+
+</section>
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
     const isCodeAnnotation = (el) => {
       for (const clz of el.classList) {
         if (clz.startsWith('code-annotation-')) {                     
