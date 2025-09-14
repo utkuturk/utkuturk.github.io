@@ -40,6 +40,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-4e044b3fe5165e83e0ad5a6dceb68c15.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/quarto-contrib/academicons-1.9.4/all.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/academicons-1.9.4/size.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -110,6 +112,14 @@ ul.task-list li input[type="checkbox"] {
   <li class="nav-item">
     <a class="nav-link" href="./teaching.html"> 
 <span class="menu-text">teaching</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./files/cv.pdf"> 
+<span class="menu-text"><i class="ai  ai-cv" aria-label="cv"></i></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://scholar.google.com/citations?hl=tr&amp;user=wa7LG9gAAAAJ"> 
+<span class="menu-text"><i class="ai  ai-google-scholar" aria-label="google-scholar"></i></span></a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/utkuturk"> <i class="bi bi-github" role="img">
@@ -427,7 +437,7 @@ subscription widget.
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/www\.utkuturk\.com");
+        var filterRegex = new RegExp("https:\/\/utkuturk\.github\.io\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

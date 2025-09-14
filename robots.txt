@@ -1,1 +1,1 @@
-Sitemap: https://www.utkuturk.com/sitemap.xml
+Sitemap: https://utkuturk.github.io/sitemap.xml
