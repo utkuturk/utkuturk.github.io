@@ -1,6 +1,7 @@
 ---
 title: ""
 aliases: [/news/]
+comments: false
 format:
   html:
     toc: false

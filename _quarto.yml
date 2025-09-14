@@ -5,10 +5,10 @@ project:
 
 execute:
   freeze: auto
-  
+
 website:
   title: "utku turk"
-  # site-url: https://www.utkuturk.com
+  site-url: https://www.utkuturk.com
   margin-header: subscribe.html
   comments:
     giscus:

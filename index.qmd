@@ -12,6 +12,5 @@ listing:
   sort-ui: false
   filter-ui: false
   feed: true
-  # DO THE RSS https://forbo7.github.io/forblog/posts/7_blog_subscriptions.html
 ---
 
