@@ -2,35 +2,43 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.utkuturk.com/about.html</loc>
-    <lastmod>2025-09-04T15:20:27.581Z</lastmod>
+    <lastmod>2025-09-14T21:12:37.950Z</lastmod>
   </url>
   <url>
     <loc>https://www.utkuturk.com/news.html</loc>
-    <lastmod>2025-09-14T15:32:10.359Z</lastmod>
+    <lastmod>2025-09-14T21:12:45.227Z</lastmod>
   </url>
   <url>
     <loc>https://www.utkuturk.com/talks.html</loc>
-    <lastmod>2025-09-03T02:14:32.155Z</lastmod>
+    <lastmod>2025-09-14T21:12:58.864Z</lastmod>
   </url>
   <url>
     <loc>https://www.utkuturk.com/posts/as-if/index.html</loc>
     <lastmod>2025-09-14T18:20:02.523Z</lastmod>
   </url>
   <url>
-    <loc>https://www.utkuturk.com/posts/server-recordings/index.html</loc>
-    <lastmod>2025-09-14T18:32:41.522Z</lastmod>
+    <loc>https://www.utkuturk.com/posts/mfa/index.html</loc>
+    <lastmod>2025-09-14T18:37:31.756Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.utkuturk.com/posts/j-glide/index.html</loc>
+    <lastmod>2025-09-05T14:55:16.275Z</lastmod>
   </url>
   <url>
     <loc>https://www.utkuturk.com/teaching.html</loc>
-    <lastmod>2025-09-03T02:27:37.930Z</lastmod>
+    <lastmod>2025-09-14T21:13:02.617Z</lastmod>
   </url>
   <url>
     <loc>https://www.utkuturk.com/life.html</loc>
-    <lastmod>2025-09-02T14:15:13.016Z</lastmod>
+    <lastmod>2025-09-14T21:12:41.354Z</lastmod>
   </url>
   <url>
     <loc>https://www.utkuturk.com/research.html</loc>
-    <lastmod>2025-09-04T22:32:11.433Z</lastmod>
+    <lastmod>2025-09-14T21:12:53.384Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.utkuturk.com/posts/server-recordings/index.html</loc>
+    <lastmod>2025-09-14T18:32:41.522Z</lastmod>
   </url>
   <url>
     <loc>https://www.utkuturk.com/posts/ma-thesis/index.html</loc>
@@ -42,10 +50,10 @@
   </url>
   <url>
     <loc>https://www.utkuturk.com/papers.html</loc>
-    <lastmod>2025-09-03T02:30:07.426Z</lastmod>
+    <lastmod>2025-09-14T21:12:48.472Z</lastmod>
   </url>
   <url>
     <loc>https://www.utkuturk.com/index.html</loc>
-    <lastmod>2025-09-14T21:00:37.589Z</lastmod>
+    <lastmod>2025-09-14T21:10:40.723Z</lastmod>
   </url>
 </urlset>
