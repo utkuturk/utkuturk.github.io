@@ -2,10 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://utkuturk.github.io/about.html</loc>
-    <lastmod>2025-09-14T19:44:16.470Z</lastmod>
+    <lastmod>2025-09-04T15:20:27.581Z</lastmod>
+  </url>
+  <url>
+    <loc>https://utkuturk.github.io/news.html</loc>
+    <lastmod>2025-09-14T15:32:10.359Z</lastmod>
+  </url>
+  <url>
+    <loc>https://utkuturk.github.io/talks.html</loc>
+    <lastmod>2025-09-03T02:14:32.155Z</lastmod>
+  </url>
+  <url>
+    <loc>https://utkuturk.github.io/teaching.html</loc>
+    <lastmod>2025-09-03T02:27:37.930Z</lastmod>
+  </url>
+  <url>
+    <loc>https://utkuturk.github.io/life.html</loc>
+    <lastmod>2025-09-02T14:15:13.016Z</lastmod>
+  </url>
+  <url>
+    <loc>https://utkuturk.github.io/research.html</loc>
+    <lastmod>2025-09-04T22:32:11.433Z</lastmod>
+  </url>
+  <url>
+    <loc>https://utkuturk.github.io/papers.html</loc>
+    <lastmod>2025-09-03T02:30:07.426Z</lastmod>
   </url>
   <url>
     <loc>https://utkuturk.github.io/index.html</loc>
-    <lastmod>2025-09-14T19:44:16.470Z</lastmod>
+    <lastmod>2025-09-14T18:43:25.984Z</lastmod>
   </url>
 </urlset>
