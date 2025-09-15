@@ -3,9 +3,6 @@ project:
   resources:
     - images/
 
-execute:
-  freeze: auto
-
 website:
   title: "utku turk"
   site-url: https://www.utkuturk.com
