@@ -3,7 +3,7 @@ title: "Montreal Forced Aligner Workflow for PCIbex Production Experiments"
 author: "Utku Turk"
 date: "2024-07-12"
 description: step-by-step instructions for filtering, renaming, and aligning PCIbex recordings with MFA
-categories: [linguistics, papers, meaning]
+categories: [linguistics, papers, sound, experiment]
 embed-resources: true
 self-contained-math: true
 image: ./mfa.jpeg

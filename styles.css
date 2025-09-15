@@ -1,4 +1,8 @@
 @media (min-width: 992px) {
+.about-bio,
+.mobile-sidebar-news {
+  display: none;
+}
 /* Floating pill navbar core */
 #quarto-header {
   background: transparent;
@@ -122,16 +126,77 @@ main.content {
   }
 }
 
+/* ===== Mobile-only styling for About + News ===== */
 
-/* hidden by default (desktop) */
-.mobile-bio { display: none; text-align: center; line-height: 1.4; }
-.mobile-bio .bio-img { width: 100px; border-radius: 50%; margin-bottom: 10px; }
-.mobile-bio .muted { font-size: 0.8em; color: #555; }
+@media (max-width: 992px) {
+  /* About bio block */
+  .about-bio {
+    text-align: center;
+    line-height: 1.4;
+    margin-bottom: 1.5rem;
+  }
 
-/* mobile: hide the sidebar; show the inline bio under the title */
-@media (max-width: 768px) {
-  .sidebar, .sidebar-toggle, .sidebar-navigation { display: none !important; }
-  .mobile-bio { display: block; margin: 1rem 0 1.25rem; }
+  .about-bio .about-photo {
+    width: 250px;
+    /* border-radius: 50%; */
+    margin-bottom: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .about-bio .about-research {
+    display: block;
+    font-size: 0.9em;
+    color: #555;
+    margin-top: 0.5rem;
+  }
+
+  .about-bio .about-previous {
+    display: block;
+    font-size: 0.8em;
+    color: #777;
+    margin-top: 0.75rem;
+  }
+
+  /* Sidebar news block */
+  .mobile-sidebar-news {
+    font-size: 0.9em;
+    margin-top: 1.5rem;
+  }
+
+  .mobile-sidebar-news__title {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+  }
+
+  .mobile-sidebar-news__list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0 0 0.5rem 0;
+  }
+
+  .mobile-sidebar-news__item {
+    margin-bottom: 0.5rem;
+  }
+
+  .mobile-sidebar-news__date {
+    font-weight: 600;
+    margin-right: 0.25rem;
+    color: #444;
+  }
+
+  .mobile-sidebar-news__links {
+    font-size: 0.85em;
+    color: #555;
+  }
+
+  .mobile-sidebar-news__more {
+    display: inline-block;
+    margin-top: 0.25rem;
+    font-size: 0.9em;
+  }
 }
 
 /* Tiny, sidebar-friendly styles */
