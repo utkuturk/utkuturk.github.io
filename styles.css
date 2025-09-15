@@ -214,3 +214,16 @@ main.content {
 
 /* If you want no bullets, swap the list style: */
 /* .sidebar-news__list{list-style:none;padding-left:0} */
+
+.sidebar .quarto-listing-category-title::after {
+  content: "blog topics";
+}
+.sidebar .quarto-listing-category-title {
+  visibility: hidden;
+  position: relative;
+}
+.sidebar .quarto-listing-category-title::after {
+  visibility: visible;
+  position: absolute;
+  left: 0;
+}
