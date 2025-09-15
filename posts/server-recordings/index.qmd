@@ -1,5 +1,5 @@
 ---
-title: Automating experimental recording management with bash
+title: automating experimental recording management with bash
 author: Utku Turk
 date: "2023-02-23"
 categories: [technical, code]

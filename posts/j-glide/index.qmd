@@ -1,5 +1,5 @@
 ---
-title: Is ‘j’ really a sonorant in Turkish? I guess not.
+title: is /j/ really a sonorant in turkish? i guess not.
 author: Utku Turk
 date: "2022-05-10"
 categories: [linguistics, papers, sound]
