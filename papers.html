@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.21">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -36,10 +36,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-80e5dc6213cdaeb01bdc0923ba0d6823.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-4c4694b7ce1c522b735583de653f0b36.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-4e044b3fe5165e83e0ad5a6dceb68c15.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-2126101716276f109b1e40811e6cd19e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/quarto-contrib/academicons-1.9.4/all.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/academicons-1.9.4/size.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -227,7 +227,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="dissertation-thesis" class="level2">
 <h2 class="anchored" data-anchor-id="dissertation-thesis">Dissertation / Thesis</h2>
 <div class="ref-item">
-<span class="ref-num">[1]</span><span class="ref-text">Türk, U. (2022). <em>Agreement Attraction in Turkish</em>. MA thesis. Boğaziçi University. <a href="http://seyhan.library.boun.edu.tr/record=b2776878~S5" target="_blank">[link]</a> <a href="../files/ma_defense/Turk2020-Agreement-Attraction-in-Turkish.pdf" target="_blank">[PDF]</a> <a href="https://github.com/utkuturk/ma-thesis" target="_blank">[repo]</a></span>
+<span class="ref-num">[1]</span><span class="ref-text">Türk, U. (2022). <em>Agreement Attraction in Turkish</em>. MA thesis. Boğaziçi University. <a href="http://seyhan.library.boun.edu.tr/record=b2776878~S5" target="_blank">[link]</a> <a href="../files/Turk2020-Agreement-Attraction-in-Turkish.pdf" target="_blank">[PDF]</a> <a href="https://github.com/utkuturk/ma-thesis" target="_blank">[repo]</a></span>
 </div>
 </section>
 <section id="journal-articles" class="level2">
@@ -342,13 +342,14 @@ ul.task-list li input[type="checkbox"] {
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

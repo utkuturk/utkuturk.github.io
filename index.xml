@@ -9,8 +9,8 @@
 <link>https://www.utkuturk.com/</link>
 <atom:link href="https://www.utkuturk.com/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.8.21</generator>
-<lastBuildDate>Fri, 12 Jul 2024 04:00:00 GMT</lastBuildDate>
+<generator>quarto-1.8.24</generator>
+<lastBuildDate>Fri, 12 Jul 2024 00:00:00 GMT</lastBuildDate>
 <item>
   <title>Montreal Forced Aligner Workflow for PCIbex Production Experiments</title>
   <dc:creator>Utku Turk</dc:creator>
@@ -2968,7 +2968,7 @@ font-style: inherit;">1.96</span>), xmax)</span></code></pre></div></div>
   <category>sound</category>
   <category>experiment</category>
   <guid>https://www.utkuturk.com/posts/mfa/</guid>
-  <pubDate>Fri, 12 Jul 2024 04:00:00 GMT</pubDate>
+  <pubDate>Fri, 12 Jul 2024 00:00:00 GMT</pubDate>
   <media:content url="https://www.utkuturk.com/posts/mfa/mfa.jpeg" medium="image" type="image/jpeg"/>
 </item>
 <item>
@@ -3714,7 +3714,7 @@ font-style: inherit;">done</span></span></code></pre></div></div>
   <category>technical</category>
   <category>code</category>
   <guid>https://www.utkuturk.com/posts/server-recordings/</guid>
-  <pubDate>Thu, 23 Feb 2023 05:00:00 GMT</pubDate>
+  <pubDate>Thu, 23 Feb 2023 00:00:00 GMT</pubDate>
   <media:content url="https://www.utkuturk.com/posts/server-recordings/bash.png" medium="image" type="image/png" height="144" width="144"/>
 </item>
 <item>
@@ -4054,39 +4054,8 @@ font-style: inherit;">done</span></span></code></pre></div></div>
   <category>dissertation</category>
   <category>agreement attraction</category>
   <guid>https://www.utkuturk.com/posts/ma-thesis/</guid>
-  <pubDate>Sat, 20 Aug 2022 04:00:00 GMT</pubDate>
+  <pubDate>Sat, 20 Aug 2022 00:00:00 GMT</pubDate>
   <media:content url="https://www.utkuturk.com/posts/ma-thesis/exp3_bias_our.png" medium="image" type="image/png" height="90" width="144"/>
-</item>
-<item>
-  <title>is /j/ really a sonorant in turkish? i guess not.</title>
-  <dc:creator>Utku Turk</dc:creator>
-  <link>https://www.utkuturk.com/posts/j-glide/</link>
-  <description><![CDATA[ 
-
-
-
-
-<p>This work started as a term paper for our master’s phonology class with <a href="https://www.linkedin.com/in/semra-özdemir-6567b6155/">Semra Ozdemir</a>. She was interested in the properties of sonorants and I was interested in the phonetics of them. We saw that in many environments Turkish glide /j/ acts differently than other sonorants. The fact that /j/ was the only phonemic glide in Turkish was already interesting by itself. We asked the following question: <strong>Is it really a glide?</strong></p>
-<p>We looked at certain phonological behaviors of the /j/: (i) /h/ deletion prior to sonorants, (ii) consonant-clusters in coda, and (iii) [e]-lowering prior to sonorants. We also conducted a phonetics experiment where we asked people to read sentences that contains sonorants in word-final, word-initial, and intervocalic positions following the sound [e]. Our results from this experiment can be seen in the figure below.</p>
-<center>
-<img src="https://www.utkuturk.com/posts/j-glide/glide_fig.png" alt="<i>Figure 1.</i> F1 and F2 values of individual utterances of the mid-front vowel e.We grouped these instances into two: following /j/ or following a non-/j/ sound." width="85%">
-<p class="caption">
-<i>Figure 1.</i> F1 and F2 values of individual utterances of the mid-front vowel e.We grouped these instances into two: following /j/ or following a non-/j/ sound.
-</p>
-</center>
-<p>We saw that /j/ behaves nothing like a sonorant. When the sound /j/ follows the mid-front vowel [e], it did not lower the vowel. However, every other sonorant (non-/j/) substantially lowered the vowel. Even though, it is clear that /j/ does not act like a sonorant, we were indecisive whether it were unspecified with respect to its sonoracy or it was just a fricative.</p>
-<p>Later on, <a href="https://linguistics.boun.edu.tr/stefano-canalis">Stefano Canalis</a> and <a href="https://www.linkedin.com/in/ümit-can-tunçer-b97479b2/">Umit Tuncer</a> also joined us in this project. With their help, we decided that /j/ is a phonemically fricative in Turkish, but may show sonorant-like behavior in certain environments. With them, we looked at the phonemic behavior of /j/ in more environments. We also investigated the feature symmetry in Turkish.</p>
-<p>We saw that other phonetic sonorants in Turkish were also phonemically fricative and /j/ and other sonorants become sonorant-like in the very same environments.</p>
-
-
-
-<script data-collect-dnt="true" async="" src="https://scripts.simpleanalyticscdn.com/latest.js"></script> ]]></description>
-  <category>linguistics</category>
-  <category>papers</category>
-  <category>sound</category>
-  <guid>https://www.utkuturk.com/posts/j-glide/</guid>
-  <pubDate>Tue, 10 May 2022 04:00:00 GMT</pubDate>
-  <media:content url="https://www.utkuturk.com/posts/j-glide/glide_fig.png" medium="image" type="image/png" height="99" width="144"/>
 </item>
 <item>
   <title>Can ‘As if’ clauses be degree comparisons?</title>
@@ -4286,8 +4255,39 @@ Mecidiyeköy hell-HCM most crowded district-POSS.1PL-AOR
   <category>papers</category>
   <category>meaning</category>
   <guid>https://www.utkuturk.com/posts/as-if/</guid>
-  <pubDate>Tue, 10 May 2022 04:00:00 GMT</pubDate>
+  <pubDate>Tue, 10 May 2022 00:00:00 GMT</pubDate>
   <media:content url="https://www.utkuturk.com/posts/as-if/dancing.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>is /j/ really a sonorant in turkish? i guess not.</title>
+  <dc:creator>Utku Turk</dc:creator>
+  <link>https://www.utkuturk.com/posts/j-glide/</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>This work started as a term paper for our master’s phonology class with <a href="https://www.linkedin.com/in/semra-özdemir-6567b6155/">Semra Ozdemir</a>. She was interested in the properties of sonorants and I was interested in the phonetics of them. We saw that in many environments Turkish glide /j/ acts differently than other sonorants. The fact that /j/ was the only phonemic glide in Turkish was already interesting by itself. We asked the following question: <strong>Is it really a glide?</strong></p>
+<p>We looked at certain phonological behaviors of the /j/: (i) /h/ deletion prior to sonorants, (ii) consonant-clusters in coda, and (iii) [e]-lowering prior to sonorants. We also conducted a phonetics experiment where we asked people to read sentences that contains sonorants in word-final, word-initial, and intervocalic positions following the sound [e]. Our results from this experiment can be seen in the figure below.</p>
+<center>
+<img src="https://www.utkuturk.com/posts/j-glide/glide_fig.png" alt="<i>Figure 1.</i> F1 and F2 values of individual utterances of the mid-front vowel e.We grouped these instances into two: following /j/ or following a non-/j/ sound." width="85%">
+<p class="caption">
+<i>Figure 1.</i> F1 and F2 values of individual utterances of the mid-front vowel e.We grouped these instances into two: following /j/ or following a non-/j/ sound.
+</p>
+</center>
+<p>We saw that /j/ behaves nothing like a sonorant. When the sound /j/ follows the mid-front vowel [e], it did not lower the vowel. However, every other sonorant (non-/j/) substantially lowered the vowel. Even though, it is clear that /j/ does not act like a sonorant, we were indecisive whether it were unspecified with respect to its sonoracy or it was just a fricative.</p>
+<p>Later on, <a href="https://linguistics.boun.edu.tr/stefano-canalis">Stefano Canalis</a> and <a href="https://www.linkedin.com/in/ümit-can-tunçer-b97479b2/">Umit Tuncer</a> also joined us in this project. With their help, we decided that /j/ is a phonemically fricative in Turkish, but may show sonorant-like behavior in certain environments. With them, we looked at the phonemic behavior of /j/ in more environments. We also investigated the feature symmetry in Turkish.</p>
+<p>We saw that other phonetic sonorants in Turkish were also phonemically fricative and /j/ and other sonorants become sonorant-like in the very same environments.</p>
+
+
+
+<script data-collect-dnt="true" async="" src="https://scripts.simpleanalyticscdn.com/latest.js"></script> ]]></description>
+  <category>linguistics</category>
+  <category>papers</category>
+  <category>sound</category>
+  <guid>https://www.utkuturk.com/posts/j-glide/</guid>
+  <pubDate>Tue, 10 May 2022 00:00:00 GMT</pubDate>
+  <media:content url="https://www.utkuturk.com/posts/j-glide/glide_fig.png" medium="image" type="image/png" height="99" width="144"/>
 </item>
 <item>
   <title>How to include R expressions in (quarto) YAML</title>
@@ -4411,7 +4411,7 @@ font-style: inherit;">$</span>nsubject</span></code></pre></div></div>
   <category>technical</category>
   <category>code</category>
   <guid>https://www.utkuturk.com/posts/yaml-rnotebook/</guid>
-  <pubDate>Thu, 23 Jan 2020 05:00:00 GMT</pubDate>
+  <pubDate>Thu, 23 Jan 2020 00:00:00 GMT</pubDate>
   <media:content url="https://www.utkuturk.com/posts/yaml-rnotebook/yaml.png" medium="image" type="image/png" height="144" width="144"/>
 </item>
 </channel>
