@@ -2,6 +2,7 @@ project:
   type: website
   resources:
     - images/
+    - files/
 
 website:
   title: "utku turk"
@@ -53,7 +54,7 @@ website:
               <li class="sidebar-news__item">
                 <time class="sidebar-news__date">Apr 2025</time>
                 Advanced to candidacy (QP: timing of agreement in production)
-                <span class="sidebar-news__links">· <a href="/files/slides/qpTurk.pdf">slides</a></span>
+                <span class="sidebar-news__links">· <a href="/files/slides/qpTurk.pdf" target="_blank">slides</a></span>
               </li>
             </ul>
             <a class="sidebar-news__more" href="/news/">More →</a>
