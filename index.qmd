@@ -21,15 +21,15 @@ listing:
 **utku turk**  
 PhD Candidate, Linguistics  
 University of Maryland  
-<i>working with <a href="https://www.ellenlau.net">Ellen Lau</a> and <a href="https://www.colinphillips.net">Colin Phillips</a></i>
+<i>working with <a href="https://www.ellenlau.net" target="_blank">Ellen Lau</a> and <a href="https://www.colinphillips.net" target="_blank">Colin Phillips</a></i>
 
 <span class="about-research">
 *interested in the timing of morphological and syntactic planning in speech, and how it shapes online comprehension and production*
 </span>  
 
 <span class="about-previous">
-*Previously MA at Boğaziçi (with [Pavel Logačev](https://github.com/plogacev));  
-visiting researcher at Masaryk (with [Pavel Caha](https://www.muni.cz/en/people/53172-pavel-caha)).*
+*Previously MA at Boğaziçi (with <a href = "https://github.com/plogacev" target="_blank">Pavel Logačev</a>);  
+visiting researcher at Masaryk (with <a href = "https://www.muni.cz/en/people/53172-pavel-caha" target="_blank">Pavel Caha</a>).*
 </span>  
 
 [utkuturk@umd.edu](mailto:utkuturk@umd.edu)

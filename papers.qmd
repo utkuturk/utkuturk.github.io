@@ -19,11 +19,11 @@ nz <- function(x) !is.null(x) && x != ""
 # formatters per type
 fmt_common_links <- function(x) {
   links <- c()
-  if (nz(x$doi))      links <- c(links, sprintf('<a href="https://doi.org/%s">[DOI]</a>', x$doi))
-  if (nz(x$url))      links <- c(links, sprintf('<a href="%s">[link]</a>', x$url))
-  if (nz(x$preprint)) links <- c(links, sprintf('<a href="%s">[preprint]</a>', x$preprint))
-  if (nz(x$pdf))      links <- c(links, sprintf('<a href="%s">[PDF]</a>', x$pdf))
-  if (nz(x$repo))     links <- c(links, sprintf('<a href="%s">[repo]</a>', x$repo))
+  if (nz(x$doi))      links <- c(links, sprintf('<a href="https://doi.org/%s" target="_blank">[DOI]</a>', x$doi))
+  if (nz(x$url))      links <- c(links, sprintf('<a href="%s" target="_blank">[link]</a>', x$url))
+  if (nz(x$preprint)) links <- c(links, sprintf('<a href="%s" target="_blank">[preprint]</a>', x$preprint))
+  if (nz(x$pdf))      links <- c(links, sprintf('<a href="%s" target="_blank">[PDF]</a>', x$pdf))
+  if (nz(x$repo))     links <- c(links, sprintf('<a href="%s" target="_blank">[repo]</a>', x$repo))
   if (length(links)) paste(links, collapse=" ") else ""
 }
 
@@ -73,9 +73,9 @@ fmt_article <- function(x){
 
   # links
   links <- c()
-  if (!is.null(x$doi)      && x$doi      != "") links <- c(links, sprintf('<a href="%s">[DOI]</a>', x$doi))
-  if (!is.null(x$preprint) && x$preprint != "") links <- c(links, sprintf('<a href="%s">[preprint]</a>', x$preprint))
-  if (!is.null(x$pdf)      && x$pdf      != "") links <- c(links, sprintf('<a href="%s">[PDF]</a>', x$pdf))
+  if (!is.null(x$doi)      && x$doi      != "") links <- c(links, sprintf('<a href="%s" target="_blank">[DOI]</a>', x$doi))
+  if (!is.null(x$preprint) && x$preprint != "") links <- c(links, sprintf('<a href="%s" target="_blank">[preprint]</a>', x$preprint))
+  if (!is.null(x$pdf)      && x$pdf      != "") links <- c(links, sprintf('<a href="%s" target="_blank">[PDF]</a>', x$pdf))
 
   if (length(links)) paste(line, paste(links, collapse = " ")) else line
 }

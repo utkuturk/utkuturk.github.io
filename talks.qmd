@@ -59,10 +59,10 @@ format_conference <- function(talk) {
 
   # links
   links <- c()
-  if (!is.null(talk$abs)    && talk$abs    != "") links <- c(links, sprintf('<a href="%s">[abstract]</a>', talk$abs))
-  if (!is.null(talk$ho)     && talk$ho     != "") links <- c(links, sprintf('<a href="%s">[handout]</a>', talk$ho))
-  if (!is.null(talk$slide)  && talk$slide  != "") links <- c(links, sprintf('<a href="%s">[slides]</a>', talk$slide))
-  if (!is.null(talk$poster) && talk$poster != "") links <- c(links, sprintf('<a href="%s">[poster]</a>', talk$poster))
+  if (!is.null(talk$abs)    && talk$abs    != "") links <- c(links, sprintf('<a href="%s" target="_blank">[abstract]</a>', talk$abs))
+  if (!is.null(talk$ho)     && talk$ho     != "") links <- c(links, sprintf('<a href="%s" target="_blank">[handout]</a>', talk$ho))
+  if (!is.null(talk$slide)  && talk$slide  != "") links <- c(links, sprintf('<a href="%s" target="_blank">[slides]</a>', talk$slide))
+  if (!is.null(talk$poster) && talk$poster != "") links <- c(links, sprintf('<a href="%s" target="_blank">[poster]</a>', talk$poster))
 
   if (length(links) > 0) line <- paste(line, paste(links, collapse = " "))
 
@@ -89,7 +89,7 @@ cat(paste(out, collapse = "\n"))
 **Türk, U**. (February, 2024). _Timing of Agreement in Verb Planning_. Talk given at UMass/UMD Psycholinguistic Mixer. University of Massachusetts: Amherst, MA, USA.
 
 
-**Türk, U**. (January, 2024). _Controlling morphosyntactic competition through phonology_. Talk given at S-Lab. University of Maryland: College Park, MD, USA. [handout](files/handouts/turk_suspended_affixation_handout.pdf)
+**Türk, U**. (January, 2024). _Controlling morphosyntactic competition through phonology_. Talk given at S-Lab. University of Maryland: College Park, MD, USA. [handout](files/handouts/turk_suspended_affixation_handout.pdf){target="_blank"}
 
 **Türk, U**. (December, 2022). _As If they were Turkish As Ifs_. Talk given at Meaning Meeting. University of Maryland: College Park, MD, USA.
 

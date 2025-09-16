@@ -85,8 +85,8 @@ if (!is.null(cv$teachingumd) && length(cv$teachingumd)) {
     notes <- nz_chr(t$notes)
 
     links <- c()
-    if (syl != "") links <- c(links, sprintf('[<a href="%s">syllabus</a>]', syl))
-    if (url != "") links <- c(links, sprintf('[<a href="%s">web</a>]', url))
+    if (syl != "") links <- c(links, sprintf('[<a href="%s" target="_blank">syllabus</a>]', syl))
+    if (url != "") links <- c(links, sprintf('[<a href="%s" target="_blank">web</a>]', url))
     links_html <- if (length(links)) paste(links, collapse = " ") else ""
 
     notes_html <- if (notes != "") sprintf('<br /><em>%s</em>', notes) else ""
@@ -121,8 +121,8 @@ if (!is.null(cv$teaching) && length(cv$teaching)) {
     notes <- nz_chr(t$notes)
 
     links <- c()
-    if (syl != "") links <- c(links, sprintf('[<a href="%s">syllabus</a>]', syl))
-    if (url != "") links <- c(links, sprintf('[<a href="%s">web</a>]', url))
+    if (syl != "") links <- c(links, sprintf('[<a href="%s" target="_blank">syllabus</a>]', syl))
+    if (url != "") links <- c(links, sprintf('[<a href="%s" target="_blank">web</a>]', url))
     links_html <- if (length(links)) paste(links, collapse = " ") else ""
 
     right <- sprintf(

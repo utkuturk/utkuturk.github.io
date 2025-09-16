@@ -34,17 +34,17 @@ website:
             <p><strong>utku turk</strong><br>
             PhD Candidate, Linguistics<br>
             University of Maryland<br>
-            <i>working with <a href="https://www.ellenlau.net">Ellen Lau</a> and <a href="https://www.colinphillips.net">Colin Phillips</a></i></p>
+            <i>working with <a href="https://www.ellenlau.net" target="_blank">Ellen Lau</a> and <a href="https://www.colinphillips.net" target="_blank">Colin Phillips</a></i></p>
 
             <p style="font-size:0.9em; color:#555;">
               <em>interested in the timing of morphological and syntactic planning in speech, and how it shapes online comprehension and production</em>
             </p>
 
             <p class="muted" style="font-size:0.8em;">
-              <em>Previously MA at Boğaziçi (with <a href="https://github.com/plogacev">Pavel Logačev</a>); visiting researcher at Masaryk (with <a href="https://www.muni.cz/en/people/53172-pavel-caha">Pavel Caha</a>).</em>
+              <em>Previously MA at Boğaziçi (with <a href="https://github.com/plogacev" target="_blank">Pavel Logačev</a>); visiting researcher at Masaryk (with <a href="https://www.muni.cz/en/people/53172-pavel-caha" target="_blank">Pavel Caha</a>).</em>
             </p>
 
-            <p><a href="mailto:utkuturk@umd.edu">utkuturk@umd.edu</a></p>
+            <p>namesurname@umd.edu</a></p>
           </div>
 
           <div class="sidebar-news">
@@ -78,14 +78,19 @@ website:
         href: teaching.qmd
       - text: "{{< ai cv >}}"
         href: /files/cv.pdf
+        target: "_blank"
       - text: "{{< ai google-scholar >}}"
         href: https://scholar.google.com/citations?hl=tr&user=wa7LG9gAAAAJ
+        target: "_blank"
       - icon: github
         href: https://github.com/utkuturk
+        target: "_blank"
       - icon: twitter
         href: https://twitter.com/UtkuTurkLing
+        target: "_blank"
       - icon: bluesky
         href: https://bsky.app/profile/utkuturk.com
+        target: "_blank"
 format:
   html:
     grid:

@@ -72,10 +72,10 @@ tag_badge <- function(tag){
 
 link_line <- function(r){
   L <- character()
-  if (!is.na(r$h)) L <- c(L, sprintf('<a href="%s">handout</a>',  r$h))
-  if (!is.na(r$a)) L <- c(L, sprintf('<a href="%s">abstract</a>', r$a))
-  if (!is.na(r$s)) L <- c(L, sprintf('<a href="%s">slides</a>',   r$s))
-  if (!is.na(r$p)) L <- c(L, sprintf('<a href="%s">pdf</a>',      r$p))
+  if (!is.na(r$h)) L <- c(L, sprintf('<a href="%s" target="_blank">handout</a>',  r$h))
+  if (!is.na(r$a)) L <- c(L, sprintf('<a href="%s" target="_blank">abstract</a>', r$a))
+  if (!is.na(r$s)) L <- c(L, sprintf('<a href="%s" target="_blank">slides</a>',   r$s))
+  if (!is.na(r$p)) L <- c(L, sprintf('<a href="%s" target="_blank">pdf</a>',      r$p))
   if (!is.na(r$e)) L <- c(L, r$e)  # may contain HTML
   if (length(L)) sprintf('<div class="news-links">%s</div>', paste(L, collapse=' · ')) else ""
 }
