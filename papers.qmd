@@ -1,0 +1,144 @@
+---
+title: ""
+comments: false
+---
+
+
+```{r}
+#| echo: false
+#| results: asis
+
+library(yaml)
+
+# read
+papers <- yaml::read_yaml("_data/writing.yaml")
+
+# small helpers
+nz <- function(x) !is.null(x) && x != ""
+
+# formatters per type
+fmt_common_links <- function(x) {
+  links <- c()
+  if (nz(x$doi))      links <- c(links, sprintf('<a href="https://doi.org/%s" target="_blank">[DOI]</a>', x$doi))
+  if (nz(x$url))      links <- c(links, sprintf('<a href="%s" target="_blank">[link]</a>', x$url))
+  if (nz(x$preprint)) links <- c(links, sprintf('<a href="%s" target="_blank">[preprint]</a>', x$preprint))
+  if (nz(x$pdf))      links <- c(links, sprintf('<a href="%s" target="_blank">[PDF]</a>', x$pdf))
+  if (nz(x$repo))     links <- c(links, sprintf('<a href="%s" target="_blank">[repo]</a>', x$repo))
+  if (length(links)) paste(links, collapse=" ") else ""
+}
+
+fmt_dissertation <- function(x){
+  line <- sprintf('%s (%s). <em>%s</em>. %s.',
+                  x$authors, x$year, x$title, x$type)
+  if (nz(x$institution)) line <- paste(line, x$institution)
+  paste0(line, if (nz(x$institution)) "." else "", " ", fmt_common_links(x))
+}
+
+fmt_article <- function(x){
+  nz_chr <- function(v) ifelse(is.null(v) || identical(v, ""), "", as.character(v))
+
+  authors <- nz_chr(x$authors)
+  year    <- nz_chr(x$year)
+  title   <- nz_chr(x$title)
+  journal <- nz_chr(x$journal)
+  volume  <- nz_chr(x$volume)
+  issue   <- nz_chr(x$issue)
+  pages   <- nz_chr(x$pages)
+  status  <- nz_chr(x$status)
+
+  # volume/issue block like "39(4)" or "39" or ""
+  voliss <- if (volume != "" && issue != "") {
+    sprintf("%s(%s)", volume, issue)
+  } else if (volume != "") {
+    volume
+  } else ""
+
+  # base citation line:
+  # - if journal present: Authors (Year). Title. Journal, voliss, pages.
+  # - if journal missing: Authors (Year). Title. (status).  [no dangling punct]
+  if (journal != "") {
+    line <- sprintf(
+      '%s (%s). <em>%s</em>. <strong>%s</strong>%s%s.',
+      authors, year, title, journal,
+      if (voliss != "") paste0(", ", voliss) else "",
+      if (pages  != "") paste0(", ", pages)  else ""
+    )
+    # append status if present (e.g., "in press")
+    if (status != "") line <- paste0(line, " (", status, ").")
+  } else {
+    # no journal: avoid empty <strong></strong>, show status instead if available
+    line <- sprintf('%s (%s). <em>%s</em>.', authors, year, title)
+    if (status != "") line <- paste0(line, " (", status, ").")
+  }
+
+  # links
+  links <- c()
+  if (!is.null(x$doi)      && x$doi      != "") links <- c(links, sprintf('<a href="%s" target="_blank">[DOI]</a>', x$doi))
+  if (!is.null(x$preprint) && x$preprint != "") links <- c(links, sprintf('<a href="%s" target="_blank">[preprint]</a>', x$preprint))
+  if (!is.null(x$pdf)      && x$pdf      != "") links <- c(links, sprintf('<a href="%s" target="_blank">[PDF]</a>', x$pdf))
+
+  if (length(links)) paste(line, paste(links, collapse = " ")) else line
+}
+
+
+fmt_chapter <- function(x){
+  in_title <- if (nz(x[["in"]])) sprintf("In %s", x[["in"]]) else ""
+
+  editors  <- x[["editors"]]
+  ed_tag   <- if (nz(editors)) {
+    if (grepl("[,;]|\\band\\b", editors)) "eds." else "ed."
+  } else ""
+  eds      <- if (nz(editors)) sprintf(" (%s %s)", ed_tag, editors) else ""
+
+  have_container <- nz(in_title) || nz(eds)
+  pub <- if (nz(x[["publisher"]])) {
+    paste0(if (have_container) ", " else "", x[["publisher"]])
+  } else ""
+
+  status <- if (nz(x[["status"]])) paste0(" (", x[["status"]], ")") else ""
+
+  line <- sprintf(
+    '%s (%s). <em>%s</em>. %s%s%s.',
+    x[["authors"]], x[["year"]], x[["title"]], in_title, eds, pub
+  )
+
+  paste0(line, status, " ", fmt_common_links(x))
+}
+
+fmt_inprogress <- function(x){
+  status <- if (nz(x$status)) paste0(" (", x$status, ")") else ""
+  note   <- if (nz(x$note)) paste0(" <em>(", x$note, ")</em>") else ""
+  line <- sprintf('%s (%s). <em>%s</em>.', x$authors, x$year, x$title)
+  paste0(line, status, note, " ", fmt_common_links(x))
+}
+
+fmt_proceedings <- function(x){
+  vol <- if (nz(x$volume)) paste0(", ", x$volume) else ""
+  iss <- if (nz(x$issue)) paste0("(", x$issue, ")") else ""
+  art <- if (nz(x$article)) paste0(": ", x$article) else ""
+  pages <- if (nz(x$pages)) paste0(", ", x$pages) else ""
+  line <- sprintf('%s (%s). <em>%s</em>. <strong>%s</strong>%s%s%s.',
+                  x$authors, x$year, x$title, x$proceedings, vol, iss, art)
+  paste0(line, pages, " ", if (nz(x$doi)) sprintf('<span style="font-variant: small-caps;">Doi:</span> %s. ', x$doi) else "", fmt_common_links(x))
+}
+
+# helper to coerce possibly NULL to ""
+nz_chr <- function(x) ifelse(is.null(x), "", x)
+
+render_section <- function(items, formatter, heading){
+  if (is.null(items) || !length(items)) return(invisible())
+  cat(sprintf("\n\n## %s\n\n", heading))
+  out <- vapply(seq_along(items), function(i){
+    html <- formatter(items[[i]])
+    sprintf('<div class="ref-item"><span class="ref-num">[%d]</span><span class="ref-text">%s</span></div>', i, html)
+  }, character(1))
+  cat(paste(out, collapse = "\n"))
+}
+
+render_section(papers$dissertation,    fmt_dissertation, "Dissertation / Thesis")
+render_section(papers$journal_articles,fmt_article,      "Journal Articles")
+render_section(papers$book_chapters,   fmt_chapter,      "Book Chapters")
+render_section(papers$in_progress,     fmt_inprogress,   "In Progress")
+render_section(papers$proceedings,     fmt_proceedings,  "Proceedings")
+
+```

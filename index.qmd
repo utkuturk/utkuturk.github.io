@@ -1,0 +1,44 @@
+---
+title: "recent blog posts"
+page-layout: article
+title-block-banner: false
+comments: false
+
+listing:
+  contents: posts
+  sort: "date desc"
+  template: postcard.ejs  
+  categories: true
+  sort-ui: false
+  filter-ui: false
+  feed: true
+---
+
+::: {.about-bio}
+
+![](/images/utkuturkumd.jpeg){.about-photo}
+
+**utku turk**  
+PhD Candidate, Linguistics  
+University of Maryland  
+<i>working with <a href="https://www.ellenlau.net" target="_blank">Ellen Lau</a> and <a href="https://www.colinphillips.net" target="_blank">Colin Phillips</a></i>
+
+<span class="about-research">
+*interested in the timing of morphological and syntactic planning in speech, and how it shapes online comprehension and production*
+</span>  
+
+<span class="about-previous">
+*Previously MA at Boğaziçi (with <a href = "https://github.com/plogacev" target="_blank">Pavel Logačev</a>);  
+visiting researcher at Masaryk (with <a href = "https://www.muni.cz/en/people/53172-pavel-caha" target="_blank">Pavel Caha</a>).*
+</span>  
+
+[utkuturk@umd.edu](mailto:utkuturk@umd.edu)
+
+:::
+
+::: {.mobile-sidebar-news}
+### News
+- <time class="sidebar-news__date">Apr 2025</time> Advanced to candidacy (QP: timing of agreement in production) · [slides](/files/slides/qpTurk.pdf)
+
+[More →](/news/){.sidebar-news__more}
+:::

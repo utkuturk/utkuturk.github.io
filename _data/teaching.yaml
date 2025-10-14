@@ -1,0 +1,214 @@
+workshops:
+  - date: Summer 2024
+    title: "Workshop on Sentence Production and Employing Production Experiments"
+    role: Workshop instructor
+    school: University of Oxford
+    notes: "Co-organized with Allison Dods, Rosa Lee, Colin Phillips"
+
+
+invitedlect:
+    - date: Fall 2023
+      topic: "Agreement Attraction and Grammar"
+      title: 'LING 240: Language and Mind'
+      prof: Tonia Bleam
+      school: University of Maryland
+    - date: Fall 2023
+      topic: "Production System and Grammar"
+      title: 'LING 440: Grammar and Cognition'
+      prof: Ellen Lau
+      school: University of Maryland
+    - date: Spring 2019
+      topic: "Dimunitives and Nanosyntax in Turkish"
+      title: "LING 202: Morphology"
+      prof: Aslı Göksel
+      school: Bogazici University
+
+teachingumd:
+    - date: Fall 2024
+      title: "LING 640: Psycholinguistics"
+      prof: Ellen Lau
+      popul: 10
+      role: Experimental instructor
+      school: Linguistics Dept, University of Maryland
+      notes: "Instructed 2 weeks on experimental methods and statistical analysis"
+    - date: Spring 2025
+      title: 'LING 200: Introduction to Linguistics'
+      prof: Tonia Bleam
+      role: Teaching assistant
+      popul: 25
+      school: Linguistics Dept, University of Maryland
+    - date: Fall 2024
+      title: 'LING 440: Cognition and Grammar'
+      prof: Ellen Lau
+      role: Teaching assistant
+      popul: 25
+      school: Linguistics Dept, University of Maryland
+    - date: Spring 2024
+      title: 'ARHU 299: Machine Learning in Language and Art'
+      prof: Omar Agha
+      role: Teaching assistant
+      popul: ~15
+      school: College of Arts and Humanities, University of Maryland
+      syl: /files/syli/299_s24.pdf
+    - date: Fall 2023
+      title: 'LING 240: Language and Mind'
+      prof: Tonia Bleam
+      role: Teaching assistant
+      popul: ~20
+      school: Linguistics Dept, University of Maryland
+      syl: /files/syli/240_f23.pdf
+
+teaching:
+    - date:   Spring 2022
+      title:  'Ling 360: Computational Methods in Linguistics'
+      prof:   Ümit Atlamaz
+      role:   Teaching assistant
+      popul:  ~40
+      school: Linguistics Dept, Bogazici University
+      syl:    /files/syli/360_s22.pdf
+    - date:   Spring 2022
+      title:  'Ling 314: Syntax & Semantics of Modern Turkish'
+      prof:   Ümit Atlamaz
+      role:   Teaching assistant
+      popul:  ~40
+      school: Linguistics Dept, Bogazici University
+      syl:    /files/syli/314_s22.pdf
+    - date:   Fall 2021
+      title:  'Ling 101: Introduction to Linguistics I'
+      prof:   Mine Nakipoğlu
+      role:   Teaching assistant
+      popul:  ~80
+      school: Linguistics Dept, Bogazici University
+      syl:    /files/syli/101_f21.pdf
+    - date:   Fall 2021
+      title:  'Ling 203: Syntax'
+      prof:   Balkız Öztürk
+      role:   Teaching assistant
+      popul:  ~80
+      school: Linguistics Dept, Bogazici University
+      syl:    /files/syli/203_f21.pdf
+    - date:   Spring 2021
+      title:  'Ling 101: Introduction to Linguistics I'
+      prof:   Pavel Logacev
+      role:   Teaching assistant
+      popul:  ~125
+      school: Linguistics Dept, Bogazici University
+      syl:    /files/syli/101_s21.pdf
+    - date:   Spring 2021
+      title:  'Ling 314: Syntax & Semantics of Modern Turkish'
+      prof:   Balkız Öztürk
+      role:   Teaching assistant
+      popul:  ~90
+      school: Linguistics Dept, Bogazici University
+      syl:    /files/syli/314_s21.pdf
+    - date:   Spring 2021
+      title:  'Ling 484: Computational Methods in Linguistics'
+      prof:   Ümit Atlamaz
+      role:   Teaching assistant
+      popul:  ~50
+      school: Linguistics Dept, Bogazici University
+      syl:    /files/syli/484_s21.pdf
+    - date:   Fall 2020
+      title:  'Ling 101: Introduction to Linguistics I'
+      prof:   Ömer Demirok
+      role:   Teaching assistant
+      popul:  ~100
+      school: Linguistics Dept, Bogazici University
+      syl:    /files/syli/101_f20.pdf
+    - date:   Fall 2020
+      title:  'Ling 203: Syntax'
+      prof:   Balkız Öztürk
+      role:   Teaching assistant
+      popul:  ~50
+      school: Linguistics Dept, Bogazici University
+      syl:    /files/syli/203_f20.pdf
+    - date:   Fall 2020
+      title:  'Ling 313: Phonology & Morphology of Modern Turkish'
+      prof:   Metin Bağrıaçık
+      role:   Teaching assistant
+      popul:  ~160
+      school: Linguistics Dept, Bogazici University
+      syl:    /files/syli/313_f2020.pdf
+      notes:  'shared courseload with [Furkan Dikmen](https://furkandikmen.com/) & [Muhammed İleri](https://muhammedileri.github.io/)'
+    - date:   Fall 2020
+      title:  'Ling 411: Linguistic Methodology'
+      prof:   Pavel Logacev
+      role:   Teaching assistant
+      popul:  ~40
+      school: Linguistics Dept, Bogazici University
+      syl:    /files/syli/414_f20.pdf
+      notes:  'contributed to Class Notes ([github](https://github.com/plogacev/ling411_lecture_notes_R)) as well as holding PS sessions for data wrangling and visualization in R'
+    - date:   Spring 2020
+      title:  'Ling 202: Morphology'
+      prof:   Aslı Göksel
+      role:   Teaching assistant
+      popul:  ~100
+      school: Linguistics Dept, Bogazici University
+      syl:    /files/syli/202_s20.pdf
+      notes:  'shared the workload with [Furkan Dikmen](https://furkandikmen.com/)'
+    - date:   Spring 2020
+      title:  'Ling 206: Language Typology'
+      prof:   Metin Bağrıaçık
+      role:   Teaching assistant
+      popul:  ~40
+      school: Linguistics Dept, Bogazici University
+      syl:    /files/syli/206_s20.pdf
+    - date:   Fall 2019
+      title:  'Ling 101: Introduction to Linguistics I'
+      prof:   Meltem Kelepir
+      role:   Teaching assistant
+      popul:  ~100
+      school: Linguistics Dept, Bogazici University
+      syl:    /files/syli/101_f19.pdf
+    - date:   Fall 2019
+      title:  'Ling 313: Phonology & Morphology of Modern Turkish'
+      prof:   Aslı Göksel
+      role:   Teaching assistant
+      popul:  ~100
+      school: Linguistics Dept, Bogazici University
+      syl:    /files/syli/313_f19.pdf
+    - date:   Spring 2019
+      title:  'Ling 101: Introduction to Linguistics I'
+      prof:   Elena Guerzoni
+      role:   Teaching assistant
+      popul:  ~70
+      school: Linguistics Dept, Bogazici University
+      syl:    /files/syli/101_s19.pdf
+    - date:   Spring 2019
+      title:  'Ling 314: Syntax & Semantics of Modern Turkish'
+      prof:   Balkız Öztürk
+      role:   Teaching assistant
+      popul:  ~100
+      school: Linguistics Dept, Bogazici University
+      syl:    /files/syli/314_s19.pdf
+    - date:   Fall 2018
+      title:  'Ling 313: Phonology & Morphology of Modern Turkish'
+      prof:   Kadir Gökgöz
+      role:   Teaching assistant
+      popul:  ~100
+      school: Linguistics Dept, Bogazici University
+      syl:    /files/syli/313_f18.pdf
+    - date:   Spring 2018
+      title:  'Ling 101: Introduction to Linguistics I'
+      prof:   Pavel Logacev
+      role:   Teaching assistant
+      popul:  ~100
+      school: Linguistics Dept, Bogazici University
+      syl:    /files/syli/101_s18.pdf
+    - date:   Spring 2018
+      title:  'Ling 102: Introduction to Linguistics II'
+      prof:   Mine Nakipoğlu
+      role:   Teaching assistant
+      popul:  ~60
+      school: Linguistics Dept, Bogazici University
+      syl:    /files/syli/102_s18.pdf
+    - date:   Summer 2018
+      title:  'S30: Advanced Turkish'
+      role:   Class assistant
+      popul:  10
+      school: Turkish Language and Culture Program, Bogazici University
+    - date:   Summer 2019
+      title:  'S25: Upper Indermediate Turkish'
+      role:   Class assistant
+      popul:  16
+      school: Turkish Language and Culture Program, Bogazici University

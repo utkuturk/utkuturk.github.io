@@ -1,0 +1,155 @@
+---
+title: can ‘as if’ clauses be degree comparisons?
+author: Utku Turk
+date: "2022-05-10"
+categories: [linguistics, papers, meaning]
+description: turkish as if clauses specifically target gradable adverbials and adjectives, pointing to a degree-based analysis
+execute:
+  echo: false
+  message: false
+  warning: false
+image: ./dancing.jpg
+---
+
+
+![](dancing.jpg){.preview-image}
+
+```{r}
+# setup
+library(glossr)
+
+```
+
+
+After reading [Justin Bledin’s](https://www.jbledin.com/papers) work on English *as ifs*, we realized that Turkish counterparts of *as ifs* behave differently. It seemed that instead of a simple comparison of events, Turkish *as ifs* seems to be susceptible to **gradability** and **degree**. 
+
+To account for Turkish facts, we proposed that a novel analysis of these sentences. While previous accounts were based on event similarity, our hypothesis is based on comparing degrees of gradable elements involved in the event.
+
+Consider this sentence: Pedro was dancing as if he was possessed by a demon. And, let's take a look at the interpretations in (1) and (2). (1) is the simplified version of previous accounts. The key word for those analyses is the resemblance. On the other hand, (2) is our account in a simplified manner. Instead of using resemblance, we proposed an equatative approach. Our analysis compares two degrees of adverbials.
+
+```{r}
+# (sem-1)
+glossr::as_gloss(
+  "Pedro’s dancing in the actual world resembles his dancing in other possible worlds where he is possessed by a demon.",
+  label = "ex-sem-1"
+)
+
+# (sem-2)
+glossr::as_gloss(
+  "The level of craziness of Pedro’s dancing in the actual world is ≥ the level of craziness of his dancing in other possible worlds where he is possessed by a demon.",
+  label = "ex-sem-2"
+)
+
+```
+
+
+Here's the facts that support our analysis: 
+
+
+*Unlike English and German, Turkish does not have an overt conditional marker in as ifs constructions.*
+
+```{r}
+# (3) English
+as_gloss(
+  "Pedro was dancing \\textbf{as if} he was possessed by a demon.",
+  label = "ex3-en"
+)
+
+# (4) Turkish IGT
+as_gloss(
+  "Pedro içine cin kaç-mışcasına {dans ed-iyor-du}",
+  "Pedro inside jhin escape-HCM dance-IMPF-PST.3SG",
+  translation = "Pedro was dancing as if he was possessed by a demon.",
+  source = NA,
+  label = "ex4-tr"
+)
+```
+
+
+*It is frequently used with an adverbial in a matrix sentence with a verbal predicate.*
+
+```{r}
+# (5) With an overt adverbial
+as_gloss(
+  "Pedro içine cin kaç-mışcasına çılgınca {dans ed-iyor-du}",
+  "Pedro inside jhin escape-HCM \\textbf{crazily} dance-IMPF-PST.3SG",
+  translation = "Pedro was dancing as if he was possessed by a demon.",
+  label = "ex5-tr-adv"
+)
+
+```
+
+*Even when there is no overt adverbial, the use of -mışcasına phrase necessitates an adverbial reading to be accessed from the context. When we use -mışcasına phrase in a sentence where there is no possible adverbial is available in the context, the sentence become infelicitous.*
+
+```{r}
+# (6) Starred / infelicitous
+as_gloss(
+  "Yarın meteor yağ-acak-mışcasına dans ed-iyor-sun.",
+  "tomorrow meteor rain-FUT-HCM dance-IMPF-2SG",
+  translation = "You are dancing [???] as if there will be a meteor shower tomorrow.",
+  source = "*",                # shows the star line
+  label = "ex6-star"
+)
+```
+
+*More importantly, these adverbs are always **gradable** adverbials. Similarly, when the matrix predicate is non-verbal, it has to be a **gradable** adjective.*
+
+```{r}
+# (7) Gradable adjective (good)
+as_gloss(
+  "Helin pandemi bit-mişcesine mutlu.",
+  "Helin pandemic end-HCM happy.3SG",
+  translation = "Helin is happy as if the pandemic is over.",
+  label = "ex7-grad-pos"
+)
+
+# (8) Nongradable adjective (bad)
+as_gloss(
+  "Cevab-ı  soru-yu duy-ma-mışcasına yanlış-tı .",
+  "answer-POSS.3SG question-ACC hear-NEG-HCM wrong-PST.3SG",
+  translation = "Intended: His answer was wrong as if he did not hear the question.",
+  source = "*",
+  label = "ex8-grad-neg"
+)
+
+```
+
+
+*Lastly, when there is an already established degree-related operation, we cannot use -mışcasına phrases. This is similar to the cases where we cannot use two degree operators most and more at the same time.*
+
+
+```{r}
+# (9) Plain comparative-ish (ok)
+as_gloss(
+  "Mecidiyeköy cehennem-mışcesine kalabalık bir ilçe-miz-dir.",
+  "Mecidiyeköy hell-HCM crowded a district-POSS.1PL-AOR",
+  translation = "Mecidiyeköy is a crowded district as if it was hell.",
+  label = "ex9-plain"
+)
+
+# (10) With 'en' (most) → blocked
+as_gloss(
+  "Mecidiyeköy cehennem-mışcesine en kalabalık ilçe-miz-dir.",
+  "Mecidiyeköy hell-HCM most crowded district-POSS.1PL-AOR",
+  translation = "Intended: Mecidiyeköy is the most crowded district as if it was hell.",
+  source = "*",
+  label = "ex10-most"
+)
+
+```
+
+
+
+
+The distribution of -mışcasına clauses shows that Turkish “as if” does not simply signal resemblance between two events, but rather compares the degree of gradable properties across possible worlds. This degree-based perspective explains why such clauses pattern with adverbials and adjectives that admit gradability, and why they fail in contexts that already contain competing degree operators. 
+
+
+<style>
+      .preview-image {
+        display: block;
+        margin: 1.2rem auto;
+        max-width: 55%;      /* adjust size */
+        border-radius: 10px; /* optional rounded corners */
+        box-shadow: 0 4px 14px rgba(0,0,0,.08);
+      }
+</style>

@@ -1,0 +1,77 @@
+---
+title: "how to include r expressions in (quarto) yaml"
+author: Utku Turk
+date: "2020-01-23"
+categories: [technical, code]
+description: using yaml with embedded r expressions for cleaner, reusable quarto configs
+image: ./yaml.png
+execute: 
+  eval: false
+---
+
+When writing R Markdown or Quarto files, I’ve always disliked cluttering them with long file paths, fixed parameters, or small snippets of code. Many of these values are constants or things I don’t plan to change often, sometimes not even across projects.
+So I started looking for a way to move such information into a separate YAML file and refer to it from within Quarto.
+You could of course do this with a regular R script and source(), but I found that YAML makes these kinds of project-wide parameters easier to organize and read.
+
+## Embedding R in YAML
+
+While digging around, I came across [this helpful StackOverflow post][1], which pointed out that YAML can evaluate R expressions directly if marked with !expr. This means your config file can contain values that are not just static strings, but dynamically computed.
+
+For example, my `_paper.yaml` file looks like this:
+
+
+```yaml
+experiments:
+  first: 
+    path: !expr 'paste0("C:/Users/", Sys.info()[6], "/OneDrive/Science/experiments/first")'
+    nsubject: !expr 'nrow(read.csv(file.path(paste0("C:/Users/", Sys.info()[6], "/OneDrive/Science/experiments/first"), "results.csv")))'
+  second: !expr 'paste0("C:/Users/", Sys.info()[6], "/OneDrive/Science/experiments/second")'
+  third: ...
+
+```
+
+
+
+## Reading it in R 
+
+
+To load the config file, you just need to enable expression evaluation when calling `yaml::read_yaml()`:
+
+
+
+```{r}
+config <- yaml::read_yaml('_paper.yaml', eval.expr = TRUE)
+```
+
+
+Now, config behaves like a nested list, and you can access parameters directly. For example:
+
+
+```{r}
+config$experiments$first
+config$experiments$first$nsubject
+```
+
+
+```{r, echo=FALSE}
+""
+"170"
+```
+
+
+
+This makes it easy to centralize all project-level constants and keep your Quarto documents cleaner.
+
+
+
+
+## Why This Helps
+
+- Cleaner documents: no repeated paths or magic numbers in your `.qmd` files.
+- Reusability: the same YAML file can be shared across multiple projects.
+- Flexibility: values can be static (like participant counts) or computed on the fly (like paths that depend on the username).
+
+
+It might feel a little fragile, since I am evaluating R code hidden in a config file, but it’s been reliable and I am finding it quite useful. For instance, I sometimes even compute the number of participants automatically from an Ibex CSV and store it in the YAML—then refer to it in my Quarto text.
+
+  [1]: https://stackoverflow.com/questions/64454623/r-read-yaml-reads-a-vector-as-parameter

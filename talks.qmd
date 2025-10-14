@@ -1,0 +1,98 @@
+---
+title: ""
+comments: false
+---
+
+## Conference Poster & Talks
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| error: false
+#| results: asis
+
+library(yaml)
+
+# --- helpers ----
+nz <- function(x, default = "") {
+  if (is.null(x) || length(x) == 0 || (is.character(x) && identical(x, ""))) default else x
+}
+is_true <- function(x) {
+  isTRUE(x) || identical(tolower(as.character(x)), "true") ||
+    identical(tolower(as.character(x)), "yes") || identical(x, 1)
+}
+
+# --- read yaml ----
+cv <- yaml::read_yaml("_data/talks.yaml")
+conferences <- cv$conferences
+
+format_conference <- function(talk) {
+  author <- nz(talk$author)
+  year   <- nz(talk$year)
+  month  <- nz(talk$month)
+  title  <- nz(talk$title)
+  conf   <- nz(talk$conf)
+  place  <- nz(talk$place)
+
+  # date part: (YEAR, MONTH) or just (YEAR)
+  date_part <- if (month != "") sprintf("(%s, %s).", year, month) else sprintf("(%s).", year)
+
+  # core line
+  line <- sprintf('%s %s <em>%s</em>.', author, date_part, title)
+
+  if (is_true(talk$isposter)) {
+    line <- paste0(
+      line, " Poster presented ",
+      if (is_true(talk$isvirtual)) "(virtually) " else "",
+      "at ", conf, "."
+    )
+  }
+  if (is_true(talk$istalk)) {
+    line <- paste0(
+      line, " Talk given ",
+      if (is_true(talk$isvirtual)) "(virtually) " else "",
+      "at ", conf, "."
+    )
+  }
+  if (place != "") line <- paste0(line, " ", place, ".")
+
+  # links
+  links <- c()
+  if (!is.null(talk$abs)    && talk$abs    != "") links <- c(links, sprintf('<a href="%s" target="_blank">[abstract]</a>', talk$abs))
+  if (!is.null(talk$ho)     && talk$ho     != "") links <- c(links, sprintf('<a href="%s" target="_blank">[handout]</a>', talk$ho))
+  if (!is.null(talk$slide)  && talk$slide  != "") links <- c(links, sprintf('<a href="%s" target="_blank">[slides]</a>', talk$slide))
+  if (!is.null(talk$poster) && talk$poster != "") links <- c(links, sprintf('<a href="%s" target="_blank">[poster]</a>', talk$poster))
+
+  if (length(links) > 0) line <- paste(line, paste(links, collapse = " "))
+
+  line
+}
+
+# build HTML with classes for styling
+out <- vapply(seq_along(conferences), function(i) {
+  item <- format_conference(conferences[[i]])
+  sprintf(
+    '<div class="ref-item"><span class="ref-num">[%d]</span><span class="ref-text">%s</span></div>',
+    i, item
+  )
+}, character(1))
+
+cat(paste(out, collapse = "\n"))
+```
+
+## Invited & Internal Talks
+
+
+<!-- this should be numbered too. -->
+
+**Türk, U**. (February, 2024). _Timing of Agreement in Verb Planning_. Talk given at UMass/UMD Psycholinguistic Mixer. University of Massachusetts: Amherst, MA, USA.
+
+
+**Türk, U**. (January, 2024). _Controlling morphosyntactic competition through phonology_. Talk given at S-Lab. University of Maryland: College Park, MD, USA. [handout](files/handouts/turk_suspended_affixation_handout.pdf){target="_blank"}
+
+**Türk, U**. (December, 2022). _As If they were Turkish As Ifs_. Talk given at Meaning Meeting. University of Maryland: College Park, MD, USA.
+
+**Türk, U**. (October, 2022). _Sources of Bias in Psycholinguistic Data_. Talk given at Language Science Lunch Talks. Language Science Center, University of Maryland: College Park, MD, USA.
+
+**Türk, U**. (February, 2019). _Is Accusative Case Really the Case?_ Talk given at 1st Bogazici University Student Conference on Theoretical and Experimental Linguistics. Bogazici University: Istanbul, Turkey.

@@ -1,0 +1,109 @@
+---
+title: automating experimental recording management with bash
+author: Utku Turk
+date: "2023-02-23"
+categories: [technical, code]
+description: it got really annoying after a while, so i wrote this code
+image: ./bash.png
+---
+
+I realized that most of my experimental time was being eaten up not by designing or running studies, but by the tedious task of downloading recordings from the server, unzipping them, converting formats, and filing them into the right participant folders. After a while, the frustration of repeating these steps by hand turned into procrastination and that procrastination produced some bash scripts to automate the whole process.
+
+## Step 1: Download recordings
+
+First I grab all the zipped uploads from the server and drop them into a local directory.
+
+
+```bash
+
+remote_host="myserver@myserver.umd.edu"
+remote_path="/Users/myserver/Phillips/Utku/corner_same_verb/uploads/*.zip"
+local_path="~/Downloads/rec_feb23"
+mkdir "$local_path"
+
+scp "$remote_host:$remote_path" "$local_path"
+```
+
+
+
+## Step 2: Unzip and convert formats
+
+Once the `.zip` files are on my machine, I unzip everything and convert the `.webm` files to `.wav` with ffmpeg. The originals go into a backup folder.
+
+```bash
+cd "$local_path"
+unzip \*.zip
+for i in *.webm; do ffmpeg -i "$i" "${i%.*}.wav"; done
+mkdir backup
+mv \*.zip ,/backup
+rm \*.webm
+```
+
+## Step 3: Group files by participant
+
+
+My participant IDs are randomly generated 8-character strings, thus `{file:0:8}` and `^.{8}_`. I use the first eight characters of the filename as a prefix to create a directory per participant. 
+
+```bash
+for file in *; do
+  if [[ -f "$file" ]]; then
+    prefix="${file:0:8}"
+    if [[ "$file" =~ ^.{8}_ ]]; then
+      if [[ ! -d "$prefix" ]]; then
+        mkdir "$prefix"
+      fi
+      mv "$file" "$prefix/"
+    fi
+  fi
+done
+
+```
+
+## Step 4: Sort within each participant folder
+
+Finally, within each participant’s folder, I move the recordings into two buckets:
+- `fam/` for habituation (familiarization) files (those with _fam_),
+- `misc/` for practice, intro, and test files.
+
+I use `nullglob` to avoid errors if a folder doesn’t contain a certain file type.
+
+
+
+```bash
+for prefix_dir in */; do
+  prefix_dir="${prefix_dir%/}" 
+  if [[ -d "$prefix_dir" ]]; then
+
+    if [[ ! -d "$prefix_dir/fam" ]]; then
+      mkdir "$prefix_dir/fam"
+    fi
+    setopt nullglob
+    for fam_file in "$prefix_dir/"*_*fam_*; do
+      if [[ -f "$fam_file" ]]; then
+        if [[ "$fam_file" =~ .*_fam_.* ]]; then
+          mv "$fam_file" "$prefix_dir/fam/"
+        fi
+      fi
+    done
+    unsetopt nullglob
+
+    if [[ ! -d "$prefix_dir/misc" ]]; then
+      mkdir "$prefix_dir/misc"
+    fi
+    setopt nullglob
+    for misc_file in "$prefix_dir/"*_*practice_* "$prefix_dir/"*_*intro_* "$prefix_dir/"*_*test-*; do
+      if [[ -f "$misc_file" ]]; then
+        if [[ "$misc_file" =~ .*_practice_.* || "$misc_file" =~ .*_intro_.* || "$misc_file" =~ .*_test-.* ]]; then
+          if [[ ! "$misc_file" =~ .*_fam_.* ]]; then 
+              mv "$misc_file" "$prefix_dir/misc/"
+          fi
+        fi
+      fi
+    done
+    unsetopt nullglob
+  fi
+done
+```
+
+
+What started as procrastination ended up saving me hours of repetitive work. Probably, it is not a good code, but it turns file management into a background task and leaves more time to me for the actual science. If you have any comments how to make the code better, please reach out!

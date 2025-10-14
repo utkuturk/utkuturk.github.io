@@ -1,0 +1,37 @@
+<script>
+(function () {
+  function moveCategories() {
+    // 1) Find all possible category blocks Quarto might render
+    const candidates = document.querySelectorAll(
+      '.quarto-listing .quarto-listing-categories, ' +
+      '.quarto-listing .listing-categories, ' +
+      '.listing .listing-categories, ' +
+      '.listing-categories'
+    );
+    if (!candidates.length) return;
+
+    // 2) Sidebar container
+    const sidebar = document.querySelector('.sidebar .sidebar-content, .sidebar');
+    if (!sidebar) return;
+
+    // 3) Move the FIRST categories block into the sidebar (remove from its old spot)
+    const first = candidates[0];
+    const wrap = document.createElement('div');
+    wrap.className = 'sidebar-item';
+    const title = document.createElement('div');
+    title.className = 'sidebar-item-title';
+    title.textContent = 'Categories';
+    wrap.appendChild(title);
+    wrap.appendChild(first);             // appending moves the node
+    sidebar.appendChild(wrap);
+
+    // 4) Remove any remaining duplicates elsewhere
+    for (let i = 1; i < candidates.length; i++) {
+      candidates[i].remove();
+    }
+  }
+
+  // Run *after* everything is laid out (prevents partial duplication)
+  window.addEventListener('load', moveCategories);
+})();
+</script>

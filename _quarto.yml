@@ -1,0 +1,113 @@
+project:
+  type: website
+  resources:
+    - images/
+    - files/
+
+website:
+  title: "utku turk"
+  site-url: https://www.utkuturk.com
+  margin-header: subscribe.html
+  body-footer: |
+    <!-- 100% privacy-first analytics -->
+    <script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+    <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif?collect-dnt=true" alt="" referrerpolicy="no-referrer-when-downgrade"/></noscript>
+  comments:
+    giscus:
+      repo: utkuturk/utkuturk.github.io
+      repo-id: R_kgDOPv0yeg
+      category: General
+      category-id: DIC_kwDOPv0yes4CvcDO
+      mapping: title
+      reactions-enabled: true
+      loading: lazy
+      input-position: top
+      theme: noborder_light
+  sidebar:
+    alignment: center
+    style: floating
+    contents:
+      - text: |
+          <div style="text-align:center; line-height:1.4;">
+            <img src="/images/utkuturkumd.jpeg"
+                style="width:300px; margin-bottom:10px; display:block; margin-left:auto; margin-right:auto; transform:translateX(-50px);"
+                alt="My photo"/>
+            <p><strong>utku turk</strong><br>
+            PhD Candidate, Linguistics<br>
+            University of Maryland<br>
+            <i>working with <a href="https://www.ellenlau.net" target="_blank">Ellen Lau</a> and <a href="https://www.colinphillips.net" target="_blank">Colin Phillips</a></i></p>
+
+            <p style="font-size:0.9em; color:#555;">
+              <em>interested in the timing of morphological and syntactic planning in speech, and how it shapes online comprehension and production</em>
+            </p>
+
+            <p class="muted" style="font-size:0.8em;">
+              <em>Previously MA at Boğaziçi (with <a href="https://github.com/plogacev" target="_blank">Pavel Logačev</a>); visiting researcher at Masaryk (with <a href="https://www.muni.cz/en/people/53172-pavel-caha" target="_blank">Pavel Caha</a>).</em>
+            </p>
+
+            <p>namesurname@umd.edu</a></p>
+          </div>
+
+          <div class="sidebar-news">
+            <h3 class="sidebar-news__title">News</h3>
+            <ul class="sidebar-news__list">
+              <li class="sidebar-news__item">
+                <time class="sidebar-news__date">Apr 2025</time>
+                Advanced to candidacy (QP: timing of agreement in production)
+                <span class="sidebar-news__links">· <a href="/files/slides/qpTurk.pdf" target="_blank">slides</a></span>
+              </li>
+            </ul>
+            <a class="sidebar-news__more" href="/news/">More →</a>
+          </div>
+
+
+
+
+
+  navbar:
+    pinned: true
+    right:
+      - text: about
+        href: about.qmd
+      - text: research
+        href: research.qmd
+      - text: papers
+        href: papers.qmd
+      - text: talks
+        href: talks.qmd
+      - text: teaching
+        href: teaching.qmd
+      - text: "{{< ai cv >}}"
+        href: /files/cv.pdf
+        target: "_blank"
+      - text: "{{< ai google-scholar >}}"
+        href: https://scholar.google.com/citations?hl=tr&user=wa7LG9gAAAAJ
+        target: "_blank"
+      - icon: github
+        href: https://github.com/utkuturk
+        target: "_blank"
+      - icon: twitter
+        href: https://twitter.com/UtkuTurkLing
+        target: "_blank"
+      - icon: bluesky
+        href: https://bsky.app/profile/utkuturk.com
+        target: "_blank"
+format:
+  html:
+    grid:
+      body-width: 800px      # total page content width
+      sidebar-width: 260px    # left sidebar
+      margin-width: 260px     # right margin ("categories" column)
+      gutter-width: 1.5rem    # space between columns
+    theme: 
+        light: 
+          - cosmo 
+          - brand
+          - theme.scss
+        # dark: 
+        #   - darkly
+        #   - brand
+        #   - theme.scss
+    css: styles.css
+metadata-files:
+  - fragments/align-bar.yml

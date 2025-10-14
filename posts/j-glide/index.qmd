@@ -1,0 +1,55 @@
+---
+title: is /j/ really a sonorant in turkish? i guess not.
+author: Utku Turk
+date: "2022-05-10"
+categories: [linguistics, papers, sound]
+image: glide_fig.png
+description: findings point to a fricative status for /j/, despite its occasional sonorant disguise
+---
+
+This work started as a term paper for our master’s phonology class with
+[Semra Ozdemir](https://www.linkedin.com/in/semra-özdemir-6567b6155/).
+She was interested in the properties of sonorants and I was interested
+in the phonetics of them. We saw that in many environments Turkish glide
+/j/ acts differently than other sonorants. The fact that /j/ was the
+only phonemic glide in Turkish was already interesting by itself. We
+asked the following question: **Is it really a glide?**
+
+We looked at certain phonological behaviors of the /j/: (i) /h/ deletion
+prior to sonorants, (ii) consonant-clusters in coda, and (iii)
+\[e\]-lowering prior to sonorants. We also conducted a phonetics
+experiment where we asked people to read sentences that contains
+sonorants in word-final, word-initial, and intervocalic positions
+following the sound \[e\]. Our results from this experiment can be seen
+in the figure below.
+
+<center>
+
+<img src="glide_fig.png" alt="&lt;i&gt;Figure 1.&lt;/i&gt; F1 and F2 values of individual utterances of the mid-front vowel e.We grouped these instances into two: following /j/ or following a non-/j/ sound." width="85%" />
+<p class="caption">
+<i>Figure 1.</i> F1 and F2 values of individual utterances of the
+mid-front vowel e.We grouped these instances into two: following /j/ or
+following a non-/j/ sound.
+</p>
+
+</center>
+
+We saw that /j/ behaves nothing like a sonorant. When the sound /j/
+follows the mid-front vowel \[e\], it did not lower the vowel. However,
+every other sonorant (non-/j/) substantially lowered the vowel. Even
+though, it is clear that /j/ does not act like a sonorant, we were
+indecisive whether it were unspecified with respect to its sonoracy or
+it was just a fricative.
+
+Later on, [Stefano
+Canalis](https://linguistics.boun.edu.tr/stefano-canalis) and [Umit
+Tuncer](https://www.linkedin.com/in/ümit-can-tunçer-b97479b2/) also
+joined us in this project. With their help, we decided that /j/ is a
+phonemically fricative in Turkish, but may show sonorant-like behavior
+in certain environments. With them, we looked at the phonemic behavior
+of /j/ in more environments. We also investigated the feature symmetry
+in Turkish.
+
+We saw that other phonetic sonorants in Turkish were also phonemically
+fricative and /j/ and other sonorants become sonorant-like in the very
+same environments.

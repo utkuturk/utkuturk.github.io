@@ -1,0 +1,142 @@
+---
+title: ""
+comments: false
+---
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| error: false
+#| results: asis
+
+library(yaml)
+
+nz_chr <- function(x) ifelse(is.null(x) || identical(x, ""), "", as.character(x))
+term_label <- function(x) {
+  x <- nz_chr(x)
+  if (x == "") return("[]")
+  yr <- sub(".*?(\\d{4}).*$", "\\1", x)
+  if (grepl("^\\d{4}$", yr)) {
+    short <- substr(yr, 3, 4)
+    term  <- trimws(sub("(.*)\\s+\\d{4}$", "\\1", x))
+    sprintf("[%s %s]", term, short)
+  } else sprintf("[%s]", x)
+}
+teach_row <- function(date, html_right) {
+  sprintf('<div class="teach-item"><span class="teach-term">%s</span><span class="teach-text">%s</span></div>',
+          term_label(date), html_right)
+}
+
+cv <- yaml::read_yaml("_data/teaching.yaml")
+
+# ---------- sections ----------
+
+
+cat("## Workshops\n\n")
+if (!is.null(cv$workshops) && length(cv$workshops)) {
+  out <- vapply(cv$workshops, function(w) {
+    title <- nz_chr(w$title)
+    role  <- nz_chr(w$role)
+    school<- nz_chr(w$school)
+    notes <- nz_chr(w$notes)
+    right <- sprintf(
+      '<strong>%s</strong><br />%s, %s%s',
+      title,
+      if (role != "") role else "Workshop",
+      school,
+      if (notes != "") paste0("<br /><em>", notes, "</em>") else ""
+    )
+    teach_row(w$date, right)
+  }, character(1))
+  cat(paste(out, collapse = "\n"), "\n")
+}
+
+cat("## Invited Lectures\n\n")
+
+if (!is.null(cv$invitedlect) && length(cv$invitedlect)) {
+  out <- vapply(cv$invitedlect, function(t) {
+    topic <- nz_chr(t$topic)
+    title <- nz_chr(t$title)
+    prof  <- nz_chr(t$prof)
+    school<- nz_chr(t$school)
+    right <- sprintf(
+      '<strong>%s</strong><br /><em>%s</em>%s<br />%s',
+      topic,
+      title,
+      if (prof != "") paste0(" — with ", prof) else "",
+      school
+    )
+    teach_row(t$date, right)
+  }, character(1))
+  cat(paste(out, collapse = "\n"), "\n")
+}
+
+cat("\n\n## Teaching Assistant\n\n### University of Maryland\n\n")
+
+if (!is.null(cv$teachingumd) && length(cv$teachingumd)) {
+  out <- vapply(cv$teachingumd, function(t) {
+    title <- nz_chr(t$title)
+    prof  <- nz_chr(t$prof)
+    popul <- nz_chr(t$popul)
+    school<- nz_chr(t$school)
+    syl   <- nz_chr(t$syl)
+    url   <- nz_chr(t$url)
+    notes <- nz_chr(t$notes)
+
+    links <- c()
+    if (syl != "") links <- c(links, sprintf('[<a href="%s" target="_blank">syllabus</a>]', syl))
+    if (url != "") links <- c(links, sprintf('[<a href="%s" target="_blank">web</a>]', url))
+    links_html <- if (length(links)) paste(links, collapse = " ") else ""
+
+    notes_html <- if (notes != "") sprintf('<br /><em>%s</em>', notes) else ""
+
+    # Only add <br /> for links if they exist
+    link_line <- if (links_html != "") paste0("<br />", links_html) else ""
+
+    right <- sprintf(
+    '<strong>%s</strong>%s<br />%s students, %s%s%s',
+    title,
+    if (prof != "") paste0(" — with ", prof) else "",
+    if (popul != "") popul else "—",
+    school,
+    link_line,
+    notes_html
+    )
+    teach_row(t$date, right)
+  }, character(1))
+  cat(paste(out, collapse = "\n"), "\n")
+}
+
+cat("\n\n### Boğaziçi University\n\n")
+
+if (!is.null(cv$teaching) && length(cv$teaching)) {
+  out <- vapply(cv$teaching, function(t) {
+    title <- nz_chr(t$title)
+    prof  <- nz_chr(t$prof)
+    popul <- nz_chr(t$popul)
+    school<- nz_chr(t$school)
+    syl   <- nz_chr(t$syl)
+    url   <- nz_chr(t$url)
+    notes <- nz_chr(t$notes)
+
+    links <- c()
+    if (syl != "") links <- c(links, sprintf('[<a href="%s" target="_blank">syllabus</a>]', syl))
+    if (url != "") links <- c(links, sprintf('[<a href="%s" target="_blank">web</a>]', url))
+    links_html <- if (length(links)) paste(links, collapse = " ") else ""
+
+    right <- sprintf(
+      '<strong>%s</strong>%s<br />%s students, %s<br />%s%s',
+      title,
+      if (prof != "") paste0(" — with ", prof) else "",
+      if (popul != "") popul else "—",
+      school,
+      links_html,
+      if (notes != "") paste0('<br /><em>', notes, '</em>') else ""
+    )
+    teach_row(t$date, right)
+  }, character(1))
+  cat(paste(out, collapse = "\n"), "\n")
+}
+
+```

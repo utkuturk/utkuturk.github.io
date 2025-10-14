@@ -1,0 +1,137 @@
+```{=html}
+<div class="postcard-list list"><!-- <-- important: include 'list' -->
+  <% for (const post of items) { %>
+    <div class="postcard" <%= metadataAttrs(post) %>>
+      <!-- Invisible stretched link covers the whole card -->
+      <a href="<%= post.path %>" class="stretched-link" aria-label="Read: <%= post.title %>"></a>
+
+      <% 
+        let thumb = post.thumbnail || post.image || post["preview-image"];
+        if (!thumb && post.content) {
+          const m = post.content.match(/<img[^>]+src="([^">]+)"/i);
+          if (m) thumb = m[1];
+        }
+      %>
+      <% if (thumb) { %>
+        <div class="postcard-thumb">
+          <a href="<%- post.path %>">
+            <img src="<%= thumb %>" alt="<%= post.title %>"/>
+          </a>
+        </div>
+      <% } %>
+
+      <div class="postcard-body">
+        <div class="postcard-main">
+          <h3>
+            <a href="<%= post.path %>" class="listing-title"><%= post.title %></a>
+          </h3>
+
+          <% if (post.description) { %>
+            <p class="desc listing-description"><%= post.description %></p>
+          <% } else if (post.content) { %>
+            <p class="desc listing-description"><%= post.content.replace(/(<([^>]+)>)/gi, "").substring(0,120) %>...</p>
+          <% } %>
+          
+          <div class="postcard-info-row">
+            <% if (post.author) { %>
+              <p class="author listing-author"><%= post.author %></p>
+            <% } %>
+            <% if (post.date) { %>
+              <!-- listing-date for the visible text; metadataAttrs carries the sortable value -->
+              <time class="date listing-date"><%= post.date %></time>
+            <% } %>
+          </div>
+
+          <div class="postcard-bottom-row">
+            <% if (post.categories && post.categories.length) { %>
+              <!-- hidden aggregator helps listing search on 'categories' field -->
+              <span class="sr-only listing-categories"><%= post.categories.join(" ") %></span>
+
+              <div class="tags">
+                <% for (const cat of post.categories) { %>
+                  <div class="listing-category tag"
+                       onclick="window.quartoListingCategory('<%= utils.b64encode(cat) %>'); return false;">
+                    <%= cat %>
+                  </div>
+                <% } %>
+              </div>
+            <% } %>
+            <a href="<%= post.path %>" class="read-btn" aria-label="Read post">Read</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% } %>
+</div>
+
+<style>
+.postcard-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* screen-reader only helper for listing-* text fields */
+.sr-only {
+  position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+}
+
+.postcard {
+  position: relative;
+  display: flex;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: #fff;
+  overflow: hidden;
+  padding: 1.5rem 1rem 1rem;
+  align-items: flex-start;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.postcard:hover { transform: translateY(-4px); box-shadow: 0 6px 16px rgba(0,0,0,0.12); }
+
+/* stretched link overlay */
+.stretched-link { position: absolute; inset: 0; z-index: 1; text-indent: -9999px; }
+
+/* ensure interactive elements sit above the stretched link */
+.postcard .postcard-main h3 a,
+.postcard .desc,
+.postcard .tags,
+.postcard .listing-category,
+.postcard .read-btn { position: relative; z-index: 2; }
+
+/* thumbnail */
+.postcard-thumb { flex: 0 0 140px; margin-right: 1.25rem; }
+.postcard-thumb img {
+  width: 140px; height: 140px; object-fit: cover; border-radius: 8px;
+}
+
+/* body */
+.postcard-body { flex: 1; display: flex; align-items: flex-start; }
+.postcard-main { flex: 1; }
+.postcard-main h3 { margin: 0 0 0.25rem; font-size: 1rem; }
+.postcard-main h3 a { color: #111; font-weight: 700; text-decoration: none; }
+.postcard-main h3 a:hover { text-decoration: underline; }
+.postcard-main .desc { margin: 0 0 0.25rem; color: #444; font-size: 0.9rem; line-height: 1.3; }
+
+/* author + date on the same row */
+.postcard-info-row {
+  display: flex; justify-content: space-between; align-items: center; margin: 0.1rem 0 0;
+}
+.author { color: #6b7280; font-size: 0.8rem; }
+.date { color: #555; font-size: 0.85rem; }
+
+/* tags + read button row */
+.postcard-bottom-row { display: flex; justify-content: space-between; align-items: center; }
+.tags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.tag { background: #f3f4f6; color: #111; padding: 0.15rem 0.45rem; font-size: 0.75rem; border-radius: 4px; }
+
+.read-btn {
+  display: inline-block; padding: 0.3rem 0.8rem; background: #111827; color: #fff;
+  font-size: 0.8rem; font-weight: 600; border-radius: 4px; text-decoration: none;
+}
+.read-btn:hover { background: #1f2937; }
+.read-btn:visited { background: #6b7280; color: #e5e7eb; }
+</style>
+
+```

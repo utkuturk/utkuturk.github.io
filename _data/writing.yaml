@@ -1,0 +1,133 @@
+dissertation:
+  - authors: "Türk, U."
+    year: 2022
+    title: "Agreement Attraction in Turkish"
+    type: "MA thesis"
+    institution: "Boğaziçi University"
+    url: "http://seyhan.library.boun.edu.tr/record=b2776878~S5"
+    pdf: "../files/Turk2020-Agreement-Attraction-in-Turkish.pdf"
+    repo: "https://github.com/utkuturk/ma-thesis"
+
+journal_articles:
+  - authors: "Türk, U.; Logacev, P."
+    year: 2024
+    title: "Agreement Attraction in Turkish: The case of genitive attractors"
+    journal: "Language, Cognition and Neuroscience"
+    volume: "39"
+    issue: "4"
+    pages: "448–454"
+    url: "https://www.tandfonline.com/doi/full/10.1080/23273798.2024.2324766"
+    pdf: "../files/pdfs/TurkLogacev2024-cnl-preprint.pdf"
+
+  - authors: "Türk, U.; Atmaca, F.; Özateş, Ş. B.; et al."
+    year: 2022
+    title: "Resources for Turkish dependency parsing: introducing the BOUN Treebank and the BoAT annotation tool."
+    journal: "Language Resources & Evaluation"
+    volume: "56"
+    pages: "259–307"
+    url: "https://link.springer.com/article/10.1007/s10579-021-09558-0"
+    pdf: "../files/pdfs/TurkEtAl2022.pdf"
+
+  - authors: "Yu, X.; Türk, U.; Dods, A.; Tian, X.; Lau, E."
+    year: 2025
+    status: "submitted"
+    title: "Non-visually-derived mental objects tax 'visual' pointers"
+    preprint: "https://www.biorxiv.org/content/10.1101/2025.05.02.651748v1"
+
+book_chapters:
+  - authors: "Türk, U."
+    year: 2024
+    status: "revision"
+    title: "Controlling morphosyntactic competition through phonology"
+    in: "Exploring Nanosyntax II: The Lexicalisation algorithm"
+    editors: "Karen de Clerq; Pavel Caha; Guido Vanden Wyngaerd"
+    publisher: "Oxford Academic Press"
+    url: "https://lingbuzz.net/lingbuzz/008295"
+    pdf: "../files/papers/Turk2024.pdf"
+
+  - authors: "Canalis, S.; Özdemir, S.; Türk, U.; Tunçer, Ü. C."
+    year: 2024
+    title: "The phonological nature of the Turkish front glide"
+    in: "Selected Essays on Turkish Linguistics: The Anadolu Meeting"
+    publisher: "Otto Harrassowitz Verlag"
+    pdf: "../files/pdfs/CanalisEtAl2024.pdf"
+
+in_progress:
+  - authors: "Türk, U."
+    year: 2025
+    status: "in prep."
+    title: "Response Bias in Turkish Agreement Attraction"
+    repo: "https://github.com/utkuturk/attraction_meta"
+    note: "available upon request"
+
+  - authors: "Türk, U."
+    year: 2025
+    status: "in prep."
+    title: "The Role of Register in Agreement Attraction"
+
+  - authors: "Türk, U.; Lau, E."
+    year: 2025
+    status: "in prep."
+    title: "Kind NPs"
+    repo: "https://github.com/utkuturk/kind"
+    note: "available upon request"
+
+proceedings:
+  - authors: "Lewis, S.; Türk, U."
+    year: 2025
+    title: "Superiority Effects With Wh-Adjuncts in Turkish"
+    proceedings: "Proceedings of the Linguistic Society of America"
+    volume: "10"
+    issue: "1"
+    article: "5931"
+    doi: "10.3765/plsa.v10i1.5931"
+    url: "https://journals.linguisticsociety.org/proceedings/index.php/PLSA/article/view/5931"
+    pdf: "../files/papers/LewisTurk2025.pdf"
+
+  - authors: "Türk, U.; Demirok, Ö."
+    year: 2021
+    title: "Hypothetical Comparison in Turkish."
+    proceedings: "Proceedings of the 6th Workshop on Turkic and languages in contact with Turkic (LSA)"
+    doi: "10.3765/ptu.v6i1.5054"
+    url: "https://journals.linguisticsociety.org/proceedings/index.php/tu/article/view/5054"
+    pdf: "../files/papers/TurkDemirok2021.pdf"
+
+  - authors: "Türk, U.; Caha, P."
+    year: 2021
+    title: "Nanosyntactic Analysis of Turkish Case System."
+    proceedings: "Proceedings of the 6th Workshop on Turkic and languages in contact with Turkic (LSA)"
+    doi: "10.3765/ptu.v6i1.5051"
+    url: "https://journals.linguisticsociety.org/proceedings/index.php/tu/article/view/5051"
+    pdf: "../files/papers/TurkCaha2021.pdf"
+
+  - authors: "Türk, U."
+    year: 2020
+    title: "Tackling the Augmentative Puzzle in Turkish."
+    proceedings: "Proceedings of the 5th Workshop on Turkic and languages in contact with Turkic (LSA)"
+    doi: "10.3765/ptu.v5i1.4771"
+    url: "https://journals.linguisticsociety.org/proceedings/index.php/tu/article/view/4771"
+    pdf: "../files/papers/Turk2020.pdf"
+
+  - authors: "Türk, U.; Bayar, K.; Özercan, A. D.; Öztürk, G. Y.; Özateş, S. B."
+    year: 2020
+    title: "First Steps towards Universal Dependencies for Laz."
+    proceedings: "Proceedings of the Fourth Workshop on Universal Dependencies (UDW 2020)"
+    pages: "189–194"
+    url: "https://aclanthology.org/2020.udw-1.21.pdf"
+    pdf: "../files/papers/TurkEtAl2020.pdf"
+
+  - authors: "Türk, U.; Atmaca, F.; Özateş, S. B.; Bedir, S. T.; Köksal, A.; Öztürk, B.; Güngör, T.; Özgür, A."
+    year: 2019
+    title: "Turkish Treebanking: Unifying and Constructing Efforts."
+    proceedings: "Proceedings of the 13th Linguistic Annotation Workshop"
+    pages: "166–177"
+    url: "https://aclanthology.org/W19-4019.pdf"
+    pdf: "../files/papers/TurkEtAl2019b.pdf"
+
+  - authors: "Türk, U.; Atmaca, F.; Özateş, S. B.; Bedir, S. T.; Köksal, A.; Öztürk, B.; Güngör, T.; Özgür, A."
+    year: 2019
+    title: "Improving the Annotations in the Turkish Universal Dependency Treebank."
+    proceedings: "Proceedings of the Third Workshop on Universal Dependencies (UDW, SyntaxFest 2019)"
+    pages: "108–117"
+    url: "https://aclanthology.org/W19-8013.pdf"
+    pdf: "../files/papers/TurkEtAl2019a.pdf"

@@ -1,0 +1,25 @@
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  // Grab the first navbar collapse Quarto/Bootstrap creates
+  const collapse = document.querySelector('#quarto-header .navbar-collapse');
+  if (!collapse) return;
+
+  function lock()  { document.body.classList.add('menu-open'); }
+  function unlock(){ document.body.classList.remove('menu-open'); }
+
+  // Bootstrap collapse events (work in Quarto)
+  collapse.addEventListener('shown.bs.collapse', lock);
+  collapse.addEventListener('hidden.bs.collapse', unlock);
+
+  // Fallback: also toggle on click of toggler if events are missing
+  const toggler = document.querySelector('#quarto-header .navbar-toggler');
+  if (toggler) {
+    toggler.addEventListener('click', () => {
+      // wait a tick for classes to update
+      setTimeout(() => {
+        if (collapse.classList.contains('show')) lock(); else unlock();
+      }, 0);
+    });
+  }
+});
+</script>

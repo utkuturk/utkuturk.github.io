@@ -1,0 +1,233 @@
+---
+title: ""
+aliases: [/news/]
+comments: false
+format:
+  html:
+    toc: false
+execute:
+  echo: false
+---
+
+```{r}
+library(yaml)
+
+`%||%` <- function(a,b) if (is.null(a) || identical(a,"")) b else a
+
+parse_date <- function(s){
+  s <- trimws(as.character(s %||% ""))
+  if (grepl("^\\d{4}-\\d{2}-\\d{2}$", s)) return(as.Date(s))
+  if (grepl("^\\d{4}-\\d{2}$", s))       return(as.Date(paste0(s,"-01")))
+  if (grepl("^\\d{2}/\\d{4}$", s)) { p <- strsplit(s,"/",fixed=TRUE)[[1]]; return(as.Date(sprintf("%s-%s-01", p[2], p[1]))) }
+  if (grepl("^\\d{4}$", s))              return(as.Date(paste0(s,"-01-01")))
+  as.Date(NA)
+}
+fmt_date <- function(d) if (is.na(d)) "" else format(d, "%b %Y")
+
+read_news <- function(paths = c("data/news.yaml","_data/news.yaml")){
+  path <- paths[which(file.exists(paths))[1]]
+  if (is.na(path)) stop("news.yaml not found in: ", paste(paths, collapse=", "))
+  x <- yaml::read_yaml(path)
+  items <- if (!is.null(x$news)) x$news else x
+
+  rows <- lapply(items, function(it) {
+    d <- parse_date(it$date)
+    tag <- (it$category %||% it$tag) %||% NA  # prefer explicit category
+    list(
+      date = d, when = fmt_date(d),
+      desc = it$description %||% "",
+      tag  = tag,
+      pin  = isTRUE(it$pin),
+      h = it$hlink %||% NA, a = it$alink %||% NA,
+      s = it$slink %||% NA, p = it$pdf   %||% NA, e = it$extra %||% NA
+    )
+  })
+  # newest first; undated last
+  ord <- order(vapply(rows, function(r) if (is.na(r$date)) as.Date("0001-01-01") else r$date,
+                      as.Date("0001-01-01")), decreasing = TRUE)
+  rows[ord]
+}
+
+# fallback tagging if some legacy items lack `category`
+infer_tag <- function(desc){
+  d <- tolower(desc)
+  if (grepl("\\b(preprint|published|paper|journal|chapter|oup|lingbuzz|doi)\\b", d)) return("publication")
+  if (grepl("\\b(hsp|lsa|plc|tu\\+|workshop|talk|poster|puzzles of agreement|usc|oxford)\\b", d)) return("talk")
+  if (grepl("\\b(site|website)\\b", d)) return("site")
+  if (grepl("\\b(candidacy|defend|defense|qualified|advance|visiting)\\b", d)) return("milestone")
+  NA
+}
+
+tag_badge <- function(tag){
+  if (is.na(tag)) return("")
+  map <- list(
+    talk="🎤 talk",
+    publication="📄 pub",
+    milestone="🏁 milestone",
+    site="🌐 site"
+  )
+  txt <- map[[tag]] %||% tag
+  sprintf('<span class="news-badge">%s</span>', txt)
+}
+
+link_line <- function(r){
+  L <- character()
+  if (!is.na(r$h)) L <- c(L, sprintf('<a href="%s" target="_blank">handout</a>',  r$h))
+  if (!is.na(r$a)) L <- c(L, sprintf('<a href="%s" target="_blank">abstract</a>', r$a))
+  if (!is.na(r$s)) L <- c(L, sprintf('<a href="%s" target="_blank">slides</a>',   r$s))
+  if (!is.na(r$p)) L <- c(L, sprintf('<a href="%s" target="_blank">pdf</a>',      r$p))
+  if (!is.na(r$e)) L <- c(L, r$e)  # may contain HTML
+  if (length(L)) sprintf('<div class="news-links">%s</div>', paste(L, collapse=' · ')) else ""
+}
+
+render_highlights_html <- function(rows, n = 3){
+  if (n <= 0) return("")
+  pinned <- vapply(rows, function(r) isTRUE(r$pin), logical(1))
+  picks <- if (any(pinned)) rows[pinned] else rows
+  picks <- head(picks, n)
+  if (!length(picks)) return("")
+  cards <- vapply(picks, function(r){
+    tg <- r$tag; if (is.na(tg)) tg <- infer_tag(r$desc)
+    sprintf('<article class="news-card">
+      <div class="news-card-top">%s<time class="news-when">%s</time></div>
+      <div class="news-desc">%s</div>%s
+    </article>', tag_badge(tg), r$when, r$desc, link_line(r))
+  }, character(1))
+  paste0('<section class="news-highlights"><h2>Highlights</h2><div class="news-grid">',
+         paste(cards, collapse = ""), '</div></section>')
+}
+
+render_feed_html <- function(rows){
+  items <- vapply(rows, function(r){
+    tg <- r$tag; if (is.na(tg)) tg <- infer_tag(r$desc)
+    sprintf('<li class="news-item">
+      <div class="news-line"><time class="news-when">%s</time>%s</div>
+      <div class="news-desc">%s</div>%s
+    </li>', r$when, tag_badge(tg), r$desc, link_line(r))
+  }, character(1))
+  paste0('<section class="news-feed"><h2>All updates</h2><ul class="news-items">',
+         paste(items, collapse = ""), '</ul></section>')
+}
+
+```
+
+```{r}
+#| results: asis
+rows <- read_news()
+html <- paste0(
+  render_highlights_html(rows, n = 2),  # set n = 0 to disable Highlights
+  render_feed_html(rows)
+)
+knitr::asis_output(html)
+
+
+
+```
+
+<style>
+
+/* ========== layout ========== */
+.news-highlights {
+  margin: 1.25rem 0 1rem;
+}
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: .85rem;
+}
+
+/* ========== highlight cards ========== */
+.news-card {
+  background: var(--quarto-body-bg, #fff);
+  border: 1px solid var(--quarto-border-color, #e5e7eb);
+  border-radius: .9rem;
+  padding: .9rem 1rem;
+}
+.news-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .5rem;
+  margin-bottom: .35rem;
+}
+
+/* ========== feed list ========== */
+.news-feed h2 {
+  margin-top: 1rem;
+}
+.news-items {
+  list-style: none;
+  padding: 0;
+  margin: .5rem 0 0 0;
+}
+.news-item {
+  padding: .7rem .25rem;
+  border-bottom: 1px dashed var(--quarto-border-color, #e5e7eb);
+}
+.news-item:last-child {
+  border-bottom: 0;
+}
+.news-line {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  margin-bottom: .15rem;
+}
+
+/* ========== atoms ========== */
+.news-badge {
+  font-size: .8em;
+  padding: .1rem .5rem;
+  border: 1px solid var(--quarto-border-color, #e5e7eb);
+  border-radius: 999px;
+  line-height: 1;
+}
+.news-when {
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: .9;
+}
+.news-desc {
+  line-height: 1.4;
+}
+.news-links {
+  margin-top: .2rem;
+  font-size: .95em;
+  white-space: nowrap;
+}
+
+/* ========== links ========== */
+.news-links a {
+  text-decoration: none;
+  border-bottom: 1px dotted currentColor;
+  transition: opacity .15s ease, border-color .15s ease;
+}
+.news-links a:hover,
+.news-links a:focus {
+  opacity: .8;
+  border-bottom-color: transparent;
+}
+
+/* ========== small screens ========== */
+@media (max-width: 640px) {
+  .news-grid { grid-template-columns: 1fr; }
+  .news-item { padding: .6rem 0; }
+}
+
+/* ========== dark-mode tweaks (optional) ========== */
+@media (prefers-color-scheme: dark) {
+  .news-card {
+    background: rgba(255,255,255,.03);
+    border-color: rgba(255,255,255,.12);
+  }
+  .news-item {
+    border-bottom-color: rgba(255,255,255,.12);
+  }
+  .news-badge {
+    border-color: rgba(255,255,255,.2);
+  }
+}
+
+
+</style>
