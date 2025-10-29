@@ -10,7 +10,7 @@
 <atom:link href="https://www.utkuturk.com/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.8.25</generator>
-<lastBuildDate>Wed, 29 Oct 2025 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Wed, 29 Oct 2025 04:00:00 GMT</lastBuildDate>
 <item>
   <title>misunderstanding Kate Mooney’s talk on nonuniformity of phonology and phonetics</title>
   <dc:creator>Utku Turk</dc:creator>
@@ -137,7 +137,7 @@ Figure&nbsp;2: “With four parameters I can fit an elephant.” The outline is 
   <category>sound</category>
   <category>turkish</category>
   <guid>https://www.utkuturk.com/posts/misunderstanding-kate/</guid>
-  <pubDate>Wed, 29 Oct 2025 00:00:00 GMT</pubDate>
+  <pubDate>Wed, 29 Oct 2025 04:00:00 GMT</pubDate>
   <media:content url="https://www.utkuturk.com/posts/misunderstanding-kate/fourier_elephant.png" medium="image" type="image/png" height="72" width="144"/>
 </item>
 <item>
@@ -3097,7 +3097,7 @@ font-style: inherit;">1.96</span>), xmax)</span></code></pre></div></div>
   <category>sound</category>
   <category>experiment</category>
   <guid>https://www.utkuturk.com/posts/mfa/</guid>
-  <pubDate>Fri, 12 Jul 2024 00:00:00 GMT</pubDate>
+  <pubDate>Fri, 12 Jul 2024 04:00:00 GMT</pubDate>
   <media:content url="https://www.utkuturk.com/posts/mfa/mfa.jpeg" medium="image" type="image/jpeg"/>
 </item>
 <item>
@@ -3843,7 +3843,7 @@ font-style: inherit;">done</span></span></code></pre></div></div>
   <category>technical</category>
   <category>code</category>
   <guid>https://www.utkuturk.com/posts/server-recordings/</guid>
-  <pubDate>Thu, 23 Feb 2023 00:00:00 GMT</pubDate>
+  <pubDate>Thu, 23 Feb 2023 05:00:00 GMT</pubDate>
   <media:content url="https://www.utkuturk.com/posts/server-recordings/bash.png" medium="image" type="image/png" height="144" width="144"/>
 </item>
 <item>
@@ -4183,7 +4183,7 @@ font-style: inherit;">done</span></span></code></pre></div></div>
   <category>dissertation</category>
   <category>agreement attraction</category>
   <guid>https://www.utkuturk.com/posts/ma-thesis/</guid>
-  <pubDate>Sat, 20 Aug 2022 00:00:00 GMT</pubDate>
+  <pubDate>Sat, 20 Aug 2022 04:00:00 GMT</pubDate>
   <media:content url="https://www.utkuturk.com/posts/ma-thesis/exp3_bias_our.png" medium="image" type="image/png" height="90" width="144"/>
 </item>
 <item>
@@ -4214,7 +4214,7 @@ font-style: inherit;">done</span></span></code></pre></div></div>
   <category>papers</category>
   <category>sound</category>
   <guid>https://www.utkuturk.com/posts/j-glide/</guid>
-  <pubDate>Tue, 10 May 2022 00:00:00 GMT</pubDate>
+  <pubDate>Tue, 10 May 2022 04:00:00 GMT</pubDate>
   <media:content url="https://www.utkuturk.com/posts/j-glide/glide_fig.png" medium="image" type="image/png" height="99" width="144"/>
 </item>
 <item>
@@ -4415,7 +4415,7 @@ Mecidiyeköy hell-HCM most crowded district-POSS.1PL-AOR
   <category>papers</category>
   <category>meaning</category>
   <guid>https://www.utkuturk.com/posts/as-if/</guid>
-  <pubDate>Tue, 10 May 2022 00:00:00 GMT</pubDate>
+  <pubDate>Tue, 10 May 2022 04:00:00 GMT</pubDate>
   <media:content url="https://www.utkuturk.com/posts/as-if/dancing.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
@@ -4540,7 +4540,7 @@ font-style: inherit;">$</span>nsubject</span></code></pre></div></div>
   <category>technical</category>
   <category>code</category>
   <guid>https://www.utkuturk.com/posts/yaml-rnotebook/</guid>
-  <pubDate>Thu, 23 Jan 2020 00:00:00 GMT</pubDate>
+  <pubDate>Thu, 23 Jan 2020 05:00:00 GMT</pubDate>
   <media:content url="https://www.utkuturk.com/posts/yaml-rnotebook/yaml.png" medium="image" type="image/png" height="144" width="144"/>
 </item>
 </channel>
