@@ -1,9 +1,9 @@
 ---
-title: "misunderstanding Kate Mooney's talk on nonuniformity of phonology and phonetics"
+title: "misunderstanding Kate's talk on nonuniformity of phonology and phonetics"
 author: Utku Turk
 date: "2025-10-29"
 categories: [linguistics, misunderstanding, sound, turkish]
-description: turkish as if clauses specifically target gradable adverbials and adjectives, pointing to a degree-based analysis
+description: "Kate’s asymmetry meets Turkish rounding: evidence that’s gradient but syntactically bounded (also a rant about dual-process framings)"
 execute:
   echo: false
   message: false
