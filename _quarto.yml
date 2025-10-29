@@ -15,9 +15,9 @@ website:
   comments:
     giscus:
       repo: utkuturk/utkuturk.github.io
-      repo-id: R_kgDOPv0yeg
-      category: General
-      category-id: DIC_kwDOPv0yes4CvcDO
+      repo-id: "R_kgDOQCZuMw"
+      category: "General"
+      category-id: "DIC_kwDOQCZuM84CxOt1"
       mapping: title
       reactions-enabled: true
       loading: lazy
