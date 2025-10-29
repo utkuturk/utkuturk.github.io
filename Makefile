@@ -75,13 +75,21 @@ bootstrap-pages:
 # ----- Publish (render locally, then push built files to gh-pages) -----
 publish: render
 	@echo "==> Publishing '$(SITE_DIR)' to branch '$(PUBLISH_BRANCH)'…"
+
+	# Clean any stale registrations and paths first
+	@git worktree prune || true
 	@rm -rf "$(PUBLISH_DIR)" 2>/dev/null || true
-	@if [ "$(REMOTE_HAS_PAGES)" = "yes" ]; then \
-	  git worktree add "$(PUBLISH_DIR)" "$(PUBLISH_BRANCH)"; \
-	else \
-	  echo "   Remote '$(PUBLISH_BRANCH)' is missing; creating it…"; \
-	  git worktree add "$(PUBLISH_DIR)" -b "$(PUBLISH_BRANCH)"; \
-	fi
+
+	# Add/reset the worktree in ONE shell (note the backslashes)
+	@bash -lc '\
+set -euo pipefail; \
+if git ls-remote --exit-code --heads origin "$(PUBLISH_BRANCH)" >/dev/null 2>&1; then \
+  git worktree add -f "$(PUBLISH_DIR)" "$(PUBLISH_BRANCH)"; \
+  (cd "$(PUBLISH_DIR)" && git fetch origin "$(PUBLISH_BRANCH)" && git reset --hard "origin/$(PUBLISH_BRANCH)"); \
+else \
+  echo "   Remote '\''$(PUBLISH_BRANCH)'\'' is missing; creating it…"; \
+  git worktree add -f "$(PUBLISH_DIR)" -b "$(PUBLISH_BRANCH)"; \
+fi'
 
 	# Sync built files into the worktree
 	@if [ ! -d "$(SITE_DIR)" ]; then \
@@ -99,7 +107,7 @@ publish: render
 	  cp -a "$(SITE_DIR)/." "$(PUBLISH_DIR)/"; \
 	fi
 
-	# Add .nojekyll and optional CNAME each publish (idempotent)
+	# Add .nojekyll and CNAME (idempotent)
 	@touch "$(PUBLISH_DIR)/.nojekyll"
 	@if [ -n "$(CNAME)" ]; then echo "$(CNAME)" > "$(PUBLISH_DIR)/CNAME"; fi
 
@@ -116,9 +124,3 @@ publish: render
 
 	@$(MAKE) _teardown_worktree
 	@echo "==> Done."
-
-# ----- Internal helpers -----
-_teardown_worktree:
-	@echo "==> Cleaning temporary worktree…"
-	@git worktree remove -f "$(PUBLISH_DIR)" 2>/dev/null || true
-	@rm -rf "$(PUBLISH_DIR)" 2>/dev/null || true
