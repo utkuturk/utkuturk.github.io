@@ -10,7 +10,136 @@
 <atom:link href="https://www.utkuturk.com/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.8.25</generator>
-<lastBuildDate>Fri, 12 Jul 2024 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Wed, 29 Oct 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>misunderstanding Kate Mooney’s talk on nonuniformity of phonology and phonetics</title>
+  <dc:creator>Utku Turk</dc:creator>
+  <link>https://www.utkuturk.com/posts/misunderstanding-kate/</link>
+  <description><![CDATA[ 
+
+
+
+
+<blockquote class="blockquote">
+<p>This post is part of a series I’m calling <em>Misunderstandings</em>. The idea is simple: I pick up on talks, papers, or arguments that I admire but also don’t quite buy in the way they’re framed. Sometimes I pose counterexamples, sometimes I just get tangled in the details. The label isn’t meant as dismissive—usually the “misunderstanding” is mine—but I find that pushing on these points is a good way to clarify what’s at stake.</p>
+</blockquote>
+<p>Kate Mooney’s recent talk at UMass, <em>Segmental phonology, gestural phonetics: Explaining asymmetries between phonological and phonetic operations</em>, was about something deceptively simple: are phonological processes uniform?</p>
+<p>The traditional view has been “yes.” If an alternation applies freely, that’s phonology. If it’s tied to a particular morpheme, that’s phonology too, just gated by a diacritic, indexed constraint, or cyclic ranking. The assumption is that the underlying machinery is the same; what differs is timing and scope.</p>
+<p>Kate pushed back. She focused on vowel harmony versus vowel co-articulation. Zsiga had already argued these belong to different representational domains—rules vs gestures—but Kate sharpened the contrast. Vowel harmony: categorical, typologically robust, governed by rules. Vowel coarticulation: gradient, gestural blending, and crucially never morphologically restricted. That asymmetry, she argued, is real. If you try to collapse the two into one “uniform phonology,” you erase those typological gaps.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-typology-grid" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-typology-grid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://www.utkuturk.com/posts/misunderstanding-kate/index_files/figure-html/fig-typology-grid-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-typology-grid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: A schematic 2×2 for Kate’s asymmetry. The gradient+restricted quadrant is predicted empty.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>It’s a nice move because it comes with clear predictions. You shouldn’t get consonant copy or epenthesis as general phonotactic repairs, only as morphologically restricted alternations. You shouldn’t get morphologically restricted coarticulation. The grid is crisp: categorical + restricted = phonology, gradient + free = phonetics.</p>
+<p>I should also say I’m not hostile to this move. In fact, I like the idea that phonology and phonetics are not a uniform system. Substance-free phonology has long made a similar claim: phonology is its own representational domain, not reducible to phonetic substance. I’ve always found that perspective appealing, and Kate’s framework fits that general spirit even though she keeps an arm’s-length stance toward committing to any particular theory.</p>
+<p>But I’m suspicious of two-level partitions in general. I feel like in cognitive sciences, whenever there is a hard to explain data, first instinct of many people is to propose a two-level model. Automatic vs controlled processing, System 1 vs System 2 reasoning, parsing vs grammar. Sometimes, this two-level model is needed, especially when it is used to isolate a problem. For example, in the case of I-language idea, it was a powerful tool to carve a theoretical space just to discuss grammar. However, as theorization accumulated, this distinction sometimes used as a pile of “I-actually-dont-have-any-idea-so-it-might-be-processing”.</p>
+<p>This pattern is everywhere in cognitive science, and all of these frameworks—including what Kate’s suggesting—share the same basic architecture: one process is fast, automatic, and associative; the other is slow, deliberate, and rule-based. The hope is that human behavior can be explained by sorting phenomena into the right bin. And of course, if you set out to show that sometimes people behave automatically and make mistakes; sometimes they behave deliberately and do not make mistakes, you’ll find confirmation all over the place.</p>
+<p>But as Gawronski, Sherman &amp; Trope (2014) point out, dual-process theories only make progress if they meet a demanding set of conditions: they must specify what the two systems actually are (their operating principles), not just when they operate; they must define the boundaries of each system clearly; and they must generate empirical predictions that could, in principle, be falsified. Otherwise, they collapse into post-hoc labeling—System 1 when it’s effortless, System 2 when it’s not. While dual-process frameworks can be falsifiable in principle, they are often <em>practically unfalsifiable</em> because the internal ‘systems’ aren’t anchored to observable input–output relations. Almost any finding can be retrofitted: if an effect looks automatic, it’s assigned to System 1; if it’s resource-dependent, to System 2.</p>
+<p>That’s my main worry here. Dual-process models are a tempting last resort. They look tidy, but they often function as theories that can’t really lose—precisely the kind that Popper warned us about. John von Neumann put it bluntly: <em>“With four parameters I can fit an elephant, and with five I can make him wiggle his trunk.”</em> And if you add one more, you can even make him wink. There’s even an R implementation—the <a href="https://www.r-bloggers.com/2011/06/a-winking-pink-elephant/">winking pink elephant</a>—that literally draws and animates an elephant with just a handful of parameters. It’s cute, but it’s also the point: if your model is that flexible, fitting isn’t the same thing as explaining. (The original code is base R/MASS heavy, but you can rewrite it cleanly with <code>ggplot2</code> and <code>dplyr</code>.)</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-elephant" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Red–pink outline of an elephant drawn by a Fourier series, shown with axes.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-elephant-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://www.utkuturk.com/posts/misunderstanding-kate/index_files/figure-html/fig-elephant-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Red–pink outline of an elephant drawn by a Fourier series, shown with axes.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-elephant-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: “With four parameters I can fit an elephant.” The outline is generated by a short Fourier series using complex coefficients.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>That’s where Turkish comes in.</p>
+<section id="the-turkish-case" class="level2">
+<h2 class="anchored" data-anchor-id="the-turkish-case">The Turkish case</h2>
+<p>As it is almost a common knowledge, Turkish exhibit multiple vowel harmonies. Harmonization spread from left to right. The easier one is the backness/frontness harmony. For example, the plural morpheme in Turkish can surface as either -lar or -ler, depending on the last vowel in the word that they are attaching. It is argued that plural morpheme is underspecified in its backness characteristics. And, whatever the value of the previous vowel, it spread into the plural morpheme.</p>
+<ul>
+<li>[yzym] + /-lAr/ -&gt; [yzymler]</li>
+<li>[adam] + /-lAr/ -&gt; [adamlar]</li>
+</ul>
+<p>Another present harmony is Backness and Roundness Harmony. For example, the accusative case can surface as -ɨ, -i, -u, -y in Turkish. Again, the way that it is going to surface is completely dependent on the previous vowel. In this case, the accusative case is underspecified for its roundness and backness, but not underspecified for its height, -I.</p>
+<ul>
+<li>[adam] + /-I/ -&gt; [adamɨ]</li>
+<li>[herif] + /-I/ -&gt; [herifi]</li>
+<li>[odun] + /-I/ -&gt; [odunu]</li>
+<li>[yzym] + /-I/ -&gt; [yzymy]</li>
+</ul>
+<p>Turkish does not have any other widely accepted vowel harmony apart from these two. This means that Turkish normally doesn’t have free-standing rounding harmony. Moreover, Turkish vowel harmony is strictly word-internal and left-to-right. Backwards harmony is virtually absent. Between-word harmony is nonexistent.</p>
+<p>However, there is an interesting case in which all of these properties are overhauled. Turkish exhibit optional vowel characteristic change in a very specific environment. In fast production of complex noun phrases (an NP and a modifier), speakers often round the initial vowel of the second NP (NP2) if:</p>
+<ul>
+<li>The last vowel of NP1 is [+round].<br>
+</li>
+<li>The first vowel of NP2 is [+high, –round].<br>
+</li>
+<li>The second vowel of NP2 is [+round].<br>
+</li>
+<li>NP1 ends in a single consonant (clusters tend to block it).</li>
+</ul>
+<!-- Insert Praat spectrogram/formant track: sequence V[round] – V[high, –round] – V[round], showing F2 lowering in the middle vowel with/without assimilation. -->
+<p>Examples (NP1 modifiers in italics):</p>
+<ul>
+<li><em>bir</em> ikon (one icon) → [bir ikon] but <em>on</em> ikon (ten icons) → [on ykon]</li>
+<li><em>iki</em> milyon (two millions) → [iki miljon] but <em>dokuz</em> milyon (nine millions) → [dokuz mylyon]<br>
+</li>
+<li><em>güzel</em> vizyon (beautiful vision) → [gyzel vizyon] but <em>hoş</em> vizyon (nice vision) → [hoʃ vyzyon]</li>
+<li><em>bazı</em> sigorta (some insurance) → [bazɨ sigorta] but <em>tüm</em> sigorta (whole insurance) → [tym sygorta]</li>
+<li><em>tek</em> biyoloji (single biology) → [tek bijoloʒi] but <em>vücut</em> biyoloji (body biology) → [vyʒut byjoloʒi]</li>
+</ul>
+<p>Not everything goes through:</p>
+<ul>
+<li>üç <em>nilüfer</em> (three lilies) → [ytʃ nilüfer] (no rounding)<br>
+</li>
+<li>tüm <em>limon</em> (whole lemon) → [tym limon] (no rounding)<br>
+</li>
+<li>küçük <em>işgücü</em> (small workforce) → [küçük işgücü] (blocked by CC cluster)</li>
+</ul>
+<!-- Insert table: columns for NP1 type, NP1 final vowel, NP2 initial vowel, NP2 second vowel, outcome (rounding / no rounding). Positive vs negative examples grouped. -->
+<p>Loanwords are especially revealing. Epenthetic vowels often participate: <em>hipodrom</em>, <em>sigorta</em>, <em>diskotek</em>. Compounds resist, especially when the boundary is vowel–vowel. Some high-frequency words seem entrenched with disharmony, like <em>dinazor</em> (originally <em>dinozor</em>). There are also asymmetries with labials: sometimes a labial consonant plus a preceding rounded vowel creates the right environment, but not always (<em>nilüfer</em> resists).</p>
+<!-- Insert scatterplot or bar chart: proportion of rounding observed by word type—loanwords, compounds, simple NPs, etc. -->
+</section>
+<section id="why-it-bugs-me" class="level2">
+<h2 class="anchored" data-anchor-id="why-it-bugs-me">Why it bugs me</h2>
+<p>At first glance, this seems like a good evidence for Kate’s argument.</p>
+<ul>
+<li>It’s optional: It does not necessarily go through, actually you will hear people do not make the rounding bunch of the times.</li>
+<li>It’s gradient: I do not feel like the vowel quality of the rounded one is similar to other round vowels.</li>
+<li>It seems to apply semi-automatically in fast speech.</li>
+</ul>
+<p>However, Kate’s argument relies on the non-collapsibility of the quadrant. An event that looks like this should be co-articulation, and should happen irregardless of morphological or syntactic environment. However, that is not the case for this phenomenon. This specific bidirectional vowel harmony, or stuck vowel, only occurs within the syntactically complex DPs. It does not occur within the same word when the same configuration exist. On the contrary, within the same root, there is an additional push for creating disharmony [see <a href="https://brucehayes.org/251VowelHarmony/Readings/ClementsSezer1982TurkishVowelHarmony.pdf">Clements and Sezer</a>].</p>
+<p>In phrases that is not dominated by the same syntactic node, this rounding harmony does not occur. For example, in a sentence like (1), one would expect “ikon” to be pronounced as [ykon] due to the presence of the adverb dün [dyn] prior to it, however, that is not the case. The same resistance is preserved even if we do not have this string in a place close to the topic area, the left-most phrases in Turkish sentences. The same resistance is still preserved if we place these two elements post-verbally, where they are produced in the same breadth, without a possible prosodic break.</p>
+<ol type="1">
+<li>Dün ikon aldım `I bought an icon yesterday’</li>
+<li>Ben Ahmetlerin dükkanından dün ikon aldım. `I bought an icon yesterday from Ahmets’ store’</li>
+<li>Ben Ahmetlerin dükkanından aldım dün ikon. `I bought an icon yesterday from Ahmets’ store’</li>
+</ol>
+<p>This is exactly the quadrant that Kate’s asymmetry says should be empty: co-articulation is supposed to be gradient and unrestricted, phonology is supposed to be categorical and morphological. Turkish gives you a phenomenon that’s both gradient but restricted.</p>
+<p>My worry is that the two-level carve—categorical vs gradient, phonology vs phonetics—is just too strong. If phonology is supposed to be categorical and morphologically restricted, and phonetics gradient and unrestricted, what do we do with Turkish? Calling it “just coarticulation” ignores the morphological conditioning. Calling it “phonology” ignores the gradient, variable character.</p>
+<p>Maybe I’m misunderstanding Kate’s point—her claim is typological, and she might be perfectly happy calling Turkish an outlier. But it makes me uneasy. Two-level models are good at drawing clean lines, and that’s why they’re attractive. But reality doesn’t always honor the bins we set up for it. One possibility is that coarticulation might be systematically governed prosodical structure. As of now, I categorize this in terms of nouns and their modifiers. It is possible that this is generalized to other heads and their modifiers. Then the question would be the following: is this rounding-harmony conditioned by prosodical structure that is a by-product of “head-modifier” relation or is it conditioned by syntactic locality?</p>
+<!-- Insert closing side-by-side Praat spectrograms: one “positive” case (e.g. *ikon* → [ykon]) and one “negative” case (e.g. *nilüfer*), to visually show the subtle but systematic difference. -->
+
+
+</section>
+
+<script data-collect-dnt="true" async="" src="https://scripts.simpleanalyticscdn.com/latest.js"></script> ]]></description>
+  <category>linguistics</category>
+  <category>misunderstanding</category>
+  <category>sound</category>
+  <category>turkish</category>
+  <guid>https://www.utkuturk.com/posts/misunderstanding-kate/</guid>
+  <pubDate>Wed, 29 Oct 2025 00:00:00 GMT</pubDate>
+  <media:content url="https://www.utkuturk.com/posts/misunderstanding-kate/fourier_elephant.png" medium="image" type="image/png" height="72" width="144"/>
+</item>
 <item>
   <title>Montreal Forced Aligner Workflow for PCIbex Production Experiments</title>
   <dc:creator>Utku Turk</dc:creator>
