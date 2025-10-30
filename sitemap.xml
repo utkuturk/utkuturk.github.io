@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.utkuturk.com/about.html</loc>
-    <lastmod>2025-10-14T16:00:25.979Z</lastmod>
+    <loc>https://www.utkuturk.com/aws-s3-pcibex/index.html</loc>
+    <lastmod>2025-10-30T05:25:27.766Z</lastmod>
   </url>
   <url>
-    <loc>https://www.utkuturk.com/news.html</loc>
+    <loc>https://www.utkuturk.com/index.html</loc>
+    <lastmod>2025-10-14T16:00:26.209Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.utkuturk.com/papers.html</loc>
     <lastmod>2025-10-14T16:00:26.210Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.utkuturk.com/talks.html</loc>
-    <lastmod>2025-10-14T16:00:26.256Z</lastmod>
   </url>
   <url>
     <loc>https://www.utkuturk.com/posts/yaml-rnotebook/index.html</loc>
@@ -53,15 +53,15 @@
     <lastmod>2025-10-14T16:00:26.214Z</lastmod>
   </url>
   <url>
-    <loc>https://www.utkuturk.com/posts/aws-s3-pcibex/index.html</loc>
-    <lastmod>2025-10-30T05:25:27.766Z</lastmod>
+    <loc>https://www.utkuturk.com/talks.html</loc>
+    <lastmod>2025-10-14T16:00:26.256Z</lastmod>
   </url>
   <url>
-    <loc>https://www.utkuturk.com/papers.html</loc>
+    <loc>https://www.utkuturk.com/news.html</loc>
     <lastmod>2025-10-14T16:00:26.210Z</lastmod>
   </url>
   <url>
-    <loc>https://www.utkuturk.com/index.html</loc>
-    <lastmod>2025-10-14T16:00:26.209Z</lastmod>
+    <loc>https://www.utkuturk.com/about.html</loc>
+    <lastmod>2025-10-14T16:00:25.979Z</lastmod>
   </url>
 </urlset>
