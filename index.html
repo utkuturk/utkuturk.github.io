@@ -81,9 +81,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-project','listing-website','listing-format','listing-margin-header','listing-language','listing-comments','listing-freeze','listing-title-block-banner','listing-title','listing-author','listing-date','listing-categories','listing-image','listing-description','listing-path','listing-outputHref','listing-date-modified','listing-filename','listing-file-modified','listing-reading-time','listing-word-count','listing-execute','listing-embed-resources','listing-self-contained-math','listing-toc','listing-params','listing-aliases',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-date-modified-sort'] },{ data: ['listing-file-modified-sort'] },{ data: ['listing-reading-time-sort'] },{ data: ['listing-word-count-sort'] }],
+      valueNames: ['listing-project','listing-website','listing-format','listing-margin-header','listing-language','listing-comments','listing-freeze','listing-title-block-banner','listing-title','listing-author','listing-date','listing-categories','listing-image','listing-description','listing-path','listing-outputHref','listing-date-modified','listing-filename','listing-file-modified','listing-reading-time','listing-word-count','listing-execute','listing-embed-resources','listing-self-contained-math','listing-toc','listing-params','listing-aliases','listing-draft',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-date-modified-sort'] },{ data: ['listing-file-modified-sort'] },{ data: ['listing-reading-time-sort'] },{ data: ['listing-word-count-sort'] }],
       
-      searchColumns: ["listing-project","listing-website","listing-format","listing-margin-header","listing-language","listing-comments","listing-freeze","listing-title-block-banner","listing-title","listing-author","listing-date","listing-categories","listing-image","listing-description","listing-path","listing-outputHref","listing-date-modified","listing-filename","listing-file-modified","listing-reading-time","listing-word-count","listing-execute","listing-embed-resources","listing-self-contained-math","listing-toc","listing-params","listing-aliases"],
+      searchColumns: ["listing-project","listing-website","listing-format","listing-margin-header","listing-language","listing-comments","listing-freeze","listing-title-block-banner","listing-title","listing-author","listing-date","listing-categories","listing-image","listing-description","listing-path","listing-outputHref","listing-date-modified","listing-filename","listing-file-modified","listing-reading-time","listing-word-count","listing-execute","listing-embed-resources","listing-self-contained-math","listing-toc","listing-params","listing-aliases","listing-draft"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -257,27 +257,101 @@ window.Quarto = {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar"><div class="quarto-margin-header"><div class="margin-header-item">
-<!-- <span style="font-weight: 600;">subscribe</span> -->
+<style>
+    .followit--follow-form-container[attr-a][attr-b][attr-c][attr-d][attr-e][attr-f] .form-preview {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  margin-top: 30px !important;
+  padding: clamp(17px, 5%, 40px) clamp(17px, 7%, 50px) !important;
+  max-width: none !important;
+  border-radius: 6px !important;
+  box-shadow: 0 5px 25px rgba(34, 60, 47, 0.25) !important;
+}
+.followit--follow-form-container[attr-a][attr-b][attr-c][attr-d][attr-e][attr-f] .form-preview,
+.followit--follow-form-container[attr-a][attr-b][attr-c][attr-d][attr-e][attr-f] .form-preview *{
+  box-sizing: border-box !important;
+}
+.followit--follow-form-container[attr-a][attr-b][attr-c][attr-d][attr-e][attr-f] .form-preview .preview-heading {
+  width: 100% !important;
+}
+.followit--follow-form-container[attr-a][attr-b][attr-c][attr-d][attr-e][attr-f] .form-preview .preview-heading h5{
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+.followit--follow-form-container[attr-a][attr-b][attr-c][attr-d][attr-e][attr-f] .form-preview .preview-input-field {
+  margin-top: 20px !important;
+  width: 100% !important;
+}
+.followit--follow-form-container[attr-a][attr-b][attr-c][attr-d][attr-e][attr-f] .form-preview .preview-input-field input {
+  width: 100% !important;
+  height: 40px !important;
+  border-radius: 6px !important;
+  border: 2px solid #e9e8e8 !important;
+  background-color: #fff;
+  outline: none !important;
+}
+.followit--follow-form-container[attr-a][attr-b][attr-c][attr-d][attr-e][attr-f] .form-preview .preview-input-field input {
+  color: #000000 !important;
+  font-family: "Montserrat" !important;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: center;
+}
+.followit--follow-form-container[attr-a][attr-b][attr-c][attr-d][attr-e][attr-f] .form-preview .preview-input-field input::placeholder {
+  color: #000000 !important;
+  opacity: 1 !important;
+}
 
-<!-- Begin Mailchimp Signup Form -->
-<div id="mc_embed_signup" style="padding-bottom: 20px;">
-    <form action="https://utkuturk.us2.list-manage.com/subscribe/post?u=c415ec23b4caeaab497678da5&amp;id=a663c81021" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
-        <div id="mc_embed_signup_scroll">
-            <div class="mc-field-group">
-                <label for="mce-EMAIL">email address <span class="asterisk">*</span></label>
-                <input type="email" name="EMAIL" class="required email" id="mce-EMAIL" required="">
-            </div>
-            <div class="clear">
-                <input type="submit" name="subscribe" id="mc-embedded-subscribe" class="button" value="subscribe">
-            </div>
-        </div>
-    </form>
-</div>
-<!-- End Mailchimp Signup Form -->
+.followit--follow-form-container[attr-a][attr-b][attr-c][attr-d][attr-e][attr-f] .form-preview .preview-input-field input:-ms-input-placeholder {
+  color: #000000 !important;
+}
 
+.followit--follow-form-container[attr-a][attr-b][attr-c][attr-d][attr-e][attr-f] .form-preview .preview-input-field input::-ms-input-placeholder {
+  color: #000000 !important;
+}
+.followit--follow-form-container[attr-a][attr-b][attr-c][attr-d][attr-e][attr-f] .form-preview .preview-submit-button {
+  margin-top: 10px !important;
+  width: 100% !important;
+}
+.followit--follow-form-container[attr-a][attr-b][attr-c][attr-d][attr-e][attr-f] .form-preview .preview-submit-button button {
+  width: 100% !important;
+  height: 40px !important;
+  border: 0 !important;
+  border-radius: 6px !important;
+  line-height: 0px !important;
+}
+.followit--follow-form-container[attr-a][attr-b][attr-c][attr-d][attr-e][attr-f] .form-preview .preview-submit-button button:hover {
+  cursor: pointer !important;
+}
+.followit--follow-form-container[attr-a][attr-b][attr-c][attr-d][attr-e][attr-f] .powered-by-line {
+  color: #231f20 !important;
+  font-family: "Montserrat" !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  line-height: 25px !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  display: flex !important;
+  width: 100% !important;
+  justify-content: center !important;
+  align-items: center !important;
+  margin-top: 10px !important;
+}
+.followit--follow-form-container[attr-a][attr-b][attr-c][attr-d][attr-e][attr-f] .powered-by-line img {
+  margin-left: 10px !important;
+  height: 1.13em !important;
+  max-height: 1.13em !important;
+}
+
+  </style>
+  <div class="followit--follow-form-container" attr-a="" attr-b="" attr-c="" attr-d="" attr-e="" attr-f="">
+    <form data-v-7a1c44d3="" action="https://api.follow.it/subscription-form/NGhSeVkzVWtmcFZqMlJ1cG5NbjZJMmxwT2cyMHU0cVJOTllGeVVnZE5ONVE5NG4zUkM2R3lKZm5Vbk9XdTJTMHlWNnlTM2RPRHpxeDRBb1JkdDlSZXI3YXdwRDdsRXZtZmk2U2RVQnpidFRReDE2c0VsMW1nWXlFcEpzVkFNYTF8SkptMmhyWWlBTys1Z1QySjV3R2pUUmFuUDY4eTc2aWNYM2NLMFdkVzF0OD0=/8" method="post"><div data-v-7a1c44d3="" style="background-color: rgb(255, 255, 255); position: relative; border-style: solid; border-width: 1px; border-color: rgb(204, 204, 204);" class="form-preview"><div data-v-7a1c44d3="" class="preview-heading"><h5 data-v-7a1c44d3="" style="font-family: inherit; font-weight: bold; color: rgb(0, 0, 0); font-size: 1px; text-align: center; text-transform: none !important;"></h5></div><div data-v-7a1c44d3="" class="preview-input-field"><input data-v-7a1c44d3="" type="email" name="email" required="" placeholder="Enter your email" spellcheck="false" style="font-family: Helvetica; font-weight: normal; color: rgb(0, 0, 0); font-size: 14px; text-align: center; background-color: rgb(255, 255, 255); text-transform: none !important;"></div><div data-v-7a1c44d3="" class="preview-submit-button"><button data-v-7a1c44d3="" type="submit" style="font-family: Helvetica; font-weight: bold; color: rgb(255, 255, 255); font-size: 16px; text-align: center; background-color: rgb(0, 0, 0); text-transform: none !important;">Subscribe</button></div></div></form><a href="https://follow.it" class="powered-by-line">Powered by <img src="https://follow.it/images/colored-logo.svg" alt="follow.it" height="17px"></a>
+  </div>
 </div></div>
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(7)</span></div><div class="category" data-category="YWdyZWVtZW50JTIwYXR0cmFjdGlvbg==">agreement attraction <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Y29kZQ==">code <span class="quarto-category-count">(2)</span></div><div class="category" data-category="ZGlzc2VydGF0aW9u">dissertation <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZXhwZXJpbWVudA==">experiment <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bGluZ3Vpc3RpY3M=">linguistics <span class="quarto-category-count">(5)</span></div><div class="category" data-category="bWVhbmluZw==">meaning <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bWlzdW5kZXJzdGFuZGluZw==">misunderstanding <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cGFwZXJz">papers <span class="quarto-category-count">(3)</span></div><div class="category" data-category="c291bmQ=">sound <span class="quarto-category-count">(3)</span></div><div class="category" data-category="dGVjaG5pY2Fs">technical <span class="quarto-category-count">(2)</span></div><div class="category" data-category="dHVya2lzaA==">turkish <span class="quarto-category-count">(1)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(8)</span></div><div class="category" data-category="YWdyZWVtZW50JTIwYXR0cmFjdGlvbg==">agreement attraction <span class="quarto-category-count">(1)</span></div><div class="category" data-category="YXdz">aws <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Y29kZQ==">code <span class="quarto-category-count">(2)</span></div><div class="category" data-category="ZGlzc2VydGF0aW9u">dissertation <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZXhwZXJpbWVudA==">experiment <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZXhwZXJpbWVudHM=">experiments <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bGluZ3Vpc3RpY3M=">linguistics <span class="quarto-category-count">(5)</span></div><div class="category" data-category="bWVhbmluZw==">meaning <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bWlzdW5kZXJzdGFuZGluZw==">misunderstanding <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cGFwZXJz">papers <span class="quarto-category-count">(3)</span></div><div class="category" data-category="cGNpYmV4">pcibex <span class="quarto-category-count">(1)</span></div><div class="category" data-category="c291bmQ=">sound <span class="quarto-category-count">(3)</span></div><div class="category" data-category="dGVjaG5pY2Fs">technical <span class="quarto-category-count">(2)</span></div><div class="category" data-category="dHVya2lzaA==">turkish <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -325,7 +399,61 @@ visiting researcher at Masaryk (with <a href="https://www.muni.cz/en/people/5317
 <div class="quarto-listing quarto-listing-container-custom" id="listing-listing">
 <div class="postcard-list list"><!-- <-- important: include 'list' -->
   
-    <div class="postcard" data-index="0" data-categories="bGluZ3Vpc3RpY3MlMkNtaXN1bmRlcnN0YW5kaW5nJTJDc291bmQlMkN0dXJraXNo" data-listing-date-sort="1761710400000" data-listing-file-modified-sort="1761770957777" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2546">
+    <div class="postcard" data-index="0" data-categories="ZXhwZXJpbWVudHMlMkNhd3MlMkNwY2liZXg=" data-listing-date-sort="1761796800000" data-listing-file-modified-sort="1761801927766" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1604">
+      <!-- Invisible stretched link covers the whole card -->
+      <a href="./posts/aws-s3-pcibex/index.html" class="stretched-link" aria-label="Read: Saving PCIbex recordings to S3 with a Python Lambda"></a>
+
+      
+      
+
+      <div class="postcard-body">
+        <div class="postcard-main">
+          <h3 class="anchored">
+            <a href="./posts/aws-s3-pcibex/index.html" class="listing-title">Saving PCIbex recordings to S3 with a Python Lambda</a>
+          </h3>
+
+          
+            <p class="desc listing-description">This guide shows how to send <strong>PCIbex / PennController audio recordings</strong> directly to <strong>Amazon S3</strong> using a <strong>Python AWS Lambda</strong> fronted by <strong>API Gateway</strong>. The goal is to have PCIbex do:</p>
+          
+          
+          <div class="postcard-info-row">
+            
+              <p class="author listing-author">Utku Türk</p>
+            
+            
+              <!-- listing-date for the visible text; metadataAttrs carries the sortable value -->
+              <time class="date listing-date">Oct 30, 2025</time>
+            
+          </div>
+
+          <div class="postcard-bottom-row">
+            
+              <!-- hidden aggregator helps listing search on 'categories' field -->
+              <span class="sr-only listing-categories">experiments aws pcibex</span>
+
+              <div class="tags">
+                
+                  <div class="listing-category tag" onclick="window.quartoListingCategory('ZXhwZXJpbWVudHM='); return false;">
+                    experiments
+                  </div>
+                
+                  <div class="listing-category tag" onclick="window.quartoListingCategory('YXdz'); return false;">
+                    aws
+                  </div>
+                
+                  <div class="listing-category tag" onclick="window.quartoListingCategory('cGNpYmV4'); return false;">
+                    pcibex
+                  </div>
+                
+              </div>
+            
+            <a href="./posts/aws-s3-pcibex/index.html" class="read-btn" aria-label="Read post">Read</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="postcard" data-index="1" data-categories="bGluZ3Vpc3RpY3MlMkNtaXN1bmRlcnN0YW5kaW5nJTJDc291bmQlMkN0dXJraXNo" data-listing-date-sort="1761710400000" data-listing-file-modified-sort="1761770957777" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2546">
       <!-- Invisible stretched link covers the whole card -->
       <a href="./posts/misunderstanding-kate/index.html" class="stretched-link" aria-label="Read: misunderstanding Kate's talk on nonuniformity of phonology and phonetics"></a>
 
@@ -389,7 +517,7 @@ visiting researcher at Masaryk (with <a href="https://www.muni.cz/en/people/5317
       </div>
     </div>
   
-    <div class="postcard" data-index="1" data-categories="bGluZ3Vpc3RpY3MlMkNwYXBlcnMlMkNzb3VuZCUyQ2V4cGVyaW1lbnQ=" data-listing-date-sort="1720756800000" data-listing-file-modified-sort="1760457626248" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="43" data-listing-word-count-sort="8475">
+    <div class="postcard" data-index="2" data-categories="bGluZ3Vpc3RpY3MlMkNwYXBlcnMlMkNzb3VuZCUyQ2V4cGVyaW1lbnQ=" data-listing-date-sort="1720756800000" data-listing-file-modified-sort="1760457626248" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="43" data-listing-word-count-sort="8475">
       <!-- Invisible stretched link covers the whole card -->
       <a href="./posts/mfa/index.html" class="stretched-link" aria-label="Read: montreal forced aligner workflow for pcibex production experiments"></a>
 
@@ -453,7 +581,7 @@ visiting researcher at Masaryk (with <a href="https://www.muni.cz/en/people/5317
       </div>
     </div>
   
-    <div class="postcard" data-index="2" data-categories="dGVjaG5pY2FsJTJDY29kZQ==" data-listing-date-sort="1677128400000" data-listing-file-modified-sort="1760457626251" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="579">
+    <div class="postcard" data-index="3" data-categories="dGVjaG5pY2FsJTJDY29kZQ==" data-listing-date-sort="1677128400000" data-listing-file-modified-sort="1760457626251" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="579">
       <!-- Invisible stretched link covers the whole card -->
       <a href="./posts/server-recordings/index.html" class="stretched-link" aria-label="Read: automating experimental recording management with bash"></a>
 
@@ -509,7 +637,7 @@ visiting researcher at Masaryk (with <a href="https://www.muni.cz/en/people/5317
       </div>
     </div>
   
-    <div class="postcard" data-index="3" data-categories="bGluZ3Vpc3RpY3MlMkNkaXNzZXJ0YXRpb24lMkNhZ3JlZW1lbnQlMjBhdHRyYWN0aW9u" data-listing-date-sort="1660968000000" data-listing-file-modified-sort="1760457626237" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="666">
+    <div class="postcard" data-index="4" data-categories="bGluZ3Vpc3RpY3MlMkNkaXNzZXJ0YXRpb24lMkNhZ3JlZW1lbnQlMjBhdHRyYWN0aW9u" data-listing-date-sort="1660968000000" data-listing-file-modified-sort="1760457626237" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="666">
       <!-- Invisible stretched link covers the whole card -->
       <a href="./posts/ma-thesis/index.html" class="stretched-link" aria-label="Read: agreement attraction in turkish"></a>
 
@@ -569,7 +697,7 @@ visiting researcher at Masaryk (with <a href="https://www.muni.cz/en/people/5317
       </div>
     </div>
   
-    <div class="postcard" data-index="4" data-categories="bGluZ3Vpc3RpY3MlMkNwYXBlcnMlMkNzb3VuZA==" data-listing-date-sort="1652155200000" data-listing-file-modified-sort="1760457626216" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="301">
+    <div class="postcard" data-index="5" data-categories="bGluZ3Vpc3RpY3MlMkNwYXBlcnMlMkNzb3VuZA==" data-listing-date-sort="1652155200000" data-listing-file-modified-sort="1760457626216" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="301">
       <!-- Invisible stretched link covers the whole card -->
       <a href="./posts/j-glide/index.html" class="stretched-link" aria-label="Read: is /j/ really a sonorant in turkish? i guess not."></a>
 
@@ -629,7 +757,7 @@ visiting researcher at Masaryk (with <a href="https://www.muni.cz/en/people/5317
       </div>
     </div>
   
-    <div class="postcard" data-index="5" data-categories="bGluZ3Vpc3RpY3MlMkNwYXBlcnMlMkNtZWFuaW5n" data-listing-date-sort="1652155200000" data-listing-file-modified-sort="1760457626214" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="772">
+    <div class="postcard" data-index="6" data-categories="bGluZ3Vpc3RpY3MlMkNwYXBlcnMlMkNtZWFuaW5n" data-listing-date-sort="1652155200000" data-listing-file-modified-sort="1760457626214" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="772">
       <!-- Invisible stretched link covers the whole card -->
       <a href="./posts/as-if/index.html" class="stretched-link" aria-label="Read: can ‘as if’ clauses be degree comparisons?"></a>
 
@@ -689,7 +817,7 @@ visiting researcher at Masaryk (with <a href="https://www.muni.cz/en/people/5317
       </div>
     </div>
   
-    <div class="postcard" data-index="6" data-categories="dGVjaG5pY2FsJTJDY29kZQ==" data-listing-date-sort="1579755600000" data-listing-file-modified-sort="1760457626251" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="325">
+    <div class="postcard" data-index="7" data-categories="dGVjaG5pY2FsJTJDY29kZQ==" data-listing-date-sort="1579755600000" data-listing-file-modified-sort="1760457626251" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="325">
       <!-- Invisible stretched link covers the whole card -->
       <a href="./posts/yaml-rnotebook/index.html" class="stretched-link" aria-label="Read: how to include r expressions in (quarto) yaml"></a>
 
