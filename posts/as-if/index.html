@@ -214,7 +214,7 @@ ul.task-list li input[type="checkbox"] {
 
     const base =
       "https://docs.google.com/forms/d/e/1FAIpQLSdwQPZfXBPpvwQReJRg1XH9S32BSGQMgJcjoTdsAZGUaG7FNQ/viewform?usp=pp_url";
-    const entryId = "entry.238444026"; // your email field
+    const entryId = "entry.238444026";
 
     const url = `${base}&${entryId}=${encodeURIComponent(email)}`;
     window.open(url, "_blank");
@@ -224,22 +224,25 @@ ul.task-list li input[type="checkbox"] {
 <style>
   .subscribe-box {
     display: flex;
+    flex-direction: column;
     gap: .4rem;
-    max-width: 360px;
+    max-width: 260px;
+    font-size: 0.85rem;
   }
   .subscribe-box input {
-    flex: 1;
-    padding: .4rem .6rem;
+    padding: .35rem .5rem;
     border: 1px solid #ddd;
     border-radius: 4px;
+    font-size: 0.85rem;
   }
   .subscribe-box button {
-    padding: .4rem .75rem;
+    padding: .35rem .5rem;
     border: none;
     background: #000;
     color: #fff;
     border-radius: 4px;
     cursor: pointer;
+    font-size: 0.8rem;
   }
 </style>
 </div></div>
