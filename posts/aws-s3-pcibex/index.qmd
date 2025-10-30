@@ -1,0 +1,304 @@
+---
+title: "Saving PCIbex recordings to S3 with a Python Lambda"
+author: "Utku Türk"
+date: 2025-10-30
+categories: [experiments, aws, pcibex]
+format:
+  html:
+    toc: true
+    code-fold: false
+draft: false
+---
+
+This guide shows how to send **PCIbex / PennController audio recordings** directly to **Amazon S3** using a **Python AWS Lambda** fronted by **API Gateway**. The goal is to have PCIbex do:
+
+1. `InitiateRecorder(<your-url>)` at the start of the experiment.
+2. `UploadRecordings(...)` between trials.
+3. Your Lambda receives the uploaded ZIP and stores it in S3.
+
+No extra JavaScript in PCIbex, no PHP server.
+
+## Architecture
+
+1. **PCIbex** runs in the browser and records audio.
+2. It contacts **API Gateway** at your URL.
+3. API Gateway triggers **a Python Lambda**.
+4. Lambda accepts **multipart/form-data** from PCIbex and saves the file to **S3**.
+5. Lambda returns `{ "ok": true }` so PCIbex continues.
+
+We'll build this step by step.
+
+## 1. Create the S3 bucket
+
+1. Open **AWS Console → S3 → Create bucket**.
+2. Name it (example): `pcibex-recordings-demo-2025`.
+3. Choose the same **Region** you will use for the Lambda (for example, `us-east-2`).
+4. Keep **Block all public access** enabled.
+5. Create the bucket.
+
+We'll tell Lambda this bucket name via environment variables.
+
+## 2. Create the Lambda function (Python)
+
+1. Go to **AWS Lambda → Create function**.
+2. Name: `pcibex-s3-recorder`.
+3. Runtime: **Python 3.11** (or newer if available).
+4. Create the function.
+
+Replace the default code with this:
+
+```python
+import os
+import json
+import base64
+import uuid
+import boto3
+import logging
+
+# basic logger for CloudWatch
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
+
+# s3 client
+s3 = boto3.client("s3")
+
+# environment-configurable values
+BUCKET_NAME = os.environ.get("BUCKET_NAME", "pcibex-recordings-demo-2025")
+ALLOWED_ORIGIN = os.environ.get("ALLOWED_ORIGIN", "https://farm.pcibex.net")
+
+def _cors_headers():
+    return {
+        "Access-Control-Allow-Origin": ALLOWED_ORIGIN,
+        "Access-Control-Allow-Credentials": "true",
+        "Access-Control-Allow-Methods": "OPTIONS,GET,POST",
+        "Access-Control-Allow-Headers": "content-type",
+    }
+
+def _store_in_s3(content: bytes, filename: str) -> str:
+    # give each upload a unique prefix
+    key = f"{uuid.uuid4()}_{filename}"
+    s3.put_object(
+        Bucket=BUCKET_NAME,
+        Key=key,
+        Body=content,
+        ContentType="application/zip",
+    )
+    return key
+
+def _parse_multipart(event):
+    """Parse a simple multipart/form-data upload from API Gateway HTTP API.
+    PCIbex sends the file part under the name "file".
+    """
+    headers = {k.lower(): v for k, v in (event.get("headers") or {}).items()}
+    ctype = headers.get("content-type")
+    if not ctype or "multipart/form-data" not in ctype:
+        raise ValueError("Expected multipart/form-data")
+
+    # extract boundary
+    boundary = ctype.split("boundary=")[1].strip().strip('"').encode()
+
+    # body comes base64-encoded from API Gateway for binary/multipart
+    body = event.get("body", "")
+    if event.get("isBase64Encoded"):
+        body = base64.b64decode(body)
+    else:
+        body = body.encode()
+
+    delimiter = b"--" + boundary
+    sections = body.split(delimiter)
+
+    file_bytes = None
+    filename = "recordings.zip"
+
+    for sec in sections:
+        if not sec or sec in (b"--", b"--\r\n"):
+            continue
+        head, _, data = sec.partition(b"\r\n\r\n")
+        if not data:
+            continue
+        # trim trailing CRLF and optional --
+        data = data.rstrip(b"\r\n")
+        if data.endswith(b"--"):
+            data = data[:-2]
+
+        head_text = head.decode(errors="ignore")
+        if 'name="file"' in head_text:
+            # get filename if present
+            for line in head_text.split("\r\n"):
+                if "filename=" in line:
+                    filename = line.split("filename=", 1)[1].strip().strip('"')
+            file_bytes = data
+            break
+
+    if file_bytes is None:
+        raise ValueError("No file part named 'file' found")
+
+    return filename, file_bytes
+
+def lambda_handler(event, context):
+    # detect HTTP method from API Gateway v2 (HTTP API)
+    method = event.get("requestContext", {}).get("http", {}).get("method", "GET")
+    logger.info(f"method={method}")
+
+    # 1. handle CORS preflight
+    if method == "OPTIONS":
+        return {
+            "statusCode": 200,
+            "headers": _cors_headers(),
+            "body": ""
+        }
+
+    # 2. PCIbex calls the URL once at start with GET
+    if method == "GET":
+        return {
+            "statusCode": 200,
+            "headers": _cors_headers(),
+            "body": json.dumps({"ok": True})
+        }
+
+    # 3. actual upload: POST multipart/form-data
+    if method == "POST":
+        try:
+            filename, data = _parse_multipart(event)
+            key = _store_in_s3(data, filename)
+            return {
+                "statusCode": 200,
+                "headers": _cors_headers(),
+                "body": json.dumps({"ok": True, "key": key})
+            }
+        except Exception as e:
+            logger.exception("Upload failed")
+            return {
+                "statusCode": 400,
+                "headers": _cors_headers(),
+                "body": json.dumps({"ok": False, "error": str(e)})
+            }
+
+    # anything else: not allowed
+    return {
+        "statusCode": 405,
+        "headers": _cors_headers(),
+        "body": json.dumps({"error": "Method not allowed"})
+    }
+```
+
+### Environment variables
+
+Still in the Lambda console, set:
+
+- `BUCKET_NAME = pcibex-recordings-demo-2025`
+- `ALLOWED_ORIGIN = https://farm.pcibex.net`
+
+so you can use the same code everywhere.
+
+## 3. Give Lambda S3 permissions
+
+The Lambda needs to write objects to your bucket.
+
+1. Go to the Lambda's **Configuration → Permissions**.
+2. Open the execution role in IAM.
+3. Add this inline policy (adjust the bucket name):
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowUploadToBucket",
+      "Effect": "Allow",
+      "Action": [
+        "s3:PutObject",
+        "s3:PutObjectAcl"
+      ],
+      "Resource": "arn:aws:s3:::pcibex-recordings-demo-2025/*"
+    }
+  ]
+}
+```
+
+Save.
+
+## 4. Expose the Lambda over HTTP (API Gateway)
+
+1. In the Lambda page, click **Add trigger**.
+2. Choose **API Gateway**.
+3. API type: **HTTP API**.
+4. Security: **Open** (you can restrict later).
+5. Create.
+
+AWS gives you a URL like:
+
+```text
+https://abc123.execute-api.us-east-2.amazonaws.com/default/pcibex-s3-recorder
+```
+
+This is the URL we will give to PCIbex.
+
+## 5. Enable CORS on API Gateway
+
+In API Gateway, configure CORS with:
+
+- **Allowed origin**: `https://farm.pcibex.net`
+- **Allowed methods**: `GET`, `POST`, `OPTIONS`
+- **Allowed headers**: `content-type`
+- **Allow credentials**: **true**
+
+Save (and **Deploy** if you are using a REST API).
+
+This lets the PCIbex page call your API Gateway endpoint from the browser.
+
+## 6. PCIbex / PennController script
+
+In your PCIbex script:
+
+```javascript
+PennController.ResetPrefix(null);
+
+const LAMBDA_URL = "https://abc123.execute-api.us-east-2.amazonaws.com/default/pcibex-s3-recorder";
+
+Sequence(
+    "init",
+    sepWith("async", rshuffle("letter","picture"))
+);
+
+InitiateRecorder(LAMBDA_URL).label("init");
+UploadRecordings("async", "noblock");
+
+// ... your trials ...
+```
+
+This is the standard PennController pattern:
+
+- `InitiateRecorder(...)` makes a **GET** to the URL → Lambda returns `{ "ok": true }`.
+- `UploadRecordings(...)` sends recorded files with **POST multipart/form-data** →
+  Lambda parses and stores to S3 → returns `{ "ok": true, "key": "..." }`.
+
+No extra JS is needed.
+
+## 7. Test the whole pipeline
+
+1. Open the API Gateway URL in your browser — you should see:
+
+```json
+{"ok": true}
+```
+
+2. Run your PCIbex experiment, record something, let `UploadRecordings` run.
+3. Check **CloudWatch Logs** for the Lambda — you should see entries with `method=POST`.
+4. Check your S3 bucket — you should see objects named like:
+
+```text
+4f4c3a71-6ad4-4aad-9d2a-f932b261a0a5_recordings.zip
+```
+
+That’s the file PCIbex uploaded.
+
+## 8. Notes and variations
+
+- You can change `ContentType="application/zip"` if you know PCIbex is uploading another type.
+- You can create subfolders by changing the key to e.g. `f"pcibex/{uuid.uuid4()}_{filename}"`.
+- If you host PCIbex somewhere else, change `ALLOWED_ORIGIN` and the API Gateway CORS origin to match that origin.
+
+## Done
+
+You now have a PCIbex experiment that records audio in the browser and ships it straight to your S3 bucket through a small, modern, Python AWS Lambda.
