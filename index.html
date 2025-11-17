@@ -81,9 +81,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-project','listing-website','listing-format','listing-margin-header','listing-language','listing-comments','listing-freeze','listing-title-block-banner','listing-title','listing-author','listing-date','listing-categories','listing-image','listing-description','listing-path','listing-outputHref','listing-date-modified','listing-filename','listing-file-modified','listing-reading-time','listing-word-count','listing-execute','listing-embed-resources','listing-self-contained-math','listing-toc','listing-params','listing-aliases',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-date-modified-sort'] },{ data: ['listing-file-modified-sort'] },{ data: ['listing-reading-time-sort'] },{ data: ['listing-word-count-sort'] }],
+      valueNames: ['listing-project','listing-website','listing-format','listing-margin-header','listing-language','listing-comments','listing-freeze','listing-title-block-banner','listing-title','listing-author','listing-date','listing-categories','listing-image','listing-description','listing-path','listing-outputHref','listing-date-modified','listing-filename','listing-file-modified','listing-reading-time','listing-word-count','listing-execute','listing-embed-resources','listing-self-contained-math','listing-toc','listing-params','listing-aliases','listing-lightbox',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-date-modified-sort'] },{ data: ['listing-file-modified-sort'] },{ data: ['listing-reading-time-sort'] },{ data: ['listing-word-count-sort'] }],
       
-      searchColumns: ["listing-project","listing-website","listing-format","listing-margin-header","listing-language","listing-comments","listing-freeze","listing-title-block-banner","listing-title","listing-author","listing-date","listing-categories","listing-image","listing-description","listing-path","listing-outputHref","listing-date-modified","listing-filename","listing-file-modified","listing-reading-time","listing-word-count","listing-execute","listing-embed-resources","listing-self-contained-math","listing-toc","listing-params","listing-aliases"],
+      searchColumns: ["listing-project","listing-website","listing-format","listing-margin-header","listing-language","listing-comments","listing-freeze","listing-title-block-banner","listing-title","listing-author","listing-date","listing-categories","listing-image","listing-description","listing-path","listing-outputHref","listing-date-modified","listing-filename","listing-file-modified","listing-reading-time","listing-word-count","listing-execute","listing-embed-resources","listing-self-contained-math","listing-toc","listing-params","listing-aliases","listing-lightbox"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -260,6 +260,8 @@ window.Quarto = {
 <div class="subscribe-box">
   <input id="sub-email" type="email" placeholder="Enter your email" required="">
   <button type="button" onclick="openForm()">Subscribe</button>
+<br>
+<br>
 </div>
 
 <script>
@@ -302,7 +304,7 @@ window.Quarto = {
 </style>
 </div></div>
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(7)</span></div><div class="category" data-category="YWdyZWVtZW50JTIwYXR0cmFjdGlvbg==">agreement attraction <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Y29kZQ==">code <span class="quarto-category-count">(2)</span></div><div class="category" data-category="ZGlzc2VydGF0aW9u">dissertation <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZXhwZXJpbWVudA==">experiment <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bGluZ3Vpc3RpY3M=">linguistics <span class="quarto-category-count">(5)</span></div><div class="category" data-category="bWVhbmluZw==">meaning <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bWlzdW5kZXJzdGFuZGluZw==">misunderstanding <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cGFwZXJz">papers <span class="quarto-category-count">(3)</span></div><div class="category" data-category="c291bmQ=">sound <span class="quarto-category-count">(3)</span></div><div class="category" data-category="dGVjaG5pY2Fs">technical <span class="quarto-category-count">(2)</span></div><div class="category" data-category="dHVya2lzaA==">turkish <span class="quarto-category-count">(1)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(8)</span></div><div class="category" data-category="YWdyZWVtZW50JTIwYXR0cmFjdGlvbg==">agreement attraction <span class="quarto-category-count">(1)</span></div><div class="category" data-category="YXdz">aws <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Y29kZQ==">code <span class="quarto-category-count">(2)</span></div><div class="category" data-category="ZGlzc2VydGF0aW9u">dissertation <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZXhwZXJpbWVudA==">experiment <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZXhwZXJpbWVudHM=">experiments <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bGluZ3Vpc3RpY3M=">linguistics <span class="quarto-category-count">(5)</span></div><div class="category" data-category="bWVhbmluZw==">meaning <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bWlzdW5kZXJzdGFuZGluZw==">misunderstanding <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cGFwZXJz">papers <span class="quarto-category-count">(3)</span></div><div class="category" data-category="cGNpYmV4">pcibex <span class="quarto-category-count">(1)</span></div><div class="category" data-category="c291bmQ=">sound <span class="quarto-category-count">(3)</span></div><div class="category" data-category="dGVjaG5pY2Fs">technical <span class="quarto-category-count">(2)</span></div><div class="category" data-category="dHVya2lzaA==">turkish <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -350,7 +352,67 @@ visiting researcher at Masaryk (with <a href="https://www.muni.cz/en/people/5317
 <div class="quarto-listing quarto-listing-container-custom" id="listing-listing">
 <div class="postcard-list list"><!-- <-- important: include 'list' -->
   
-    <div class="postcard" data-index="0" data-categories="bGluZ3Vpc3RpY3MlMkNtaXN1bmRlcnN0YW5kaW5nJTJDc291bmQlMkN0dXJraXNo" data-listing-date-sort="1761710400000" data-listing-file-modified-sort="1761770957777" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2546">
+    <div class="postcard" data-index="0" data-categories="ZXhwZXJpbWVudHMlMkNhd3MlMkNwY2liZXg=" data-listing-date-sort="1761796800000" data-listing-file-modified-sort="1763409494678" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="14" data-listing-word-count-sort="2670">
+      <!-- Invisible stretched link covers the whole card -->
+      <a href="./posts/aws-s3-pcibex/index.html" class="stretched-link" aria-label="Read: Saving PCIbex recordings to S3 with a Python Lambda"></a>
+
+      
+      
+        <div class="postcard-thumb">
+          <a href="./posts/aws-s3-pcibex/index.html">
+            <img src="./posts/aws-s3-pcibex/map-lambda.png" alt="Saving PCIbex recordings to S3 with a Python Lambda">
+          </a>
+        </div>
+      
+
+      <div class="postcard-body">
+        <div class="postcard-main">
+          <h3 class="anchored">
+            <a href="./posts/aws-s3-pcibex/index.html" class="listing-title">Saving PCIbex recordings to S3 with a Python Lambda</a>
+          </h3>
+
+          
+            <p class="desc listing-description">modern replacement for the outdated JS guide in the original pcibex website.</p>
+          
+          
+          <div class="postcard-info-row">
+            
+              <p class="author listing-author">Utku Türk</p>
+            
+            
+              <!-- listing-date for the visible text; metadataAttrs carries the sortable value -->
+              <time class="date listing-date">Oct 30, 2025</time>
+            
+          </div>
+
+          <div class="postcard-bottom-row">
+            
+              <!-- hidden aggregator helps listing search on 'categories' field -->
+              <span class="sr-only listing-categories">experiments aws pcibex</span>
+
+              <div class="tags">
+                
+                  <div class="listing-category tag" onclick="window.quartoListingCategory('ZXhwZXJpbWVudHM='); return false;">
+                    experiments
+                  </div>
+                
+                  <div class="listing-category tag" onclick="window.quartoListingCategory('YXdz'); return false;">
+                    aws
+                  </div>
+                
+                  <div class="listing-category tag" onclick="window.quartoListingCategory('cGNpYmV4'); return false;">
+                    pcibex
+                  </div>
+                
+              </div>
+            
+            <a href="./posts/aws-s3-pcibex/index.html" class="read-btn" aria-label="Read post">Read</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="postcard" data-index="1" data-categories="bGluZ3Vpc3RpY3MlMkNtaXN1bmRlcnN0YW5kaW5nJTJDc291bmQlMkN0dXJraXNo" data-listing-date-sort="1761710400000" data-listing-file-modified-sort="1761917838023" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2546">
       <!-- Invisible stretched link covers the whole card -->
       <a href="./posts/misunderstanding-kate/index.html" class="stretched-link" aria-label="Read: misunderstanding Kate's talk on nonuniformity of phonology and phonetics"></a>
 
@@ -414,7 +476,7 @@ visiting researcher at Masaryk (with <a href="https://www.muni.cz/en/people/5317
       </div>
     </div>
   
-    <div class="postcard" data-index="1" data-categories="bGluZ3Vpc3RpY3MlMkNwYXBlcnMlMkNzb3VuZCUyQ2V4cGVyaW1lbnQ=" data-listing-date-sort="1720756800000" data-listing-file-modified-sort="1760457626248" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="43" data-listing-word-count-sort="8475">
+    <div class="postcard" data-index="2" data-categories="bGluZ3Vpc3RpY3MlMkNwYXBlcnMlMkNzb3VuZCUyQ2V4cGVyaW1lbnQ=" data-listing-date-sort="1720756800000" data-listing-file-modified-sort="1760457626248" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="43" data-listing-word-count-sort="8475">
       <!-- Invisible stretched link covers the whole card -->
       <a href="./posts/mfa/index.html" class="stretched-link" aria-label="Read: montreal forced aligner workflow for pcibex production experiments"></a>
 
@@ -478,7 +540,7 @@ visiting researcher at Masaryk (with <a href="https://www.muni.cz/en/people/5317
       </div>
     </div>
   
-    <div class="postcard" data-index="2" data-categories="dGVjaG5pY2FsJTJDY29kZQ==" data-listing-date-sort="1677128400000" data-listing-file-modified-sort="1760457626251" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="579">
+    <div class="postcard" data-index="3" data-categories="dGVjaG5pY2FsJTJDY29kZQ==" data-listing-date-sort="1677128400000" data-listing-file-modified-sort="1760457626251" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="579">
       <!-- Invisible stretched link covers the whole card -->
       <a href="./posts/server-recordings/index.html" class="stretched-link" aria-label="Read: automating experimental recording management with bash"></a>
 
@@ -534,7 +596,7 @@ visiting researcher at Masaryk (with <a href="https://www.muni.cz/en/people/5317
       </div>
     </div>
   
-    <div class="postcard" data-index="3" data-categories="bGluZ3Vpc3RpY3MlMkNkaXNzZXJ0YXRpb24lMkNhZ3JlZW1lbnQlMjBhdHRyYWN0aW9u" data-listing-date-sort="1660968000000" data-listing-file-modified-sort="1760457626237" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="666">
+    <div class="postcard" data-index="4" data-categories="bGluZ3Vpc3RpY3MlMkNkaXNzZXJ0YXRpb24lMkNhZ3JlZW1lbnQlMjBhdHRyYWN0aW9u" data-listing-date-sort="1660968000000" data-listing-file-modified-sort="1760457626237" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="666">
       <!-- Invisible stretched link covers the whole card -->
       <a href="./posts/ma-thesis/index.html" class="stretched-link" aria-label="Read: agreement attraction in turkish"></a>
 
@@ -594,7 +656,7 @@ visiting researcher at Masaryk (with <a href="https://www.muni.cz/en/people/5317
       </div>
     </div>
   
-    <div class="postcard" data-index="4" data-categories="bGluZ3Vpc3RpY3MlMkNwYXBlcnMlMkNzb3VuZA==" data-listing-date-sort="1652155200000" data-listing-file-modified-sort="1760457626216" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="301">
+    <div class="postcard" data-index="5" data-categories="bGluZ3Vpc3RpY3MlMkNwYXBlcnMlMkNzb3VuZA==" data-listing-date-sort="1652155200000" data-listing-file-modified-sort="1760457626216" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="301">
       <!-- Invisible stretched link covers the whole card -->
       <a href="./posts/j-glide/index.html" class="stretched-link" aria-label="Read: is /j/ really a sonorant in turkish? i guess not."></a>
 
@@ -654,7 +716,7 @@ visiting researcher at Masaryk (with <a href="https://www.muni.cz/en/people/5317
       </div>
     </div>
   
-    <div class="postcard" data-index="5" data-categories="bGluZ3Vpc3RpY3MlMkNwYXBlcnMlMkNtZWFuaW5n" data-listing-date-sort="1652155200000" data-listing-file-modified-sort="1760457626214" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="772">
+    <div class="postcard" data-index="6" data-categories="bGluZ3Vpc3RpY3MlMkNwYXBlcnMlMkNtZWFuaW5n" data-listing-date-sort="1652155200000" data-listing-file-modified-sort="1760457626214" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="772">
       <!-- Invisible stretched link covers the whole card -->
       <a href="./posts/as-if/index.html" class="stretched-link" aria-label="Read: can ‘as if’ clauses be degree comparisons?"></a>
 
@@ -714,7 +776,7 @@ visiting researcher at Masaryk (with <a href="https://www.muni.cz/en/people/5317
       </div>
     </div>
   
-    <div class="postcard" data-index="6" data-categories="dGVjaG5pY2FsJTJDY29kZQ==" data-listing-date-sort="1579755600000" data-listing-file-modified-sort="1760457626251" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="325">
+    <div class="postcard" data-index="7" data-categories="dGVjaG5pY2FsJTJDY29kZQ==" data-listing-date-sort="1579755600000" data-listing-file-modified-sort="1760457626251" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="325">
       <!-- Invisible stretched link covers the whole card -->
       <a href="./posts/yaml-rnotebook/index.html" class="stretched-link" aria-label="Read: how to include r expressions in (quarto) yaml"></a>
 
