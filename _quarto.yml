@@ -4,7 +4,6 @@ project:
   resources:
     - images/
     - files/
-    - verification-follow_it-pxDDmgaqESrXRpt6QEUJ.html
 
 website:
   title: "utku turk"

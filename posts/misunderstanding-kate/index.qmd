@@ -5,7 +5,6 @@ date: "2025-10-29"
 categories: [linguistics, misunderstanding, sound, turkish]
 description: "Kate’s asymmetry meets Turkish rounding: evidence that’s gradient but syntactically bounded (also a rant about dual-process framings)"
 execute:
-  echo: false
   message: false
   warning: false
 image: ./fourier_elephant.png
