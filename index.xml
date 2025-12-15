@@ -10,7 +10,110 @@
 <atom:link href="https://www.utkuturk.com/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.8.25</generator>
-<lastBuildDate>Thu, 30 Oct 2025 04:00:00 GMT</lastBuildDate>
+<lastBuildDate>Mon, 15 Dec 2025 05:00:00 GMT</lastBuildDate>
+<item>
+  <title>what might they really mean when they say ‘but it’s not grammatical to me’?</title>
+  <dc:creator>Utku Türk</dc:creator>
+  <link>https://www.utkuturk.com/posts/futileness-of-judgments/</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>This post grew out of a conversation I had with a professor about his workshop class on Turkic languages. He didn’t say this directly, but I’ve heard a familiar story from multiple students: when Turkish comes up, some chunk of class time gets involuntarily eaten by judgment battles.</p>
+<p>Honestly, I’m not shocked. Since my MA I’ve heard plenty of “your Turkish is broken”. Mostly joking, sure. But there’s also a pattern: any talk with mildly non-obvious Turkish data gets peppered with unsolicited <em>“That’s not grammatical to me”</em> interventions. And yes, I’ve done it too. I’m not writing this from a high horse. This is also a personal critique.<sup>1</sup></p>
+<p>What I want to argue is simple: a lot of this practice is both methodologically unhelpful and kind of backwards relative to what many of us claim to be doing in linguistics.</p>
+<p>And there’s a second point, which I care about more. Behind the futility of casual judgment policing, there’s a real lesson: people are often trying to say something important, but the only sentence they know how to produce in these contexts is “that’s ungrammatical”.</p>
+<p><em>PS.</em> I’m writing this for linguists who are trying to understand what humans can do with language, what the limits are, and how the system is represented and deployed. If your main goal is to recover <em>the</em> “standard Turkish grammar” shared uniformly by all self-identified Turkish speakers, I genuinely wish you luck, but I don’t have much to offer beyond a lot of questions.</p>
+<section id="what-does-thats-not-grammatical-to-me-even-mean" class="level2">
+<h2 class="anchored" data-anchor-id="what-does-thats-not-grammatical-to-me-even-mean">What does “That’s not grammatical to me” even mean?</h2>
+<p>Suppose you present a Turkish example and someone raises a hand (or asks a question after the talk) and says:</p>
+<blockquote class="blockquote">
+<p>“I don’t think that sentence is grammatical.”</p>
+</blockquote>
+<p>That utterance is wildly underspecified. Here are a few things it can be (implicitly) trying to express.</p>
+<ol type="1">
+<li><p><strong>Sometimes it (accidentally) sounds like:</strong> <em>“You made this up.”</em><br>
+That’s a serious accusation. In my experience, almost nobody in our field intends that. But the <em>performative</em> effect can still be: “your data is suspect”.</p></li>
+<li><p><strong>Sometimes they simply enjoy tautological facts:</strong> <em>“People differ, ‘standard language’ is a fiction, I-language matters.”</em><br>
+True. Also not news. And as a conversational move, it sometimes functions like: “I don’t want you to talk to me (about this)”.</p></li>
+<li><p><strong>Sometimes it’s straightforward prescriptivism:</strong> <em>“There is one Turkish, and let me tell you this isn’t it.”</em><br>
+I’m still surprised how often this shows up <em>in linguistics</em>, including among people who otherwise talk a good game about variation and competence vs performance.</p></li>
+<li><p><strong>Sometimes it’s an underlying strong claim about what ‘language’ is.</strong><br>
+They might not think the individual brain can exercise the language faculty to different degrees, and they might (maybe unknowingly) treat “your language” as something defined almost entirely by your social circle.</p>
+<p>I have two problems with this. First, speaker and listener often <em>aren’t</em> in the same community. Turkish is also especially sensitive to region, register, education, and class (don’t quote me on the comparative point here; I might just be more attuned to Turkish differences than to differences in other languages, but the general point still stands). Even with English speakers, judgments are not uniform, and plenty of cases are genuinely disputable. Second, even if social environment matters a lot, it’s a strange move to treat one person’s system as the yardstick that can revoke another person’s linguistic competence. We already accept that humans share a broad blueprint. We also often accept that speakers who understand each other effortlessly share even more. But once you zoom in (Turkish vs “Turkish”, dialect vs dialect, idiolect vs idiolect), we’re talking about degrees, and the differences you find are often local and structured, not “brokenness”.</p></li>
+<li><p><strong>Sometimes it reflects not having thought much about what edge cases buy you:</strong> <em>“I actually haven’t thought about what there is to learn from edge cases.”</em><br>
+In a world where there are many possible grammars (and many plausible formalizations), marginal cases are often where constraints show up. The “net return” on hunting boundaries can be high, precisely because broad generalizations saturate quickly. This is not to say we’ve done enough work on the “simple” examples, or that we should stop caring about them. But if your goal is to dissociate what is possible in the human language system, the marginal cases often have unusually good signal.</p></li>
+</ol>
+<p>And then there’s the version that is actually methodologically relevant.</p>
+</section>
+<section id="real-worry-i-representativeness" class="level2">
+<h2 class="anchored" data-anchor-id="real-worry-i-representativeness">Real worry I: Representativeness</h2>
+<p>Often what the objector <em>means</em> is something like:</p>
+<blockquote class="blockquote">
+<p>“You’re portraying this as common in the language, but it’s only available for a subset of speakers.”</p>
+</blockquote>
+<p>If I’m being serious, I think this is what’s going on in a big fraction of “this is ungrammatical” interruptions. And yes, it can matter, because it affects what future readers take to be a baseline fact.</p>
+<p>But notice what that worry requires you to do. You have to say more than “not for me”.</p>
+<p>At minimum, you need to turn it into an empirical claim:</p>
+<ul>
+<li><em>Which speakers?</em> (region, register, age cohort, bilingualism history, etc.)</li>
+<li><em>How big is the split?</em> (rare? unstable? gradient? categorical for a subgroup?)</li>
+<li><em>What exactly differs?</em> (syntax? morphology? prosody? information structure? lexical choice?)</li>
+<li><em>Is the judgment robust under controlled elicitation?</em> (multiple prompts, contexts, minimal pairs)</li>
+</ul>
+<p>If this is not an empirical worry but a “philosophy of science” worry, in the sense that a paper might mislead outsiders into thinking Turkish works in a certain way, the fix is not heckling. The fix is metadata and methodology. I genuinely do not understand why so many syntax/semantics papers lack a short subsection about who the speakers were and what the elicitation conditions were.</p>
+<p>Also, in practice, any work that seriously <em>builds</em> on Turkish facts should be doing basic replication of the descriptive premise anyway. If you’re going to hang theory on a datum you saw in a talk, you should first check that datum (with speakers, corpora, or both). That’s not a Turkish-specific point. And yes, I’ve unfortunately also seen famous linguists publish on languages they hadn’t worked on before, not even opening a grammar book, and then argue that facts reported in some earlier paper can be “explained away”. This is a different problem, but it’s in the same family.</p>
+</section>
+<section id="real-worry-ii-variation-is-interesting.-the-heckle-is-not." class="level2">
+<h2 class="anchored" data-anchor-id="real-worry-ii-variation-is-interesting.-the-heckle-is-not.">Real worry II: Variation is interesting. The heckle is not.</h2>
+<p>There’s another charitable reading:</p>
+<blockquote class="blockquote">
+<p>“This is a cool locus of variation.”</p>
+</blockquote>
+<p>I agree. I care a lot about cross-linguistic structure, and about how the “borders” of grammatical processes are patterned rather than random. Mapping where variation arises (and where it doesn’t) can be informative about representational choices and decision points in the system.</p>
+<p>But again, “that’s ungrammatical to me” is a terrible way to pursue that agenda if it comes with no follow-up. It’s like walking into a lab meeting, saying “noise”, and leaving.</p>
+<p>If you think variation is the point, then do variation: ask about variation. Propose a hypothesis about the dimensions along which it varies, and propose how you’d test it.</p>
+</section>
+<section id="real-worry-iii-established-linguistic-tests" class="level2">
+<h2 class="anchored" data-anchor-id="real-worry-iii-established-linguistic-tests">Real worry III: Established linguistic tests</h2>
+<p>Another possible reading is:</p>
+<blockquote class="blockquote">
+<p>“If you run the usual tests (X, Y, Z), I suspect you won’t get this reading. Do you still?”</p>
+</blockquote>
+<p>This is not as charitable as the previous ones, because it often carries an authority move: it can sound like “are you sure you know what you’re doing?” Sometimes that’s needed, sure, especially if a claim hinges on a standard diagnostic. But it still matters how you ask it.</p>
+<p>A better way to do this is to ask what diagnostics were run and whether the result survives them. Or whether there are “asterisks” that need to be made explicit. Sometimes that’s the real disconnect: you’re using “grammatical” in a looser, more exploratory way, while the audience is using it in the “passes the canonical tests in the canonical contexts” way.</p>
+</section>
+<section id="possibly-better-questions" class="level2">
+<h2 class="anchored" data-anchor-id="possibly-better-questions">Possibly better questions</h2>
+<p>If you feel the itch to say “not for me”, try one of these instead:</p>
+<ul>
+<li>“In <em>my</em> Turkish (I grew up in X / I mostly use Y register), I don’t get this. Do you know which variety you’re targeting?”</li>
+<li>“What context makes this natural for your consultants? Could you give a minimal pair?”</li>
+<li>“Is this intended as a claim about Turkish generally, or about a specific subset of speakers?”</li>
+<li>“Did you elicit this with multiple speakers, or is it introspective? (Both are fine, but they support different conclusions.)”</li>
+<li>“If we assume this varies, what would we predict should co-vary with it?”</li>
+</ul>
+<p>Otherwise it’s just time lost.</p>
+<p><em>The cover picture is taken from <a href="https://www.theuncomfortable.com/">https://www.theuncomfortable.com/</a>.</em></p>
+
+
+</section>
+
+
+<script data-collect-dnt="true" async="" src="https://scripts.simpleanalyticscdn.com/latest.js"></script><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Anyone can change their mind about things. Discussing this with Mal actually helped me a lot.↩︎</p></li>
+</ol>
+</section></div> ]]></description>
+  <category>linguistics</category>
+  <category>judgment</category>
+  <category>Turkish</category>
+  <guid>https://www.utkuturk.com/posts/futileness-of-judgments/</guid>
+  <pubDate>Mon, 15 Dec 2025 05:00:00 GMT</pubDate>
+  <media:content url="https://www.utkuturk.com/posts/futileness-of-judgments/09_key.jpg" medium="image" type="image/jpeg"/>
+</item>
 <item>
   <title>saving pcibex recordings to s3 with a python lambda</title>
   <dc:creator>Utku Türk</dc:creator>
@@ -1171,7 +1274,7 @@ Figure&nbsp;1: A schematic 2×2 for Kate’s asymmetry. The gradient+restricted 
 <p>That’s my main worry here. Dual-process models are a tempting last resort. They look tidy, but they often function as theories that can’t really lose—precisely the kind that Popper warned us about. John von Neumann put it bluntly: <em>“With four parameters I can fit an elephant, and with five I can make him wiggle his trunk.”</em> And if you add one more, you can even make him wink. There’s even an R implementation—the <a href="https://www.r-bloggers.com/2011/06/a-winking-pink-elephant/">winking pink elephant</a>—that literally draws and animates an elephant with just a handful of parameters. It’s cute, but it’s also the point: if your model is that flexible, fitting isn’t the same thing as explaining. (The original code is base R/MASS heavy, but you can rewrite it cleanly with <code>ggplot2</code> and <code>dplyr</code>.)</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-elephant" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Red–pink outline of an elephant drawn by a Fourier series, shown with axes." data-fig-align="center">
+<div id="fig-elephant" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Red–pink outline of an elephant drawn by a Fourier series, shown with axes.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-elephant-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://www.utkuturk.com/posts/misunderstanding-kate/index_files/figure-html/fig-elephant-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Red–pink outline of an elephant drawn by a Fourier series, shown with axes.">
