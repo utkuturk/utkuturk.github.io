@@ -1,0 +1,110 @@
+---
+title: "what might they really mean when they say 'but it's not grammatical to me'?"
+author: "Utku Türk"
+description: "on why that phrase is usually unhelpful and attempt to be a charitable"
+date: 2025-12-15
+categories: [linguistics, judgment, Turkish]
+fig-align: "center"
+execute:
+  echo: false
+  message: false
+  warning: false
+image: ./09_key.jpg
+---
+
+![](./09_key.jpg){width="40%" fig-align="center"}
+
+This post grew out of a conversation I had with a professor about his workshop class on Turkic languages. He didn't say this directly, but I've heard a familiar story from multiple students: when Turkish comes up, some chunk of class time gets involuntarily eaten by judgment battles.
+
+Honestly, I'm not shocked. Since my MA I've heard plenty of "your Turkish is broken". Mostly joking, sure. But there's also a pattern: any talk with mildly non-obvious Turkish data gets peppered with unsolicited *"That's not grammatical to me"* interventions. And yes, I've done it too. I'm not writing this from a high horse. This is also a personal critique.^[Anyone can change their mind about things. Discussing this with Mal actually helped me a lot.]
+
+What I want to argue is simple: a lot of this practice is both methodologically unhelpful and kind of backwards relative to what many of us claim to be doing in linguistics.
+
+And there's a second point, which I care about more. Behind the futility of casual judgment policing, there's a real lesson: people are often trying to say something important, but the only sentence they know how to produce in these contexts is "that's ungrammatical".
+
+*PS.* I'm writing this for linguists who are trying to understand what humans can do with language, what the limits are, and how the system is represented and deployed. If your main goal is to recover *the* "standard Turkish grammar" shared uniformly by all self-identified Turkish speakers, I genuinely wish you luck, but I don't have much to offer beyond a lot of questions.
+
+## What does "That's not grammatical to me" even mean?
+
+Suppose you present a Turkish example and someone raises a hand (or asks a question after the talk) and says:
+
+> "I don't think that sentence is grammatical."
+
+That utterance is wildly underspecified. Here are a few things it can be (implicitly) trying to express.
+
+1. **Sometimes it (accidentally) sounds like:** *"You made this up."*  
+   That's a serious accusation. In my experience, almost nobody in our field intends that. But the *performative* effect can still be: "your data is suspect".
+
+2. **Sometimes they simply enjoy tautological facts:** *"People differ, 'standard language' is a fiction, I-language matters."*  
+   True. Also not news. And as a conversational move, it sometimes functions like: "I don't want you to talk to me (about this)".
+
+3. **Sometimes it's straightforward prescriptivism:** *"There is one Turkish, and let me tell you this isn't it."*  
+   I'm still surprised how often this shows up *in linguistics*, including among people who otherwise talk a good game about variation and competence vs performance.
+
+4. **Sometimes it's an underlying strong claim about what 'language' is.**  
+   They might not think the individual brain can exercise the language faculty to different degrees, and they might (maybe unknowingly) treat "your language" as something defined almost entirely by your social circle.
+
+   I have two problems with this. First, speaker and listener often *aren't* in the same community. Turkish is also especially sensitive to region, register, education, and class (don't quote me on the comparative point here; I might just be more attuned to Turkish differences than to differences in other languages, but the general point still stands). Even with English speakers, judgments are not uniform, and plenty of cases are genuinely disputable. Second, even if social environment matters a lot, it's a strange move to treat one person's system as the yardstick that can revoke another person's linguistic competence. We already accept that humans share a broad blueprint. We also often accept that speakers who understand each other effortlessly share even more. But once you zoom in (Turkish vs "Turkish", dialect vs dialect, idiolect vs idiolect), we're talking about degrees, and the differences you find are often local and structured, not "brokenness".
+
+5. **Sometimes it reflects not having thought much about what edge cases buy you:** *"I actually haven't thought about what there is to learn from edge cases."*  
+   In a world where there are many possible grammars (and many plausible formalizations), marginal cases are often where constraints show up. The "net return" on hunting boundaries can be high, precisely because broad generalizations saturate quickly. This is not to say we've done enough work on the "simple" examples, or that we should stop caring about them. But if your goal is to dissociate what is possible in the human language system, the marginal cases often have unusually good signal.
+
+And then there's the version that is actually methodologically relevant.
+
+## Real worry I: Representativeness
+
+Often what the objector *means* is something like:
+
+> "You're portraying this as common in the language, but it's only available for a subset of speakers."
+
+If I'm being serious, I think this is what's going on in a big fraction of "this is ungrammatical" interruptions. And yes, it can matter, because it affects what future readers take to be a baseline fact.
+
+But notice what that worry requires you to do. You have to say more than "not for me".
+
+At minimum, you need to turn it into an empirical claim:
+
+- *Which speakers?* (region, register, age cohort, bilingualism history, etc.)
+- *How big is the split?* (rare? unstable? gradient? categorical for a subgroup?)
+- *What exactly differs?* (syntax? morphology? prosody? information structure? lexical choice?)
+- *Is the judgment robust under controlled elicitation?* (multiple prompts, contexts, minimal pairs)
+
+If this is not an empirical worry but a "philosophy of science" worry, in the sense that a paper might mislead outsiders into thinking Turkish works in a certain way, the fix is not heckling. The fix is metadata and methodology. I genuinely do not understand why so many syntax/semantics papers lack a short subsection about who the speakers were and what the elicitation conditions were.
+
+Also, in practice, any work that seriously *builds* on Turkish facts should be doing basic replication of the descriptive premise anyway. If you're going to hang theory on a datum you saw in a talk, you should first check that datum (with speakers, corpora, or both). That's not a Turkish-specific point. And yes, I've unfortunately also seen famous linguists publish on languages they hadn't worked on before, not even opening a grammar book, and then argue that facts reported in some earlier paper can be "explained away". This is a different problem, but it's in the same family.
+
+## Real worry II: Variation is interesting. The heckle is not.
+
+There's another charitable reading:
+
+> "This is a cool locus of variation."
+
+I agree. I care a lot about cross-linguistic structure, and about how the "borders" of grammatical processes are patterned rather than random. Mapping where variation arises (and where it doesn't) can be informative about representational choices and decision points in the system.
+
+But again, "that's ungrammatical to me" is a terrible way to pursue that agenda if it comes with no follow-up. It's like walking into a lab meeting, saying "noise", and leaving.
+
+If you think variation is the point, then do variation: ask about variation. Propose a hypothesis about the dimensions along which it varies, and propose how you'd test it.
+
+## Real worry III: Established linguistic tests
+
+Another possible reading is:
+
+> "If you run the usual tests (X, Y, Z), I suspect you won't get this reading. Do you still?"
+
+This is not as charitable as the previous ones, because it often carries an authority move: it can sound like "are you sure you know what you're doing?" Sometimes that's needed, sure, especially if a claim hinges on a standard diagnostic. But it still matters how you ask it.
+
+A better way to do this is to ask what diagnostics were run and whether the result survives them. Or whether there are "asterisks" that need to be made explicit. Sometimes that's the real disconnect: you're using "grammatical" in a looser, more exploratory way, while the audience is using it in the "passes the canonical tests in the canonical contexts" way.
+
+## Possibly better questions
+
+If you feel the itch to say "not for me", try one of these instead:
+
+- "In *my* Turkish (I grew up in X / I mostly use Y register), I don't get this. Do you know which variety you're targeting?"
+- "What context makes this natural for your consultants? Could you give a minimal pair?"
+- "Is this intended as a claim about Turkish generally, or about a specific subset of speakers?"
+- "Did you elicit this with multiple speakers, or is it introspective? (Both are fine, but they support different conclusions.)"
+- "If we assume this varies, what would we predict should co-vary with it?"
+
+Otherwise it's just time lost.
+
+
+*The cover picture is taken from [https://www.theuncomfortable.com/](https://www.theuncomfortable.com/).*
