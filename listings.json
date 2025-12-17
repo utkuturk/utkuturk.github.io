@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/generate-items/index.html",
       "/posts/futileness-of-judgments/index.html",
       "/posts/aws-s3-pcibex/index.html",
       "/posts/misunderstanding-kate/index.html",

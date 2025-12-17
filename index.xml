@@ -113,8 +113,7 @@ In a world where there are many possible grammars (and many plausible formalizat
 </ol>
 </section></div> ]]></description>
   <category>linguistics</category>
-  <category>judgment</category>
-  <category>Turkish</category>
+  <category>commentary</category>
   <guid>https://www.utkuturk.com/posts/futileness-of-judgments/</guid>
   <pubDate>Mon, 15 Dec 2025 05:00:00 GMT</pubDate>
   <media:content url="https://www.utkuturk.com/posts/futileness-of-judgments/09_key.jpg" medium="image" type="image/jpeg"/>
@@ -1279,7 +1278,7 @@ Figure&nbsp;1: A schematic 2×2 for Kate’s asymmetry. The gradient+restricted 
 <p>That’s my main worry here. Dual-process models are a tempting last resort. They look tidy, but they often function as theories that can’t really lose—precisely the kind that Popper warned us about. John von Neumann put it bluntly: <em>“With four parameters I can fit an elephant, and with five I can make him wiggle his trunk.”</em> And if you add one more, you can even make him wink. There’s even an R implementation—the <a href="https://www.r-bloggers.com/2011/06/a-winking-pink-elephant/">winking pink elephant</a>—that literally draws and animates an elephant with just a handful of parameters. It’s cute, but it’s also the point: if your model is that flexible, fitting isn’t the same thing as explaining. (The original code is base R/MASS heavy, but you can rewrite it cleanly with <code>ggplot2</code> and <code>dplyr</code>.)</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-elephant" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Red–pink outline of an elephant drawn by a Fourier series, shown with axes.">
+<div id="fig-elephant" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Red–pink outline of an elephant drawn by a Fourier series, shown with axes." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-elephant-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://www.utkuturk.com/posts/misunderstanding-kate/index_files/figure-html/fig-elephant-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Red–pink outline of an elephant drawn by a Fourier series, shown with axes.">
@@ -4326,7 +4325,7 @@ font-style: inherit;">1.96</span>), xmax)</span></code></pre></div></div>
   <category>linguistics</category>
   <category>papers</category>
   <category>sound</category>
-  <category>experiment</category>
+  <category>experiments</category>
   <guid>https://www.utkuturk.com/posts/mfa/</guid>
   <pubDate>Fri, 12 Jul 2024 04:00:00 GMT</pubDate>
   <media:content url="https://www.utkuturk.com/posts/mfa/mfa.jpeg" medium="image" type="image/jpeg"/>
@@ -5412,6 +5411,7 @@ font-style: inherit;">done</span></span></code></pre></div></div>
 <script data-collect-dnt="true" async="" src="https://scripts.simpleanalyticscdn.com/latest.js"></script> ]]></description>
   <category>linguistics</category>
   <category>dissertation</category>
+  <category>turkish</category>
   <category>agreement attraction</category>
   <guid>https://www.utkuturk.com/posts/ma-thesis/</guid>
   <pubDate>Sat, 20 Aug 2022 04:00:00 GMT</pubDate>
@@ -5773,6 +5773,511 @@ font-style: inherit;">$</span>nsubject</span></code></pre></div></div>
   <guid>https://www.utkuturk.com/posts/yaml-rnotebook/</guid>
   <pubDate>Thu, 23 Jan 2020 05:00:00 GMT</pubDate>
   <media:content url="https://www.utkuturk.com/posts/yaml-rnotebook/yaml.png" medium="image" type="image/png" height="144" width="144"/>
+</item>
+<item>
+  <title>generating consistent linguistic experiment materials with AI</title>
+  <link>https://www.utkuturk.com/posts/generate-items/</link>
+  <description><![CDATA[ 
+
+
+
+
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://www.utkuturk.com/posts/generate-items/image_1.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
+</figure>
+</div>
+<blockquote class="blockquote">
+<p><strong>A Note on AI Generated Images</strong>: While this post details a technical solution for generating stimuli using AI, I firmly believe that human artistry is irreplaceable. I am not sure how ethical it is to use these pictures. I would much rather have a human artist draw these materials. If you are an artist interested in collaborating on linguistic experiments, <strong>please email me</strong>. I would be more than happy to drop this AI pipeline and work with you instead.</p>
+</blockquote>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>If you’ve ever tried to create experimental stimuli for a linguistic study, you know the struggle. You need depictions of transitive actions that are valid, recognizable, but also controlled. You want your “Wizard” to look like the same Wizard whether he’s eating an apple or throwing a frisbee.</p>
+<p>Finding consistent pictures for picture word interference tasks—or even simple production tasks that involve lexical verbs—is notoriously difficult. Most existing resources and production experiments focus heavily on nominals (nouns). Finding relevant images on the web is also very difficult. And whenever, you want to use stock images, you worry about a lot of different stuff going on in each image. Many acquisition labs actually record their students do the actions for other type of experiments.</p>
+<p>I recently needed 60 distinct, stylistically consistent line drawings for a morphology experiment. I didn’t want to spend weeks drawing or learning how to draw them, and I didn’t want to wrestle with inconsistencies from standard web-based image generators or image searching. Existing databases did not provide a good quality verb sentences.</p>
+<p>So, I built a code-first pipeline using Google’s Gemini 2.5 Flash Image and open-source alternatives like FLUX.1 via Hugging Face.</p>
+<p>Here is how I did it.</p>
+</section>
+<section id="the-problem-consistency-vs.-chaos" class="level2">
+<h2 class="anchored" data-anchor-id="the-problem-consistency-vs.-chaos">The Problem: Consistency vs.&nbsp;Chaos</h2>
+<p>The main issue with generative AI for experiments is consistency. If I ask for “A wizard eating an apple” and then “A wizard kicking a ball,” I usually get two completely different wizards. Different robes, different beards, different vibes. Especially, if you do this over gemini website, with bunch of prompt, it is bound to mess it up.</p>
+<p>For my experiment, I needed: 1. <strong>3 Characters</strong>: Wizard, Pirate, Chef. 2. <strong>20 Actions</strong>: 10 regular verbs, 10 irregular verbs. 3. <strong>Strict Style</strong>: Clean black and white line drawings (coloring book style).</p>
+</section>
+<section id="the-toolkit" class="level2">
+<h2 class="anchored" data-anchor-id="the-toolkit">The Toolkit</h2>
+<p>I chose a programmatic approach because clicking “Generate” 60 times is not my idea of a good time. Plus, I needed reproducibility.</p>
+<ul>
+<li><strong>Gemini 2.5 Flash Image</strong>: It’s incredibly fast and follows instructions well. Plus, Gemini Pro is often free for students, and Google AI Studio offers a $300 credit to work with for over 30 days, making it very accessible.</li>
+<li><strong>Hugging Face Inference API</strong>: Allows me to swap in models like <code>black-forest-labs/FLUX.1-dev</code> if I need a different aesthetic. I am also considering other models like QWEN or anything that is up right now.</li>
+<li><strong>Python</strong>: The glue holding it all together.</li>
+</ul>
+<section id="getting-your-credentials" class="level3">
+<h3 class="anchored" data-anchor-id="getting-your-credentials">Getting Your Credentials</h3>
+<p>Since we are using Gemini, you’ll need an API key. It’s surprisingly easy to get one:</p>
+<ol type="1">
+<li>Go to <strong><a href="https://aistudio.google.com/">Google AI Studio</a></strong>. As of now, it is not available everywhere.</li>
+<li>Sign in with your Google account.</li>
+<li>Click on the <strong>“Get API key”</strong> button on the top left.</li>
+<li>Click <strong>“Create API key”</strong>. You can create it in a new project or an existing Google Cloud project.</li>
+<li>Copy the key string (it starts with <code>AIza...</code>).</li>
+<li>I suspect that you need to activate billing information, too. This includes putting down your credit card information. You can create an alarm for billing. Right now I have alarm for every 50 dollars. Since the first 300 is free, I doubt I will pass that.</li>
+<li>(Optional) If you want to use FLUX, you’ll also need a <strong><a href="https://huggingface.co/settings/tokens">Hugging Face Token</a></strong> with “Write” permissions.</li>
+</ol>
+</section>
+</section>
+<section id="the-code" class="level2">
+<h2 class="anchored" data-anchor-id="the-code">The Code</h2>
+<p>I wrote a script, <code>generate_materials.py</code>, to handle the heavy lifting.</p>
+<section id="defining-the-domain" class="level3">
+<h3 class="anchored" data-anchor-id="defining-the-domain">1. Defining the Domain</h3>
+<p>First, I defined my characters and actions in a dictionary. This ensures that every prompt uses the exact same description for the character.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Character Definitions</span></span>
+<span id="cb1-2">CHARACTERS <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> {</span>
+<span id="cb1-3">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Wizard"</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"A friendly wizard character wearing a starry robe and a pointed hat with a long beard."</span>,</span>
+<span id="cb1-4">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Pirate"</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"A friendly pirate character with an eye patch, a bandana, and a striped shirt."</span>,</span>
+<span id="cb1-5">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Chef"</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"A friendly chef character wearing a tall white chef's hat and a double-breasted jacket."</span></span>
+<span id="cb1-6">}</span>
+<span id="cb1-7"></span>
+<span id="cb1-8"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Example Actions (Linguistically Balanced)</span></span>
+<span id="cb1-9">ACTIONS <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> {</span>
+<span id="cb1-10">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"cut_bread"</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"cutting a loaf of bread with a knife on a cutting board"</span>, <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Irregular</span></span>
+<span id="cb1-11">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"light_candle"</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"lighting a candle with a matchstick"</span>,                 <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Irregular (lit)</span></span>
+<span id="cb1-12">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"paint_canvas"</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"painting on an art canvas on an easel with a brush"</span>,  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Regular</span></span>
+<span id="cb1-13">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ... and so on</span></span>
+<span id="cb1-14">}</span></code></pre></div></div>
+</section>
+<section id="the-setup" class="level3">
+<h3 class="anchored" data-anchor-id="the-setup">2. The Setup</h3>
+<p>I used a unified <code>STYLE_PROMPT</code> to enforce the visual look I wanted. No shading, no gray, just bold black lines.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> os</span>
+<span id="cb2-2"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> time</span>
+<span id="cb2-3"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> requests</span>
+<span id="cb2-4"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> io</span>
+<span id="cb2-5"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> google <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> genai</span>
+<span id="cb2-6"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> google.genai <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> types</span>
+<span id="cb2-7"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> PIL <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> Image <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> PILImage</span>
+<span id="cb2-8"></span>
+<span id="cb2-9">STYLE_PROMPT <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"A clean black and white cartoon line drawing with bold, even black outlines, in the style of a children’s coloring page. No shading, no gray, just black lines on white background. Minimalist details."</span></span></code></pre></div></div>
+</section>
+<section id="the-generators" class="level3">
+<h3 class="anchored" data-anchor-id="the-generators">3. The Generators</h3>
+<p>I created wrapper functions for both Gemini and Hugging Face. This makes the code modular – I can switch providers just by changing a command-line argument.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># --- Gemini Generator ---</span></span>
+<span id="cb3-2"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> generate_gemini(client, model_id, prompt):</span>
+<span id="cb3-3">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">try</span>:</span>
+<span id="cb3-4">        response <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> client.models.generate_content(</span>
+<span id="cb3-5">            model<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>model_id,</span>
+<span id="cb3-6">            contents<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>prompt,</span>
+<span id="cb3-7">            config<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>types.GenerateContentConfig(</span>
+<span id="cb3-8">                response_modalities<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Image'</span>]</span>
+<span id="cb3-9">            )</span>
+<span id="cb3-10">        )</span>
+<span id="cb3-11">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> part <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> response.parts:</span>
+<span id="cb3-12">            <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> image <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:=</span> part.as_image():</span>
+<span id="cb3-13">                <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> image</span>
+<span id="cb3-14">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">except</span> <span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">Exception</span> <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> e:</span>
+<span id="cb3-15">        <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"Gemini Error: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>e<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>)</span>
+<span id="cb3-16">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">None</span></span>
+<span id="cb3-17"></span>
+<span id="cb3-18"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># --- Hugging Face Generator ---</span></span>
+<span id="cb3-19"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> generate_hf(api_token, model_id, prompt):</span>
+<span id="cb3-20">    API_URL <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"https://api-inference.huggingface.co/models/</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>model_id<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span></span>
+<span id="cb3-21">    headers <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> {<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Authorization"</span>: <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"Bearer </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>api_token<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>}</span>
+<span id="cb3-22">    </span>
+<span id="cb3-23">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">try</span>:</span>
+<span id="cb3-24">        response <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> requests.post(API_URL, headers<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>headers, json<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>{<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"inputs"</span>: prompt})</span>
+<span id="cb3-25">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> response.status_code <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">!=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">200</span>:</span>
+<span id="cb3-26">            <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"HF Error </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>response<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>status_code<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>response<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>text<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>)</span>
+<span id="cb3-27">            <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">None</span></span>
+<span id="cb3-28">        image_bytes <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> response.content</span>
+<span id="cb3-29">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> PILImage.<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">open</span>(io.BytesIO(image_bytes))</span>
+<span id="cb3-30">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">except</span> <span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">Exception</span> <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> e:</span>
+<span id="cb3-31">        <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"HF Request Error: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>e<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>)</span>
+<span id="cb3-32">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">None</span></span></code></pre></div></div>
+</section>
+<section id="the-loop" class="level3">
+<h3 class="anchored" data-anchor-id="the-loop">4. The Loop</h3>
+<p>Finally, the main loop iterates through every character and every action, constructs the full prompt, and saves the output.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ... inside the main loop ...</span></span>
+<span id="cb4-2">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> entity_name, entity_desc <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> CHARACTERS.items():</span>
+<span id="cb4-3">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> action_key, action_desc <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> ACTIONS.items():</span>
+<span id="cb4-4">            </span>
+<span id="cb4-5">            <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Construct the full prompt</span></span>
+<span id="cb4-6">            full_prompt <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> (<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>STYLE_PROMPT<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>entity_desc<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> The character is </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>action_desc<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">. "</span></span>
+<span id="cb4-7">                           <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"Full body shot. Clear action. Isolated on white background."</span>)</span>
+<span id="cb4-8">            </span>
+<span id="cb4-9">            <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"Generating: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>entity_name<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> - </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>action_key<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">..."</span>, end<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">" "</span>)</span>
+<span id="cb4-10">            </span>
+<span id="cb4-11">            <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Call the appropriate provider</span></span>
+<span id="cb4-12">            image <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">None</span></span>
+<span id="cb4-13">            <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> args.provider <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"gemini"</span>:</span>
+<span id="cb4-14">                image <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> generate_gemini(client, model_id, full_prompt)</span>
+<span id="cb4-15">            <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">elif</span> args.provider <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"hf"</span>:</span>
+<span id="cb4-16">                image <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> generate_hf(hf_token, model_id, full_prompt)</span>
+<span id="cb4-17"></span>
+<span id="cb4-18">            <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> image:</span>
+<span id="cb4-19">                filename <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> os.path.join(output_dir, <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>entity_name<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>lower()<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">_</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>action_key<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">.png"</span>)</span>
+<span id="cb4-20">                image.save(filename)</span>
+<span id="cb4-21">                <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Done."</span>)</span></code></pre></div></div>
+</section>
+</section>
+<section id="results" class="level2">
+<h2 class="anchored" data-anchor-id="results">Results</h2>
+<p>The results were surprisingly good. By combining the strict style prompt with the consistent character descriptions, I managed to get a set of stimuli that look like they belong in the same universe.</p>
+<p>Of course, it wasn’t perfect. Sometimes the Pirate would have two eye patches, or the Chef would be holding the knife by the blade. But generating 60 images takes about 2 minutes with Gemini Flash, so I could just re-run the specific failures until they looked right.</p>
+</section>
+<section id="next-steps-validation" class="level2">
+<h2 class="anchored" data-anchor-id="next-steps-validation">Next Steps: Validation</h2>
+<p>Of course, “looking right” to me isn’t the same as scientific validity. The next step in this project is to run a norming study to check the validity of these generated images. I need to ensure that when a participant sees the “cutting bread” image, they actually retrieve the concept of <em>cutting</em> rather easily. And I also have to make sure that some of the items are too confusing or have a lot of more natural competitors.</p>
+<p>The full code is available as a local Python script, but you can also run it directly in your browser:</p>
+<ul>
+<li><code>experiment_materials_generator.ipynb</code>: Notebook for generating experiment materials. <a target="_blank" href="https://colab.research.google.com/github/utkuturk/tense-timing/blob/main/analysis/experiment_materials_generator.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"></a></li>
+</ul>
+<p>If you’re running this effectively for your own experiments, let me know!</p>
+
+
+<!-- -->
+
+</section>
+
+<script data-collect-dnt="true" async="" src="https://scripts.simpleanalyticscdn.com/latest.js"></script> ]]></description>
+  <category>code</category>
+  <category>experiments</category>
+  <category>ai</category>
+  <category>technical</category>
+  <guid>https://www.utkuturk.com/posts/generate-items/</guid>
+  <pubDate>Wed, 17 Dec 2025 07:52:56 GMT</pubDate>
+  <media:content url="https://www.utkuturk.com/posts/generate-items/image_1.jpg" medium="image" type="image/jpeg"/>
 </item>
 </channel>
 </rss>
