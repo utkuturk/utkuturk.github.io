@@ -1,68 +1,82 @@
 @media (min-width: 992px) {
-.about-bio,
-.mobile-sidebar-news {
-  display: none;
-}
-/* Floating pill navbar core */
-#quarto-header {
-  background: transparent;
-  border: 0;
-  display: flex;
-  justify-content: center;
-  padding-top: .5rem;
-  z-index: 1100;
-}
 
-#quarto-header .navbar {
-  display: inline-flex;
-  border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.96);
-  backdrop-filter: blur(6px);
-  box-shadow: 0 8px 24px rgba(0,0,0,.12);
-  padding: .5rem 1.5rem;  /* balanced padding for pill edges */
-}
+  .about-bio,
+  .mobile-sidebar-news {
+    display: none;
+  }
 
-/* Remove margin from brand, use padding inside the link group */
-#quarto-header .navbar-brand {
-  margin: 0; /* no extra space on left edge */
-}
+  /* Floating pill navbar core */
+  #quarto-header {
+    background: transparent;
+    border: 0;
+    display: flex;
+    justify-content: center;
+    padding-top: .5rem;
+    z-index: 1100;
+  }
 
-/* Add space between title and links inside the nav area */
-#quarto-header .navbar-collapse {
-  padding-left: 3rem; /* controls gap between title and first link */
-}
+  #quarto-header .navbar {
+    display: flex;
+    width: 100%;
+    max-width: 848px;
+    justify-content: space-between;
+    box-sizing: border-box;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(6px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .12);
+    padding: .5rem 1.5rem;
+    margin: 0 auto;
+  }
 
-/* Style individual nav links */
-#quarto-header .nav-link {
-  border-radius: 9999px;
-  padding: .5rem .5rem;
-  margin: 0 .2rem;
-  transition: background-color .2s ease;
-}
+  /* Remove margin from brand, use padding inside the link group */
+  #quarto-header .navbar-brand {
+    margin: 0;
+    /* no extra space on left edge */
+  }
 
-#quarto-header .nav-link:hover {
-  background-color: rgba(0,0,0,.06);
-}
+  /* Add space between title and links inside the nav area */
+  #quarto-header .navbar-collapse {
+    padding-left: 0;
+    /* controls gap between title and first link */
+  }
 
-/* Prevent content overlap */
-body.nav-fixed {
-  padding-top: 4.5rem;
-}
+  /* Style individual nav links */
+  #quarto-header .nav-link {
+    border-radius: 9999px;
+    padding: .5rem .5rem;
+    margin: 0 .2rem;
+    transition: background-color .2s ease;
+  }
 
-main.content {
-  scroll-margin-top: 6rem;
-}
+  #quarto-header .nav-link:hover {
+    background-color: rgba(0, 0, 0, .06);
+  }
+
+  /* Prevent content overlap */
+  body.nav-fixed {
+    padding-top: 4.5rem;
+  }
+
+  main.content {
+    scroll-margin-top: 6rem;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 800px;
+  }
 }
 
 .ref-item {
   display: flex;
   align-items: flex-start;
-  margin-bottom: 1.5em;   /* vertical spacing between items */
+  margin-bottom: 1.5em;
+  /* vertical spacing between items */
   line-height: 1.55;
 }
 
 .ref-num {
-  min-width: 2.5em;       /* reserve space for number column */
+  min-width: 2.5em;
+  /* reserve space for number column */
   text-align: right;
   /* font-weight: 600; */
   margin-right: 1em;
@@ -78,7 +92,8 @@ main.content {
 }
 
 .teach-term {
-  min-width: 6em;          /* space for the [Term] label */
+  min-width: 6em;
+  /* space for the [Term] label */
   text-align: right;
   font-weight: 600;
   margin-right: 1em;
@@ -94,30 +109,38 @@ main.content {
     background: transparent;
     padding: 0.25rem 0;
     box-shadow: none;
-    display: block !important;          /* not a flex overlay */
+    display: block !important;
+    /* not a flex overlay */
   }
 
   /* Make the nav list behave like a paragraph */
   #quarto-header .navbar-nav {
-    display: block;                      /* normal flow container */
+    display: block;
+    /* normal flow container */
     padding: 0;
     margin: 0;
   }
 
   /* Each item sits inline so they wrap naturally */
   #quarto-header .navbar-nav .nav-item {
-    display: inline;                     /* inline elements wrap */
+    display: inline;
+    /* inline elements wrap */
   }
 
   /* Links look like text tokens with spaces between them */
   #quarto-header .navbar-nav .nav-link {
-    display: inline;                     /* inline, not block */
-    padding: 0;                          /* remove block padding */
-    margin-right: 0.9rem;                /* space between words */
-    line-height: 1.6;                    /* comfortable baseline */
+    display: inline;
+    /* inline, not block */
+    padding: 0;
+    /* remove block padding */
+    margin-right: 0.9rem;
+    /* space between words */
+    line-height: 1.6;
+    /* comfortable baseline */
     border-radius: 0;
     background: transparent;
-    white-space: normal;                 /* allow wrapping */
+    white-space: normal;
+    /* allow wrapping */
   }
 
   /* No extra space after the last item */
@@ -129,6 +152,7 @@ main.content {
 /* ===== Mobile-only styling for About + News ===== */
 
 @media (max-width: 992px) {
+
   /* About bio block */
   .about-bio {
     text-align: center;
@@ -200,14 +224,47 @@ main.content {
 }
 
 /* Tiny, sidebar-friendly styles */
-.sidebar-news{font-size:.85rem;line-height:1.25;margin:.75rem 0}
-.sidebar-news__title{font-size:1rem;margin:0 0 .5rem}
-.sidebar-news__list{margin:0;padding-left:1rem;list-style:disc}
-.sidebar-news__item{margin:0 0 .35rem}
-.sidebar-news__date{font-weight:600;margin-right:.35rem;white-space:nowrap}
-.sidebar-news__links{white-space:nowrap}
-.sidebar-news__extra{display:block;margin-left:1.35rem}
-.sidebar-news__more{display:inline-block;margin-top:.25rem;font-size:.85em}
+.sidebar-news {
+  font-size: .85rem;
+  line-height: 1.25;
+  margin: .75rem 0
+}
+
+.sidebar-news__title {
+  font-size: 1rem;
+  margin: 0 0 .5rem
+}
+
+.sidebar-news__list {
+  margin: 0;
+  padding-left: 1rem;
+  list-style: disc
+}
+
+.sidebar-news__item {
+  margin: 0 0 .35rem
+}
+
+.sidebar-news__date {
+  font-weight: 600;
+  margin-right: .35rem;
+  white-space: nowrap
+}
+
+.sidebar-news__links {
+  white-space: nowrap
+}
+
+.sidebar-news__extra {
+  display: block;
+  margin-left: 1.35rem
+}
+
+.sidebar-news__more {
+  display: inline-block;
+  margin-top: .25rem;
+  font-size: .85em
+}
 
 /* If the sidebar is tight, uncomment: */
 /* .sidebar-news{max-height:12rem; overflow:auto} */
@@ -218,12 +275,388 @@ main.content {
 .sidebar .quarto-listing-category-title::after {
   content: "blog topics";
 }
+
 .sidebar .quarto-listing-category-title {
   visibility: hidden;
   position: relative;
 }
+
 .sidebar .quarto-listing-category-title::after {
   visibility: visible;
   position: absolute;
   left: 0;
+}
+
+/* =========================================
+   HERO & SCROLL TRANSITION STYLES
+   ========================================= */
+
+/* The Hero Container: Fixed to take up the full screen */
+.hero-section {
+  position: fixed;
+  /* Fixed to cover everything initially */
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  z-index: 2000;
+  /* High z-index to cover sidebar and navbar */
+  transition: opacity 0.2s ease-out;
+  padding-bottom: 5vh;
+  pointer-events: none;
+  /* Allow clicks to pass through the white background to navbar */
+}
+
+.hero-content {
+  text-align: center;
+  max-width: 800px;
+  padding: 1rem;
+  z-index: 2001;
+  pointer-events: auto;
+  /* Re-enable clicks for the actual content */
+}
+
+.hero-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.hero-content h1 {
+  font-size: 2.2rem;
+  margin-bottom: 0.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.hero-subtitle {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.4;
+  margin-bottom: 1.5rem;
+}
+
+.hero-bio {
+  font-size: 1.05rem;
+  color: #333;
+  margin-bottom: 2rem;
+  max-width: 700px;
+  /* Slightly wider for reading comfort */
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+  /* Better readability for paragraph text */
+}
+
+.hero-bio p {
+  margin-bottom: 0;
+  /* Let margin-top handle flow */
+}
+
+.hero-bio a {
+  color: #333;
+  text-decoration: underline;
+  text-decoration-color: #ccc;
+  text-underline-offset: 2px;
+  transition: all 0.2s ease;
+}
+
+.hero-bio a:hover {
+  background-color: #f0f0f0;
+  text-decoration-color: #333;
+}
+
+.hero-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 3rem;
+}
+
+.hero-links a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  background-color: #f3f3f3;
+  transition: all 0.2s ease;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+/* Specific icon sizing */
+.hero-links i {
+  font-size: 1.1rem;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+.hero-links a:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-2px);
+}
+
+.hero-scroll-down {
+  margin-top: 2rem;
+  color: #333;
+  font-size: 1.1rem;
+  font-weight: 600;
+  animation: bounce 2s infinite;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.hero-scroll-down:hover {
+  opacity: 1;
+}
+
+.hero-scroll-down span {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.8em;
+}
+
+.hero-scroll-down i {
+  display: block;
+  font-size: 2rem;
+  margin-top: 4px;
+}
+
+/* Helper to wrap main content if generally needed, though .main-content-wrapper class is handled in index.qmd */
+.main-content-wrapper {
+  /* content wrapper mainly for mobile bio/news structure */
+  position: relative;
+  z-index: 50;
+  background: #fff;
+  padding-top: 2rem;
+}
+
+/* =========================================
+   LEGEND STYLING
+   ========================================= */
+.legend-box {
+  background-color: #f9f9f9;
+  border: 1px solid #eee;
+  padding: 10px 15px;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  font-size: 0.9em;
+  color: #555;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 15px;
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  border-left: 4px solid;
+  /* Use the same property as indicators for consistency */
+  border-top: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  background-color: white;
+  /* Optional: or match border? */
+}
+
+/* Interactivity for Legend */
+.legend-item {
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s, box-shadow 0.2s;
+  user-select: none;
+}
+
+.legend-item:hover {
+  background-color: #eee;
+}
+
+.legend-item.active {
+  background-color: #e0e0e0;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-weight: 500;
+}
+
+/* Utility to hide filtered items */
+.hidden {
+  display: none !important;
+}
+
+/* =========================================
+   TOPIC INDICATORS & ICON LINKS
+   ========================================= */
+.ref-item {
+  padding-left: 10px;
+  border-left: 4px solid #eee;
+  /* Default neutral border */
+  margin-bottom: 12px;
+  transition: border-left-color 0.3s ease;
+}
+
+/* Topic colors */
+.topic-processing {
+  border-left-color: #2a9d8f;
+}
+
+/* Teal */
+.topic-resource {
+  border-left-color: #e9c46a;
+}
+
+/* Yellow */
+.topic-semantics {
+  border-left-color: #f4a261;
+}
+
+/* Orange */
+.topic-morphology {
+  border-left-color: #e76f51;
+}
+
+/* Red-Orange */
+.topic-phonology {
+  border-left-color: #8f2a9d;
+}
+
+/* Purple */
+.topic-syntax {
+  border-left-color: #264653;
+}
+
+/* Dark Blue */
+
+/* Icon Styling */
+.paper-links a {
+  /* margin-left removed to fix [ abstract] spacing */
+  color: blue;
+  font-size: 1em;
+  text-decoration: underline;
+  text-transform: lowercase;
+  transition: color 0.2s ease;
+}
+
+.paper-links a:hover {
+  color: darkblue;
+  text-decoration: underline;
+}
+
+/* Ensure headings cycle through colors too if desired,
+   but we handle that with nth-of-type elsewhere */
+
+
+@keyframes bounce {
+
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+
+  40% {
+    transform: translateY(-10px);
+  }
+
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+/* HIDE DEFAULT SIDEBAR ELEMENTS IN HERO VIEW initially if needed by CSS logic 
+   but JS will handle the main navbar fade. 
+   If we want the sidebar to also be hidden until scroll:
+*/
+body.hero-view-active .sidebar,
+body.hero-view-active .margin-header {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+/* Override: When not in hero view, they fade in */
+.sidebar,
+.margin-header {
+  transition: opacity 0.5s ease;
+}
+
+/* =========================================
+   VERTICAL RESPONSIVENESS
+   Squish content on shorter screens to avoid cutoff
+   ========================================= */
+@media (max-height: 800px) {
+  .hero-photo {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-content h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+  }
+
+  .hero-bio {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.4;
+  }
+
+  .hero-links {
+    margin-bottom: 1.5rem;
+    gap: 8px;
+  }
+
+  .hero-links a {
+    padding: 4px 10px;
+    font-size: 0.85rem;
+  }
+
+  .hero-scroll-down {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+  }
+
+  .hero-scroll-down i {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-height: 600px) {
+
+  /* Extreme squash for very short landscape phones/windows */
+  .hero-photo {
+    width: 100px;
+    height: 100px;
+  }
+
+  .hero-bio {
+    display: none;
+  }
+
+  /* Hide bio if it really doesn't fit */
 }
