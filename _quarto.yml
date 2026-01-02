@@ -8,7 +8,8 @@ project:
 website:
   title: "utku turk"
   site-url: https://www.utkuturk.com
-  margin-header: subscribe.html
+
+
   body-footer: |
     <!-- 100% privacy-first analytics -->
     <script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
@@ -24,52 +25,20 @@ website:
       loading: lazy
       input-position: top
       theme: noborder_light
-  sidebar:
-    alignment: center
-    style: floating
-    contents:
-      - text: |
-          <div style="text-align:center; line-height:1.4;">
-            <img src="/images/utkuturkumd.jpeg"
-                style="width:300px; margin-bottom:10px; display:block; margin-left:auto; margin-right:auto; transform:translateX(-50px);"
-                alt="My photo"/>
-            <p><strong>utku turk</strong><br>
-            PhD Candidate, Linguistics<br>
-            University of Maryland<br>
-            <i>working with <a href="https://www.ellenlau.net" target="_blank">Ellen Lau</a> and <a href="https://www.colinphillips.net" target="_blank">Colin Phillips</a></i></p>
 
-            <p style="font-size:0.9em; color:#555;">
-              <em>interested in the timing of morphological and syntactic planning in speech, and how it shapes online comprehension and production</em>
-            </p>
 
-            <p class="muted" style="font-size:0.8em;">
-              <em>Previously MA at Boğaziçi (with <a href="https://github.com/plogacev" target="_blank">Pavel Logačev</a>); visiting researcher at Masaryk (with <a href="https://www.muni.cz/en/people/53172-pavel-caha" target="_blank">Pavel Caha</a>).</em>
-            </p>
 
-            <p>namesurname@umd.edu</a></p>
-          </div>
 
-          <div class="sidebar-news">
-            <h3 class="sidebar-news__title">News</h3>
-            <ul class="sidebar-news__list">
-              <li class="sidebar-news__item">
-                <time class="sidebar-news__date">Apr 2025</time>
-                Advanced to candidacy (QP: timing of agreement in production)
-                <span class="sidebar-news__links">· <a href="/files/slides/qpTurk.pdf" target="_blank">slides</a></span>
-              </li>
-            </ul>
-            <a class="sidebar-news__more" href="/news/">More →</a>
-          </div>
 
 
 
 
 
   navbar:
+
     pinned: true
     right:
-      - text: about
-        href: about.qmd
+
       - text: research
         href: research.qmd
       - text: papers

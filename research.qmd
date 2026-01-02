@@ -1,6 +1,7 @@
 ---
 comments: false
-title : ""
+pagetitle: "research"
+sidebar: false
 ---
 
 
@@ -10,57 +11,98 @@ title : ""
 
 ---
 
+::: {.legend-box}
+**Legend:**
+<span class="legend-item" data-topic="topic-processing"><span class="legend-color topic-processing"></span>Processing</span>
+<span class="legend-item" data-topic="topic-semantics"><span class="legend-color topic-semantics"></span>Semantics</span>
+<span class="legend-item" data-topic="topic-morphology"><span class="legend-color topic-morphology"></span>Morphology</span>
+<span class="legend-item" data-topic="topic-phonology"><span class="legend-color topic-phonology"></span>Phonology</span>
+<span class="legend-item" data-topic="topic-syntax"><span class="legend-color topic-syntax"></span>Syntax</span>
+<span class="legend-item" data-topic="topic-resource"><span class="legend-color topic-resource"></span>Resources</span>
+:::
 
-## Experimental Work
+<script src="/files/filter.js"></script>
 
-::: {.panel-tabset}
-
-## Sentence Planning
-My primary focus at the moment is on the flexibility that speakers show when planning sentences. I am currently working on to understand how morphological planning is carried out and whether agents have special status in planning. My goal is to eventually tie this to the work focusing on exploring  generative grammars and how they can explain the planning procedure. Broadly, I’m interested in online sentence building and its interaction with syntactic structure.
-
-**Selected output**  
-**Türk, U.**, Phillips, C. (2024). Speech timing evidence on the (in)dependence of root and inflection access in production. Poster presented at Human Sentence Processing 2024. [[abstract]](/files/abstracts/hsp-2024-agree.pdf){target="_blank"}  
-
-Dods, A., MacDonalds, A., **Türk, U.**, Mancha, S., Phillips, C. (2024). Is the octopus regenerating?: Comparing timing effects in sentence recall and picture description tasks. Poster presented at Human Sentence Processing 2024. [[abstract]](/files/abstracts/hsp-2024-task.pdf){target="_blank"}
+# Experimental Work
 
 
-## Sentence Processing
+::: {.research-topic .topic-processing}
+### Sentence Planning
+My primary focus at the moment is on the flexibility that speakers show when planning sentences. I am currently working on to understand how morphological planning is carried out and whether agents have special status in planning. My goal is to eventually tie this to the work focusing on exploring generative grammars and how they can explain the planning procedure. Broadly, I’m interested in online sentence building and its interaction with syntactic structure.
+
+::: {.selected-output}
+**Selected Output**
+
+<div class="ref-item topic-processing">
+<span class="ref-text">**Türk, U.**, Phillips, C. (2024). Speech timing evidence on the (in)dependence of root and inflection access in production. Poster presented at Human Sentence Processing 2024. <span class="paper-links">[<a href="/files/abstracts/hsp-2024-agree.pdf" target="_blank" title="Abstract">abstract</a>]</span></span>
+</div>
+
+<div class="ref-item topic-processing">
+<span class="ref-text">Dods, A., MacDonalds, A., **Türk, U.**, Mancha, S., Phillips, C. (2024). Is the octopus regenerating?: Comparing timing effects in sentence recall and picture description tasks. Poster presented at Human Sentence Processing 2024. <span class="paper-links">[<a href="/files/abstracts/hsp-2024-task.pdf" target="_blank" title="Abstract">abstract</a>]</span></span>
+</div>
+
+<div class="ref-item topic-processing">
+<span class="ref-text">**Türk, U.** (2026). (In)sensitivity to surface-level heuristics: A case from Turkish verbal attractors. *Submitted to Cognition*. <span class="paper-links">[<a href="http://psyarxiv.com/dwh8v" target="_blank" title="Paper">paper</a>]</span></span>
+</div>
+
+<div class="ref-item topic-processing">
+<span class="ref-text">Xu, X., **Türk, U.**, Dods, A., Tian, X., Lau, E. (2025). Non-visually-derived mental objects tax ‘visual’ pointers. *(submitted)*. <span class="paper-links">[<a href="https://www.biorxiv.org/content/10.1101/2025.05.02.651748v1" target="_blank" title="Paper">paper</a>]</span></span>
+</div>
+:::
+:::
+
+::: {.research-topic .topic-processing}
+### Sentence Processing
 I am interested in people's degree of fallibility when it comes to comprehending number agreement. I am currently working on to reconcile conflicting findings on whether attraction effects are modulated by case ambiguity in sentence comprehension. My goal is to eventually tie this to the work focusing on exploring how people access memory and why we need to recontruct them using either abstract or form-related cues. Broadly, I’m interested in online addressable memory-building, its interaction with syntactic dependencies in typologically different languages, and the nature of the mechanisms and representations this interaction involves.
 
 With [Pavel Logacev][pavel], I focused on whether people's failure to notice ungrammatical sentences was due to more cognitive-general issues such as, response bias, shallow processing, or task-effects. Through series of behavioral experiments, we learned that even though that they affect to what degree people fail to assess grammaticality of a sentence, these cognitive-general issues cannot be sole explanation of failure to detect ungrammaticality.
 
-**Selected output**  
-**Türk, U.** (2022). [Agreement Attraction in Turkish](http://seyhan.library.boun.edu.tr/record=b2776878~S5){target="_blank"}. [[local pdf]](../files/ma_defense/thesis_singlespace.pdf){target="_blank"}. [[repo]](https://github.com/utkuturk/ma-thesis){target="_blank"}. [[summary]](../ma/){target="_blank"}  
+::: {.selected-output}
+**Selected Output**
 
-**Türk, U.**, Logacev, P. (2024). [Agreement Attraction in Turkish: The case of genitive attractors](https://www.tandfonline.com/doi/full/10.1080/23273798.2024.2324766){target="_blank"}. *Language, Cognition, and Neuroscience.* DOI: [10.1080/23273798.2024.2324766](https://doi.org/10.1080/23273798.2024.2324766){target="_blank"}  
+<div class="ref-item topic-processing">
+<span class="ref-text">**Türk, U.**, Logacev, P. (2024). Agreement Attraction in Turkish: The case of genitive attractors. *Language, Cognition, and Neuroscience.* <span class="paper-links">[<a href="https://www.tandfonline.com/doi/full/10.1080/23273798.2024.2324766" target="_blank" title="link">link</a>] [<a href="https://doi.org/10.1080/23273798.2024.2324766" target="_blank" title="doi">doi</a>]</span></span>
+</div>
 
-**Türk, U.**, Logacev, P. (in prep). Response Bias in Turkish Agreement Attraction. [[repo]](https://github.com/utkuturk/attraction_meta){target="_blank"} (_available upon request_)
+<div class="ref-item topic-processing">
+<span class="ref-text">**Türk, U.** (2022). Agreement Attraction in Turkish. <span class="paper-links">[<a href="http://seyhan.library.boun.edu.tr/record=b2776878~S5" target="_blank" title="link">link</a>] [<a href="../files/ma_defense/thesis_singlespace.pdf" target="_blank" title="local pdf">pdf</a>] [<a href="https://github.com/utkuturk/ma-thesis" target="_blank" title="Repo">code</a>] [<a href="../ma/" target="_blank" title="summary">summary</a>]</span></span>
+</div>
 
+<div class="ref-item topic-processing">
+<span class="ref-text">**Türk, U.**, Logacev, P. (in prep). Response Bias in Turkish Agreement Attraction. (_available upon request_) <span class="paper-links">[<a href="https://github.com/utkuturk/attraction_meta" target="_blank" title="Repo">code</a>]</span></span>
+</div>
 
-## Treebanking
+<div class="ref-item topic-processing">
+<span class="ref-text">Bakay, Ö., **Türk, U.**, Demiray, D., Dillon, B. (in prep). Tracking structural cues or relying on probabilistic inference in Turkish agreement?. <span class="paper-links">[<a href="https://github.com/utkuturk/nom-vs-gen-attraction" target="_blank" title="Repo">code</a>]</span></span>
+</div>
+:::
+:::
+
+::: {.research-topic .topic-resource}
+### Treebanking
 As a part of two projects (funded by TUBITAK and European Commission), I partake in creation and re-annotation of multiple Universal Dependencies Treebanks in multiple languages. My current aim is to create a set of treebanks for un(der)represented languages in Asia Minor.
 
 With [Arzucan Ozgur][ao]{target="_blank"}, [Tunga Gungor][tg]{target="_blank"}, and [Balkiz Ozturk][bo]{target="_blank"}, we created new guidelines for annotating Turkish data within Universal Dependencies framework. Following these guidelines, we re-annotated two already existing treebanks, and created a new treebank.
 
 As a part of my efforts to document minority languages, we also created the first Laz treebank, using data from published linguistic papers and theses. I am currently working on Ladino and Cappadocian Greek (with Konstantinos Sampanis) treebanks. _I am extremely open to collaborate and willing to work on any minority language documentation/treebanking effort! Do not hesitate to reach out!_
 
-**Selected output**  
-**Türk, U.**, Atmaca, F., Özateş, Ş.B. et al. (2022). [Resources for Turkish dependency parsing: introducing the BOUN Treebank and the BoAT annotation tool](https://link.springer.com/article/10.1007/s10579-021-09558-0){target="_blank"}. *Language Resources & Evaluation* 56, 259–307. DOI: [10.1007/s10579-021-09558-0](https://doi.org/10.1007/s10579-021-09558-0){target="_blank"}. [[resources]](https://tabilab.cmpe.boun.edu.tr/BOUN-PARS/resources.html){target="_blank"}  
+::: {.selected-output}
+**Selected Output**
 
-**Türk, U.**, Bayar, K., Özercan, A. D., Öztürk, G. Y., Özateş, S. B. (2019). [First Steps towards Universal Dependencies for Laz](https://aclanthology.org/2020.udw-1.21.pdf){target="_blank"}. *Proceedings of the Fourth Workshop on Universal Dependencies (UDW 2020).*  
+<div class="ref-item topic-resource">
+<span class="ref-text">**Türk, U.**, Atmaca, F., Özateş, Ş.B. et al. (2022). Resources for Turkish dependency parsing: introducing the BOUN Treebank and the BoAT annotation tool. *Language Resources & Evaluation* 56, 259–307. <span class="paper-links">[<a href="https://link.springer.com/article/10.1007/s10579-021-09558-0" target="_blank" title="Link">link</a>] [<a href="https://doi.org/10.1007/s10579-021-09558-0" target="_blank" title="DOI">doi</a>] [<a href="https://tabilab.cmpe.boun.edu.tr/BOUN-PARS/resources.html" target="_blank" title="Resources">resources</a>]</span></span>
+</div>
 
-**Türk, U.**, Atmaca, F., Özateş, S. B., Bedir, S. T., Köksal, A., Öztürk B., Güngör, T., Özgür, A. (2019). [Turkish Treebanking: Unifying and Constructing Efforts](https://aclanthology.org/W19-4019.pdf){target="_blank"}. *Proceedings of the 13th Linguistic Annotation Workshop.*  
-
-**Türk, U.**, Atmaca, F., Özateş, S. B., Bedir, S. T., Köksal, A., Öztürk B., Güngör, T., Özgür, A. (2019). [Improving the Annotations in the Turkish Universal Dependency Treebank](https://aclanthology.org/W19-8013.pdf){target="_blank"}. *Proceedings of the Third Workshop on Universal Dependencies (UDW, SyntaxFest 2019).*  
-
+<div class="ref-item topic-resource">
+<span class="ref-text">**Türk, U.**, Bayar, K., Özercan, A. D., Öztürk, G. Y., Özateş, S. B. (2019). First Steps towards Universal Dependencies for Laz. *Proceedings of the Fourth Workshop on Universal Dependencies (UDW 2020).* <span class="paper-links">[<a href="https://aclanthology.org/2020.udw-1.21.pdf" target="_blank" title="Paper">paper</a>]</span></span>
+</div>
+:::
 :::
 
+# Theoretical Work
 
-## Theoretical Work
-
-::: {.panel-tabset}
-
-## Morpho-syntax
+::: {.research-topic .topic-morphology}
+### Morpho-syntax
 I was lucky to join [Pavel Caha][caha]{target="_blank"} at [Masaryk University][mas]{target="_blank"} to work on various topics including Turkish case syncretism, augmentatives, and suspended affixation.
 
 One of the most exciting work I did was on Turkish adjectivals. I formalized the degree-sensitivity of Turkish Evaluative morphology, specifically "diminutives". Adjectival diminutives, in Turkish, only attach to negative-ordered adjectives. I also showed that Turkish -CIK is actually a complex formative unlike previously believed. While -K is an inherent part of the adjective, -CI is the amplifier that attaches to defective adjective "root" that is stripped from -K.
@@ -69,32 +111,76 @@ I also tried to formalize differential object marking in Turkish. Using nanosynt
 
 Lastly, I argued that candidates in morphology can be re-ranked via phonological information. Words with root suppletion generally are not licensed in suspended affixation. However, preceding only a vowel-harmonic conjunction, suppletion was reverted and suspended affixation was licensed.
 
-**Selected output**  
-**Türk, U.**, Caha, P. (2021). [Nanosyntactic Analysis of Turkish Case System](https://journals.linguisticsociety.org/proceedings/index.php/tu/article/view/5051){target="_blank"}. *Proceedings of the 6th Workshop on Turkic and languages in contact with Turkic.* DOI: [10.3765/ptu.v6i1.5051](https://doi.org/10.3765/ptu.v6i1.5051){target="_blank"}  
+::: {.selected-output}
+**Selected Output**
 
-**Türk, U.** (2020). [Tackling the Augmentative Puzzle in Turkish](https://journals.linguisticsociety.org/proceedings/index.php/tu/article/view/4771){target="_blank"}. *Proceedings of the 5th Workshop on Turkic and languages in contact with Turkic.* DOI: [10.3765/ptu.v5i1.4771](https://doi.org/10.3765/ptu.v5i1.4771){target="_blank"}
+<div class="ref-item topic-morphology">
+<span class="ref-text">**Türk, U.**, Caha, P. (2021). Nanosyntactic Analysis of Turkish Case System. *Proceedings of the 6th Workshop on Turkic and languages in contact with Turkic.* <span class="paper-links">[<a href="https://journals.linguisticsociety.org/proceedings/index.php/tu/article/view/5051" target="_blank" title="Link">link</a>] [<a href="https://doi.org/10.3765/ptu.v6i1.5051" target="_blank" title="DOI">doi</a>]</span></span>
+</div>
 
-
-## Semantics
-With [Omer Demirok][od]{target="_blank"}, we investigated how hypothetical comparions are formed in Turkish. _-mışcasına_ is licensed with gradable adjectives but not with non-gradable ones. We took this to suggest that its semantics involves comparison of degrees. We pursued a previously uncharted route: HCM constructions in Turkish compare degrees, not eventualities. Our analysis is sensitive to the semantic difference between OPEN and CLOSE scale adjectives that are independently justified.
-
-I am currently interested in how pragmatic reality is structured in natural language such as personal experiences, interpretation of indefinite nouns, and justified beliefs. To investigate these topics, I use data from de re/de dicto and acquaintance inference literature.
-
-**Selected output**  
-**Türk, U.**, Demirok, Ö. (2021). [Hypothetical Comparison in Turkish](https://journals.linguisticsociety.org/proceedings/index.php/tu/article/view/5054{target="_blank"}). *Proceedings of the 6th Workshop on Turkic and languages in contact with Turkic.* DOI: [10.3765/ptu.v6i1.5054](https://doi.org/10.3765/ptu.v6i1.5054){target="_blank"}
-
+<div class="ref-item topic-morphology">
+<span class="ref-text">**Türk, U.** (2020). Tackling the Augmentative Puzzle in Turkish. *Proceedings of the 5th Workshop on Turkic and languages in contact with Turkic.* <span class="paper-links">[<a href="https://journals.linguisticsociety.org/proceedings/index.php/tu/article/view/4771" target="_blank" title="Link">link</a>] [<a href="https://doi.org/10.3765/ptu.v5i1.4771" target="_blank" title="DOI">doi</a>]</span></span>
+</div>
+:::
 :::
 
+::: {.research-topic .topic-semantics}
+### Semantics
+With [Omer Demirok][od]{target="_blank"}, we investigated how hypothetical comparions are formed in Turkish. _-mışcasına_ is licensed with gradable adjectives but not with non-gradable ones. We took this to suggest that its semantics involves comparison of degrees. We pursued a previously uncharted route: HCM constructions in Turkish compare degrees, not eventualities. Our analysis is sensitive to the semantic difference between OPEN and CLOSE scale adjectives that are independently justified.
 
-## Computing Stack
+Recently, with [Aron Hirsch][ah]{target="_blank"}, I started working on the semantics of polar questions and question particles. We investigate how scope rigidity interacts with focus sensitive question particles and syntactic alternatives in Turkish.
 
-- R — *brms, ggplot2, dplyr, cmdstanr, purrr*
-- Python — *PyMC3, pyro, seaborn, pandas*
-- Scientific reporting — *LaTeX, Rmarkdown, Quarto, knitr*
-- Web development — *HTML/CSS/JS, D3, dc.js, crossfilter*
-- Experiment deployment — *IbexFarm, PcIbex, psychopy, jsPsych, opensesame*
-- Linux — *Git, bash/zsh, torque*
-- Containers — *docker, renv.*
+I am also interested in how pragmatic reality is structured in natural language such as personal experiences, interpretation of indefinite nouns, and justified beliefs. To investigate these topics, I use data from de re/de dicto and acquaintance inference literature.
+
+::: {.selected-output}
+**Selected Output**
+
+<div class="ref-item topic-semantics">
+<span class="ref-text">**Türk, U.**, Demirok, Ö. (2021). Hypothetical Comparison in Turkish. *Proceedings of the 6th Workshop on Turkic and languages in contact with Turkic.* <span class="paper-links">[<a href="https://journals.linguisticsociety.org/proceedings/index.php/tu/article/view/5054" target="_blank" title="Link">link</a>] [<a href="https://doi.org/10.3765/ptu.v6i1.5054" target="_blank" title="DOI">doi</a>]</span></span>
+</div>
+
+<div class="ref-item topic-semantics">
+<span class="ref-text">**Türk, U.**, Hirsch, A. (2025). Towards a theory of scope rigidity: A case of focus sensitive question particles. *Proceedings of TU+10*.</span>
+</div>
+
+<div class="ref-item topic-semantics">
+<span class="ref-text">**Türk, U.**, Hirsch, A. (2025). Syntactic alternatives in Turkish polar questions. *Proceedings of PLC 49*.</span>
+</div>
+:::
+:::
+
+# Computing Stack
+
+::: {.skill-cloud}
+<div>
+<span class="skill-category">R</span>
+<span class="skill-tag">brms</span> <span class="skill-tag">ggplot2</span> <span class="skill-tag">dplyr</span> <span class="skill-tag">cmdstanr</span> <span class="skill-tag">purrr</span>
+</div>
+<div>
+<span class="skill-category">Python</span>
+<span class="skill-tag">PyMC3</span> <span class="skill-tag">pyro</span> <span class="skill-tag">seaborn</span> <span class="skill-tag">pandas</span>
+</div>
+<div>
+<span class="skill-category">Scientific Reporting</span>
+<span class="skill-tag">LaTeX</span> <span class="skill-tag">Rmarkdown</span> <span class="skill-tag">Quarto</span> <span class="skill-tag">knitr</span>
+</div>
+<div>
+<span class="skill-category">Web Dev</span>
+<span class="skill-tag">HTML/CSS/JS</span> <span class="skill-tag">D3</span> <span class="skill-tag">dc.js</span> <span class="skill-tag">crossfilter</span>
+</div>
+<div>
+<span class="skill-category">Experiments</span>
+<span class="skill-tag">IbexFarm</span> <span class="skill-tag">PcIbex</span> <span class="skill-tag">psychopy</span> <span class="skill-tag">jsPsych</span> <span class="skill-tag">opensesame</span>
+</div>
+<div>
+<span class="skill-category">Linux</span>
+<span class="skill-tag">Git</span> <span class="skill-tag">bash/zsh</span> <span class="skill-tag">torque</span>
+</div>
+<div>
+<span class="skill-category">Containers</span>
+<span class="skill-tag">docker</span> <span class="skill-tag">renv</span>
+</div>
+:::
 
 
 [pavel]: https://plogacev.github.io  
@@ -104,4 +190,5 @@ I am currently interested in how pragmatic reality is structured in natural lang
 [ao]: https://www.cmpe.boun.edu.tr/~ozgur/  
 [tg]: https://www.cmpe.boun.edu.tr/~gungort/  
 [ks]: https://boun.academia.edu/KonstantinosSampanis  
-[od]: https://omerdemirok.com/  
+[od]: https://omerdemirok.com/
+[ah]: https://aronhirsch.com/

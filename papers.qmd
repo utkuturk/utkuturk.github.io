@@ -1,8 +1,21 @@
 ---
 title: ""
 comments: false
+sidebar: false
 ---
 
+
+::: {.legend-box}
+**Legend:**
+<span class="legend-item" data-topic="topic-processing"><span class="legend-color topic-processing"></span>Processing</span>
+<span class="legend-item" data-topic="topic-semantics"><span class="legend-color topic-semantics"></span>Semantics</span>
+<span class="legend-item" data-topic="topic-morphology"><span class="legend-color topic-morphology"></span>Morphology</span>
+<span class="legend-item" data-topic="topic-phonology"><span class="legend-color topic-phonology"></span>Phonology</span>
+<span class="legend-item" data-topic="topic-syntax"><span class="legend-color topic-syntax"></span>Syntax</span>
+<span class="legend-item" data-topic="topic-resource"><span class="legend-color topic-resource"></span>Resources</span>
+:::
+
+<script src="/files/filter.js"></script>
 
 ```{r}
 #| echo: false
@@ -19,12 +32,16 @@ nz <- function(x) !is.null(x) && x != ""
 # formatters per type
 fmt_common_links <- function(x) {
   links <- c()
-  if (nz(x$doi))      links <- c(links, sprintf('<a href="https://doi.org/%s" target="_blank">[DOI]</a>', x$doi))
-  if (nz(x$url))      links <- c(links, sprintf('<a href="%s" target="_blank">[link]</a>', x$url))
-  if (nz(x$preprint)) links <- c(links, sprintf('<a href="%s" target="_blank">[preprint]</a>', x$preprint))
-  if (nz(x$pdf))      links <- c(links, sprintf('<a href="%s" target="_blank">[PDF]</a>', x$pdf))
-  if (nz(x$repo))     links <- c(links, sprintf('<a href="%s" target="_blank">[repo]</a>', x$repo))
-  if (length(links)) paste(links, collapse=" ") else ""
+  if (nz(x$pdf))      links <- c(links, sprintf('[<a href="%s" target="_blank" title="Paper">pdf</a>]', x$pdf))
+  if (nz(x$preprint)) links <- c(links, sprintf('[<a href="%s" target="_blank" title="Preprint">preprint</a>]', x$preprint))
+  if (nz(x$url))      links <- c(links, sprintf('[<a href="%s" target="_blank" title="Link">link</a>]', x$url))
+  if (nz(x$doi))      links <- c(links, sprintf('[<a href="https://doi.org/%s" target="_blank" title="DOI">doi</a>]', x$doi))
+  if (nz(x$repo))     links <- c(links, sprintf('[<a href="%s" target="_blank" title="Code">code</a>]', x$repo))
+  # Handle non-standard keys by checking if they exist
+  if (nz(x$lingbuzz)) links <- c(links, sprintf('[<a href="%s" target="_blank" title="LingBuzz">lingbuzz</a>]', x$lingbuzz))
+  if (nz(x$psyarxiv)) links <- c(links, sprintf('[<a href="%s" target="_blank" title="PsyArXiv">psyarxiv</a>]', x$psyarxiv))
+  
+  if (length(links)) paste('<span class="paper-links">', paste(links, collapse=" "), '</span>') else ""
 }
 
 fmt_dissertation <- function(x){
@@ -54,8 +71,6 @@ fmt_article <- function(x){
   } else ""
 
   # base citation line:
-  # - if journal present: Authors (Year). Title. Journal, voliss, pages.
-  # - if journal missing: Authors (Year). Title. (status).  [no dangling punct]
   if (journal != "") {
     line <- sprintf(
       '%s (%s). <em>%s</em>. <strong>%s</strong>%s%s.',
@@ -63,21 +78,13 @@ fmt_article <- function(x){
       if (voliss != "") paste0(", ", voliss) else "",
       if (pages  != "") paste0(", ", pages)  else ""
     )
-    # append status if present (e.g., "in press")
     if (status != "") line <- paste0(line, " (", status, ").")
   } else {
-    # no journal: avoid empty <strong></strong>, show status instead if available
     line <- sprintf('%s (%s). <em>%s</em>.', authors, year, title)
     if (status != "") line <- paste0(line, " (", status, ").")
   }
 
-  # links
-  links <- c()
-  if (!is.null(x$doi)      && x$doi      != "") links <- c(links, sprintf('<a href="%s" target="_blank">[DOI]</a>', x$doi))
-  if (!is.null(x$preprint) && x$preprint != "") links <- c(links, sprintf('<a href="%s" target="_blank">[preprint]</a>', x$preprint))
-  if (!is.null(x$pdf)      && x$pdf      != "") links <- c(links, sprintf('<a href="%s" target="_blank">[PDF]</a>', x$pdf))
-
-  if (length(links)) paste(line, paste(links, collapse = " ")) else line
+  paste0(line, " ", fmt_common_links(x))
 }
 
 
@@ -86,7 +93,7 @@ fmt_chapter <- function(x){
 
   editors  <- x[["editors"]]
   ed_tag   <- if (nz(editors)) {
-    if (grepl("[,;]|\\band\\b", editors)) "eds." else "ed."
+    if (grepl("[,;]\\band\\b", editors)) "eds." else "ed."
   } else ""
   eds      <- if (nz(editors)) sprintf(" (%s %s)", ed_tag, editors) else ""
 
@@ -129,8 +136,10 @@ render_section <- function(items, formatter, heading){
   if (is.null(items) || !length(items)) return(invisible())
   cat(sprintf("\n\n## %s\n\n", heading))
   out <- vapply(seq_along(items), function(i){
-    html <- formatter(items[[i]])
-    sprintf('<div class="ref-item"><span class="ref-num">[%d]</span><span class="ref-text">%s</span></div>', i, html)
+    item <- items[[i]]
+    html <- formatter(item)
+    topic_cls <- if (nz(item$topic)) paste0("topic-", item$topic) else ""
+    sprintf('<div class="ref-item %s"><span class="ref-num">[%d]</span><span class="ref-text">%s</span></div>', topic_cls, i, html)
   }, character(1))
   cat(paste(out, collapse = "\n"))
 }

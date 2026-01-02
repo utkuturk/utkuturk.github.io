@@ -1,8 +1,9 @@
 ---
-title: "recent blog posts"
+pagetitle: "utku turk"
 page-layout: article
 title-block-banner: false
 comments: false
+sidebar: false
 
 listing:
   contents: posts
@@ -13,6 +14,70 @@ listing:
   filter-ui: false
   feed: true
 ---
+
+<style>
+/* Only on homepage: Push content down below Hero */
+#quarto-content {
+  margin-top: 100vh !important;
+}
+</style>
+
+<!-- Hero Section -->
+```{=html}
+<div class="hero-section">
+  <div class="hero-content">
+    <img src="/images/utkuturkumd.jpeg" class="hero-photo" alt="Utku Turk">
+    <h1>utku turk</h1>
+    <p class="hero-subtitle">
+      PhD Candidate, Linguistics @ UMD<br>
+    </p>
+    
+    <div class="hero-bio">
+      <p>
+        I’m a PhD candidate in Linguistics at the University of Maryland, working with <a href="https://www.ellenlau.net" target="_blank">Ellen Lau</a> and <a href="https://www.colinphillips.net" target="_blank">Colin Phillips</a>. My research investigates how different kinds of linguistic information—<strong>morphosyntactic structure</strong> and <strong>morphophonological form</strong>—are planned in production and retrieved during sentence processing, and how mismatches between them drive <strong>errors and create illusions</strong> in production and comprehension.
+      </p>
+      <p style="margin-top: 0.75rem; color: #555; font-size: 0.95em;">
+        Previously, I received my MA from Boğaziçi University (advisor: <a href="https://github.com/plogacev" target="_blank">Pavel Logačev</a>) and was a visiting researcher at Masaryk University (advisor: <a href="https://www.muni.cz/en/people/53172-pavel-caha" target="_blank">Pavel Caha</a>).
+      </p>
+      <p style="margin-top: 0.75rem; color: #777; font-size: 0.9em; font-style: italic;">
+        My favorite food is <em>gata</em> with <em>koritz</em> and my favorite icecream flavor is saffron and rose (5pm snack of Anthony Bourdain). In my freetime, I try to do some calligraphy.
+      </p>
+    </div>
+
+    <div class="hero-links">
+
+      <a href="research.qmd">research</a>
+      <a href="papers.qmd">papers</a>
+      <a href="talks.qmd">talks</a>
+      <a href="teaching.qmd">teaching</a>
+      <!-- Icons using academicons/bi classes directly -->
+      <a href="/files/cv.pdf" target="_blank" aria-label="CV"><i class="ai ai-cv"></i></a>
+      <a href="https://scholar.google.com/citations?hl=tr&user=wa7LG9gAAAAJ" target="_blank" aria-label="Google Scholar"><i class="ai ai-google-scholar"></i></a>
+      <a href="https://github.com/utkuturk" target="_blank" aria-label="GitHub"><i class="bi bi-github"></i></a>
+      <a href="https://twitter.com/UtkuTurkLing" target="_blank" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
+      <a href="https://bsky.app/profile/utkuturk.com" target="_blank" aria-label="Bluesky"><i class="bi bi-flower3"></i></a>
+    </div>
+    <div class="hero-email-link" style="margin-top: -1.5rem; margin-bottom: 2rem;">
+      <a href="mailto:utkuturk@umd.edu" style="color: #555; text-decoration: underline; text-underline-offset: 4px;">utkuturk@umd.edu</a>
+    </div>
+    
+    <div class="hero-scroll-down">
+      <span>blog posts</span>
+      <i class="bi bi-chevron-down"></i>
+    </div>
+  </div>
+</div>
+```
+
+<!-- Hidden shortcodes to force Quarto to load Academicons CSS -->
+<div style="display: none;">
+  {{< ai cv >}}
+  {{< ai google-scholar >}}
+  {{< ai orcid >}}
+</div>
+
+<div class="main-content-wrapper">
+
 
 ::: {.about-bio}
 
@@ -42,3 +107,7 @@ visiting researcher at Masaryk (with <a href = "https://www.muni.cz/en/people/53
 
 [More →](/news/){.sidebar-news__more}
 :::
+
+</div>
+
+<script src="/files/hero-scroll.js"></script>

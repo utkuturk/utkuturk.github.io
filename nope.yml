@@ -6,7 +6,8 @@ project:
 website:
   title: "utku turk"
   site-url: https://www.utkuturk.com
-  margin-header: subscribe.html
+
+
   comments:
     giscus:
       repo: utkuturk/newwebsite
@@ -18,6 +19,13 @@ website:
       loading: lazy
       input-position: top
       theme: noborder_light
+
+
+
+
+
+
+
   sidebar:
     alignment: center
     style: floating
@@ -53,10 +61,6 @@ website:
             </ul>
             <a class="sidebar-news__more" href="/news/">More →</a>
           </div>
-
-
-
-
 
   navbar:
     pinned: true

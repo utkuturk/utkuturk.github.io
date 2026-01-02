@@ -1,7 +1,8 @@
 
 conferences:
     - title: Syntactic alternatives in Turkish polar questions
-      author: "**Turk, U., Aron, H.**"
+      author: "**Turk, U., Hirsch, A.**"
+      topic: "semantics"
       conf: "PLC 49: The Penn Linguistics Conference"
       year:    2025
       month: April
@@ -10,6 +11,7 @@ conferences:
       abs:     /files/abstracts/TurkHirschPLC2025.pdf
     - title: Turkish register manipulation eliminates grammaticality asymmetry in attraction and challenges retrieval based accounts
       author: "**Turk, U.**"
+      topic: "processing"
       conf: "HSP 2025: Human Sentence Processing"
       year:    2025
       month: March
@@ -19,6 +21,7 @@ conferences:
       slide: /files/slides/hsp2025.pdf
     - title: Register modulates grammaticality asymmetry in Turkish agreement attraction
       author: "**Turk, U.**"
+      topic: "processing"
       conf: "the 10th Workshop on Turkic and languages in contact with Turkic"
       year:    2025
       month: March
@@ -27,6 +30,7 @@ conferences:
       abs:     /files/abstracts/TurkTU2025.pdf
     - title: Turkish allows covert scrambling
       author: "**Turk, U., Hirsch, A.**"
+      topic: "semantics"
       conf: "the 10th Workshop on Turkic and languages in contact with Turkic"
       year:    2025
       month: March
@@ -35,6 +39,7 @@ conferences:
       abs:     /files/abstracts/TurkHirschTU2025.pdf
     - title: "Superiority Effects with Wh-Adjuncts in Turkish"
       author: "Lewis, S., **Turk, U.**"
+      topic: "syntax"
       conf: "LSA 2025: Linguistic Society of America"
       place: "Philadelphia, PA, USA"
       month: January
@@ -43,6 +48,7 @@ conferences:
       slide: /files/slides/LewisTurkLSA.pdf
     - title: "When do we plan agreement in our speech: Case from agreement attraction in unaccusatives"
       author: "**Turk, U.**, Lau, E., Phillips, C."
+      topic: "processing"
       conf: "Puzzles of Agreement:Syntactic, Semantic, and Psycholinguistic Perspectives"
       month: October
       year: 2024
@@ -51,6 +57,7 @@ conferences:
       slide: /files/slides/Turketal-puzzles.pdf
     - title: Speech timing evidence on the (in)dependence of root and inflection access in production
       author: "**Turk, U.**, Phillips, C."
+      topic: "processing"
       conf: Human Sentence Processing 2024
       month: "May"
       year: 2024
@@ -58,6 +65,7 @@ conferences:
       abs:     /files/abstracts/hsp-2024-agree.pdf
     - title: "Is the octopus regenerating?: Comparing timing effects in sentence recall and picture description tasks"
       author: "Dods, A., Macdonald, A., **Turk, U.**, Mancha, S., Phillips, C."
+      topic: "processing"
       conf: Human Sentence Processing 2024
       month: "May"
       year: 2024
@@ -65,6 +73,7 @@ conferences:
       abs:     /files/abstracts/hsp-2024-task.pdf
     - title: Novel analysis of response bias challenges representational accounts in attraction
       author: "**Turk, U.**, Logacev, P."
+      topic: "processing"
       conf: Human Sentence Processing 2023
       month: "March"
       year: 2023
@@ -72,6 +81,7 @@ conferences:
       abs:     /files/abstracts/hsp-2023-bias.pdf
     - title: Obviation Problem in Turkish
       author: "**Turk, U.**"
+      topic: "syntax"
       conf: "the 8th Workshop on Turkic and languages in contact with Turkic"
       year:    2023
       month: March
@@ -80,6 +90,7 @@ conferences:
       abs:     /files/abstracts/obviation2023.pdf
     - title:   "Defining borrowing hierarchies in the light of sociolinguistic and geodemographic causation: contact-induced morphosyntactic change in Asia Minor Greek"
       author:  Sampanis, K., **Turk, U.**
+      topic: "phonology"
       conf:    "54th Annual Meeting of the Societas Linguistica Europaea"
       month:   "September"
       year:    2021
@@ -87,6 +98,7 @@ conferences:
       istalk: TRUE
     - title:   Response Bias Manipulation in Turkish Agreement Attraction
       author:  "**Turk, U.**, Logacev, P."
+      topic: "processing"
       conf:    "AMLaP 2021: Architectures and Mechanisms for Language Processing"
       year:    2021
       month: "September"
@@ -97,6 +109,7 @@ conferences:
       slide:   /files/slides/AMLAP_2021-bias.pdf
     - title:   Effects of Vowel Characteristics in Suspended Affixation with Root Allomorphy
       author:  "**Turk, U.**"
+      topic: "morphology"
       conf:    "AMLaP 2021: Architectures and Mechanisms for Language Processing"
       year:    2021
       month: September
@@ -107,6 +120,7 @@ conferences:
       slide:   /files/slides/AMLAP_2021-vh.pdf
     - title:   "The more the merrier: a new dependency treebank for Turkish"
       author:  "**Turk, U.**, Atmaca, F., Özateş, Ş. B., Berk, G., Bedir, S. T., Köksal, A., ÖzTurk Başaran, B., Güngör, T., Özgür, A."
+      topic: "resource"
       conf:    "the 20th International Conference on Turkish Linguistics"
       year:    2021
       month: August
@@ -115,6 +129,7 @@ conferences:
       istalk: TRUE
     - title:   "The phonological nature of the Turkish front glide"
       author:  "Canalis, S., Özdemir, S., **Turk, U.**, Tunçer, Ü.C."
+      topic: "phonology"
       conf:    "the 20th International Conference on Turkish Linguistics"
       year:    2021
       month: August
@@ -123,6 +138,7 @@ conferences:
       istalk: TRUE
     - title:   Hypothetical Comparison in Turkish
       author:  "**Turk, U.**, Demirok, Ö."
+      topic: "semantics"
       conf:    "the 45th Penn Linguistics Conference"
       year:    2021
       month: March
@@ -133,6 +149,7 @@ conferences:
       ho:      /files/handouts/hypocomparison2021.pdf
     - title:   Hypothetical Comparison in Turkish
       author:  "**Turk, U.**, Demirok, Ö."
+      topic: "semantics"
       conf:    "the 6th Workshop on Turkic and languages in contact with Turkic"
       year:    2021
       month: February
@@ -143,6 +160,7 @@ conferences:
       ho:      /files/handouts/hypocomparison2021.pdf
     - title:   Nanosyntactic Analysis of Turkish Cases
       author:  "**Turk, U.**, Caha, P."
+      topic: "morphology"
       conf:    "the 6th Workshop on Turkic and languages in contact with Turkic"
       year:    2021
       month: February
@@ -153,6 +171,7 @@ conferences:
       ho:      /files/handouts/nanocase2021.pdf
     - title:   When vowel harmony has a say in morpho-syntax
       author:  "**Turk, U.**"
+      topic: "phonology"
       conf:    "ConSOLE29: the 29th Conference of the Student Organization of Linguistics in Europe"
       year:    2021
       month: January
@@ -163,6 +182,7 @@ conferences:
       slide:   /files/slides/vh_suspaffix.pdf
     - title:   When glides are obstruents, or Turkish [j]
       author:  "Canalis, S., Özdemir, S., **Turk, U.**, Tunçer, Ü.C."
+      topic: "phonology"
       conf:    "the 18th Old World Phonology Conference"
       year:    2021
       month: January
@@ -173,6 +193,7 @@ conferences:
       slide:   /files/slides/glidesocp.pdf
     - title:   First steps towards Universal Dependencies for Laz
       author:  "**Turk, U.**, Bayar, K., Özercan, A.D., Özateş, Ş.B."
+      topic: "resource"
       conf:    the 4th Universal Dependencies Workshop, COLING 2020
       year:    2020
       month: December
@@ -181,6 +202,7 @@ conferences:
       isvirtual: TRUE
     - title:   The role of shallow processing in agreement attraction
       author:  "**Turk, U.**, Logacev, P."
+      topic: "processing"
       conf:    the 33rd annual CUNY Sentence Processing Conference
       year:    2020
       month: February
@@ -190,6 +212,7 @@ conferences:
       abs:     /files/abstracts/cuny_shallow.pdf
     - title:   The role of shallow processing in agreement attraction
       author:  "**Turk, U.**, Logacev, P."
+      topic: "processing"
       conf:    "Linguistic Evidence: Linguistic Theory Enriched by Experimental Data"
       year:    2020
       month: February
@@ -198,6 +221,7 @@ conferences:
       abs:     /files/abstracts/le2020_shallow.pdf
     - title:   An investigation into the nature of Turkish glide [j]
       author:  "Özdemir, S., **Turk, U.**"
+      topic: "phonology"
       conf:    "the 5th Workshop on Turkic and languages in contact with Turkic"
       year:    2020
       month: February
@@ -206,6 +230,7 @@ conferences:
       abs:     /files/abstracts/glide2020.pdf
     - title:   Tackling the augmentative puzzle in Turkish
       author:  "**Turk, U.**"
+      topic: "morphology"
       conf:    "the 5th Workshop on Turkic and languages in contact with Turkic"
       year:    2020
       month: February
@@ -214,6 +239,7 @@ conferences:
       abs:     /files/abstracts/augmentative_tuplus.pdf
     - title:   Improving the annotations in the Turkish Universal Dependency Treebank
       author:  "**Turk, U.**, Atmaca, F., Özateş, Ş.B., ÖzTurk, B., Güngör, T., Özgür A."
+      topic: "resource"
       conf:    the 3rd Universal Dependencies Workshop, SyntaxFest2019
       year:    2019
       month: August
@@ -221,6 +247,7 @@ conferences:
       place:   "Sorbonne Université: Paris, France"
     - title:   'Turkish Treebanking: Unifying and Constructiong Efforts'
       author:  "**Turk, U.**, Atmaca, F., Özateş, Ş.B., ÖzTurk, B., Güngör, T., Özgür A."
+      topic: "resource"
       conf:    the 13th Linguistic Annotation Workshop, ACL 2019
       year:    2019
       isposter: TRUE
@@ -228,6 +255,7 @@ conferences:
       place:   Florence, Italy
     - title:   Decomposing Turkish Augmentatives
       author:  "**Turk, U.**"
+      topic: "morphology"
       conf:    the 16th Workshop on Syntax, Semantics, and Phonology
       year:    2019
       month: June
@@ -235,6 +263,7 @@ conferences:
       place:   "Universidad Complutense de Madrid: Madrid, Spain"
     - title:   "Nanosyntax of Augmentative in Turkish: Interfix Analysis"
       author:  "**Turk, U.**"
+      topic: "morphology"
       conf:    "AIMM 4: the 4th American International Morphology Meeting"
       year:    2019
       month: May
@@ -242,6 +271,7 @@ conferences:
       isposter: TRUE
     - title:   "Obligatory Adjuncts within Turkish Impersonals"
       author:  "**Turk, U.**, Dikmen, F."
+      topic: "syntax"
       conf:    "the 13th Linguistics Student Conference"
       year:    2019
       month: April

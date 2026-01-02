@@ -3,7 +3,7 @@ title: "what might they really mean when they say 'but it's not grammatical to m
 author: "Utku Türk"
 description: "on why that phrase is usually unhelpful and attempt to be a charitable"
 date: 2025-12-15
-categories: [linguistics, judgment, Turkish]
+categories: [linguistics, commentary]
 fig-align: "center"
 execute:
   echo: false

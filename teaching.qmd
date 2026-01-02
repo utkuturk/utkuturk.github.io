@@ -1,6 +1,7 @@
 ---
 title: ""
 comments: false
+sidebar: false
 ---
 
 ```{r}

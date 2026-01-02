@@ -1,9 +1,20 @@
 ---
 title: ""
 comments: false
+sidebar: false
 ---
 
-## Conference Poster & Talks
+::: {.legend-box}
+**Legend:**
+<span class="legend-item" data-topic="topic-processing"><span class="legend-color topic-processing"></span>Processing</span>
+<span class="legend-item" data-topic="topic-semantics"><span class="legend-color topic-semantics"></span>Semantics</span>
+<span class="legend-item" data-topic="topic-morphology"><span class="legend-color topic-morphology"></span>Morphology</span>
+<span class="legend-item" data-topic="topic-phonology"><span class="legend-color topic-phonology"></span>Phonology</span>
+<span class="legend-item" data-topic="topic-syntax"><span class="legend-color topic-syntax"></span>Syntax</span>
+<span class="legend-item" data-topic="topic-resource"><span class="legend-color topic-resource"></span>Resources</span>
+:::
+
+<script src="/files/filter.js"></script>
 
 ```{r}
 #| echo: false
@@ -16,69 +27,154 @@ library(yaml)
 
 # --- helpers ----
 nz <- function(x, default = "") {
-  if (is.null(x) || length(x) == 0 || (is.character(x) && identical(x, ""))) default else x
+    if (is.null(x) || length(x) == 0 || (is.character(x) && identical(x, ""))) {
+        default
+    } else {
+        x
+    }
 }
 is_true <- function(x) {
-  isTRUE(x) || identical(tolower(as.character(x)), "true") ||
-    identical(tolower(as.character(x)), "yes") || identical(x, 1)
+    isTRUE(x) ||
+        identical(tolower(as.character(x)), "true") ||
+        identical(tolower(as.character(x)), "yes") ||
+        identical(x, 1)
 }
+
 
 # --- read yaml ----
 cv <- yaml::read_yaml("_data/talks.yaml")
 conferences <- cv$conferences
 
+# --- separate lists ---
+talks_list <- Filter(function(x) is_true(x$istalk), conferences)
+posters_list <- Filter(function(x) is_true(x$isposter), conferences)
+
 format_conference <- function(talk) {
-  author <- nz(talk$author)
-  year   <- nz(talk$year)
-  month  <- nz(talk$month)
-  title  <- nz(talk$title)
-  conf   <- nz(talk$conf)
-  place  <- nz(talk$place)
+    author <- nz(talk$author)
+    year <- nz(talk$year)
+    month <- nz(talk$month)
+    title <- nz(talk$title)
+    conf <- nz(talk$conf)
+    place <- nz(talk$place)
 
-  # date part: (YEAR, MONTH) or just (YEAR)
-  date_part <- if (month != "") sprintf("(%s, %s).", year, month) else sprintf("(%s).", year)
+    # date part: (YEAR, MONTH) or just (YEAR)
+    date_part <- if (month != "") {
+        sprintf("(%s, %s).", year, month)
+    } else {
+        sprintf("(%s).", year)
+    }
 
-  # core line
-  line <- sprintf('%s %s <em>%s</em>.', author, date_part, title)
+    # core line
+    line <- sprintf('%s %s <em>%s</em>.', author, date_part, title)
 
-  if (is_true(talk$isposter)) {
-    line <- paste0(
-      line, " Poster presented ",
-      if (is_true(talk$isvirtual)) "(virtually) " else "",
-      "at ", conf, "."
-    )
-  }
-  if (is_true(talk$istalk)) {
-    line <- paste0(
-      line, " Talk given ",
-      if (is_true(talk$isvirtual)) "(virtually) " else "",
-      "at ", conf, "."
-    )
-  }
-  if (place != "") line <- paste0(line, " ", place, ".")
+    if (is_true(talk$isposter)) {
+        line <- paste0(
+            line,
+            " Poster presented ",
+            if (is_true(talk$isvirtual)) "(virtually) " else "",
+            "at ",
+            conf,
+            "."
+        )
+    } else if (is_true(talk$istalk)) {
+        line <- paste0(
+            line,
+            " Talk given ",
+            if (is_true(talk$isvirtual)) "(virtually) " else "",
+            "at ",
+            conf,
+            "."
+        )
+    }
 
-  # links
-  links <- c()
-  if (!is.null(talk$abs)    && talk$abs    != "") links <- c(links, sprintf('<a href="%s" target="_blank">[abstract]</a>', talk$abs))
-  if (!is.null(talk$ho)     && talk$ho     != "") links <- c(links, sprintf('<a href="%s" target="_blank">[handout]</a>', talk$ho))
-  if (!is.null(talk$slide)  && talk$slide  != "") links <- c(links, sprintf('<a href="%s" target="_blank">[slides]</a>', talk$slide))
-  if (!is.null(talk$poster) && talk$poster != "") links <- c(links, sprintf('<a href="%s" target="_blank">[poster]</a>', talk$poster))
+    if (place != "") {
+        line <- paste0(line, " ", place, ".")
+    }
 
-  if (length(links) > 0) line <- paste(line, paste(links, collapse = " "))
+    # links
+    links <- c()
+    if (!is.null(talk$abs) && talk$abs != "") {
+        links <- c(
+            links,
+            sprintf(
+                '[<a href="%s" target="_blank" title="Abstract">abstract</a>]',
+                talk$abs
+            )
+        )
+    }
+    if (!is.null(talk$ho) && talk$ho != "") {
+        links <- c(
+            links,
+            sprintf(
+                '[<a href="%s" target="_blank" title="Handout">handout</a>]',
+                talk$ho
+            )
+        )
+    }
+    if (!is.null(talk$slide) && talk$slide != "") {
+        links <- c(
+            links,
+            sprintf(
+                '[<a href="%s" target="_blank" title="Slides">slides</a>]',
+                talk$slide
+            )
+        )
+    }
+    if (!is.null(talk$poster) && talk$poster != "") {
+        links <- c(
+            links,
+            sprintf(
+                '[<a href="%s" target="_blank" title="Poster">poster</a>]',
+                talk$poster
+            )
+        )
+    }
 
-  line
+    if (length(links) > 0) {
+        line <- paste(
+            line,
+            paste(
+                '<span class="paper-links">',
+                paste(links, collapse = " "),
+                '</span>'
+            )
+        )
+    }
+
+    line
 }
 
-# build HTML with classes for styling
-out <- vapply(seq_along(conferences), function(i) {
-  item <- format_conference(conferences[[i]])
-  sprintf(
-    '<div class="ref-item"><span class="ref-num">[%d]</span><span class="ref-text">%s</span></div>',
-    i, item
-  )
-}, character(1))
+render_list <- function(items) {
+    if (length(items) == 0) {
+        return("")
+    }
+    vapply(
+        seq_along(items),
+        function(i) {
+            talk <- items[[i]]
+            item <- format_conference(talk)
+            topic_cls <- if (nz(talk$topic) != "") {
+                paste0("topic-", talk$topic)
+            } else {
+                ""
+            }
+            sprintf(
+                '<div class="ref-item %s"><span class="ref-num">[%d]</span><span class="ref-text">%s</span></div>',
+                topic_cls,
+                i,
+                item
+            )
+        },
+        character(1)
+    )
+}
 
-cat(paste(out, collapse = "\n"))
+cat("\n## Talks\n\n")
+cat(paste(render_list(talks_list), collapse = "\n"))
+
+cat("\n\n## Posters\n\n")
+cat(paste(render_list(posters_list), collapse = "\n"))
+
 ```
 
 ## Invited & Internal Talks

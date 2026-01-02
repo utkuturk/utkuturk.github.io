@@ -2,7 +2,7 @@
 title: "agreement attraction in turkish"
 author: Utku Turk
 date: "2022-08-20"
-categories: [linguistics, dissertation, agreement attraction]
+categories: [linguistics, dissertation, turkish, agreement attraction]
 description: attraction in turkish seems to be modulated by bias, register, task details, but not morpology
 image: ./exp3_bias_our.png
 aliases:
