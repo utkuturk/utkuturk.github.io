@@ -15,7 +15,7 @@ sidebar: false
 <span class="legend-item" data-topic="topic-resource"><span class="legend-color topic-resource"></span>Resources</span>
 :::
 
-<script src="/files/filter.js"></script>
+<script src="/files/filter-v1.js"></script>
 
 ```{r}
 #| echo: false

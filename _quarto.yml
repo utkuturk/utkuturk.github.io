@@ -78,6 +78,6 @@ format:
         #   - darkly
         #   - brand
         #   - theme.scss
-    css: styles.css
+    css: styles-v1.css
 metadata-files:
   - fragments/align-bar.yml
