@@ -2,7 +2,10 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/clip/clip_analysis.html",
       "/posts/generate-items/index.html",
+      "/posts/clip/index.html",
+      "/posts/clip/index2.html",
       "/posts/futileness-of-judgments/index.html",
       "/posts/aws-s3-pcibex/index.html",
       "/posts/misunderstanding-kate/index.html",

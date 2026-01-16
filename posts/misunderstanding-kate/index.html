@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -205,6 +240,50 @@ ul.task-list li input[type="checkbox"] {
 <p>The traditional view has been “yes.” If an alternation applies freely, that’s phonology. If it’s tied to a particular morpheme, that’s phonology too, just gated by a diacritic, indexed constraint, or cyclic ranking. The assumption is that the underlying machinery is the same; what differs is timing and scope.</p>
 <p>Kate pushed back. She focused on vowel harmony versus vowel co-articulation. Zsiga had already argued these belong to different representational domains—rules vs gestures—but Kate sharpened the contrast. Vowel harmony: categorical, typologically robust, governed by rules. Vowel coarticulation: gradient, gestural blending, and crucially never morphologically restricted. That asymmetry, she argued, is real. If you try to collapse the two into one “uniform phonology,” you erase those typological gaps.</p>
 <div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>grid <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"Categorical"</span>,<span class="st">"Categorical"</span>,<span class="st">"Gradient"</span>,<span class="st">"Gradient"</span>),</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Categorical"</span>,<span class="st">"Gradient"</span>)),</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"Restricted"</span>,<span class="st">"Unrestricted"</span>,<span class="st">"Restricted"</span>,<span class="st">"Unrestricted"</span>),</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>             <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Restricted"</span>,<span class="st">"Unrestricted"</span>)),</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">box =</span> <span class="fu">c</span>(<span class="st">"Phonology"</span>, <span class="st">"—"</span>, <span class="st">"Empty (predicted)"</span>, <span class="st">"Phonetics"</span>),</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">note =</span> <span class="fu">c</span>(<span class="st">"e.g., vowel harmony,</span><span class="sc">\n</span><span class="st">morph. alternations"</span>,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>           <span class="st">""</span>,</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>           <span class="st">"“No coarticulation</span><span class="sc">\n</span><span class="st">restricted by morphology”"</span>,</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>           <span class="st">"e.g., coarticulation"</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># numeric positions for highlighting the lower-left tile cleanly</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>grid_num <span class="ot">&lt;-</span> grid <span class="sc">%&gt;%</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">xn =</span> <span class="fu">as.numeric</span>(x), <span class="at">yn =</span> <span class="fu">as.numeric</span>(y))</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>gg <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(grid, <span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># tiles and borders</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="at">fill =</span> <span class="st">"grey95"</span>, <span class="at">color =</span> <span class="st">"grey40"</span>, <span class="at">linewidth =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="co"># red outline around Gradient + Restricted (predicted empty)</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_rect</span>(</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> <span class="fu">filter</span>(grid_num, x <span class="sc">==</span> <span class="st">"Gradient"</span>, y <span class="sc">==</span> <span class="st">"Restricted"</span>),</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">xmin =</span> xn <span class="sc">-</span> <span class="fl">0.5</span>, <span class="at">xmax =</span> xn <span class="sc">+</span> <span class="fl">0.5</span>, <span class="at">ymin =</span> yn <span class="sc">-</span> <span class="fl">0.5</span>, <span class="at">ymax =</span> yn <span class="sc">+</span> <span class="fl">0.5</span>),</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>, <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">color =</span> <span class="st">"#bb0000"</span>, <span class="at">linewidth =</span> <span class="dv">1</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  <span class="co"># main labels</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> box), <span class="at">fontface =</span> <span class="st">"bold"</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.2</span>, <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  <span class="co"># notes beneath each label</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> note), <span class="at">vjust =</span> <span class="fl">1.2</span>, <span class="at">lineheight =</span> <span class="fl">1.0</span>, <span class="at">size =</span> <span class="fl">3.2</span>) <span class="sc">+</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>  <span class="co"># put Restricted on top row for readability</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_discrete</span>(<span class="at">limits =</span> <span class="fu">rev</span>(<span class="fu">levels</span>(grid<span class="sc">$</span>y))) <span class="sc">+</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>)</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>gg</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div id="fig-typology-grid" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -225,8 +304,80 @@ Figure&nbsp;1: A schematic 2×2 for Kate’s asymmetry. The gradient+restricted 
 <p>But as Gawronski, Sherman &amp; Trope (2014) point out, dual-process theories only make progress if they meet a demanding set of conditions: they must specify what the two systems actually are (their operating principles), not just when they operate; they must define the boundaries of each system clearly; and they must generate empirical predictions that could, in principle, be falsified. Otherwise, they collapse into post-hoc labeling—System 1 when it’s effortless, System 2 when it’s not. While dual-process frameworks can be falsifiable in principle, they are often <em>practically unfalsifiable</em> because the internal ‘systems’ aren’t anchored to observable input–output relations. Almost any finding can be retrofitted: if an effect looks automatic, it’s assigned to System 1; if it’s resource-dependent, to System 2.</p>
 <p>That’s my main worry here. Dual-process models are a tempting last resort. They look tidy, but they often function as theories that can’t really lose—precisely the kind that Popper warned us about. John von Neumann put it bluntly: <em>“With four parameters I can fit an elephant, and with five I can make him wiggle his trunk.”</em> And if you add one more, you can even make him wink. There’s even an R implementation—the <a href="https://www.r-bloggers.com/2011/06/a-winking-pink-elephant/">winking pink elephant</a>—that literally draws and animates an elephant with just a handful of parameters. It’s cute, but it’s also the point: if your model is that flexible, fitting isn’t the same thing as explaining. (The original code is base R/MASS heavy, but you can rewrite it cleanly with <code>ggplot2</code> and <code>dplyr</code>.)</p>
 <div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># --- parameters (as in your code) ---</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>param  <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">50-30</span>i, <span class="dv">18</span><span class="sc">+</span><span class="dv">8</span>i, <span class="dv">12-10</span>i, <span class="sc">-</span><span class="dv">14-60</span>i, <span class="dv">1</span><span class="sc">+</span><span class="dv">20</span>i)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>parar  <span class="ot">&lt;-</span> param <span class="sc">*</span> <span class="fu">exp</span>(<span class="dv">1</span>i<span class="sc">*</span>pi<span class="sc">/</span><span class="dv">2</span>)                <span class="co"># rotate 90°</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>tv     <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">2</span><span class="sc">*</span>pi, <span class="at">length.out =</span> <span class="dv">1000</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Vectorized Fourier helper (same math as your recursive version)</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>fourier_vec <span class="ot">&lt;-</span> <span class="cf">function</span>(tt, cc) {</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">seq_along</span>(cc)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  cosmat <span class="ot">&lt;-</span> <span class="fu">cos</span>(<span class="fu">outer</span>(tt, n, <span class="st">`</span><span class="at">*</span><span class="st">`</span>))</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  sinmat <span class="ot">&lt;-</span> <span class="fu">sin</span>(<span class="fu">outer</span>(tt, n, <span class="st">`</span><span class="at">*</span><span class="st">`</span>))</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.vector</span>(cosmat <span class="sc">%*%</span> <span class="fu">Re</span>(cc) <span class="sc">+</span> sinmat <span class="sc">%*%</span> <span class="fu">Im</span>(cc))</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Build one frame</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>build_curve <span class="ot">&lt;-</span> <span class="cf">function</span>(i) {</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  Cx <span class="ot">&lt;-</span> <span class="fu">complex</span>(<span class="fu">length</span>(param))</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  Cy <span class="ot">&lt;-</span> <span class="fu">complex</span>(<span class="fu">length</span>(param))</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  Cx[<span class="dv">1</span>] <span class="ot">&lt;-</span> parar[<span class="dv">1</span>] <span class="sc">+</span> <span class="fu">Im</span>(param[<span class="dv">1</span>])</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  Cx[<span class="dv">2</span>] <span class="ot">&lt;-</span> parar[<span class="dv">2</span>] <span class="sc">+</span> <span class="fu">Im</span>(param[<span class="dv">2</span>])</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  Cx[<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="fu">Re</span>(param[<span class="dv">3</span>])</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  Cx[<span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="fu">Re</span>(param[<span class="dv">5</span>]) <span class="sc">-</span> (i<span class="dv">-1</span>)   <span class="co"># trunk wiggle</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  Cx[<span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="fu">Re</span>(param[<span class="dv">4</span>])</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  Cy[<span class="dv">1</span>] <span class="ot">&lt;-</span> param[<span class="dv">1</span>] <span class="sc">-</span> <span class="fu">Re</span>(param[<span class="dv">1</span>]) <span class="sc">+</span> <span class="fu">Im</span>(param[<span class="dv">4</span>])</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>  Cy[<span class="dv">2</span>] <span class="ot">&lt;-</span> param[<span class="dv">2</span>] <span class="sc">-</span> <span class="fu">Re</span>(param[<span class="dv">2</span>])</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>  Cy[<span class="dv">3</span>] <span class="ot">&lt;-</span> param[<span class="dv">3</span>] <span class="sc">-</span> <span class="fu">Re</span>(param[<span class="dv">3</span>])</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Cy[4:5] remain 0+0i (as in your code)</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">fourier_vec</span>(tv, Cx)</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="fu">fourier_vec</span>(tv, Cy)</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Base plot used: plot(y, -x, ...)</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">X =</span> y,</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">Y =</span> <span class="sc">-</span>x,</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">frame =</span> <span class="fu">factor</span>(i, <span class="at">levels =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"4 params"</span>,<span class="st">"5 params"</span>))</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>curves <span class="ot">&lt;-</span> <span class="fu">rbind</span>(<span class="fu">build_curve</span>(<span class="dv">1</span>), <span class="fu">build_curve</span>(<span class="dv">2</span>))</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Eye: pch=20 (filled) on frame 1, pch=126 ("~") on frame 2</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>eyes <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>  <span class="at">X =</span> <span class="fu">rep</span>(<span class="fu">Im</span>(param[<span class="dv">5</span>]), <span class="dv">2</span>),</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>  <span class="at">Y =</span> <span class="fu">rep</span>(<span class="fu">Im</span>(param[<span class="dv">5</span>]), <span class="dv">2</span>),</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>  <span class="at">frame =</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"4 params"</span>,<span class="st">"5 params"</span>), <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"4 params"</span>,<span class="st">"5 params"</span>)),</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>  <span class="at">shape =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">126</span>)</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(curves, <span class="fu">aes</span>(X, Y)) <span class="sc">+</span></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>  <span class="co"># thick red under-stroke</span></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>(<span class="fu">aes</span>(<span class="at">group =</span> frame), <span class="at">size =</span> <span class="fl">2.5</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>  <span class="co"># thinner pink over-stroke</span></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>(<span class="fu">aes</span>(<span class="at">group =</span> frame), <span class="at">size =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"pink"</span>) <span class="sc">+</span></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>  <span class="co"># eye (exact pch replication)</span></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> eyes, <span class="fu">aes</span>(<span class="at">shape =</span> shape), <span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape_identity</span>() <span class="sc">+</span></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> frame, <span class="at">nrow =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"x"</span>, <span class="at">y =</span> <span class="st">"y"</span>, <span class="at">title =</span> <span class="st">"Neumann's Elephant (ggplot)"</span>) <span class="sc">+</span></span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">13</span>)</span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>p_crop <span class="ot">&lt;-</span> p</span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>p_crop<span class="sc">$</span>layers <span class="ot">&lt;-</span> <span class="fu">Filter</span>(<span class="cf">function</span>(l) <span class="sc">!</span><span class="fu">inherits</span>(l<span class="sc">$</span>geom, <span class="st">"GeomPoint"</span>), p<span class="sc">$</span>layers)</span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>p_crop <span class="ot">&lt;-</span> p_crop <span class="sc">%+%</span> <span class="fu">subset</span>(curves, frame <span class="sc">==</span> <span class="st">"4 params"</span>) <span class="sc">+</span> <span class="fu">coord_fixed</span>() </span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"fourier_elephant.png"</span>, <span class="at">plot =</span> p_crop, <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="dv">4</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>p </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="fig-elephant" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Red–pink outline of an elephant drawn by a Fourier series, shown with axes.">
+<div id="fig-elephant" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Red–pink outline of an elephant drawn by a Fourier series, shown with axes." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-elephant-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="index_files/figure-html/fig-elephant-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Red–pink outline of an elephant drawn by a Fourier series, shown with axes.">

@@ -2,31 +2,39 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.utkuturk.com/index.html</loc>
-    <lastmod>2026-01-02T13:18:07.584Z</lastmod>
+    <lastmod>2026-01-09T21:09:59.413Z</lastmod>
   </url>
   <url>
     <loc>https://www.utkuturk.com/papers.html</loc>
     <lastmod>2026-01-02T13:38:05.101Z</lastmod>
   </url>
   <url>
-    <loc>https://www.utkuturk.com/posts/aws-s3-pcibex/index.html</loc>
-    <lastmod>2025-11-17T20:00:23.613Z</lastmod>
+    <loc>https://www.utkuturk.com/pwi.html</loc>
+    <lastmod>2026-01-16T05:20:18.353Z</lastmod>
   </url>
   <url>
-    <loc>https://www.utkuturk.com/posts/futileness-of-judgments/index.html</loc>
-    <lastmod>2025-12-17T07:49:01.574Z</lastmod>
+    <loc>https://www.utkuturk.com/posts/yaml-rnotebook/index.html</loc>
+    <lastmod>2025-10-14T16:00:26.251Z</lastmod>
   </url>
   <url>
-    <loc>https://www.utkuturk.com/posts/ma-thesis/index.html</loc>
-    <lastmod>2025-12-17T07:49:00.605Z</lastmod>
+    <loc>https://www.utkuturk.com/posts/as-if/index.html</loc>
+    <lastmod>2025-10-14T16:00:26.214Z</lastmod>
   </url>
   <url>
-    <loc>https://www.utkuturk.com/posts/generate-items/index.html</loc>
-    <lastmod>2025-12-17T20:46:06.041Z</lastmod>
+    <loc>https://www.utkuturk.com/posts/mfa/index.html</loc>
+    <lastmod>2025-12-17T07:48:59.517Z</lastmod>
   </url>
   <url>
-    <loc>https://www.utkuturk.com/posts/server-recordings/index.html</loc>
-    <lastmod>2025-12-17T07:48:58.328Z</lastmod>
+    <loc>https://www.utkuturk.com/posts/misunderstanding-kate/index.html</loc>
+    <lastmod>2025-10-31T13:37:18.023Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.utkuturk.com/posts/clip/clip_analysis.html</loc>
+    <lastmod>2026-01-15T20:17:51.216Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.utkuturk.com/posts/clip/index.html</loc>
+    <lastmod>2026-01-16T08:32:44.594Z</lastmod>
   </url>
   <url>
     <loc>https://www.utkuturk.com/research.html</loc>
@@ -45,20 +53,28 @@
     <lastmod>2025-10-14T16:00:26.216Z</lastmod>
   </url>
   <url>
-    <loc>https://www.utkuturk.com/posts/misunderstanding-kate/index.html</loc>
-    <lastmod>2025-10-31T13:37:18.023Z</lastmod>
+    <loc>https://www.utkuturk.com/posts/clip/index2.html</loc>
+    <lastmod>2026-01-16T08:17:02.475Z</lastmod>
   </url>
   <url>
-    <loc>https://www.utkuturk.com/posts/mfa/index.html</loc>
-    <lastmod>2025-12-17T07:48:59.517Z</lastmod>
+    <loc>https://www.utkuturk.com/posts/server-recordings/index.html</loc>
+    <lastmod>2025-12-17T07:48:58.328Z</lastmod>
   </url>
   <url>
-    <loc>https://www.utkuturk.com/posts/as-if/index.html</loc>
-    <lastmod>2025-10-14T16:00:26.214Z</lastmod>
+    <loc>https://www.utkuturk.com/posts/generate-items/index.html</loc>
+    <lastmod>2025-12-17T20:46:06.041Z</lastmod>
   </url>
   <url>
-    <loc>https://www.utkuturk.com/posts/yaml-rnotebook/index.html</loc>
-    <lastmod>2025-10-14T16:00:26.251Z</lastmod>
+    <loc>https://www.utkuturk.com/posts/ma-thesis/index.html</loc>
+    <lastmod>2025-12-17T07:49:00.605Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.utkuturk.com/posts/futileness-of-judgments/index.html</loc>
+    <lastmod>2025-12-17T07:49:01.574Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.utkuturk.com/posts/aws-s3-pcibex/index.html</loc>
+    <lastmod>2025-11-17T20:00:23.613Z</lastmod>
   </url>
   <url>
     <loc>https://www.utkuturk.com/talks.html</loc>
