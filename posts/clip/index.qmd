@@ -21,6 +21,7 @@ format:
 During my PhD, I've become fairly obsessed with production studies. I find them extremely interesting, especially the way they combine what we know from theoretical linguistics with creative experimental methods. Not to mention that the theoretical framing of production work is quite poor and the main theories used need a major overhaul. One of the most interesting papers in this area is Shota Momma's work on advanced verb planning. Similar work was also done in German and Basque by Sebastian Sauppe's group.
 
 Let me set the scene. He and his colleagues ran multiple picture description experiments where participants saw images like:
+
 - "The octopus below the spoon is swimming" (unergative)
 - "The octopus below the spoon is boiling" (unaccusative)
 
@@ -37,7 +38,7 @@ This post is built on a very specific worry: **What if unaccusative scenes thems
 
 This creates the following question: is it possible that participants, simply because the picture was more difficult to understand or the subject was more involved in the action, spent more time initially to either understand the event or to extract the subject from the event, and during this time a deterministic analysis of the written word kicked in and slowed them down when it was related? Since the unergative subjects are more easily dissociable from the event, since nothing is happening to them in those pictures, it takes less time, and since it's less of a resource-heavy process, no additional process interferes with it. This has several predictions. First, in follow-up experiments where the unergative pictures are hard to 'retrieve' from the scene, one should see similar onset effects. Second, if there is some sort of picture-difficulty metric, the advance planning should align with that metric item-wise.
 
-The second prediction is going to be the basis of this blog post, where we will find a way to quantify the picture difficulty. 
+The second prediction is going to be the basis of this blog post, where we will find a way to quantify the picture difficulty.^[This would not be possible without [Alper](https://aahmetoglu.com) teaching me about these models.] 
 
 ### I make assumptions
 
@@ -228,6 +229,7 @@ streamer = TextStreamer(tokenizer_vlm, skip_prompt=True)
 ## The Data Structure
 
 My experimental materials consist of 24 scenes:
+
 - 12 **unergative** scenes (swimming, running, barking, etc.)
 - 12 **unaccusative** scenes (boiling, shrinking, sinking, etc.)
 
