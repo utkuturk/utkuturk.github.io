@@ -4,6 +4,75 @@ This repository contains the source code for my personal website using [Quarto](
 
 Beyond the standard Quarto features, I have implemented several custom components to achieve a specific look and feel, including a "Hero" scroll effect, a content filtering system, and a custom blog listing style. Below is a guide on how these features work so you can adapt them for your own site.
 
+## Setup & Dependencies
+
+This project uses both Python and R, with dependency management handled by modern tools for reproducibility.
+
+### Python Dependencies (uv)
+
+The Python environment is managed using [uv](https://github.com/astral-sh/uv), a fast Python package installer and resolver.
+
+**Installation:**
+```bash
+# Install uv (if not already installed)
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Install all Python dependencies
+uv sync
+
+# Install OpenAI CLIP (required for CLIP-related posts)
+uv pip install git+https://github.com/openai/CLIP.git
+```
+
+**Running Python code:**
+```bash
+# Run a Python script with the project environment
+uv run python your_script.py
+
+# Activate the virtual environment manually
+source .venv/bin/activate  # On macOS/Linux
+```
+
+**Key Python packages:**
+- `torch` & `torchvision`: PyTorch for deep learning
+- `transformers`: Hugging Face transformers library
+- `clip`: OpenAI CLIP model (installed from GitHub)
+- `pandas`, `numpy`, `matplotlib`, `seaborn`: Data analysis and visualization
+- `pillow`: Image processing
+
+### R Dependencies (renv)
+
+The R environment is managed using [renv](https://rstudio.github.io/renv/) for reproducible R package management.
+
+**Installation:**
+```r
+# Install renv (if not already installed)
+install.packages("renv")
+
+# Restore all R dependencies from the lockfile
+renv::restore()
+```
+
+**Key R packages:**
+- `yaml`: Reading YAML data files
+- `knitr`, `rmarkdown`: Document rendering (used by Quarto)
+- Additional packages as needed for data processing
+
+### Quarto
+
+This site is built with [Quarto](https://quarto.org/). Make sure you have Quarto installed:
+
+```bash
+# Check Quarto version
+quarto --version
+
+# Render the site
+quarto render
+
+# Preview the site locally
+quarto preview
+```
+
 ## 1. Hero Scroll Effect
 
 The website features a full-screen "Hero" section on the homepage that fades out as you scroll down, revealing the main navigation bar.

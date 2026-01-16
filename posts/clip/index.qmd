@@ -1,0 +1,830 @@
+---
+title: "unaccusativity syntax or picture difficulty?"
+author: "Utku Turk"
+date: "2026-01-16"
+categories: [psycholinguistics, ai, experiments, CLIP, unaccusativity]
+image: "model_comparison_plot.png"
+description: "i am obssessed with early advance planning, but let me make sure about some picture saliency"
+embed-resources: true
+self-contained-math: true
+toc: true
+format:
+  html:
+    code-overflow: wrap
+---
+
+
+## Prelude
+
+### What?
+
+During my PhD, I've become fairly obsessed with production studies. I find them extremely interesting, especially the way they combine what we know from theoretical linguistics with creative experimental methods. Not to mention that the theoretical framing of production work is quite poor and the main theories used need a major overhaul. One of the most interesting papers in this area is Shota Momma's work on advanced verb planning. Similar work was also done in German and Basque by Sebastian Sauppe's group.
+
+Let me set the scene. He and his colleagues ran multiple picture description experiments where participants saw images like:
+- "The octopus below the spoon is swimming" (unergative)
+- "The octopus below the spoon is boiling" (unaccusative)
+
+If you're not a syntax nerd, here's the ultra-compressed version: verbs like "swim" and "bark" (unergatives) are different from verbs like "sink" and "melt" (unaccusatives), even though they both describe single-argument events. The difference has to do with argument structure—where the subject comes from in the underlying syntax. It has been argued that the subjects of unaccusatives are actually 'deep objects' for lack of a better term, and they structurally start in the same position as any other object.
+
+They showed that these two verb types behave differently in production experiments. Speakers plan them differently. They tested this by showing related or unrelated words superimposed on the pictures. They found that when the verbs were related, participants slowed down before they started speaking—but only with unaccusatives. His theoretical claim was that unaccusative verbs are planned *earlier* in the sentence production process—possibly right at the beginning, along with the subject. 
+
+
+### Why though?
+
+Here's the thing. Another thing that made me very excited about the production endeavor is that there are probably so many possible confounds that require checking. And I love this song and dance in psycholinguistics, where I can stress-test findings and see how stable they are. It's especially important when you find an unexpected result—like participants taking **longer to start speaking** when they won't say the verb for at least 3 more seconds—my first instinct, and I hope yours, is to wonder: "Is this real, or is something else going on?"
+
+This post is built on a very specific worry: **What if unaccusative scenes themselves, and not the syntax of them, created the results?** One interesting finding in Shota Momma's papers was that unergative planning was seemingly invisible. He has shown that there are reasons to believe that it happens while saying the second NP. But quantitatively, the signature of unergative planning seems to be more dissolved throughout the sentence, while the unaccusative planning is strikingly clear.
+
+This creates the following question: is it possible that participants, simply because the picture was more difficult to understand or the subject was more involved in the action, spent more time initially to either understand the event or to extract the subject from the event, and during this time a deterministic analysis of the written word kicked in and slowed them down when it was related? Since the unergative subjects are more easily dissociable from the event, since nothing is happening to them in those pictures, it takes less time, and since it's less of a resource-heavy process, no additional process interferes with it. This has several predictions. First, in follow-up experiments where the unergative pictures are hard to 'retrieve' from the scene, one should see similar onset effects. Second, if there is some sort of picture-difficulty metric, the advance planning should align with that metric item-wise.
+
+The second prediction is going to be the basis of this blog post, where we will find a way to quantify the picture difficulty. 
+
+### I make assumptions
+
+I assume the following 'two-way' distinction with respect to lexical verbs. However, one needs to admit that unaccusativity is not stable all the time. Many such unaccusative verbs can be used as unergatives given some adverbial modification or different contexts. This would create some minor infelicity in English, but that is not the case for many languages. For example, Laz can make any verb 'agentive' with a small prefix. Imagine a Laz-type English where you have "I cried" vs. "I do-cried," where the second one means that you made yourself cry or you deliberately cried. Or a better example might be: imagine if English "jump" were decomposable into a prefix "do-" and "fall." So, for now I only assume that these properties are lexical properties of the verb, but one needs to admit that these are event-related ones.
+
+- **Unergative actions** (swimming, barking, running): The action is performed by the agent. You can see the octopus swimming—the action is somewhat separable from what happens to the entity.
+- **Unaccusative actions** (boiling, melting, sinking): Something is *happening to* the entity. The octopus isn't "doing" boiling—it's *undergoing* a change of state. The action and the entity are less separable.
+
+Another assumption I make is about CLIP/VLM. The input that CLIP takes is a written sentence and a picture. I am fully aware that the way CLIP assesses pictures is nowhere near how humans do.^[However, an interesting sidenote is that we do not really know if human cognition is also propositional.] I am also aware that in human speech, the scenes are what is encoded and the speech is the decoding. CLIP works differently. CLIP is a two-encoder model. Given two inputs of a picture and a text, it creates two separate vectors and checks how similar those vectors are. Thus, it does not give us anything about human cognition. But it gives us a way to quantify relevant metrics.  Below what I assume to be the models of human speech production based on Levelt's work and CLIP's architecture.
+
+**Levelt's Speech Production Model:**
+
+```{mermaid}
+graph LR
+    %% Conceptual Stage
+    C2((("sleep(x)")))
+    
+    %% Lemma Stage (Centralized)
+    subgraph Lemma_Stage ["Lemma Stage"]
+        direction LR
+        F1["V⁰"] --- F2["pres"] --- L1(["sleep"]) --- F3["3"] --- F4["pl"]
+    end
+
+    %% Lexeme Stage
+    subgraph Lexeme_Stage ["Lexeme Stage"]
+        direction TB
+        LX1["/sl:ip/"]
+        LX2["/s/"]
+        LX3["/slEpt/"]
+        LX4["/IN/"]
+    end
+
+    %% Realization Stage
+    subgraph Realization_Stage ["Realization Stage"]
+        direction TB
+        R1["[sli:p]"]
+        R2["[sli:ps]"]
+        R3["[slEpt]"]
+        R4["[IN]"]
+    end
+
+    %% Strict Linear Connections
+    C2 --> L1
+    L1 --> LX1 & LX2 & LX3 & LX4
+    LX1 --> R1
+    LX1 --> R2
+    LX1 --> R3
+    LX2 --> R2
+    LX3 --> R3
+    LX4 --> R4
+```
+
+**CLIP Architecture:**
+
+```{mermaid}
+flowchart TD
+    A[Picture] --> B[Image Encoder]
+    C[Text] --> D[Text Encoder]
+    B --> E[Image Embedding]
+    D --> F[Text Embedding]
+    E --> G[Similarity Score]
+    F --> G
+
+    style A fill:#e1f5dd
+    style C fill:#e1f5dd
+    style B fill:#d4e9f7
+    style D fill:#d4e9f7
+    style E fill:#fff3cd
+    style F fill:#fff3cd
+    style G fill:#f8d7da
+```
+
+**Multimodal LLMs:**
+
+More recently, multimodal large language models have emerged that work quite differently from CLIP. Instead of creating separate embeddings and comparing them, these models integrate visual and textual information into a unified representation and can generate natural language descriptions or answers about images. 
+
+I have to say, writing their code is also a bit funny. You basically have to build a pipeline where you create a 'chat template' and ask them to give you an output. I am not sure that is how you are supposed to use them, but it works.^[It works very slowly because they are extremely resource hungry. The reason this post waited this much was because I was waiting for results to come in.]
+
+Models like [Qwen3-Omni](https://github.com/QwenLM/Qwen3-Omni) take both images and text as input, process them through vision encoders and language models together, and generate coherent text outputs. Unlike CLIP's similarity metric, multimodal LLMs can provide richer, more nuanced interpretations of visual scenes and answer complex questions about them. We will use both of them and compare here.
+
+```{mermaid}
+flowchart TD
+    A[Picture] --> B[Vision Encoder]
+    C[Text Prompt] --> D[Tokenizer]
+    B --> E[Visual Tokens]
+    D --> F[Text Tokens]
+    E --> G[Unified LLM]
+    F --> G
+    G --> H[Generated Text Output]
+
+    style A fill:#e1f5dd
+    style C fill:#e1f5dd
+    style B fill:#d4e9f7
+    style D fill:#d4e9f7
+    style E fill:#fff3cd
+    style F fill:#fff3cd
+    style G fill:#ffd4e5
+    style H fill:#f8d7da
+```
+
+Lastly, these experiments were conducted as a extended-PWI experiment, where participants were provided with a picture with a superimposed text on it. Neither the pictures, nor the tasks I improvise here does not have any relation to picture word interference task. It would be indeed interesting if we have an understanding how PWI would look like interms of LLM tasks. However it is far from what I would like to achieve here. If I have that idea I will probably submit a paper or an abstract somewhere :). 
+
+
+### Predictions
+
+If unaccusative actions (like "boiling" or "melting") are genuinely harder to see in pictures, or if the subjects are harder to visually identify in the scenes, we'd expect:
+- **Lower similarity scores** between the images and their target sentences
+- Evidence that models struggle to "ground" the sentence/entity in the visual input, in the form of subject saliency.
+
+If that's the case, we have a problem—the onset latency effect might just be about picture difficulty.^[There are of course other ways to test this. For example Griffin & Bock (2000) used a free-production task where participants were not given an initial word to use with the pictures. They quantified how many different words they used for each picture and named that variable 'codability' of the picture and tested if codability was related to onset latency. Egurtzegi et al. (2022) used a similar approach.]
+
+But if the similarity scores are **comparable or higher** for unaccusatives, then we can rule out the perceptual confound for now and be more confident that the effects reflect genuine linguistic processing.
+
+
+## Model Base
+
+### CLIP
+
+[CLIP (Contrastive Language-Image Pre-training)](https://openai.com/research/clip) is a neural network trained on 400 million image-text pairs from the internet. It learns to match images with their corresponding text descriptions by projecting both into a shared embedding space.
+
+#### Setting Up
+
+Let's start by loading the packages we'll need. I'm going to build this up step by step, just like I did when I first ran this analysis.
+
+```{python}
+#| output: false
+import os
+import torch
+import clip
+from PIL import Image
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from transformers import AutoModelForCausalLM, AutoTokenizer
+
+# Set up plotting style
+sns.set_style("whitegrid")
+# plt.rcParams['figure.figsize'] = (10, 6)
+```
+
+First, we need to load the CLIP model. I'm using the ViT-B/32 variant, which is a good balance between performance and computational efficiency:
+
+```{python}
+#| eval: false
+# Load two decoder CLIP model
+# Note: We use CPU for everything if MPS is detected to avoid moondream2 issues
+if torch.cuda.is_available():
+    device = "cuda"
+elif hasattr(torch.backends, 'mps') and torch.backends.mps.is_available():
+    device = "cpu" 
+else:
+    device = "cpu"
+
+model_clip, preprocess = clip.load("ViT-B/32", device=device, jit=False)
+
+print(f"Using device: {device}")
+print(f"CLIP model loaded successfully!")
+```
+
+Now let's also load a multimodal LLM for comparison. We'll use Qwen-VL-Chat, a powerful vision-language model:
+
+```{python}
+#| eval: false
+from transformers import AutoModelForCausalLM, AutoTokenizer, TextStreamer
+import transformers
+import torch
+from transformers.generation.beam_search import BeamSearchScorer
+transformers.BeamSearchScorer = BeamSearchScorer
+
+# Load Qwen-VL-Chat model
+model_id = "Qwen/Qwen-VL-Chat"
+
+model_vlm = AutoModelForCausalLM.from_pretrained(
+    model_id,
+    trust_remote_code=True,
+    dtype=torch.float32
+).to('cpu')
+tokenizer_vlm = AutoTokenizer.from_pretrained(model_id, trust_remote_code=True)
+
+# Create the streamer
+streamer = TextStreamer(tokenizer_vlm, skip_prompt=True)
+```
+
+
+
+
+## The Data Structure
+
+My experimental materials consist of 24 scenes:
+- 12 **unergative** scenes (swimming, running, barking, etc.)
+- 12 **unaccusative** scenes (boiling, shrinking, sinking, etc.)
+
+Each scene pairs a character (octopus, ballerina, chef, etc.) with an action. Let's create a dataframe with our materials:
+
+```{python}
+# Unergative scenes
+df_unerg = pd.DataFrame({
+    "Filename": [
+        "./pictures/octopus_swim.jpg",
+        "./pictures/ballerina_run.jpg",
+        "./pictures/boy_float.jpg",
+        "./pictures/chef_yell.jpg",
+        "./pictures/clown_walk.jpg",
+        "./pictures/cowboy_wink.jpg",
+        "./pictures/dog_bark.jpg",
+        "./pictures/monkey_sleep.jpg",
+        "./pictures/penguin_sneeze.jpg",
+        "./pictures/pirate_cough.jpg",
+        "./pictures/rabbit_smile.jpg",
+        "./pictures/snail_crawl.jpg",
+    ],
+    "Sentence": [
+        "The octopus is swimming.",
+        "The ballerina is running.",
+        "The boy is floating.",
+        "The chef is yelling.",
+        "The clown is walking.",
+        "The cowboy is winking.",
+        "The dog is barking.",
+        "The monkey is sleeping.",
+        "The penguin is sneezing.",
+        "The pirate is coughing.",
+        "The rabbit is smiling.",
+        "The snail is crawling.",
+    ]
+})
+
+# Unaccusative scenes
+df_unacc = pd.DataFrame({
+    "Filename": [
+        "./pictures/octopus_boil.jpg",
+        "./pictures/ballerina_shrink.jpg",
+        "./pictures/boy_yawn.jpg",
+        "./pictures/chef_drown.jpg",
+        "./pictures/clown_grow.jpg",
+        "./pictures/cowboy_fall.jpg",
+        "./pictures/dog_spin.jpg",
+        "./pictures/monkey_trip.jpg",
+        "./pictures/penguin_bounce.jpg",
+        "./pictures/pirate_sink.jpg",
+        "./pictures/rabbit_shake.jpg",
+        "./pictures/snail_melt.jpg",
+    ],
+    "Sentence": [
+        "The octopus is boiling.",
+        "The ballerina is shrinking.",
+        "The boy is yawning.",
+        "The chef is drowning.",
+        "The clown is growing.",
+        "The cowboy is falling.",
+        "The dog is spinning.",
+        "The monkey is tripping.",
+        "The penguin is bouncing.",
+        "The pirate is sinking.",
+        "The rabbit is shaking.",
+        "The snail is melting.",
+    ]
+})
+```
+
+## Computing Similarity Scores
+
+Now for the main event. For each image-sentence pair, we'll compute CLIP's similarity score. This tells us how well the model thinks the image matches the text.
+
+```{python}
+def compute_clip_similarity(df, model, preprocess, device):
+    """
+    Compute CLIP similarity scores for image-text pairs.
+
+    Parameters:
+    -----------
+    df : pandas.DataFrame
+        DataFrame with 'Filename' and 'Sentence' columns
+    model : CLIP model
+        Loaded CLIP model
+    preprocess : function
+        CLIP preprocessing function
+    device : str
+        'cuda' or 'cpu'
+
+    Returns:
+    --------
+    pandas.DataFrame
+        Original dataframe with added 'CLIP_Similarity' column
+    """
+    similarity_scores = []
+
+    for _, row in df.iterrows():
+        img_path = row['Filename']
+        text = row['Sentence']
+
+        # Preprocess image and tokenize text
+        img = preprocess(Image.open(img_path)).unsqueeze(0).to(device)
+        text_tokenized = clip.tokenize([text]).to(device)
+
+        # Compute similarity
+        with torch.no_grad():
+            logits_per_image, _ = model(img, text_tokenized)
+            similarity_score = logits_per_image.item()
+
+        similarity_scores.append(similarity_score)
+
+    # Add scores to dataframe
+    df_copy = df.copy()
+    df_copy['CLIP_Similarity'] = similarity_scores
+
+    return df_copy
+
+def compute_subject_salience(df, model, preprocess, device):
+    """
+    Compute CLIP similarity scores for subject noun alone.
+    This measures how visually salient/easy to identify the subject is.
+    
+    Parameters:
+    -----------
+    df : pandas.DataFrame
+        DataFrame with 'Filename' and 'Sentence' columns
+    model : CLIP model
+        Loaded CLIP model
+    preprocess : function
+        CLIP preprocessing function
+    device : str
+        'cuda' or 'cpu'
+    
+    Returns:
+    --------
+    pandas.DataFrame
+        Original dataframe with added 'Subject_Salience' column
+    """
+    subject_scores = []
+    
+    for _, row in df.iterrows():
+        img_path = row['Filename']
+        sentence = row['Sentence']
+        
+        # Extract subject noun (assumes format "The X is ...")
+        # Extract word after "The " and before " is"
+        subject = sentence.split("The ")[1].split(" is")[0]
+        
+        # Preprocess image and tokenize subject
+        img = preprocess(Image.open(img_path)).unsqueeze(0).to(device)
+        text_tokenized = clip.tokenize([subject]).to(device)
+        
+        # Compute similarity
+        with torch.no_grad():
+            logits_per_image, _ = model(img, text_tokenized)
+            similarity_score = logits_per_image.item()
+        
+        subject_scores.append(similarity_score)
+    
+    df_copy = df.copy()
+    df_copy['Subject_Salience'] = subject_scores
+    
+    return df_copy
+```
+
+We can also use a multimodal LLM to verify the image-sentence match in a different way. Instead of computing similarity scores, we'll ask the model to rate how well the sentence describes the image:
+
+```{python}
+def compute_qwen_scores(df, model, tokenizer, streamer=None):
+    """
+    Compute verification scores using Qwen-VL-Chat multimodal LLM.
+
+    Parameters:
+    -----------
+    df : pandas.DataFrame
+        DataFrame with 'Filename' and 'Sentence' columns
+    model : Qwen-VL-Chat model
+        Loaded Qwen model
+    tokenizer : AutoTokenizer
+        Qwen tokenizer
+    streamer : TextStreamer, optional
+        Streamer for real-time output
+
+    Returns:
+    --------
+    pandas.DataFrame
+        Original dataframe with added 'VLM_Score' and 'VLM_Response' columns
+    """
+    import re
+    scores = []
+    responses = []
+
+    for idx, row in df.iterrows():
+        img_path = row['Filename']
+        sentence = row['Sentence']
+
+        # Create query for Qwen-VL-Chat
+        query = tokenizer.from_list_format([
+            {'image': img_path},
+            {'text': f'Rate how well this sentence describes the image: "{sentence}"\nScore from 1-10 (1=mismatch, 10=perfect match). Reply with just the number.'},
+        ])
+
+        # Generate response
+        with torch.no_grad():
+            response, _ = model.chat(tokenizer, query=query, history=None, streamer=streamer)
+
+        # Extract numeric score
+        try:
+            match = re.search(r'(\d+(?:\.\d+)?)', response)
+            score = float(match.group(1)) if match else 5.0
+            score = min(10.0, max(1.0, score))  # Clamp to 1-10
+        except:
+            score = 5.0
+
+        scores.append(score)
+        responses.append(response)
+
+    df_copy = df.copy()
+    df_copy['VLM_Score'] = scores
+    df_copy['VLM_Response'] = responses
+
+    return df_copy
+```
+
+Let's run this on both datasets. To avoid re-computing the slow VLM scores on every render, we cache results to a CSV file:
+
+```{python}
+import os
+
+CACHE_FILE = "./cached_scores.csv"
+
+
+if os.path.exists(CACHE_FILE):
+    df_all = pd.read_csv(CACHE_FILE)
+else:
+    # Compute CLIP similarities
+    df_unerg_clip = compute_clip_similarity(df_unerg, model_clip, preprocess, device)
+    df_unacc_clip = compute_clip_similarity(df_unacc, model_clip, preprocess, device)
+    
+    # Compute subject salience scores
+    df_unerg_subj = compute_subject_salience(df_unerg, model_clip, preprocess, device)
+    df_unacc_subj = compute_subject_salience(df_unacc, model_clip, preprocess, device)
+
+    # Compute Qwen-VL scores
+    df_unerg_vlm = compute_qwen_scores(df_unerg, model_vlm, tokenizer_vlm, streamer=streamer)
+    df_unacc_vlm = compute_qwen_scores(df_unacc, model_vlm, tokenizer_vlm, streamer=streamer)
+
+    # Combine CLIP scores with VLM scores and subject salience
+    df_unerg_scored = df_unerg_clip.copy()
+    df_unerg_scored['Subject_Salience'] = df_unerg_subj['Subject_Salience']
+    df_unerg_scored['VLM_Score'] = df_unerg_vlm['VLM_Score']
+    df_unerg_scored['VLM_Response'] = df_unerg_vlm['VLM_Response']
+    df_unerg_scored['VerbType'] = 'Unergative'
+
+    df_unacc_scored = df_unacc_clip.copy()
+    df_unacc_scored['Subject_Salience'] = df_unacc_subj['Subject_Salience']
+    df_unacc_scored['VLM_Score'] = df_unacc_vlm['VLM_Score']
+    df_unacc_scored['VLM_Response'] = df_unacc_vlm['VLM_Response']
+    df_unacc_scored['VerbType'] = 'Unaccusative'
+
+    # Combine for analysis
+    df_all = pd.concat([df_unerg_scored, df_unacc_scored], ignore_index=True)
+
+    # Save to cache
+    df_all.to_csv(CACHE_FILE, index=False)
+
+print(df_all.head())
+```
+
+## Descriptive Results
+
+Let's start by looking at the descriptive statistics across all three metrics:
+
+```{python}
+# Create comparison plot with all three metrics
+fig, axes = plt.subplots(1, 3, figsize=(8, 3))
+
+# CLIP full sentence results
+sns.pointplot(data=df_all, x='VerbType', y='CLIP_Similarity',
+              hue='VerbType', palette=['#3498db', '#e74c3c'], 
+              ax=axes[0], errorbar='ci', capsize=0.1, 
+              linestyle='none', markers='o', legend=False)
+sns.stripplot(data=df_all, x='VerbType', y='CLIP_Similarity',
+              color='black', alpha=0.5, size=8, ax=axes[0], jitter=0.2)
+
+axes[0].set_xlabel('Verb Type', fontsize=14, fontweight='bold')
+axes[0].set_ylabel('CLIP Similarity Score', fontsize=14, fontweight='bold')
+axes[0].set_title('Full Sentence Similarity',
+                  fontsize=16, fontweight='bold', pad=20)
+
+for verb_type in ['Unergative', 'Unaccusative']:
+    mean_val = df_all[df_all['VerbType'] == verb_type]['CLIP_Similarity'].mean()
+    axes[0].text(0 if verb_type == 'Unergative' else 1, mean_val + 1,
+                 f'M = {mean_val:.2f}', ha='center', fontsize=12, fontweight='bold')
+
+# Subject salience results
+sns.pointplot(data=df_all, x='VerbType', y='Subject_Salience',
+              hue='VerbType', palette=['#3498db', '#e74c3c'], 
+              ax=axes[1], errorbar='ci', capsize=0.1, 
+              linestyle='none', markers='o', legend=False)
+sns.stripplot(data=df_all, x='VerbType', y='Subject_Salience',
+              color='black', alpha=0.5, size=8, ax=axes[1], jitter=0.2)
+
+axes[1].set_xlabel('Verb Type', fontsize=14, fontweight='bold')
+axes[1].set_ylabel('Subject Salience Score', fontsize=14, fontweight='bold')
+axes[1].set_title('Subject Noun Identifiability',
+                  fontsize=16, fontweight='bold', pad=20)
+
+for verb_type in ['Unergative', 'Unaccusative']:
+    mean_val = df_all[df_all['VerbType'] == verb_type]['Subject_Salience'].mean()
+    axes[1].text(0 if verb_type == 'Unergative' else 1, mean_val + 0.5,
+                 f'M = {mean_val:.2f}', ha='center', fontsize=12, fontweight='bold')
+
+# VLM results
+sns.pointplot(data=df_all, x='VerbType', y='VLM_Score',
+              hue='VerbType', palette=['#3498db', '#e74c3c'], 
+              ax=axes[2], errorbar='ci', capsize=0.1, 
+              linestyle='none', markers='o', legend=False)
+sns.stripplot(data=df_all, x='VerbType', y='VLM_Score',
+              color='black', alpha=0.5, size=8, ax=axes[2], jitter=0.2)
+
+axes[2].set_xlabel('Verb Type', fontsize=14, fontweight='bold')
+axes[2].set_ylabel('Qwen-VL Match Score (1-10)', fontsize=14, fontweight='bold')
+axes[2].set_title('Scene Verification (Qwen-VL)',
+                  fontsize=16, fontweight='bold', pad=20)
+
+for verb_type in ['Unergative', 'Unaccusative']:
+    mean_val = df_all[df_all['VerbType'] == verb_type]['VLM_Score'].mean()
+    axes[2].text(0 if verb_type == 'Unergative' else 1, mean_val + 0.3,
+                 f'M = {mean_val:.2f}', ha='center', fontsize=12, fontweight='bold')
+
+plt.tight_layout()
+plt.savefig('./model_comparison_plot.png', dpi=300, bbox_inches='tight')
+plt.show()
+```
+
+### A Deeper Dive with Bayesian Analysis
+
+While the plots above give us a good first look, they don't tell the whole story. To really understand the strength of the evidence, we need to go beyond just comparing averages. This is where Bayesian analysis comes in.
+
+Instead of just getting a single number for the difference, a Bayesian regression gives us a full range of plausible values for the effect of `VerbType` on our scores, along with a measure of our certainty.
+
+For the nerds out there, I used Pyro to run three separate models: two simple linear regressions for the CLIP and Subject Salience scores, and an ordered logistic regression for the VLM scores (since they are on a 1-10 scale). In all models, the key parameter is `beta`, which represents the estimated difference between unaccusative and unergative verbs.
+
+Here's the code to set up and run the models:
+
+```{python}
+import torch
+import pyro
+import pyro.distributions as dist
+from pyro.infer import MCMC, NUTS
+
+# Prepare data for Pyro
+# We'll center the scores and code VerbType numerically
+df_pyro = df_all.copy()
+df_pyro['VerbType_num'] = df_pyro['VerbType'].map({'Unergative': -0.5, 'Unaccusative': 0.5})
+df_pyro['CLIP_centered'] = df_pyro['CLIP_Similarity'] - df_pyro['CLIP_Similarity'].mean()
+df_pyro['Subject_centered'] = df_pyro['Subject_Salience'] - df_pyro['Subject_Salience'].mean()
+vlm_score_tensor = torch.tensor(df_pyro['VLM_Score'].values, dtype=torch.long)
+
+# Convert to tensors
+verb_type_tensor = torch.tensor(df_pyro['VerbType_num'].values, dtype=torch.float32)
+clip_tensor = torch.tensor(df_pyro['CLIP_centered'].values, dtype=torch.float32)
+subject_tensor = torch.tensor(df_pyro['Subject_centered'].values, dtype=torch.float32)
+
+# --- Model for CLIP Similarity ---
+def clip_model(verb_type, obs=None):
+    intercept = pyro.sample('intercept', dist.Normal(0., 10.))
+    beta = pyro.sample('beta', dist.Normal(0., 10.))
+    sigma = pyro.sample('sigma', dist.HalfNormal(10.))
+    mu = intercept + beta * verb_type
+    with pyro.plate('data', len(verb_type)):
+        pyro.sample('obs', dist.Normal(mu, sigma), obs=obs)
+
+# --- Model for Subject Salience ---
+def subject_model(verb_type, obs=None):
+    intercept = pyro.sample('intercept', dist.Normal(0., 10.))
+    beta = pyro.sample('beta', dist.Normal(0., 10.))
+    sigma = pyro.sample('sigma', dist.HalfNormal(10.))
+    mu = intercept + beta * verb_type
+    with pyro.plate('data', len(verb_type)):
+        pyro.sample('obs', dist.Normal(mu, sigma), obs=obs)
+        
+# --- Model for VLM Score (Ordered Logistic) ---
+k_categories = vlm_score_tensor.max().item() + 1
+k_cutpoints = k_categories - 1
+def vlm_model(verb_type, obs=None):
+    alpha = pyro.sample('alpha', dist.Normal(0., 10.))
+    beta = pyro.sample('beta', dist.Normal(0., 10.))
+    with pyro.plate("cutpoints_plate", k_cutpoints):
+        raw_cutpoints = pyro.sample('raw_cutpoints', dist.Normal(torch.arange(k_cutpoints).float(), 1.))
+    cutpoints = torch.sort(raw_cutpoints)[0]
+    latent_propensity = alpha + beta * verb_type
+    with pyro.plate('data', len(verb_type)):
+        pyro.sample('obs', dist.OrderedLogistic(latent_propensity, cutpoints), obs=obs)
+
+# Run the MCMC samplers
+mcmc_clip = MCMC(NUTS(clip_model), num_samples=2000, warmup_steps=1000)
+mcmc_clip.run(verb_type_tensor, clip_tensor)
+clip_samples = mcmc_clip.get_samples()
+
+mcmc_subject = MCMC(NUTS(subject_model), num_samples=2000, warmup_steps=1000)
+mcmc_subject.run(verb_type_tensor, subject_tensor)
+subject_samples = mcmc_subject.get_samples()
+
+mcmc_vlm = MCMC(NUTS(vlm_model), num_samples=2000, warmup_steps=1000, num_chains=1)
+mcmc_vlm.run(verb_type_tensor, vlm_score_tensor)
+vlm_samples = mcmc_vlm.get_samples()
+```
+
+After running the analysis, we can extract the posterior distributions for our `beta` parameter in each model. Let's see what they tell us.
+
+```{python}
+# Get posterior samples and print results
+clip_beta_mean = clip_samples['beta'].mean().item()
+clip_beta_hdi = torch.quantile(clip_samples['beta'], torch.tensor([0.025, 0.975]))
+
+print(f"\nCLIP Similarity - Bayesian Regression:")
+print(f"  Beta (VerbType effect): {clip_beta_mean:.3f}")
+print(f"  95% HDI: [{clip_beta_hdi[0]:.3f}, {clip_beta_hdi[1]:.3f}]")
+print(f"  P(beta < 0): {(clip_samples['beta'] < 0).float().mean():.3f}")
+
+subject_beta_mean = subject_samples['beta'].mean().item()
+subject_beta_hdi = torch.quantile(subject_samples['beta'], torch.tensor([0.025, 0.975]))
+
+print(f"\nSubject Salience - Bayesian Regression:")
+print(f"  Beta (VerbType effect): {subject_beta_mean:.3f}")
+print(f"  95% HDI: [{subject_beta_hdi[0]:.3f}, {subject_beta_hdi[1]:.3f}]") 
+print(f"  P(beta < 0): {(subject_samples['beta'] < 0).float().mean():.3f}")
+
+vlm_beta_mean = vlm_samples['beta'].mean().item()
+vlm_beta_hdi = torch.quantile(vlm_samples['beta'], torch.tensor([0.025, 0.975]))
+
+print(f"\nVLM Score - Ordered Logistic Regression:")
+print(f"  Beta (VerbType effect): {vlm_beta_mean:.3f}")
+print(f"  95% HDI: [{vlm_beta_hdi[0]:.3f}, {vlm_beta_hdi[1]:.3f}]")
+print(f"  P(beta < 0): {(vlm_samples['beta'] < 0).float().mean():.3f}")
+```
+
+
+The plot below visualizes the results of our Bayesian models. For each of our three metrics, it shows the estimated effect of the verb type. Because we coded unaccusatives as +0.5 and unergatives as -0.5, the "Beta" (β) value represents the difference between the two.
+
+The vertical gray line at zero is our baseline for "no effect". If the colored whisker line (the posterior distribution) for a metric crosses this line, it means we can't be very confident in the direction of the effect. However, this 'confidence' of course will be quantified by the probability values shown on the right side of the plot.
+
+If the distribution is shifted to the left of zero (Negative β), it means that unaccusative scenes scored lower than unergative ones for that metric. This is the "danger zone" for our stimuli, as it would suggest they are harder for the models to process. As you can see, both the full sentence similarity and the VLM verification scores are shifted heavily to the left, indicating that the unaccusative pictures are indeed less clear or representative.
+
+If the distribution were on the right side (Positive β), it would mean unaccusatives scored *higher*, suggesting they were actually easier for the models. None of our metrics show this result.
+
+```{python}
+import matplotlib.pyplot as plt
+import seaborn as sns
+import numpy as np
+
+# Data dictionary from your MCMC samples
+beta_data = {
+    'Full Scene (CLIP)': clip_samples['beta'].numpy(),
+    'Subject Salience (CLIP)': subject_samples['beta'].numpy(),
+    'Scene Verification (VLM)': vlm_samples['beta'].numpy()
+}
+
+# Adjust figure size for better vertical separation
+fig, ax = plt.subplots(figsize=(8, 4))
+sns.set_style("whitegrid", {'axes.grid': True, 'grid.color': '.95'})
+
+labels = list(beta_data.keys())
+colors = ['#3498db', '#9b59b6', '#e74c3c']
+
+for i, label in enumerate(labels):
+    samples = beta_data[label]
+    mean_val = samples.mean()
+    
+    # 1. Calculate multiple intervals for the "stacking" effect
+    hdi_95 = np.percentile(samples, [2.5, 97.5])
+    hdi_80 = np.percentile(samples, [10, 90])
+    hdi_50 = np.percentile(samples, [25, 75])
+    
+    # 2. Plot the stacked lines (Bottom to Top: thinnest/widest first)
+    # 95% Interval - Thin
+    ax.hlines(i, hdi_95[0], hdi_95[1], color=colors[i], linewidth=1.5, alpha=0.4, zorder=1)
+    # 80% Interval - Medium
+    ax.hlines(i, hdi_80[0], hdi_80[1], color=colors[i], linewidth=5.0, alpha=0.7, zorder=2)
+    # 50% Interval - Thick
+    ax.hlines(i, hdi_50[0], hdi_50[1], color=colors[i], linewidth=10.0, alpha=1.0, zorder=3)
+    
+    # 3. Plot the Mean point
+    ax.plot(mean_val, i, 'o', color='white', markersize=8, zorder=4)
+    
+    # 4. Perfectly Aligned Statistics
+    p_dir = (samples < 0).mean() if mean_val < 0 else (samples > 0).mean()
+    prob_text = f"$P(\\beta {'<' if mean_val < 0 else '>' } 0) = {p_dir:.2f}$"
+    
+    # Locked to y-coordinate 'i' and x-coordinate 3.0 (outside plot area)
+    ax.text(3.0, i, prob_text, va='center', ha='left', 
+            fontsize=13, fontweight='bold', color=colors[i])
+
+# 5. Descriptive Annotations (The "How to Read" Guide)
+ax.axvline(x=0, color='black', linestyle='-', linewidth=1.5, alpha=0.6, zorder=0)
+
+# Arrow pointing Left (Negative Beta)
+ax.annotate('', xy=(-5, -1.0), xytext=(-0.5, -1.0),
+            arrowprops=dict(arrowstyle="->", color='gray', lw=1.5))
+ax.text(-2.75, -1.4, "Lower Scores for\nUnaccusatives", ha='center', color='gray', fontweight='bold')
+
+# Arrow pointing Right (Positive Beta)
+ax.annotate('', xy=(2.5, -1.0), xytext=(0.5, -1.0),
+            arrowprops=dict(arrowstyle="->", color='gray', lw=1.5))
+ax.text(1.5, -1.4, "Lower Scores for\nUnergatives", ha='center', color='gray', fontweight='bold')
+
+# 6. Final Layout Polish
+ax.set_yticks(range(len(labels)))
+ax.set_yticklabels(labels, fontweight='bold', fontsize=12)
+ax.set_xlabel('Posterior Beta Weight (Unaccusative vs. Unergative)', fontsize=13, labelpad=45)
+
+# Lock limits so text and arrows don't shift
+ax.set_xlim(-6, 3)
+ax.set_ylim(-1.5, len(labels) - 0.5)
+
+sns.despine(left=True, bottom=True)
+plt.subplots_adjust(right=0.75, bottom=0.2) # Make room for text on right and guide on bottom
+plt.savefig('./model_pyro.png', dpi=300, bbox_inches='tight')
+plt.show()
+```
+
+
+So, what do these models tell us? The results are quite clear: all three of our metrics point in the same direction, suggesting that the unaccusative scenes are in some way more challenging than the unergative ones.
+
+Here's a quick summary of the findings from our Bayesian analysis:
+
+- **Scene Verification (VLM):** A strong negative effect (β ≈ -2.3, P(β<0) = 0.99). The VLM is very confident that the unaccusative sentences are a worse description of their corresponding images.
+- **Full Scene (CLIP):** A similarly strong negative effect (β ≈ -2.3, P(β<0) = 0.92). CLIP also finds a lower visual-textual fit for unaccusative scenes.
+- **Subject Salience (CLIP):** A moderate negative effect (β ≈ -1.5, P(β<0) = 0.83). The evidence is weaker here, with more uncertainty, but it still suggests that the subject is slightly harder to identify in unaccusative scenes.
+
+Even before we get to the human data, the models are sending a clear signal: these two sets of pictures might not be perceived equally. The unaccusative scenes seem to have a lower "visual-textual fit", which means we have to be careful not to mistake this perceptual difficulty for a purely linguistic effect. 
+
+One interpretation is that the production effects we see in humans might be at least *partially* due to the visual complexity of the pictures. However, given the broader context of the sentence production literature, this seems unlikely to be the whole story. Other studies have found similar advance planning effects in experiments that did not involve these pictures or pictures at all, such as sentence recall tasks. This suggests that the effect is not just about visual processing, but is tied to the linguistic structure of the sentences themselves. 
+
+
+## Conclusion
+
+### The Finding
+
+The analysis reveals a consistent pattern across all three metrics: unaccusative scenes are rated as more difficult or less representative by the models compared to unergative scenes.
+
+1.  **Scene Verification (VLM):** The Qwen-VL model, which was asked to explicitly rate the match between the sentence and the image, showed a strong negative effect for unaccusatives. It consistently gave lower scores to unaccusative pairs, with a high degree of certainty (P(β<0) = 0.99). This suggests that from a generative, "common sense" perspective, the unaccusative sentences are poorer descriptions of their corresponding images.
+
+2.  **Full Scene Similarity (CLIP):** The standard CLIP similarity score also revealed a strong negative effect for unaccusatives (P(β<0) = 0.92). This indicates that the overall visual-textual fit is lower for unaccusative scenes.
+
+3.  **Subject Salience (CLIP):** Even the salience of the subject noun was moderately lower in unaccusative scenes (P(β<0) = 0.83). While the evidence is weaker here, it suggests that the subject may be slightly harder to identify in the context of an unaccusative event.
+
+In short, the models are telling us that the unaccusative pictures are not as clear-cut as the unergative ones.
+
+### What This Means
+
+This computational analysis provides a crucial piece of context for the human experimental results. The key takeaway is that the unaccusative stimuli seem to be inherently more complex or ambiguous than the unergative stimuli.
+
+This doesn't invalidate the syntactic hypothesis about advance planning, but it does add a layer of nuance. The increased processing cost observed in human speakers for unaccusative sentences might not be solely due to a syntactic operation. Instead, it could be a combination of factors:
+
+*   **Perceptual/Conceptual Difficulty:** The visual scenes for unaccusative events might be harder to parse, conceptualize, and map onto a linguistic description. The AI models, particularly the VLM, seem to be picking up on this.
+*   **Syntactic Planning:** The syntactic structure of unaccusatives may still require earlier planning, as originally hypothesized.
+
+The most likely scenario is that these two factors are intertwined. The very nature of unaccusative events (a change of state happening *to* a patient) makes them visually more complex, and this complexity might be what triggers the earlier, more resource-intensive syntactic planning.
+
+We can be more confident that the experimental effects are not just due to simple visual confounds like a hidden subject, but we must also acknowledge that the "difficulty" is not purely syntactic. It's a property of the entire event, from perception to syntax.
+
+## Final Thoughts
+
+If you're running experiments with visual stimuli, I highly recommend giving this a try. Vision-language models like CLIP and multimodal LLMs like Qwen are freely available and give us principled ways to ask: "Are these pictures doing what we think they're doing?" The ability to triangulate across different model architectures—from similarity-based (CLIP) to generative (Qwen)—provides an unprecedented level of confidence in our experimental materials.
+
+This analysis didn't end up changing my theoretical interpretation of the experimental findings, I think existing evidence for advance planning require more than random LLM analysis, which probably has nothing to do how humans represent concepts, sentences, or visual areas. 
+
+One thing that I need to do a baseline analysis in which I ran the similar analysis for a randomly assigned sentence-picture pairs to show that, when randomized the clip similarity changes dramatically. I will soon run that and upload the results as a comment. 
+
+
+If you want to run this analysis yourself, you can use the following Colab notebook: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/utkuturk/utkuturk.github.io/blob/main/clip_analysis.ipynb) You can download the cached_scores here: [cached_scores.csv](https://github.com/utkuturk/utkuturk.github.io/blob/main/posts/clip/cached_scores.csv), and the pictures here: [pictures.zip](https://github.com/utkuturk/utkuturk.github.io/blob/main/posts/clip/pictures.zip)
+
+---
+
+## References
+
+Momma, S., & Ferreira, V. (2019). Beyond linear order: The role of argument structure in speaking. *Cognitive Psychology*, 114, 101228.
+
+Radford, A., Kim, J. W., Hallacy, C., Ramesh, A., Goh, G., Agarwal, S., ... & Sutskever, I. (2021). Learning transferable visual models from natural language supervision. *International Conference on Machine Learning* (pp. 8748-8763). PMLR.
+
+Bai, J., Bai, S., Yang, S., Wang, S., Tan, S., Wang, P., ... & Zhou, J. (2023). Qwen-VL: A frontier large vision-language model with versatile abilities. *arXiv preprint arXiv:2308.12966*.
+
+---
+
+## Session Info
+
+For reproducibility, here's my setup:
+
+```{python}
+import sys
+print(f"Python: {sys.version}")
+print(f"PyTorch: {torch.__version__}")
+print(f"CLIP: (installed from https://github.com/openai/CLIP)")
+print(f"Transformers: (for Qwen-VL-Chat)")
+```

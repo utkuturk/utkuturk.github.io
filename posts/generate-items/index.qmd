@@ -1,6 +1,7 @@
 ---
 title: "generating consistent linguistic experiment materials with AI"
 description: "next step is to have a norming data on text-to-image-to-image generated  standardized stimuli"
+date: "2025-12-16"
 format:
   html:
     code-fold: true

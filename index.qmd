@@ -34,10 +34,10 @@ listing:
     
     <div class="hero-bio">
       <p>
-        I’m a PhD candidate in Linguistics at the University of Maryland, working with <a href="https://www.ellenlau.net" target="_blank">Ellen Lau</a> and <a href="https://www.colinphillips.net" target="_blank">Colin Phillips</a>. My research investigates how different kinds of linguistic information—<strong>morphosyntactic structure</strong> and <strong>morphophonological form</strong>—are planned in production and retrieved during sentence processing, and how mismatches between them drive <strong>errors and create illusions</strong> in production and comprehension.
+        I’m a PhD candidate in Linguistics at the University of Maryland, working with <a href="https://www.ellenlau.net" target="_blank">Ellen Lau</a> and <a href="https://www.colinphillips.net" target="_blank">Colin Phillips</a>. My research investigates how different kinds of linguistic information—<strong>morphosyntactic structure</strong> and <strong>morphophonological form</strong>—are planned in production and retrieved during sentence processing, and how mismatches between them drive <strong>errors and create illusions</strong> in production and comprehension. I also work in formal properties of case and adjectival morphophonology, as well as question semantics and embedding facts.
       </p>
       <p style="margin-top: 0.75rem; color: #555; font-size: 0.95em;">
-        Previously, I received my MA from Boğaziçi University (advisor: <a href="https://github.com/plogacev" target="_blank">Pavel Logačev</a>) and was a visiting researcher at Masaryk University (advisor: <a href="https://www.muni.cz/en/people/53172-pavel-caha" target="_blank">Pavel Caha</a>).
+        I recently visited UMass to work with <a href="https://websites.umass.edu/snegishi/" target="_blank">Shota Momma</a> and <a href="https://farukakkus.wordpress.com" target="_blank">Faruk Akkus</a>. Previously, I received my MA from Boğaziçi University (advisor: <a href="https://github.com/plogacev" target="_blank">Pavel Logačev</a>) and was a visiting researcher at Masaryk University (advisor: <a href="https://www.muni.cz/en/people/53172-pavel-caha" target="_blank">Pavel Caha</a>).
       </p>
       <p style="margin-top: 0.75rem; color: #777; font-size: 0.9em; font-style: italic;">
         My favorite food is <em>gata</em> with <em>koritz</em> and my favorite icecream flavor is saffron and rose (5pm snack of Anthony Bourdain). In my freetime, I try to do some calligraphy.
