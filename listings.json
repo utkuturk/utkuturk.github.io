@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/audio-gen/index.html",
       "/posts/clip/index.html",
       "/posts/generate-items/index.html",
       "/posts/futileness-of-judgments/index.html",

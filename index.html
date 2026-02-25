@@ -24,13 +24,10 @@ ul.task-list li input[type="checkbox"] {
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/quarto-listing/list.min.js"></script>
 <script src="site_libs/quarto-listing/quarto-listing.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -45,18 +42,6 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-contrib/academicons-1.9.4/all.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/academicons-1.9.4/size.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
-  "location": "navbar",
-  "copy-button": false,
-  "collapse-after": 3,
-  "panel-placement": "end",
-  "type": "overlay",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -81,9 +66,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-project','listing-website','listing-format','listing-margin-header','listing-language','listing-comments','listing-freeze','listing-title-block-banner','listing-title','listing-author','listing-date','listing-categories','listing-image','listing-description','listing-path','listing-outputHref','listing-date-modified','listing-filename','listing-file-modified','listing-reading-time','listing-word-count','listing-embed-resources','listing-self-contained-math','listing-toc','listing-execute','listing-params','listing-aliases','listing-fig-align','listing-lightbox',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-date-modified-sort'] },{ data: ['listing-file-modified-sort'] },{ data: ['listing-reading-time-sort'] },{ data: ['listing-word-count-sort'] }],
+      valueNames: ['listing-project','listing-website','listing-format','listing-margin-header','listing-language','listing-comments','listing-freeze','listing-title-block-banner','listing-title','listing-author','listing-date','listing-categories','listing-image','listing-description','listing-path','listing-outputHref','listing-date-modified','listing-filename','listing-file-modified','listing-reading-time','listing-word-count','listing-embed-resources','listing-self-contained-math','listing-toc','listing-jupyter','listing-execute','listing-params','listing-aliases','listing-fig-align','listing-lightbox',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-date-modified-sort'] },{ data: ['listing-file-modified-sort'] },{ data: ['listing-reading-time-sort'] },{ data: ['listing-word-count-sort'] }],
       
-      searchColumns: ["listing-project","listing-website","listing-format","listing-margin-header","listing-language","listing-comments","listing-freeze","listing-title-block-banner","listing-title","listing-author","listing-date","listing-categories","listing-image","listing-description","listing-path","listing-outputHref","listing-date-modified","listing-filename","listing-file-modified","listing-reading-time","listing-word-count","listing-embed-resources","listing-self-contained-math","listing-toc","listing-execute","listing-params","listing-aliases","listing-fig-align","listing-lightbox"],
+      searchColumns: ["listing-project","listing-website","listing-format","listing-margin-header","listing-language","listing-comments","listing-freeze","listing-title-block-banner","listing-title","listing-author","listing-date","listing-categories","listing-image","listing-description","listing-path","listing-outputHref","listing-date-modified","listing-filename","listing-file-modified","listing-reading-time","listing-word-count","listing-embed-resources","listing-self-contained-math","listing-toc","listing-jupyter","listing-execute","listing-params","listing-aliases","listing-fig-align","listing-lightbox"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -147,7 +132,6 @@ window.Quarto = {
     <span class="navbar-title">utku turk</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -209,836 +193,861 @@ window.Quarto = {
 </div>
 </div></div>
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(11)</span></div><div class="category" data-category="YWdyZWVtZW50JTIwYXR0cmFjdGlvbg==">agreement attraction <span class="quarto-category-count">(1)</span></div><div class="category" data-category="YWk=">ai <span class="quarto-category-count">(2)</span></div><div class="category" data-category="YXdz">aws <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Q0xJUA==">CLIP <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Y29kZQ==">code <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Y29tbWVudGFyeQ==">commentary <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZGlzc2VydGF0aW9u">dissertation <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZXhwZXJpbWVudHM=">experiments <span class="quarto-category-count">(4)</span></div><div class="category" data-category="bGluZ3Vpc3RpY3M=">linguistics <span class="quarto-category-count">(6)</span></div><div class="category" data-category="bWVhbmluZw==">meaning <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bWlzdW5kZXJzdGFuZGluZw==">misunderstanding <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cGFwZXJz">papers <span class="quarto-category-count">(3)</span></div><div class="category" data-category="cGNpYmV4">pcibex <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cHN5Y2hvbGluZ3Vpc3RpY3M=">psycholinguistics <span class="quarto-category-count">(1)</span></div><div class="category" data-category="c291bmQ=">sound <span class="quarto-category-count">(3)</span></div><div class="category" data-category="dGVjaG5pY2Fs">technical <span class="quarto-category-count">(3)</span></div><div class="category" data-category="dHVya2lzaA==">turkish <span class="quarto-category-count">(2)</span></div><div class="category" data-category="dW5hY2N1c2F0aXZpdHk=">unaccusativity <span class="quarto-category-count">(1)</span></div></div></div>
+    </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content page-columns page-full" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
 
 <style>
-/* Only on homepage: Push content down below Hero */
-#quarto-content {
-  margin-top: 100vh !important;
+.home-hero {
+  margin: 1rem 0 2rem;
+  padding-bottom: 0.5rem;
+}
+
+.home-hero-align {
+  max-width: 1084px;
+  margin: 0 auto;
+  padding-left: 2rem;
+  padding-right: 1.1rem;
+}
+
+.home-hero-copy {
+  width: 100%;
+}
+
+.home-hero-copy p {
+  margin: 0 0 0.8rem;
+  line-height: 1.45;
+}
+
+.home-hero-note {
+  color: #555;
+  font-size: 0.95em;
+  font-style: italic;
+}
+
+.home-news {
+  font-size: 0.82rem;
+  line-height: 1.25;
+}
+
+.home-hero-sidebar-photo {
+  text-align: center;
+  margin-top: 0.2rem;
+}
+
+.home-hero-sidebar-photo img {
+  width: 185px;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+  margin: 0 auto;
+}
+
+.home-news h3 {
+  margin-top: 0;
+  font-size: 0.95rem;
+}
+
+h2[data-anchor-id="essays"],
+h3[data-anchor-id="news"] {
+  margin-top: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-transform: lowercase;
+}
+
+.home-news ul {
+  padding-left: 0.9rem;
+  margin-bottom: 0.35rem;
+}
+
+.home-news li {
+  margin: 0;
+}
+
+.home-news li + li {
+  margin-top: 1.15rem;
+}
+
+.home-news time {
+  font-weight: 600;
+  font-size: 0.95em;
+}
+
+.home-news-more {
+  display: block;
+  text-align: right;
+  margin-top: 0.25rem;
+  font-size: 0.9em;
+}
+
+h2[data-anchor-id="essays"] .anchorjs-link,
+h3[data-anchor-id="news"] .anchorjs-link {
+  display: none !important;
+}
+
+@media (max-width: 991.98px) {
+  .home-hero-align {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
 }
 </style>
-<!-- Hero Section -->
-<div class="hero-section">
-  <div class="hero-content">
-    <img src="./images/utkuturkumd.jpeg" class="hero-photo" alt="Utku Turk">
-    <h1>utku turk</h1>
-    <p class="hero-subtitle">
-      PhD Candidate, Linguistics @ UMD<br>
-    </p>
-    
-    <div class="hero-bio">
-      <p>
-        I’m a PhD candidate in Linguistics at the University of Maryland, working with <a href="https://www.ellenlau.net" target="_blank">Ellen Lau</a> and <a href="https://www.colinphillips.net" target="_blank">Colin Phillips</a>. My research investigates how different kinds of linguistic information—<strong>morphosyntactic structure</strong> and <strong>morphophonological form</strong>—are planned in production and retrieved during sentence processing, and how mismatches between them drive <strong>errors and create illusions</strong> in production and comprehension. I also work in formal properties of case and adjectival morphophonology, as well as question semantics and embedding facts.
-      </p>
-      <p style="margin-top: 0.75rem; color: #555; font-size: 0.95em;">
-        I recently visited UMass to work with <a href="https://websites.umass.edu/snegishi/" target="_blank">Shota Momma</a> and <a href="https://farukakkus.wordpress.com" target="_blank">Faruk Akkus</a>. Previously, I received my MA from Boğaziçi University (advisor: <a href="https://github.com/plogacev" target="_blank">Pavel Logačev</a>) and was a visiting researcher at Masaryk University (advisor: <a href="https://www.muni.cz/en/people/53172-pavel-caha" target="_blank">Pavel Caha</a>).
-      </p>
-      <p style="margin-top: 0.75rem; color: #777; font-size: 0.9em; font-style: italic;">
-        My favorite food is <em>gata</em> with <em>koritz</em> and my favorite icecream flavor is saffron and rose (5pm snack of Anthony Bourdain). In my freetime, I try to do some calligraphy.
-      </p>
-    </div>
+<div class="home-hero page-columns page-full">
+<div class="home-hero-align">
+<div class="home-hero-copy">
+<p>
+I’m a PhD candidate in Linguistics at the University of Maryland, working with <a href="https://www.ellenlau.net" target="_blank">Ellen Lau</a> and <a href="https://www.colinphillips.net" target="_blank">Colin Phillips</a>. My research investigates how different kinds of linguistic information—<strong>morphosyntactic structure</strong> and <strong>morphophonological form</strong>—are planned in production and retrieved during sentence processing, and how mismatches between them drive <strong>errors and create illusions</strong> in production and comprehension. I also work in formal properties of case and adjectival morphophonology, as well as question semantics and embedding facts.
+</p>
+<p>
+I recently visited UMass to work with <a href="https://websites.umass.edu/snegishi/" target="_blank">Shota Momma</a> and <a href="https://farukakkus.wordpress.com" target="_blank">Faruk Akkus</a>. Previously, I received my MA from Boğaziçi University (advisor: <a href="https://github.com/plogacev" target="_blank">Pavel Logačev</a>) and was a visiting researcher at Masaryk University (advisor: <a href="https://www.muni.cz/en/people/53172-pavel-caha" target="_blank">Pavel Caha</a>).
+</p>
+<p class="home-hero-note">
+My favorite food is <em>gata</em> with <em>koritz</em> and my favorite icecream flavor is saffron and rose (5pm snack of Anthony Bourdain). In my freetime, I like doing <a href="./calligraphy/">calligraphy</a>.
+</p>
+</div>
+</div>
 
-    <div class="hero-links">
+<div class="no-row-height column-margin column-container"><div class="home-hero-sidebar-photo">
+<p><img src="./images/utkuturkumd.jpeg" class="img-fluid"></p>
+</div></div></div>
+<section id="essays" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="essays">essays</h2>
 
-      <a href="./research.html">research</a>
-      <a href="./papers.html">papers</a>
-      <a href="./talks.html">talks</a>
-      <a href="./teaching.html">teaching</a>
-      <!-- Icons using academicons/bi classes directly -->
-      <a href="./files/cv.pdf" target="_blank" aria-label="CV"><i class="ai ai-cv"></i></a>
-      <a href="https://scholar.google.com/citations?hl=tr&amp;user=wa7LG9gAAAAJ" target="_blank" aria-label="Google Scholar"><i class="ai ai-google-scholar"></i></a>
-      <a href="https://github.com/utkuturk" target="_blank" aria-label="GitHub"><i class="bi bi-github"></i></a>
-      <a href="https://twitter.com/UtkuTurkLing" target="_blank" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
-      <a href="https://bsky.app/profile/utkuturk.com" target="_blank" aria-label="Bluesky"><i class="bi bi-flower3"></i></a>
-    </div>
-    <div class="hero-email-link" style="margin-top: -1.5rem; margin-bottom: 2rem;">
-      <a href="mailto:utkuturk@umd.edu" style="color: #555; text-decoration: underline; text-underline-offset: 4px;">utkuturk@umd.edu</a>
-    </div>
-    
-    <div class="hero-scroll-down">
-      <span>blog posts</span>
-      <i class="bi bi-chevron-down"></i>
-    </div>
-  </div>
-</div>
-<!-- Hidden shortcodes to force Quarto to load Academicons CSS -->
-<div style="display: none;">
-<p><i class="ai  ai-cv" aria-label="cv"></i> <i class="ai  ai-google-scholar" aria-label="google-scholar"></i> <i class="ai  ai-orcid" aria-label="orcid"></i></p>
-</div>
-<div class="main-content-wrapper">
-<div class="about-bio">
-<p><img src="./images/utkuturkumd.jpeg" class="about-photo img-fluid"></p>
-<p><strong>utku turk</strong><br>
-PhD Candidate, Linguistics<br>
-University of Maryland<br>
-<i>working with <a href="https://www.ellenlau.net" target="_blank">Ellen Lau</a> and <a href="https://www.colinphillips.net" target="_blank">Colin Phillips</a></i></p>
-<p><span class="about-research"> <em>interested in the timing of morphological and syntactic planning in speech, and how it shapes online comprehension and production</em> </span></p>
-<p><span class="about-previous"> <em>Previously MA at Boğaziçi (with <a href="https://github.com/plogacev" target="_blank">Pavel Logačev</a>);<br>
-visiting researcher at Masaryk (with <a href="https://www.muni.cz/en/people/53172-pavel-caha" target="_blank">Pavel Caha</a>).</em> </span></p>
-<p><a href="mailto:utkuturk@umd.edu">utkuturk@umd.edu</a></p>
-</div>
-<section id="news" class="level3 mobile-sidebar-news">
-<h3 class="anchored" data-anchor-id="news">News</h3>
+
+
+
+<div class="no-row-height column-margin column-container"><section id="news" class="level3 home-news">
+<h3 class="anchored" data-anchor-id="news">news</h3>
 <ul>
-<li><time class="sidebar-news__date">Apr 2025</time> Advanced to candidacy (QP: timing of agreement in production) · <a href="./files/slides/qpTurk.pdf">slides</a></li>
+<li><time>Jun 2026</time> ELM 4 (UPenn): a poster on the role of modal strength in English · <a href="./files/abstracts/elm-2026.pdf">abstract</a></li>
+<li><time>Apr 2026</time> TU+11 (MIT): two talks on the role of structural cues in sentence processing and effects on frequency on syntactic choices. · <a href="./files/abstracts/tu11-structural-cues.pdf">abstract1</a> · <a href="./files/abstracts/tu11-frequency.pdf">abstract2</a></li>
+<li><time>Mar 2026</time> HSP 2026 (MIT): talk on the role of structural cues in processing, along with 3 posters! · <a href="./files/abstracts/hsp-2026-structural-cues.pdf">talk abstract</a> · posters on <a href="./files/abstracts/hsp-2026-unaccusatives.pdf">production</a> · <a href="./files/abstracts/hsp-2026-surface.pdf">surface-level cues</a> · <a href="./files/abstracts/hsp-2026-frequency.pdf">frequency on syntax</a></li>
+<li><time>Jan 2026</time> Published two proceedings paper on alternatives in Turkish polar questions. · <a href="https://ling.auf.net/lingbuzz/009762">on covert movement</a> · <a href="https://ling.auf.net/lingbuzz/009763"> on constraining alternatives</a></li>
+<li><time>Sep 2025</time> Visiting Researcher, UMass Amherst (Fall 2025); collaborating with Faruk Akkuş and Shota Momma on dissociating morphosyntactic vs. morphophonological timing.</li>
+<li><time>Apr 2025</time> Advanced to candidacy at UMD after defending my QP on the timing of agreement in sentence production. · <a href="./files/slides/qpTurk.pdf">slides</a></li>
+<li><time>Apr 2025</time> PLC 2025 talk: syntactic alternatives in Turkish polar questions (with Aron Hirsch). · <a href="./files/abstracts/TurkHirschPLC2025.pdf">abstract</a></li>
+<li><time>Mar 2025</time> HSP 2025 talk: register effects and response bias in agreement attraction. · <a href="./files/abstracts/TurkHSP2025.pdf">abstract</a> · <a href="./files/slides/hsp2025.pdf">slides</a></li>
+<li><time>Mar 2025</time> TU+10 (USC): talk on register effects in agreement attraction; poster on scope freezing in Turkish (with Aron Hirsch). · <a href="./files/abstracts/TurkTU2025.pdf">talk abstract</a> · <a href="./files/abstracts/TurkHirschTU2025.pdf">poster abstract</a></li>
+<li><time>Jan 2025</time> LSA 2025 talk: Superiority effects in Turkish (with Sadira Lewis). · <a href="./files/slides/LewisTurkLSA.pdf">slides</a></li>
 </ul>
-<p><a href="./news/" class="sidebar-news__more">More →</a></p>
-</section>
-</div>
-<script src="./files/hero-scroll.js"></script>
-
-
-
+<p><br> <a href="./news/" class="home-news-more">More news →</a></p>
+</section></div></section>
 
 <div class="quarto-listing quarto-listing-container-custom" id="listing-listing">
-<div class="postcard-list list"><!-- <-- important: include 'list' -->
+<div class="essay-list list"><!-- keep 'list' for Quarto listing JS -->
   
-    <div class="postcard" data-index="0" data-categories="cHN5Y2hvbGluZ3Vpc3RpY3MlMkNhaSUyQ2V4cGVyaW1lbnRzJTJDQ0xJUCUyQ3VuYWNjdXNhdGl2aXR5" data-listing-date-sort="1768543200000" data-listing-file-modified-sort="1768557172758" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="33" data-listing-word-count-sort="6505">
-      <!-- Invisible stretched link covers the whole card -->
-      <a href="./posts/clip/index.html" class="stretched-link" aria-label="Read: unaccusativity syntax or picture difficulty?"></a>
+    
+    <article class="essay-item" data-index="0" data-categories="YWklMkNleHBlcmltZW50cyUyQ2F1ZGlvJTJDZWxldmVubGFicw==" data-listing-date-sort="1771909200000" data-listing-file-modified-sort="1771956117284" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2360">
+      
+        <div class="essay-thumb">
+          <a href="./posts/audio-gen/index.html">
+            <img src="./posts/audio-gen/simple_example_praat.png" alt="i promise this is the last one for a while: audio generation with elevenlabs">
+          </a>
+        </div>
+      
 
+      <div class="essay-main">
+        <h3 class="anchored">
+          <a href="./posts/audio-gen/index.html" class="listing-title">i promise this is the last one for a while: audio generation with elevenlabs</a>
+        </h3>
+
+        
+          <p class="essay-desc listing-description">you do not have to hear yourself in experiments, and you can generate experiment instructions with ai. here is how.</p>
+        
+
+        <p class="essay-meta">
+          
+            <span class="essay-tags">
+              
+                <a class="essay-tag" href="#listing-listing" onclick="if (window.homeToggleListingTag) { return window.homeToggleListingTag('YWk='); }">
+                  #ai
+                </a>
+              
+                <a class="essay-tag" href="#listing-listing" onclick="if (window.homeToggleListingTag) { return window.homeToggleListingTag('ZXhwZXJpbWVudHM='); }">
+                  #experiments
+                </a>
+              
+                <a class="essay-tag" href="#listing-listing" onclick="if (window.homeToggleListingTag) { return window.homeToggleListingTag('YXVkaW8='); }">
+                  #audio
+                </a>
+              
+                <a class="essay-tag" href="#listing-listing" onclick="if (window.homeToggleListingTag) { return window.homeToggleListingTag('ZWxldmVubGFicw=='); }">
+                  #elevenlabs
+                </a>
+              
+            </span>
+          
+          
+            <time class="listing-date essay-date">Feb 24, 2026</time>
+          
+        </p>
+      </div>
+    </article>
+  
+    
+    <article class="essay-item" data-index="1" data-categories="cHN5Y2hvbGluZ3Vpc3RpY3MlMkNhaSUyQ2V4cGVyaW1lbnRzJTJDQ0xJUCUyQ3VuYWNjdXNhdGl2aXR5" data-listing-date-sort="1768539600000" data-listing-file-modified-sort="1771973603400" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="34" data-listing-word-count-sort="6634">
       
-      
-        <div class="postcard-thumb">
+        <div class="essay-thumb">
           <a href="./posts/clip/index.html">
             <img src="./posts/clip/model_comparison_plot.png" alt="unaccusativity syntax or picture difficulty?">
           </a>
         </div>
       
 
-      <div class="postcard-body">
-        <div class="postcard-main">
-          <h3 class="anchored">
-            <a href="./posts/clip/index.html" class="listing-title">unaccusativity syntax or picture difficulty?</a>
-          </h3>
+      <div class="essay-main">
+        <h3 class="anchored">
+          <a href="./posts/clip/index.html" class="listing-title">unaccusativity syntax or picture difficulty?</a>
+        </h3>
 
-          
-            <p class="desc listing-description">i am obssessed with early advance planning, but let me make sure about some picture saliency</p>
-          
-          
-          <div class="postcard-info-row">
-            
-              <p class="author listing-author">Utku Turk</p>
-            
-            
-              <!-- listing-date for the visible text; metadataAttrs carries the sortable value -->
-              <time class="date listing-date">Jan 16, 2026</time>
-            
-          </div>
+        
+          <p class="essay-desc listing-description">i am obssessed with early advance planning, but let me make sure about some picture saliency</p>
+        
 
-          <div class="postcard-bottom-row">
-            
-              <!-- hidden aggregator helps listing search on 'categories' field -->
-              <span class="sr-only listing-categories">psycholinguistics ai experiments CLIP unaccusativity</span>
-
-              <div class="tags">
-                
-                  <div class="listing-category tag" onclick="window.quartoListingCategory('cHN5Y2hvbGluZ3Vpc3RpY3M='); return false;">
-                    psycholinguistics
-                  </div>
-                
-                  <div class="listing-category tag" onclick="window.quartoListingCategory('YWk='); return false;">
-                    ai
-                  </div>
-                
-                  <div class="listing-category tag" onclick="window.quartoListingCategory('ZXhwZXJpbWVudHM='); return false;">
-                    experiments
-                  </div>
-                
-                  <div class="listing-category tag" onclick="window.quartoListingCategory('Q0xJUA=='); return false;">
-                    CLIP
-                  </div>
-                
-                  <div class="listing-category tag" onclick="window.quartoListingCategory('dW5hY2N1c2F0aXZpdHk='); return false;">
-                    unaccusativity
-                  </div>
-                
-              </div>
-            
-            <a href="./posts/clip/index.html" class="read-btn" aria-label="Read post">Read</a>
-          </div>
-        </div>
+        <p class="essay-meta">
+          
+            <span class="essay-tags">
+              
+                <a class="essay-tag" href="#listing-listing" onclick="if (window.homeToggleListingTag) { return window.homeToggleListingTag('cHN5Y2hvbGluZ3Vpc3RpY3M='); }">
+                  #psycholinguistics
+                </a>
+              
+                <a class="essay-tag" href="#listing-listing" onclick="if (window.homeToggleListingTag) { return window.homeToggleListingTag('YWk='); }">
+                  #ai
+                </a>
+              
+                <a class="essay-tag" href="#listing-listing" onclick="if (window.homeToggleListingTag) { return window.homeToggleListingTag('ZXhwZXJpbWVudHM='); }">
+                  #experiments
+                </a>
+              
+                <a class="essay-tag" href="#listing-listing" onclick="if (window.homeToggleListingTag) { return window.homeToggleListingTag('Q0xJUA=='); }">
+                  #CLIP
+                </a>
+              
+                <a class="essay-tag" href="#listing-listing" onclick="if (window.homeToggleListingTag) { return window.homeToggleListingTag('dW5hY2N1c2F0aXZpdHk='); }">
+                  #unaccusativity
+                </a>
+              
+            </span>
+          
+          
+            <time class="listing-date essay-date">Jan 16, 2026</time>
+          
+        </p>
       </div>
-    </div>
+    </article>
   
-    <div class="postcard" data-index="1" data-categories="Y29kZSUyQ2V4cGVyaW1lbnRzJTJDYWklMkN0ZWNobmljYWw=" data-listing-date-sort="1765864800000" data-listing-file-modified-sort="1768553997747" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1722">
-      <!-- Invisible stretched link covers the whole card -->
-      <a href="./posts/generate-items/index.html" class="stretched-link" aria-label="Read: generating consistent linguistic experiment materials with AI"></a>
-
+    
+    <article class="essay-item" data-index="2" data-categories="Y29kZSUyQ2V4cGVyaW1lbnRzJTJDYWklMkN0ZWNobmljYWw=" data-listing-date-sort="1765861200000" data-listing-file-modified-sort="1768553997747" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1722">
       
-      
-        <div class="postcard-thumb">
+        <div class="essay-thumb">
           <a href="./posts/generate-items/index.html">
             <img src="./posts/generate-items/image_1.jpg" alt="generating consistent linguistic experiment materials with AI">
           </a>
         </div>
       
 
-      <div class="postcard-body">
-        <div class="postcard-main">
-          <h3 class="anchored">
-            <a href="./posts/generate-items/index.html" class="listing-title">generating consistent linguistic experiment materials with AI</a>
-          </h3>
+      <div class="essay-main">
+        <h3 class="anchored">
+          <a href="./posts/generate-items/index.html" class="listing-title">generating consistent linguistic experiment materials with AI</a>
+        </h3>
 
-          
-            <p class="desc listing-description">next step is to have a norming data on text-to-image-to-image generated  standardized stimuli</p>
-          
-          
-          <div class="postcard-info-row">
-            
-            
-              <!-- listing-date for the visible text; metadataAttrs carries the sortable value -->
-              <time class="date listing-date">Dec 16, 2025</time>
-            
-          </div>
+        
+          <p class="essay-desc listing-description">next step is to have a norming data on text-to-image-to-image generated  standardized stimuli</p>
+        
 
-          <div class="postcard-bottom-row">
-            
-              <!-- hidden aggregator helps listing search on 'categories' field -->
-              <span class="sr-only listing-categories">code experiments ai technical</span>
-
-              <div class="tags">
-                
-                  <div class="listing-category tag" onclick="window.quartoListingCategory('Y29kZQ=='); return false;">
-                    code
-                  </div>
-                
-                  <div class="listing-category tag" onclick="window.quartoListingCategory('ZXhwZXJpbWVudHM='); return false;">
-                    experiments
-                  </div>
-                
-                  <div class="listing-category tag" onclick="window.quartoListingCategory('YWk='); return false;">
-                    ai
-                  </div>
-                
-                  <div class="listing-category tag" onclick="window.quartoListingCategory('dGVjaG5pY2Fs'); return false;">
-                    technical
-                  </div>
-                
-              </div>
-            
-            <a href="./posts/generate-items/index.html" class="read-btn" aria-label="Read post">Read</a>
-          </div>
-        </div>
+        <p class="essay-meta">
+          
+            <span class="essay-tags">
+              
+                <a class="essay-tag" href="#listing-listing" onclick="if (window.homeToggleListingTag) { return window.homeToggleListingTag('Y29kZQ=='); }">
+                  #code
+                </a>
+              
+                <a class="essay-tag" href="#listing-listing" onclick="if (window.homeToggleListingTag) { return window.homeToggleListingTag('ZXhwZXJpbWVudHM='); }">
+                  #experiments
+                </a>
+              
+                <a class="essay-tag" href="#listing-listing" onclick="if (window.homeToggleListingTag) { return window.homeToggleListingTag('YWk='); }">
+                  #ai
+                </a>
+              
+                <a class="essay-tag" href="#listing-listing" onclick="if (window.homeToggleListingTag) { return window.homeToggleListingTag('dGVjaG5pY2Fs'); }">
+                  #technical
+                </a>
+              
+            </span>
+          
+          
+            <time class="listing-date essay-date">Dec 16, 2025</time>
+          
+        </p>
       </div>
-    </div>
+    </article>
   
-    <div class="postcard" data-index="2" data-categories="bGluZ3Vpc3RpY3MlMkNjb21tZW50YXJ5" data-listing-date-sort="1765778400000" data-listing-file-modified-sort="1765957741574" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1410">
-      <!-- Invisible stretched link covers the whole card -->
-      <a href="./posts/futileness-of-judgments/index.html" class="stretched-link" aria-label="Read: what might they really mean when they say 'but it's not grammatical to me'?"></a>
-
+    
+    <article class="essay-item" data-index="3" data-categories="bGluZ3Vpc3RpY3MlMkNjb21tZW50YXJ5" data-listing-date-sort="1765774800000" data-listing-file-modified-sort="1765957741574" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1410">
       
-      
-        <div class="postcard-thumb">
+        <div class="essay-thumb">
           <a href="./posts/futileness-of-judgments/index.html">
             <img src="./posts/futileness-of-judgments/09_key.jpg" alt="what might they really mean when they say 'but it's not grammatical to me'?">
           </a>
         </div>
       
 
-      <div class="postcard-body">
-        <div class="postcard-main">
-          <h3 class="anchored">
-            <a href="./posts/futileness-of-judgments/index.html" class="listing-title">what might they really mean when they say 'but it's not grammatical to me'?</a>
-          </h3>
+      <div class="essay-main">
+        <h3 class="anchored">
+          <a href="./posts/futileness-of-judgments/index.html" class="listing-title">what might they really mean when they say 'but it's not grammatical to me'?</a>
+        </h3>
 
-          
-            <p class="desc listing-description">on why that phrase is usually unhelpful and attempt to be a charitable</p>
-          
-          
-          <div class="postcard-info-row">
-            
-              <p class="author listing-author">Utku Türk</p>
-            
-            
-              <!-- listing-date for the visible text; metadataAttrs carries the sortable value -->
-              <time class="date listing-date">Dec 15, 2025</time>
-            
-          </div>
+        
+          <p class="essay-desc listing-description">on why that phrase is usually unhelpful and attempt to be a charitable</p>
+        
 
-          <div class="postcard-bottom-row">
-            
-              <!-- hidden aggregator helps listing search on 'categories' field -->
-              <span class="sr-only listing-categories">linguistics commentary</span>
-
-              <div class="tags">
-                
-                  <div class="listing-category tag" onclick="window.quartoListingCategory('bGluZ3Vpc3RpY3M='); return false;">
-                    linguistics
-                  </div>
-                
-                  <div class="listing-category tag" onclick="window.quartoListingCategory('Y29tbWVudGFyeQ=='); return false;">
-                    commentary
-                  </div>
-                
-              </div>
-            
-            <a href="./posts/futileness-of-judgments/index.html" class="read-btn" aria-label="Read post">Read</a>
-          </div>
-        </div>
+        <p class="essay-meta">
+          
+            <span class="essay-tags">
+              
+                <a class="essay-tag" href="#listing-listing" onclick="if (window.homeToggleListingTag) { return window.homeToggleListingTag('bGluZ3Vpc3RpY3M='); }">
+                  #linguistics
+                </a>
+              
+                <a class="essay-tag" href="#listing-listing" onclick="if (window.homeToggleListingTag) { return window.homeToggleListingTag('Y29tbWVudGFyeQ=='); }">
+                  #commentary
+                </a>
+              
+            </span>
+          
+          
+            <time class="listing-date essay-date">Dec 15, 2025</time>
+          
+        </p>
       </div>
-    </div>
+    </article>
   
-    <div class="postcard" data-index="3" data-categories="ZXhwZXJpbWVudHMlMkNhd3MlMkNwY2liZXg=" data-listing-date-sort="1761800400000" data-listing-file-modified-sort="1763409623613" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="14" data-listing-word-count-sort="2670">
-      <!-- Invisible stretched link covers the whole card -->
-      <a href="./posts/aws-s3-pcibex/index.html" class="stretched-link" aria-label="Read: saving pcibex recordings to s3 with a python lambda"></a>
-
+    
+    <article class="essay-item" data-index="4" data-categories="ZXhwZXJpbWVudHMlMkNhd3MlMkNwY2liZXg=" data-listing-date-sort="1761796800000" data-listing-file-modified-sort="1763409623613" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="14" data-listing-word-count-sort="2670">
       
-      
-        <div class="postcard-thumb">
+        <div class="essay-thumb">
           <a href="./posts/aws-s3-pcibex/index.html">
             <img src="./posts/aws-s3-pcibex/map-lambda.png" alt="saving pcibex recordings to s3 with a python lambda">
           </a>
         </div>
       
 
-      <div class="postcard-body">
-        <div class="postcard-main">
-          <h3 class="anchored">
-            <a href="./posts/aws-s3-pcibex/index.html" class="listing-title">saving pcibex recordings to s3 with a python lambda</a>
-          </h3>
+      <div class="essay-main">
+        <h3 class="anchored">
+          <a href="./posts/aws-s3-pcibex/index.html" class="listing-title">saving pcibex recordings to s3 with a python lambda</a>
+        </h3>
 
-          
-            <p class="desc listing-description">modern replacement for the outdated JS guide in the original pcibex website.</p>
-          
-          
-          <div class="postcard-info-row">
-            
-              <p class="author listing-author">Utku Türk</p>
-            
-            
-              <!-- listing-date for the visible text; metadataAttrs carries the sortable value -->
-              <time class="date listing-date">Oct 30, 2025</time>
-            
-          </div>
+        
+          <p class="essay-desc listing-description">modern replacement for the outdated JS guide in the original pcibex website.</p>
+        
 
-          <div class="postcard-bottom-row">
-            
-              <!-- hidden aggregator helps listing search on 'categories' field -->
-              <span class="sr-only listing-categories">experiments aws pcibex</span>
-
-              <div class="tags">
-                
-                  <div class="listing-category tag" onclick="window.quartoListingCategory('ZXhwZXJpbWVudHM='); return false;">
-                    experiments
-                  </div>
-                
-                  <div class="listing-category tag" onclick="window.quartoListingCategory('YXdz'); return false;">
-                    aws
-                  </div>
-                
-                  <div class="listing-category tag" onclick="window.quartoListingCategory('cGNpYmV4'); return false;">
-                    pcibex
-                  </div>
-                
-              </div>
-            
-            <a href="./posts/aws-s3-pcibex/index.html" class="read-btn" aria-label="Read post">Read</a>
-          </div>
-        </div>
+        <p class="essay-meta">
+          
+            <span class="essay-tags">
+              
+                <a class="essay-tag" href="#listing-listing" onclick="if (window.homeToggleListingTag) { return window.homeToggleListingTag('ZXhwZXJpbWVudHM='); }">
+                  #experiments
+                </a>
+              
+                <a class="essay-tag" href="#listing-listing" onclick="if (window.homeToggleListingTag) { return window.homeToggleListingTag('YXdz'); }">
+                  #aws
+                </a>
+              
+                <a class="essay-tag" href="#listing-listing" onclick="if (window.homeToggleListingTag) { return window.homeToggleListingTag('cGNpYmV4'); }">
+                  #pcibex
+                </a>
+              
+            </span>
+          
+          
+            <time class="listing-date essay-date">Oct 30, 2025</time>
+          
+        </p>
       </div>
-    </div>
+    </article>
   
-    <div class="postcard" data-index="4" data-categories="bGluZ3Vpc3RpY3MlMkNtaXN1bmRlcnN0YW5kaW5nJTJDc291bmQlMkN0dXJraXNo" data-listing-date-sort="1761714000000" data-listing-file-modified-sort="1761917838023" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2546">
-      <!-- Invisible stretched link covers the whole card -->
-      <a href="./posts/misunderstanding-kate/index.html" class="stretched-link" aria-label="Read: misunderstanding Kate's talk on nonuniformity of phonology and phonetics"></a>
-
+    
+    <article class="essay-item" data-index="5" data-categories="bGluZ3Vpc3RpY3MlMkNtaXN1bmRlcnN0YW5kaW5nJTJDc291bmQlMkN0dXJraXNo" data-listing-date-sort="1761710400000" data-listing-file-modified-sort="1761917838023" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2546">
       
-      
-        <div class="postcard-thumb">
+        <div class="essay-thumb">
           <a href="./posts/misunderstanding-kate/index.html">
             <img src="./posts/misunderstanding-kate/fourier_elephant.png" alt="misunderstanding Kate's talk on nonuniformity of phonology and phonetics">
           </a>
         </div>
       
 
-      <div class="postcard-body">
-        <div class="postcard-main">
-          <h3 class="anchored">
-            <a href="./posts/misunderstanding-kate/index.html" class="listing-title">misunderstanding Kate's talk on nonuniformity of phonology and phonetics</a>
-          </h3>
+      <div class="essay-main">
+        <h3 class="anchored">
+          <a href="./posts/misunderstanding-kate/index.html" class="listing-title">misunderstanding Kate's talk on nonuniformity of phonology and phonetics</a>
+        </h3>
 
-          
-            <p class="desc listing-description">Kate’s asymmetry meets Turkish rounding: evidence that’s gradient but syntactically bounded (also a rant about dual-process framings)</p>
-          
-          
-          <div class="postcard-info-row">
-            
-              <p class="author listing-author">Utku Turk</p>
-            
-            
-              <!-- listing-date for the visible text; metadataAttrs carries the sortable value -->
-              <time class="date listing-date">Oct 29, 2025</time>
-            
-          </div>
+        
+          <p class="essay-desc listing-description">Kate’s asymmetry meets Turkish rounding: evidence that’s gradient but syntactically bounded (also a rant about dual-process framings)</p>
+        
 
-          <div class="postcard-bottom-row">
-            
-              <!-- hidden aggregator helps listing search on 'categories' field -->
-              <span class="sr-only listing-categories">linguistics misunderstanding sound turkish</span>
-
-              <div class="tags">
-                
-                  <div class="listing-category tag" onclick="window.quartoListingCategory('bGluZ3Vpc3RpY3M='); return false;">
-                    linguistics
-                  </div>
-                
-                  <div class="listing-category tag" onclick="window.quartoListingCategory('bWlzdW5kZXJzdGFuZGluZw=='); return false;">
-                    misunderstanding
-                  </div>
-                
-                  <div class="listing-category tag" onclick="window.quartoListingCategory('c291bmQ='); return false;">
-                    sound
-                  </div>
-                
-                  <div class="listing-category tag" onclick="window.quartoListingCategory('dHVya2lzaA=='); return false;">
-                    turkish
-                  </div>
-                
-              </div>
-            
-            <a href="./posts/misunderstanding-kate/index.html" class="read-btn" aria-label="Read post">Read</a>
-          </div>
-        </div>
+        <p class="essay-meta">
+          
+            <span class="essay-tags">
+              
+                <a class="essay-tag" href="#listing-listing" onclick="if (window.homeToggleListingTag) { return window.homeToggleListingTag('bGluZ3Vpc3RpY3M='); }">
+                  #linguistics
+                </a>
+              
+                <a class="essay-tag" href="#listing-listing" onclick="if (window.homeToggleListingTag) { return window.homeToggleListingTag('bWlzdW5kZXJzdGFuZGluZw=='); }">
+                  #misunderstanding
+                </a>
+              
+                <a class="essay-tag" href="#listing-listing" onclick="if (window.homeToggleListingTag) { return window.homeToggleListingTag('c291bmQ='); }">
+                  #sound
+                </a>
+              
+                <a class="essay-tag" href="#listing-listing" onclick="if (window.homeToggleListingTag) { return window.homeToggleListingTag('dHVya2lzaA=='); }">
+                  #turkish
+                </a>
+              
+            </span>
+          
+          
+            <time class="listing-date essay-date">Oct 29, 2025</time>
+          
+        </p>
       </div>
-    </div>
+    </article>
   
-    <div class="postcard" data-index="5" data-categories="bGluZ3Vpc3RpY3MlMkNwYXBlcnMlMkNzb3VuZCUyQ2V4cGVyaW1lbnRz" data-listing-date-sort="1720760400000" data-listing-file-modified-sort="1765957739517" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="43" data-listing-word-count-sort="8475">
-      <!-- Invisible stretched link covers the whole card -->
-      <a href="./posts/mfa/index.html" class="stretched-link" aria-label="Read: montreal forced aligner workflow for pcibex production experiments"></a>
-
+    
+    <article class="essay-item" data-index="6" data-categories="bGluZ3Vpc3RpY3MlMkNwYXBlcnMlMkNzb3VuZCUyQ2V4cGVyaW1lbnRz" data-listing-date-sort="1720756800000" data-listing-file-modified-sort="1765957739517" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="43" data-listing-word-count-sort="8475">
       
-      
-        <div class="postcard-thumb">
+        <div class="essay-thumb">
           <a href="./posts/mfa/index.html">
             <img src="./posts/mfa/mfa.jpeg" alt="montreal forced aligner workflow for pcibex production experiments">
           </a>
         </div>
       
 
-      <div class="postcard-body">
-        <div class="postcard-main">
-          <h3 class="anchored">
-            <a href="./posts/mfa/index.html" class="listing-title">montreal forced aligner workflow for pcibex production experiments</a>
-          </h3>
+      <div class="essay-main">
+        <h3 class="anchored">
+          <a href="./posts/mfa/index.html" class="listing-title">montreal forced aligner workflow for pcibex production experiments</a>
+        </h3>
 
-          
-            <p class="desc listing-description">step-by-step instructions for filtering, renaming, and aligning pcibex recordings with mfa</p>
-          
-          
-          <div class="postcard-info-row">
-            
-              <p class="author listing-author">Utku Turk</p>
-            
-            
-              <!-- listing-date for the visible text; metadataAttrs carries the sortable value -->
-              <time class="date listing-date">Jul 12, 2024</time>
-            
-          </div>
+        
+          <p class="essay-desc listing-description">step-by-step instructions for filtering, renaming, and aligning pcibex recordings with mfa</p>
+        
 
-          <div class="postcard-bottom-row">
-            
-              <!-- hidden aggregator helps listing search on 'categories' field -->
-              <span class="sr-only listing-categories">linguistics papers sound experiments</span>
-
-              <div class="tags">
-                
-                  <div class="listing-category tag" onclick="window.quartoListingCategory('bGluZ3Vpc3RpY3M='); return false;">
-                    linguistics
-                  </div>
-                
-                  <div class="listing-category tag" onclick="window.quartoListingCategory('cGFwZXJz'); return false;">
-                    papers
-                  </div>
-                
-                  <div class="listing-category tag" onclick="window.quartoListingCategory('c291bmQ='); return false;">
-                    sound
-                  </div>
-                
-                  <div class="listing-category tag" onclick="window.quartoListingCategory('ZXhwZXJpbWVudHM='); return false;">
-                    experiments
-                  </div>
-                
-              </div>
-            
-            <a href="./posts/mfa/index.html" class="read-btn" aria-label="Read post">Read</a>
-          </div>
-        </div>
+        <p class="essay-meta">
+          
+            <span class="essay-tags">
+              
+                <a class="essay-tag" href="#listing-listing" onclick="if (window.homeToggleListingTag) { return window.homeToggleListingTag('bGluZ3Vpc3RpY3M='); }">
+                  #linguistics
+                </a>
+              
+                <a class="essay-tag" href="#listing-listing" onclick="if (window.homeToggleListingTag) { return window.homeToggleListingTag('cGFwZXJz'); }">
+                  #papers
+                </a>
+              
+                <a class="essay-tag" href="#listing-listing" onclick="if (window.homeToggleListingTag) { return window.homeToggleListingTag('c291bmQ='); }">
+                  #sound
+                </a>
+              
+                <a class="essay-tag" href="#listing-listing" onclick="if (window.homeToggleListingTag) { return window.homeToggleListingTag('ZXhwZXJpbWVudHM='); }">
+                  #experiments
+                </a>
+              
+            </span>
+          
+          
+            <time class="listing-date essay-date">Jul 12, 2024</time>
+          
+        </p>
       </div>
-    </div>
+    </article>
   
-    <div class="postcard" data-index="6" data-categories="dGVjaG5pY2FsJTJDY29kZQ==" data-listing-date-sort="1677132000000" data-listing-file-modified-sort="1765957738328" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="579">
-      <!-- Invisible stretched link covers the whole card -->
-      <a href="./posts/server-recordings/index.html" class="stretched-link" aria-label="Read: automating experimental recording management with bash"></a>
-
+    
+    <article class="essay-item" data-index="7" data-categories="dGVjaG5pY2FsJTJDY29kZQ==" data-listing-date-sort="1677128400000" data-listing-file-modified-sort="1765957738328" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="579">
       
-      
-        <div class="postcard-thumb">
+        <div class="essay-thumb">
           <a href="./posts/server-recordings/index.html">
             <img src="./posts/server-recordings/bash.png" alt="automating experimental recording management with bash">
           </a>
         </div>
       
 
-      <div class="postcard-body">
-        <div class="postcard-main">
-          <h3 class="anchored">
-            <a href="./posts/server-recordings/index.html" class="listing-title">automating experimental recording management with bash</a>
-          </h3>
+      <div class="essay-main">
+        <h3 class="anchored">
+          <a href="./posts/server-recordings/index.html" class="listing-title">automating experimental recording management with bash</a>
+        </h3>
 
-          
-            <p class="desc listing-description">it got really annoying after a while, so i wrote this code</p>
-          
-          
-          <div class="postcard-info-row">
-            
-              <p class="author listing-author">Utku Turk</p>
-            
-            
-              <!-- listing-date for the visible text; metadataAttrs carries the sortable value -->
-              <time class="date listing-date">Feb 23, 2023</time>
-            
-          </div>
+        
+          <p class="essay-desc listing-description">it got really annoying after a while, so i wrote this code</p>
+        
 
-          <div class="postcard-bottom-row">
-            
-              <!-- hidden aggregator helps listing search on 'categories' field -->
-              <span class="sr-only listing-categories">technical code</span>
-
-              <div class="tags">
-                
-                  <div class="listing-category tag" onclick="window.quartoListingCategory('dGVjaG5pY2Fs'); return false;">
-                    technical
-                  </div>
-                
-                  <div class="listing-category tag" onclick="window.quartoListingCategory('Y29kZQ=='); return false;">
-                    code
-                  </div>
-                
-              </div>
-            
-            <a href="./posts/server-recordings/index.html" class="read-btn" aria-label="Read post">Read</a>
-          </div>
-        </div>
+        <p class="essay-meta">
+          
+            <span class="essay-tags">
+              
+                <a class="essay-tag" href="#listing-listing" onclick="if (window.homeToggleListingTag) { return window.homeToggleListingTag('dGVjaG5pY2Fs'); }">
+                  #technical
+                </a>
+              
+                <a class="essay-tag" href="#listing-listing" onclick="if (window.homeToggleListingTag) { return window.homeToggleListingTag('Y29kZQ=='); }">
+                  #code
+                </a>
+              
+            </span>
+          
+          
+            <time class="listing-date essay-date">Feb 23, 2023</time>
+          
+        </p>
       </div>
-    </div>
+    </article>
   
-    <div class="postcard" data-index="7" data-categories="bGluZ3Vpc3RpY3MlMkNkaXNzZXJ0YXRpb24lMkN0dXJraXNoJTJDYWdyZWVtZW50JTIwYXR0cmFjdGlvbg==" data-listing-date-sort="1660971600000" data-listing-file-modified-sort="1765957740605" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="666">
-      <!-- Invisible stretched link covers the whole card -->
-      <a href="./posts/ma-thesis/index.html" class="stretched-link" aria-label="Read: agreement attraction in turkish"></a>
-
+    
+    <article class="essay-item" data-index="8" data-categories="bGluZ3Vpc3RpY3MlMkNkaXNzZXJ0YXRpb24lMkN0dXJraXNoJTJDYWdyZWVtZW50JTIwYXR0cmFjdGlvbg==" data-listing-date-sort="1660968000000" data-listing-file-modified-sort="1765957740605" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="666">
       
-      
-        <div class="postcard-thumb">
+        <div class="essay-thumb">
           <a href="./posts/ma-thesis/index.html">
             <img src="./posts/ma-thesis/exp3_bias_our.png" alt="agreement attraction in turkish">
           </a>
         </div>
       
 
-      <div class="postcard-body">
-        <div class="postcard-main">
-          <h3 class="anchored">
-            <a href="./posts/ma-thesis/index.html" class="listing-title">agreement attraction in turkish</a>
-          </h3>
+      <div class="essay-main">
+        <h3 class="anchored">
+          <a href="./posts/ma-thesis/index.html" class="listing-title">agreement attraction in turkish</a>
+        </h3>
 
-          
-            <p class="desc listing-description">attraction in turkish seems to be modulated by bias, register, task details, but not morpology</p>
-          
-          
-          <div class="postcard-info-row">
-            
-              <p class="author listing-author">Utku Turk</p>
-            
-            
-              <!-- listing-date for the visible text; metadataAttrs carries the sortable value -->
-              <time class="date listing-date">Aug 20, 2022</time>
-            
-          </div>
+        
+          <p class="essay-desc listing-description">attraction in turkish seems to be modulated by bias, register, task details, but not morpology</p>
+        
 
-          <div class="postcard-bottom-row">
-            
-              <!-- hidden aggregator helps listing search on 'categories' field -->
-              <span class="sr-only listing-categories">linguistics dissertation turkish agreement attraction</span>
-
-              <div class="tags">
-                
-                  <div class="listing-category tag" onclick="window.quartoListingCategory('bGluZ3Vpc3RpY3M='); return false;">
-                    linguistics
-                  </div>
-                
-                  <div class="listing-category tag" onclick="window.quartoListingCategory('ZGlzc2VydGF0aW9u'); return false;">
-                    dissertation
-                  </div>
-                
-                  <div class="listing-category tag" onclick="window.quartoListingCategory('dHVya2lzaA=='); return false;">
-                    turkish
-                  </div>
-                
-                  <div class="listing-category tag" onclick="window.quartoListingCategory('YWdyZWVtZW50JTIwYXR0cmFjdGlvbg=='); return false;">
-                    agreement attraction
-                  </div>
-                
-              </div>
-            
-            <a href="./posts/ma-thesis/index.html" class="read-btn" aria-label="Read post">Read</a>
-          </div>
-        </div>
+        <p class="essay-meta">
+          
+            <span class="essay-tags">
+              
+                <a class="essay-tag" href="#listing-listing" onclick="if (window.homeToggleListingTag) { return window.homeToggleListingTag('bGluZ3Vpc3RpY3M='); }">
+                  #linguistics
+                </a>
+              
+                <a class="essay-tag" href="#listing-listing" onclick="if (window.homeToggleListingTag) { return window.homeToggleListingTag('ZGlzc2VydGF0aW9u'); }">
+                  #dissertation
+                </a>
+              
+                <a class="essay-tag" href="#listing-listing" onclick="if (window.homeToggleListingTag) { return window.homeToggleListingTag('dHVya2lzaA=='); }">
+                  #turkish
+                </a>
+              
+                <a class="essay-tag" href="#listing-listing" onclick="if (window.homeToggleListingTag) { return window.homeToggleListingTag('YWdyZWVtZW50JTIwYXR0cmFjdGlvbg=='); }">
+                  #agreement attraction
+                </a>
+              
+            </span>
+          
+          
+            <time class="listing-date essay-date">Aug 20, 2022</time>
+          
+        </p>
       </div>
-    </div>
+    </article>
   
-    <div class="postcard" data-index="8" data-categories="bGluZ3Vpc3RpY3MlMkNwYXBlcnMlMkNzb3VuZA==" data-listing-date-sort="1652158800000" data-listing-file-modified-sort="1760457626216" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="301">
-      <!-- Invisible stretched link covers the whole card -->
-      <a href="./posts/j-glide/index.html" class="stretched-link" aria-label="Read: is /j/ really a sonorant in turkish? i guess not."></a>
-
+    
+    <article class="essay-item" data-index="9" data-categories="bGluZ3Vpc3RpY3MlMkNwYXBlcnMlMkNzb3VuZA==" data-listing-date-sort="1652155200000" data-listing-file-modified-sort="1760457626216" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="301">
       
-      
-        <div class="postcard-thumb">
+        <div class="essay-thumb">
           <a href="./posts/j-glide/index.html">
             <img src="./posts/j-glide/glide_fig.png" alt="is /j/ really a sonorant in turkish? i guess not.">
           </a>
         </div>
       
 
-      <div class="postcard-body">
-        <div class="postcard-main">
-          <h3 class="anchored">
-            <a href="./posts/j-glide/index.html" class="listing-title">is /j/ really a sonorant in turkish? i guess not.</a>
-          </h3>
+      <div class="essay-main">
+        <h3 class="anchored">
+          <a href="./posts/j-glide/index.html" class="listing-title">is /j/ really a sonorant in turkish? i guess not.</a>
+        </h3>
 
-          
-            <p class="desc listing-description">findings point to a fricative status for /j/, despite its occasional sonorant disguise</p>
-          
-          
-          <div class="postcard-info-row">
-            
-              <p class="author listing-author">Utku Turk</p>
-            
-            
-              <!-- listing-date for the visible text; metadataAttrs carries the sortable value -->
-              <time class="date listing-date">May 10, 2022</time>
-            
-          </div>
+        
+          <p class="essay-desc listing-description">findings point to a fricative status for /j/, despite its occasional sonorant disguise</p>
+        
 
-          <div class="postcard-bottom-row">
-            
-              <!-- hidden aggregator helps listing search on 'categories' field -->
-              <span class="sr-only listing-categories">linguistics papers sound</span>
-
-              <div class="tags">
-                
-                  <div class="listing-category tag" onclick="window.quartoListingCategory('bGluZ3Vpc3RpY3M='); return false;">
-                    linguistics
-                  </div>
-                
-                  <div class="listing-category tag" onclick="window.quartoListingCategory('cGFwZXJz'); return false;">
-                    papers
-                  </div>
-                
-                  <div class="listing-category tag" onclick="window.quartoListingCategory('c291bmQ='); return false;">
-                    sound
-                  </div>
-                
-              </div>
-            
-            <a href="./posts/j-glide/index.html" class="read-btn" aria-label="Read post">Read</a>
-          </div>
-        </div>
+        <p class="essay-meta">
+          
+            <span class="essay-tags">
+              
+                <a class="essay-tag" href="#listing-listing" onclick="if (window.homeToggleListingTag) { return window.homeToggleListingTag('bGluZ3Vpc3RpY3M='); }">
+                  #linguistics
+                </a>
+              
+                <a class="essay-tag" href="#listing-listing" onclick="if (window.homeToggleListingTag) { return window.homeToggleListingTag('cGFwZXJz'); }">
+                  #papers
+                </a>
+              
+                <a class="essay-tag" href="#listing-listing" onclick="if (window.homeToggleListingTag) { return window.homeToggleListingTag('c291bmQ='); }">
+                  #sound
+                </a>
+              
+            </span>
+          
+          
+            <time class="listing-date essay-date">May 10, 2022</time>
+          
+        </p>
       </div>
-    </div>
+    </article>
   
-    <div class="postcard" data-index="9" data-categories="bGluZ3Vpc3RpY3MlMkNwYXBlcnMlMkNtZWFuaW5n" data-listing-date-sort="1652158800000" data-listing-file-modified-sort="1760457626214" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="772">
-      <!-- Invisible stretched link covers the whole card -->
-      <a href="./posts/as-if/index.html" class="stretched-link" aria-label="Read: can ‘as if’ clauses be degree comparisons?"></a>
-
+    
+    <article class="essay-item" data-index="10" data-categories="bGluZ3Vpc3RpY3MlMkNwYXBlcnMlMkNtZWFuaW5n" data-listing-date-sort="1652155200000" data-listing-file-modified-sort="1760457626214" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="772">
       
-      
-        <div class="postcard-thumb">
+        <div class="essay-thumb">
           <a href="./posts/as-if/index.html">
             <img src="./posts/as-if/dancing.jpg" alt="can ‘as if’ clauses be degree comparisons?">
           </a>
         </div>
       
 
-      <div class="postcard-body">
-        <div class="postcard-main">
-          <h3 class="anchored">
-            <a href="./posts/as-if/index.html" class="listing-title">can ‘as if’ clauses be degree comparisons?</a>
-          </h3>
+      <div class="essay-main">
+        <h3 class="anchored">
+          <a href="./posts/as-if/index.html" class="listing-title">can ‘as if’ clauses be degree comparisons?</a>
+        </h3>
 
-          
-            <p class="desc listing-description">turkish as if clauses specifically target gradable adverbials and adjectives, pointing to a degree-based analysis</p>
-          
-          
-          <div class="postcard-info-row">
-            
-              <p class="author listing-author">Utku Turk</p>
-            
-            
-              <!-- listing-date for the visible text; metadataAttrs carries the sortable value -->
-              <time class="date listing-date">May 10, 2022</time>
-            
-          </div>
+        
+          <p class="essay-desc listing-description">turkish as if clauses specifically target gradable adverbials and adjectives, pointing to a degree-based analysis</p>
+        
 
-          <div class="postcard-bottom-row">
-            
-              <!-- hidden aggregator helps listing search on 'categories' field -->
-              <span class="sr-only listing-categories">linguistics papers meaning</span>
-
-              <div class="tags">
-                
-                  <div class="listing-category tag" onclick="window.quartoListingCategory('bGluZ3Vpc3RpY3M='); return false;">
-                    linguistics
-                  </div>
-                
-                  <div class="listing-category tag" onclick="window.quartoListingCategory('cGFwZXJz'); return false;">
-                    papers
-                  </div>
-                
-                  <div class="listing-category tag" onclick="window.quartoListingCategory('bWVhbmluZw=='); return false;">
-                    meaning
-                  </div>
-                
-              </div>
-            
-            <a href="./posts/as-if/index.html" class="read-btn" aria-label="Read post">Read</a>
-          </div>
-        </div>
+        <p class="essay-meta">
+          
+            <span class="essay-tags">
+              
+                <a class="essay-tag" href="#listing-listing" onclick="if (window.homeToggleListingTag) { return window.homeToggleListingTag('bGluZ3Vpc3RpY3M='); }">
+                  #linguistics
+                </a>
+              
+                <a class="essay-tag" href="#listing-listing" onclick="if (window.homeToggleListingTag) { return window.homeToggleListingTag('cGFwZXJz'); }">
+                  #papers
+                </a>
+              
+                <a class="essay-tag" href="#listing-listing" onclick="if (window.homeToggleListingTag) { return window.homeToggleListingTag('bWVhbmluZw=='); }">
+                  #meaning
+                </a>
+              
+            </span>
+          
+          
+            <time class="listing-date essay-date">May 10, 2022</time>
+          
+        </p>
       </div>
-    </div>
+    </article>
   
-    <div class="postcard" data-index="10" data-categories="dGVjaG5pY2FsJTJDY29kZQ==" data-listing-date-sort="1579759200000" data-listing-file-modified-sort="1760457626251" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="325">
-      <!-- Invisible stretched link covers the whole card -->
-      <a href="./posts/yaml-rnotebook/index.html" class="stretched-link" aria-label="Read: how to include r expressions in (quarto) yaml"></a>
-
+    
+    <article class="essay-item" data-index="11" data-categories="dGVjaG5pY2FsJTJDY29kZQ==" data-listing-date-sort="1579755600000" data-listing-file-modified-sort="1760457626251" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="325">
       
-      
-        <div class="postcard-thumb">
+        <div class="essay-thumb">
           <a href="./posts/yaml-rnotebook/index.html">
             <img src="./posts/yaml-rnotebook/yaml.png" alt="how to include r expressions in (quarto) yaml">
           </a>
         </div>
       
 
-      <div class="postcard-body">
-        <div class="postcard-main">
-          <h3 class="anchored">
-            <a href="./posts/yaml-rnotebook/index.html" class="listing-title">how to include r expressions in (quarto) yaml</a>
-          </h3>
+      <div class="essay-main">
+        <h3 class="anchored">
+          <a href="./posts/yaml-rnotebook/index.html" class="listing-title">how to include r expressions in (quarto) yaml</a>
+        </h3>
 
-          
-            <p class="desc listing-description">using yaml with embedded r expressions for cleaner, reusable quarto configs</p>
-          
-          
-          <div class="postcard-info-row">
-            
-              <p class="author listing-author">Utku Turk</p>
-            
-            
-              <!-- listing-date for the visible text; metadataAttrs carries the sortable value -->
-              <time class="date listing-date">Jan 23, 2020</time>
-            
-          </div>
+        
+          <p class="essay-desc listing-description">using yaml with embedded r expressions for cleaner, reusable quarto configs</p>
+        
 
-          <div class="postcard-bottom-row">
-            
-              <!-- hidden aggregator helps listing search on 'categories' field -->
-              <span class="sr-only listing-categories">technical code</span>
-
-              <div class="tags">
-                
-                  <div class="listing-category tag" onclick="window.quartoListingCategory('dGVjaG5pY2Fs'); return false;">
-                    technical
-                  </div>
-                
-                  <div class="listing-category tag" onclick="window.quartoListingCategory('Y29kZQ=='); return false;">
-                    code
-                  </div>
-                
-              </div>
-            
-            <a href="./posts/yaml-rnotebook/index.html" class="read-btn" aria-label="Read post">Read</a>
-          </div>
-        </div>
+        <p class="essay-meta">
+          
+            <span class="essay-tags">
+              
+                <a class="essay-tag" href="#listing-listing" onclick="if (window.homeToggleListingTag) { return window.homeToggleListingTag('dGVjaG5pY2Fs'); }">
+                  #technical
+                </a>
+              
+                <a class="essay-tag" href="#listing-listing" onclick="if (window.homeToggleListingTag) { return window.homeToggleListingTag('Y29kZQ=='); }">
+                  #code
+                </a>
+              
+            </span>
+          
+          
+            <time class="listing-date essay-date">Jan 23, 2020</time>
+          
+        </p>
       </div>
-    </div>
+    </article>
   
 </div>
 
 <style>
-.postcard-list {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+.essay-list {
+  margin-top: 0.75rem;
 }
 
-/* screen-reader only helper for listing-* text fields */
-.sr-only {
-  position:absolute; width:1px; height:1px; padding:0; margin:-1px;
-  overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
-}
-
-.postcard {
-  position: relative;
+.essay-item {
   display: flex;
-  border: 1px solid #e5e7eb;
-  border-radius: 10px;
-  background: #fff;
-  overflow: hidden;
-  padding: 1.5rem 1rem 1rem;
   align-items: flex-start;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.postcard:hover { transform: translateY(-4px); box-shadow: 0 6px 16px rgba(0,0,0,0.12); }
-
-/* stretched link overlay */
-.stretched-link { position: absolute; inset: 0; z-index: 1; text-indent: -9999px; }
-
-/* ensure interactive elements sit above the stretched link */
-.postcard .postcard-main h3 a,
-.postcard .desc,
-.postcard .tags,
-.postcard .listing-category,
-.postcard .read-btn { position: relative; z-index: 2; }
-
-/* thumbnail */
-.postcard-thumb { flex: 0 0 140px; margin-right: 1.25rem; }
-.postcard-thumb img {
-  width: 140px; height: 140px; object-fit: cover; border-radius: 8px;
+  gap: 0.85rem;
+  margin-bottom: 1.75rem;
+  padding-bottom: 1.1rem;
+  border-bottom: 1px dotted #bdbdbd;
 }
 
-/* body */
-.postcard-body { flex: 1; display: flex; align-items: flex-start; }
-.postcard-main { flex: 1; }
-.postcard-main h3 { margin: 0 0 0.25rem; font-size: 1rem; }
-.postcard-main h3 a { color: #111; font-weight: 700; text-decoration: none; }
-.postcard-main h3 a:hover { text-decoration: underline; }
-.postcard-main .desc { margin: 0 0 0.25rem; color: #444; font-size: 0.9rem; line-height: 1.3; }
-
-/* author + date on the same row */
-.postcard-info-row {
-  display: flex; justify-content: space-between; align-items: center; margin: 0.1rem 0 0;
+.essay-thumb {
+  flex: 0 0 82px;
 }
-.author { color: #6b7280; font-size: 0.8rem; }
-.date { color: #555; font-size: 0.85rem; }
 
-/* tags + read button row */
-.postcard-bottom-row { display: flex; justify-content: space-between; align-items: center; }
-.tags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
-.tag { background: #f3f4f6; color: #111; padding: 0.15rem 0.45rem; font-size: 0.75rem; border-radius: 4px; }
-
-.read-btn {
-  display: inline-block; padding: 0.3rem 0.8rem; background: #111827; color: #fff;
-  font-size: 0.8rem; font-weight: 600; border-radius: 4px; text-decoration: none;
+.essay-thumb img {
+  width: 82px;
+  height: 82px;
+  object-fit: cover;
+  border-radius: 6px;
 }
-.read-btn:hover { background: #1f2937; }
-.read-btn:visited { background: #6b7280; color: #e5e7eb; }
+
+.essay-main {
+  flex: 1;
+}
+
+.essay-item:last-child {
+  border-bottom: 0;
+}
+
+.essay-item h3 {
+  margin: 0 0 0.45rem;
+  font-size: 1.95rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.essay-item h3 .anchorjs-link {
+  display: none !important;
+}
+
+.essay-item h3 a {
+  color: #1f1f1f;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+}
+
+.essay-item h3 a:visited {
+  color: #1f1f1f;
+}
+
+.essay-item h3:hover a,
+.essay-item h3 a:hover,
+.essay-item h3 a:focus {
+  color: #1f6feb;
+}
+
+.essay-desc {
+  margin: 0 0 0.45rem;
+  font-size: 1.08rem;
+  line-height: 1.4;
+}
+
+.essay-meta {
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.8rem;
+  flex-wrap: nowrap;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.essay-tags {
+  display: flex;
+  gap: 0.35rem;
+  flex-wrap: nowrap;
+  align-items: center;
+  margin-right: auto;
+  min-width: 0;
+}
+
+.essay-date {
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+.essay-tag {
+  display: inline;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  font-size: 0.78rem;
+  line-height: 1.2;
+  color: #444;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.15s ease, text-decoration-color 0.15s ease;
+}
+
+.essay-tag:hover,
+.essay-tag:focus {
+  color: #222;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+@media (max-width: 991.98px) {
+  .essay-item {
+    gap: 0.65rem;
+  }
+
+  .essay-thumb {
+    flex-basis: 66px;
+  }
+
+  .essay-thumb img {
+    width: 66px;
+    height: 66px;
+  }
+
+  .essay-item h3 {
+    font-size: 1.5rem;
+  }
+
+  .essay-desc {
+    font-size: 1rem;
+  }
+
+  .essay-meta {
+    flex-wrap: wrap;
+  }
+
+  .essay-date {
+    margin-left: 0;
+  }
+}
 </style>
+
+<script>
+window.homeToggleListingTag = function (categoryB64) {
+  if (!window.quartoListingCategory) return false;
+
+  const listingRoot = document.getElementById("listing-listing");
+  const current = listingRoot ? (listingRoot.dataset.activeCategory || "") : "";
+
+  if (current === categoryB64) {
+    window.quartoListingCategory("");
+    if (listingRoot) listingRoot.dataset.activeCategory = "";
+  } else {
+    window.quartoListingCategory(categoryB64);
+    if (listingRoot) listingRoot.dataset.activeCategory = categoryB64;
+  }
+  return false;
+};
+</script>
 
 <div class="listing-no-matching d-none">No matching items</div>
 </div><script data-collect-dnt="true" async="" src="https://scripts.simpleanalyticscdn.com/latest.js"></script></main> <!-- /main -->
