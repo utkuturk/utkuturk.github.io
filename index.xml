@@ -7057,7 +7057,7 @@ font-style: inherit;">300</span>)</span>
 <span id="cb2-71"></span>
 <span id="cb2-72">p </span></code></pre></div></div>
 <div class="cell-output-display">
-<div id="fig-elephant" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Red–pink outline of an elephant drawn by a Fourier series, shown with axes." data-fig-align="center">
+<div id="fig-elephant" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Red–pink outline of an elephant drawn by a Fourier series, shown with axes.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-elephant-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://www.utkuturk.com/posts/misunderstanding-kate/index_files/figure-html/fig-elephant-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Red–pink outline of an elephant drawn by a Fourier series, shown with axes.">
