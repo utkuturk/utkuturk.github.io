@@ -5,109 +5,218 @@ title-block-banner: false
 comments: false
 sidebar: false
 
+execute:
+  echo: false
+  freeze: false
+
+
 listing:
   contents: posts
   sort: "date desc"
-  template: postcard.ejs  
-  categories: true
+  template: essay-listing.ejs
+  categories: false
   sort-ui: false
   filter-ui: false
   feed: true
 ---
 
 <style>
-/* Only on homepage: Push content down below Hero */
-#quarto-content {
-  margin-top: 100vh !important;
+.home-hero {
+  margin: 1rem 0 2rem;
+  padding-bottom: 0.5rem;
+}
+
+.home-hero-align {
+  max-width: 1084px;
+  margin: 0 auto;
+  padding-left: 2rem;
+  padding-right: 1.1rem;
+}
+
+.home-hero-copy {
+  width: 100%;
+}
+
+.home-hero-copy p {
+  margin: 0 0 0.8rem;
+  line-height: 1.45;
+}
+
+.home-hero-note {
+  color: #555;
+  font-size: 0.95em;
+  font-style: italic;
+}
+
+.home-news {
+  font-size: 0.82rem;
+  line-height: 1.25;
+}
+
+.home-hero-sidebar-photo {
+  text-align: center;
+  margin-top: 0.2rem;
+}
+
+.home-hero-sidebar-photo img {
+  width: 185px;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+  margin: 0 auto;
+}
+
+.home-news h3 {
+  margin-top: 0;
+  font-size: 0.95rem;
+}
+
+h2[data-anchor-id="essays"],
+h3[data-anchor-id="news"] {
+  margin-top: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-transform: lowercase;
+}
+
+.home-news ul {
+  padding-left: 0.9rem;
+  margin-bottom: 0.35rem;
+}
+
+.home-news li {
+  margin: 0;
+}
+
+.home-news li + li {
+  margin-top: 1.15rem;
+}
+
+.home-news time {
+  font-weight: 600;
+  font-size: 0.95em;
+}
+
+.home-news-more {
+  display: block;
+  text-align: right;
+  margin-top: 0.25rem;
+  font-size: 0.9em;
+}
+
+h2[data-anchor-id="essays"] .anchorjs-link,
+h3[data-anchor-id="news"] .anchorjs-link {
+  display: none !important;
+}
+
+@media (max-width: 991.98px) {
+  .home-hero-align {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
 }
 </style>
 
-<!-- Hero Section -->
-```{=html}
-<div class="hero-section">
-  <div class="hero-content">
-    <img src="/images/utkuturkumd.jpeg" class="hero-photo" alt="Utku Turk">
-    <h1>utku turk</h1>
-    <p class="hero-subtitle">
-      PhD Candidate, Linguistics @ UMD<br>
-    </p>
-    
-    <div class="hero-bio">
-      <p>
-        I’m a PhD candidate in Linguistics at the University of Maryland, working with <a href="https://www.ellenlau.net" target="_blank">Ellen Lau</a> and <a href="https://www.colinphillips.net" target="_blank">Colin Phillips</a>. My research investigates how different kinds of linguistic information—<strong>morphosyntactic structure</strong> and <strong>morphophonological form</strong>—are planned in production and retrieved during sentence processing, and how mismatches between them drive <strong>errors and create illusions</strong> in production and comprehension. I also work in formal properties of case and adjectival morphophonology, as well as question semantics and embedding facts.
-      </p>
-      <p style="margin-top: 0.75rem; color: #555; font-size: 0.95em;">
-        I recently visited UMass to work with <a href="https://websites.umass.edu/snegishi/" target="_blank">Shota Momma</a> and <a href="https://farukakkus.wordpress.com" target="_blank">Faruk Akkus</a>. Previously, I received my MA from Boğaziçi University (advisor: <a href="https://github.com/plogacev" target="_blank">Pavel Logačev</a>) and was a visiting researcher at Masaryk University (advisor: <a href="https://www.muni.cz/en/people/53172-pavel-caha" target="_blank">Pavel Caha</a>).
-      </p>
-      <p style="margin-top: 0.75rem; color: #777; font-size: 0.9em; font-style: italic;">
-        My favorite food is <em>gata</em> with <em>koritz</em> and my favorite icecream flavor is saffron and rose (5pm snack of Anthony Bourdain). In my freetime, I try to do some calligraphy.
-      </p>
-    </div>
-
-    <div class="hero-links">
-
-      <a href="research.qmd">research</a>
-      <a href="papers.qmd">papers</a>
-      <a href="talks.qmd">talks</a>
-      <a href="teaching.qmd">teaching</a>
-      <!-- Icons using academicons/bi classes directly -->
-      <a href="/files/cv.pdf" target="_blank" aria-label="CV"><i class="ai ai-cv"></i></a>
-      <a href="https://scholar.google.com/citations?hl=tr&user=wa7LG9gAAAAJ" target="_blank" aria-label="Google Scholar"><i class="ai ai-google-scholar"></i></a>
-      <a href="https://github.com/utkuturk" target="_blank" aria-label="GitHub"><i class="bi bi-github"></i></a>
-      <a href="https://twitter.com/UtkuTurkLing" target="_blank" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
-      <a href="https://bsky.app/profile/utkuturk.com" target="_blank" aria-label="Bluesky"><i class="bi bi-flower3"></i></a>
-    </div>
-    <div class="hero-email-link" style="margin-top: -1.5rem; margin-bottom: 2rem;">
-      <a href="mailto:utkuturk@umd.edu" style="color: #555; text-decoration: underline; text-underline-offset: 4px;">utkuturk@umd.edu</a>
-    </div>
-    
-    <div class="hero-scroll-down">
-      <span>blog posts</span>
-      <i class="bi bi-chevron-down"></i>
-    </div>
-  </div>
+::: {.home-hero .page-columns .page-full}
+<div class="home-hero-align">
+<div class="home-hero-copy">
+<p>I’m a PhD candidate in Linguistics at the University of Maryland, working with <a href="https://www.ellenlau.net" target="_blank">Ellen Lau</a> and <a href="https://www.colinphillips.net" target="_blank">Colin Phillips</a>. My research investigates how different kinds of linguistic information—<strong>morphosyntactic structure</strong> and <strong>morphophonological form</strong>—are planned in production and retrieved during sentence processing, and how mismatches between them drive <strong>errors and create illusions</strong> in production and comprehension. I also work in formal properties of case and adjectival morphophonology, as well as question semantics and embedding facts.</p>
+<p>I recently visited UMass to work with <a href="https://websites.umass.edu/snegishi/" target="_blank">Shota Momma</a> and <a href="https://farukakkus.wordpress.com" target="_blank">Faruk Akkus</a>. Previously, I received my MA from Boğaziçi University (advisor: <a href="https://github.com/plogacev" target="_blank">Pavel Logačev</a>) and was a visiting researcher at Masaryk University (advisor: <a href="https://www.muni.cz/en/people/53172-pavel-caha" target="_blank">Pavel Caha</a>).</p>
+<p class="home-hero-note">My favorite food is <em>gata</em> with <em>koritz</em> and my favorite icecream flavor is saffron and rose (5pm snack of Anthony Bourdain). In my freetime, I like doing <a href="/calligraphy/">calligraphy</a>.</p>
 </div>
+</div>
+
+::: {.column-margin .home-hero-sidebar-photo}
+![](/images/utkuturkumd.jpeg)
+:::
+:::
+
+## essays
+
+::: {.column-margin .home-news}
+### news
+```{r}
+#| echo: false
+#| results: asis
+library(yaml)
+HOWMANY = 10
+
+`%||%` <- function(a, b) if (is.null(a) || identical(a, "")) b else a
+
+parse_news_date <- function(s) {
+  s <- trimws(as.character(s %||% ""))
+  if (grepl("^\\d{4}-\\d{2}-\\d{2}$", s)) return(as.Date(s))
+  if (grepl("^\\d{4}-\\d{2}$", s)) return(as.Date(paste0(s, "-01")))
+  if (grepl("^\\d{2}/\\d{4}$", s)) {
+    p <- strsplit(s, "/", fixed = TRUE)[[1]]
+    return(as.Date(sprintf("%s-%s-01", p[2], p[1])))
+  }
+  if (grepl("^\\d{4}$", s)) return(as.Date(paste0(s, "-01-01")))
+  as.Date(NA)
+}
+
+fmt_news_date <- function(d) if (is.na(d)) "" else format(d, "%b %Y")
+
+escape_html <- function(x) {
+  x <- gsub("&", "&amp;", x, fixed = TRUE)
+  x <- gsub("<", "&lt;", x, fixed = TRUE)
+  x <- gsub(">", "&gt;", x, fixed = TRUE)
+  x
+}
+
+valid_chr <- function(x) {
+  !is.null(x) && length(x) > 0 && !is.na(x) && nzchar(as.character(x))
+}
+
+link_html <- function(url, label) {
+  if (!valid_chr(url)) return(NULL)
+  sprintf('<a href="%s">%s</a>', escape_html(as.character(url)), label)
+}
+
+render_home_news <- function(limit = 10) {
+  paths <- c("_data/news.yaml", "data/news.yaml")
+  path <- paths[which(file.exists(paths))[1]]
+  if (is.na(path)) return('<ul><li><em>news.yaml not found</em></li></ul>')
+
+  x <- yaml::read_yaml(path)
+  items <- if (!is.null(x$news)) x$news else x
+
+  rows <- lapply(items, function(it) {
+    d <- parse_news_date(it$date %||% "")
+    links <- c(
+      link_html(it$hlink %||% NULL, "handout"),
+      link_html(it$alink %||% NULL, "abstract"),
+      link_html(it$slink %||% NULL, "slides"),
+      link_html(it$pdf %||% NULL, "pdf")
+    )
+    if (valid_chr(it$extra %||% NULL)) links <- c(links, as.character(it$extra))
+
+    list(
+      date = d,
+      when = fmt_news_date(d),
+      desc = as.character(it$description %||% ""),
+      links = links
+    )
+  })
+
+  ord <- order(
+    vapply(rows, function(r) if (is.na(r$date)) as.Date("0001-01-01") else r$date, as.Date("0001-01-01")),
+    decreasing = TRUE
+  )
+  rows <- head(rows[ord], limit)
+
+  item_html <- vapply(rows, function(r) {
+    suffix <- if (length(r$links)) paste0(" · ", paste(r$links, collapse = " · ")) else ""
+    sprintf("<li><time>%s</time> %s%s</li>", r$when, escape_html(r$desc), suffix)
+  }, character(1))
+
+  paste0("<ul>\n", paste(item_html, collapse = "\n"), "\n</ul>")
+}
+
+knitr::asis_output(render_home_news(limit = HOWMANY))
 ```
 
-<!-- Hidden shortcodes to force Quarto to load Academicons CSS -->
-<div style="display: none;">
-  {{< ai cv >}}
-  {{< ai google-scholar >}}
-  {{< ai orcid >}}
-</div>
-
-<div class="main-content-wrapper">
-
-
-::: {.about-bio}
-
-![](/images/utkuturkumd.jpeg){.about-photo}
-
-**utku turk**  
-PhD Candidate, Linguistics  
-University of Maryland  
-<i>working with <a href="https://www.ellenlau.net" target="_blank">Ellen Lau</a> and <a href="https://www.colinphillips.net" target="_blank">Colin Phillips</a></i>
-
-<span class="about-research">
-*interested in the timing of morphological and syntactic planning in speech, and how it shapes online comprehension and production*
-</span>  
-
-<span class="about-previous">
-*Previously MA at Boğaziçi (with <a href = "https://github.com/plogacev" target="_blank">Pavel Logačev</a>);  
-visiting researcher at Masaryk (with <a href = "https://www.muni.cz/en/people/53172-pavel-caha" target="_blank">Pavel Caha</a>).*
-</span>  
-
-[utkuturk@umd.edu](mailto:utkuturk@umd.edu)
-
+<br>
+[More news →](/news/){.home-news-more}
 :::
-
-::: {.mobile-sidebar-news}
-### News
-- <time class="sidebar-news__date">Apr 2025</time> Advanced to candidacy (QP: timing of agreement in production) · [slides](/files/slides/qpTurk.pdf)
-
-[More →](/news/){.sidebar-news__more}
-:::
-
-</div>
-
-<script src="/files/hero-scroll.js"></script>

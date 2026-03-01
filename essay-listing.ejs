@@ -1,0 +1,216 @@
+```{=html}
+<div class="essay-list list"><!-- keep 'list' for Quarto listing JS -->
+  <% for (const post of items) { %>
+    <%
+      let thumb = post.thumbnail || post.image || post["preview-image"];
+      if (!thumb && post.content) {
+        const m = post.content.match(/<img[^>]+src="([^">]+)"/i);
+        if (m) thumb = m[1];
+      }
+      if (!thumb) {
+        thumb = "/images/utkuturkumd.jpeg";
+      }
+    %>
+    <article class="essay-item" <%= metadataAttrs(post) %>>
+      <% if (thumb) { %>
+        <div class="essay-thumb">
+          <a href="<%= post.path %>">
+            <img src="<%= thumb %>" alt="<%= post.title %>">
+          </a>
+        </div>
+      <% } %>
+
+      <div class="essay-main">
+        <h3>
+          <a href="<%= post.path %>" class="listing-title"><%= post.title %></a>
+        </h3>
+
+        <% if (post.description) { %>
+          <p class="essay-desc listing-description"><%= post.description %></p>
+        <% } else if (post.content) { %>
+          <p class="essay-desc listing-description"><%= post.content.replace(/(<([^>]+)>)/gi, "").substring(0, 180) %>...</p>
+        <% } %>
+
+        <p class="essay-meta">
+          <% if (post.categories && post.categories.length) { %>
+            <span class="essay-tags">
+              <% for (const cat of post.categories) { %>
+                <a class="essay-tag" href="#listing-listing"
+                   onclick="if (window.homeToggleListingTag) { return window.homeToggleListingTag('<%= utils.b64encode(cat) %>'); }">
+                  #<%= cat %>
+                </a>
+              <% } %>
+            </span>
+          <% } %>
+          <% if (post.date) { %>
+            <time class="listing-date essay-date"><%= post.date %></time>
+          <% } %>
+        </p>
+      </div>
+    </article>
+  <% } %>
+</div>
+
+<style>
+.essay-list {
+  margin-top: 0.75rem;
+}
+
+.essay-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  margin-bottom: 1.75rem;
+  padding-bottom: 1.1rem;
+  border-bottom: 1px dotted #bdbdbd;
+}
+
+.essay-thumb {
+  flex: 0 0 82px;
+}
+
+.essay-thumb img {
+  width: 82px;
+  height: 82px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.essay-main {
+  flex: 1;
+}
+
+.essay-item:last-child {
+  border-bottom: 0;
+}
+
+.essay-item h3 {
+  margin: 0 0 0.45rem;
+  font-size: 1.95rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.essay-item h3 .anchorjs-link {
+  display: none !important;
+}
+
+.essay-item h3 a {
+  color: #1f1f1f;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+}
+
+.essay-item h3 a:visited {
+  color: #1f1f1f;
+}
+
+.essay-item h3:hover a,
+.essay-item h3 a:hover,
+.essay-item h3 a:focus {
+  color: #1f6feb;
+}
+
+.essay-desc {
+  margin: 0 0 0.45rem;
+  font-size: 1.08rem;
+  line-height: 1.4;
+}
+
+.essay-meta {
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.8rem;
+  flex-wrap: nowrap;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.essay-tags {
+  display: flex;
+  gap: 0.35rem;
+  flex-wrap: nowrap;
+  align-items: center;
+  margin-right: auto;
+  min-width: 0;
+}
+
+.essay-date {
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+.essay-tag {
+  display: inline;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  font-size: 0.78rem;
+  line-height: 1.2;
+  color: #444;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.15s ease, text-decoration-color 0.15s ease;
+}
+
+.essay-tag:hover,
+.essay-tag:focus {
+  color: #222;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+@media (max-width: 991.98px) {
+  .essay-item {
+    gap: 0.65rem;
+  }
+
+  .essay-thumb {
+    flex-basis: 66px;
+  }
+
+  .essay-thumb img {
+    width: 66px;
+    height: 66px;
+  }
+
+  .essay-item h3 {
+    font-size: 1.5rem;
+  }
+
+  .essay-desc {
+    font-size: 1rem;
+  }
+
+  .essay-meta {
+    flex-wrap: wrap;
+  }
+
+  .essay-date {
+    margin-left: 0;
+  }
+}
+</style>
+
+<script>
+window.homeToggleListingTag = function (categoryB64) {
+  if (!window.quartoListingCategory) return false;
+
+  const listingRoot = document.getElementById("listing-listing");
+  const current = listingRoot ? (listingRoot.dataset.activeCategory || "") : "";
+
+  if (current === categoryB64) {
+    window.quartoListingCategory("");
+    if (listingRoot) listingRoot.dataset.activeCategory = "";
+  } else {
+    window.quartoListingCategory(categoryB64);
+    if (listingRoot) listingRoot.dataset.activeCategory = categoryB64;
+  }
+  return false;
+};
+</script>
+
+```

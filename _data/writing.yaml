@@ -13,9 +13,9 @@ journal_articles:
     year: 2026
     topic: "processing"
     title: "(In)sensitivity to surface-level heuristics: A case from Turkish verbal attractors"
-    journal: "Submitted to Cognition"
+    journal: "Submitted"
     url: "http://psyarxiv.com/dwh8v"
-    pdf: "http://psyarxiv.com/dwh8v"
+    lingbuzz: "https://ling.auf.net/lingbuzz/009670"
 
   - authors: "Türk, U.; Logacev, P."
     year: 2024
@@ -24,7 +24,7 @@ journal_articles:
     journal: "Language, Cognition and Neuroscience"
     volume: "39"
     issue: "4"
-    pages: "448–454"
+    pages: "448-454"
     url: "https://www.tandfonline.com/doi/full/10.1080/23273798.2024.2324766"
     pdf: "../files/pdfs/TurkLogacev2024-cnl-preprint.pdf"
 
@@ -34,7 +34,7 @@ journal_articles:
     title: "Resources for Turkish dependency parsing: introducing the BOUN Treebank and the BoAT annotation tool."
     journal: "Language Resources & Evaluation"
     volume: "56"
-    pages: "259–307"
+    pages: "259-307"
     url: "https://link.springer.com/article/10.1007/s10579-021-09558-0"
     pdf: "../files/pdfs/TurkEtAl2022.pdf"
 
@@ -47,14 +47,14 @@ journal_articles:
 
 book_chapters:
   - authors: "Türk, U."
-    year: 2024
+    year: 2025
     topic: "morphology"
-    status: "revision"
     title: "Controlling morphosyntactic competition through phonology"
     in: "Exploring Nanosyntax II: The Lexicalisation algorithm"
     editors: "Karen de Clerq; Pavel Caha; Guido Vanden Wyngaerd"
     publisher: "Oxford Academic Press"
-    url: "https://lingbuzz.net/lingbuzz/008295"
+    lingbuzz: "https://lingbuzz.net/lingbuzz/008295"
+    url: "https://academic.oup.com/book/61369/chapter/532888555"
     pdf: "../files/papers/Turk2024.pdf"
 
   - authors: "Canalis, S.; Özdemir, S.; Türk, U.; Tunçer, Ü. C."
@@ -81,25 +81,25 @@ in_progress:
     repo: "https://github.com/utkuturk/attraction_meta"
     note: "available upon request"
 
-  - authors: "Bakay, Ö.; Türk, U.; Demiray, D.; Dillon, B."
-    year: 2025
-    topic: "processing"
-    status: "in prep."
-    title: "Tracking structural cues or relying on probabilistic inference in Turkish agreement?"
-    repo: "https://github.com/utkuturk/nom-vs-gen-attraction"
+  # - authors: "Bakay, Ö.; Türk, U.; Demiray, D.; Dillon, B."
+  #   year: 2025
+  #   topic: "processing"
+  #   status: "in prep."
+  #   title: "Tracking structural cues or relying on probabilistic inference in Turkish agreement?"
+  #   repo: "https://github.com/utkuturk/nom-vs-gen-attraction"
 
-  - authors: "Neu, E.; Türk, U.; Bakay, Ö."
-    year: 2025
-    topic: "morphology"
-    status: "in prep."
-    title: "Effects of frequency in non-local derivational composionality in Turkish"
-    repo: "https://github.com/utkuturk/freq_derivational_sa"
+  # - authors: "Neu, E.; Türk, U.; Bakay, Ö.; Dillon, B.; Jarosz, G."
+  #   year: 2025
+  #   topic: "morphology"
+  #   status: "in prep."
+  #   title: "Effects of frequency in non-local derivational composionality in Turkish"
+  #   repo: "https://github.com/utkuturk/freq_derivational_sa"
 
-  - authors: "Türk, U."
-    year: 2025
-    status: "in prep."
-    title: "Quantifying the cross-linguistics effects of syncretism on agreement attraction"
-    repo: "https://github.com/utkuturk/syncretism_crossling_llm"
+  # - authors: "Türk, U.; Neu, E."
+  #   year: 2025
+  #   status: "in prep."
+  #   title: "Quantifying the cross-linguistics effects of syncretism on agreement attraction"
+  #   repo: "https://github.com/utkuturk/syncretism_crossling_llm"
 
   - authors: "Türk, U."
     year: 2025
@@ -107,12 +107,12 @@ in_progress:
     title: "The Role of Register in Agreement Attraction"
     repo: "https://github.com/utkuturk/attraction_honorific_turkish"
 
-  - authors: "Türk, U.; Lau, E."
-    year: 2025
-    status: "in prep."
-    title: "Kind NPs"
-    repo: "https://github.com/utkuturk/kind"
-    note: "available upon request"
+  # - authors: "Türk, U.; Lau, E."
+  #   year: 2025
+  #   status: "in prep."
+  #   title: "Kind NPs"
+  #   repo: "https://github.com/utkuturk/kind"
+  #   note: "available upon request"
 
 
 proceedings:
@@ -121,12 +121,16 @@ proceedings:
     topic: "semantics"
     title: "Towards a theory of scope rigidity: A case of focus sensitive question particles"
     proceedings: "Proceedings of TU+10"
+    lingbuzz: https://ling.auf.net/lingbuzz/009762
+    pdf: "../files/papers/TurkHirsch2025a.pdf"
 
   - authors: "Türk, U.; Hirsch, A."
     year: 2025
     topic: "semantics"
-    title: "Syntactic alternatives in Turkish polar questions"
+    title: "Constraining alternatives in Turkish polar questions"
+    lingbuzz: https://ling.auf.net/lingbuzz/009763
     proceedings: "Proceedings of PLC 49"
+    pdf: "../files/papers/TurkHirsch2025b.pdf"
 
   - authors: "Lewis, S.; Türk, U."
     year: 2025
@@ -139,6 +143,7 @@ proceedings:
     doi: "10.3765/plsa.v10i1.5931"
     url: "https://journals.linguisticsociety.org/proceedings/index.php/PLSA/article/view/5931"
     pdf: "../files/papers/LewisTurk2025.pdf"
+    lingbuzz: "https://ling.auf.net/lingbuzz/008999"
 
   - authors: "Türk, U.; Demirok, Ö."
     year: 2021
@@ -148,6 +153,7 @@ proceedings:
     doi: "10.3765/ptu.v6i1.5054"
     url: "https://journals.linguisticsociety.org/proceedings/index.php/tu/article/view/5054"
     pdf: "../files/papers/TurkDemirok2021.pdf"
+    lingbuzz: "https://ling.auf.net/lingbuzz/005956"
 
   - authors: "Türk, U.; Caha, P."
     year: 2021
@@ -157,6 +163,7 @@ proceedings:
     doi: "10.3765/ptu.v6i1.5051"
     url: "https://journals.linguisticsociety.org/proceedings/index.php/tu/article/view/5051"
     pdf: "../files/papers/TurkCaha2021.pdf"
+    lingbuzz: "https://ling.auf.net/lingbuzz/005946"
 
   - authors: "Türk, U."
     year: 2020
@@ -166,13 +173,14 @@ proceedings:
     doi: "10.3765/ptu.v5i1.4771"
     url: "https://journals.linguisticsociety.org/proceedings/index.php/tu/article/view/4771"
     pdf: "../files/papers/Turk2020.pdf"
+    lingbuzz: "https://ling.auf.net/lingbuzz/005296"
 
   - authors: "Türk, U.; Bayar, K.; Özercan, A. D.; Öztürk, G. Y.; Özateş, S. B."
     year: 2020
     topic: "resource"
     title: "First Steps towards Universal Dependencies for Laz."
     proceedings: "Proceedings of the Fourth Workshop on Universal Dependencies (UDW 2020)"
-    pages: "189–194"
+    pages: "189-194"
     url: "https://aclanthology.org/2020.udw-1.21.pdf"
     pdf: "../files/papers/TurkEtAl2020.pdf"
 
@@ -181,7 +189,7 @@ proceedings:
     topic: "resource"
     title: "Turkish Treebanking: Unifying and Constructing Efforts."
     proceedings: "Proceedings of the 13th Linguistic Annotation Workshop"
-    pages: "166–177"
+    pages: "166-177"
     url: "https://aclanthology.org/W19-4019.pdf"
     pdf: "../files/papers/TurkEtAl2019b.pdf"
 
@@ -190,6 +198,6 @@ proceedings:
     topic: "resource"
     title: "Improving the Annotations in the Turkish Universal Dependency Treebank."
     proceedings: "Proceedings of the Third Workshop on Universal Dependencies (UDW, SyntaxFest 2019)"
-    pages: "108–117"
+    pages: "108-117"
     url: "https://aclanthology.org/W19-8013.pdf"
     pdf: "../files/papers/TurkEtAl2019a.pdf"

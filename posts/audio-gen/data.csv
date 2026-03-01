@@ -1,0 +1,13 @@
+item,condition,text,target_file
+1,weak,"Bana pastayı verebilir misin rica etsem?",item01_weak.mp3
+1,strong,"Bana o pastayı verebilir misin rica etsem?",item01_strong.mp3
+2,weak,"Bana kurabiyeyi verebilir misin rica etsem?",item02_weak.mp3
+2,strong,"Bana o kurabiyeyi verebilir misin rica etsem?",item02_strong.mp3
+3,weak,"Bana ekmeği verebilir misin rica etsem?",item03_weak.mp3
+3,strong,"Bana o ekmeği verebilir misin rica etsem?",item03_strong.mp3
+4,weak,"Bana fincanı verebilir misin rica etsem?",item04_weak.mp3
+4,strong,"Bana o fincanı verebilir misin rica etsem?",item04_strong.mp3
+5,weak,"Bana kitabı verebilir misin rica etsem?",item05_weak.mp3
+5,strong,"Bana o kitabı verebilir misin rica etsem?",item05_strong.mp3
+6,weak,"Bana kalemi verebilir misin rica etsem?",item06_weak.mp3
+6,strong,"Bana o kalemi verebilir misin rica etsem?",item06_strong.mp3

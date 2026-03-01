@@ -1,7 +1,70 @@
 
 conferences:
+    - title: Tracking structural cues or relying on probabilistic inference in Turkish agreement?
+      author: "Bakay, Ō., **Turk, U.**, Demiray, D., Dillon, B."
+      topic: "processing"
+      conf: "HSP 2026: Human Sentence Processing"
+      year:    2026
+      month: March
+      istalk: TRUE
+      place:   "MIT: Cambridge, MA, USA"
+      abs:     /files/abstracts/hsp-2026-structural-cues.pdf
+    - title: "Frequency modulates structural choices in Turkish non-local derivational morphemes"
+      author: "Neu, E., **Turk, U.**, Bakay, Ō., Dillon, B., Jarosz, G."
+      topic: "processing"
+      conf: "HSP 2026: Human Sentence Processing"
+      month: March
+      place:   "MIT: Cambridge, MA, USA"
+      year: 2026
+      isposter: TRUE
+      abs:     /files/abstracts/hsp-2026-frequency.pdf
+    - title: Tracking structural cues or relying on probabilistic inference in Turkish agreement?
+      author: "Bakay, Ō., **Turk, U.**, Demiray, D., Dillon, B."
+      topic: "processing"
+      conf: "TU+11: the 11th Workshop on Turkic and languages in contact with Turkic"
+      year:    2026
+      month: March
+      istalk: TRUE
+      place:   "MIT: Cambridge, MA, USA"
+      abs:     /files/abstracts/tu11-structural-cues.pdf
+    - title: "Frequency modulates structural choices in Turkish non-local derivational morphemes"
+      author: "Neu, E., **Turk, U.**, Bakay, Ō., Dillon, B., Jarosz, G."
+      topic: "processing"
+      conf: "TU+11: the 11th Workshop on Turkic and languages in contact with Turkic"
+      month: March
+      place:   "MIT: Cambridge, MA, USA"
+      year: 2026
+      istalk: TRUE
+      abs:     /files/abstracts/tu11-frequency.pdf
+    - title: "When do we plan agreement: Evidence from unaccusatives and agreement attraction"
+      author: "**Turk, U.**, Lau, E., Phillips, C."
+      topic: "processing"
+      conf: "HSP 2026: Human Sentence Processing"
+      month: March
+      place:   "MIT: Cambridge, MA, USA"
+      year: 2026
+      isposter: TRUE
+      abs:     /files/abstracts/hsp-2026-unaccusatives.pdf
+    - title: "(In)sensitivity to surface-level herusitics: A case from Turkish verbal attractors"
+      author: "**Turk, U.**"
+      topic: "processing"
+      conf: "HSP 2026: Human Sentence Processing"
+      month: March
+      place:   "MIT: Cambridge, MA, USA"
+      year: 2026
+      isposter: TRUE
+      abs:     /files/abstracts/hsp-2026-surface.pdf
+    - title: "Modal Competition in Inferential Contexts: Evidence from Force-Choice Experiments"
+      author: "Boukendour, S., **Turk, U.**, Williams, A., Hacquard, V."
+      topic: "semantics"
+      conf: "ELM 4: Experiments in Linguistic Meaning"
+      month: June
+      place:   "University of Pennsylvania: Philadelphia, PA, USA"
+      year: 2026
+      isposter: TRUE
+      abs:     /files/abstracts/elm-2026.pdf
     - title: Syntactic alternatives in Turkish polar questions
-      author: "**Turk, U., Hirsch, A.**"
+      author: "**Turk, U.**, Hirsch, A."
       topic: "semantics"
       conf: "PLC 49: The Penn Linguistics Conference"
       year:    2025
@@ -29,7 +92,7 @@ conferences:
       place:   "USC: Los Angeles, CA, USA"
       abs:     /files/abstracts/TurkTU2025.pdf
     - title: Turkish allows covert scrambling
-      author: "**Turk, U., Hirsch, A.**"
+      author: "**Turk, U.**, Hirsch, A."
       topic: "semantics"
       conf: "the 10th Workshop on Turkic and languages in contact with Turkic"
       year:    2025

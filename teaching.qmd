@@ -1,5 +1,6 @@
 ---
 title: ""
+aliases: [/teaching/]
 comments: false
 sidebar: false
 ---

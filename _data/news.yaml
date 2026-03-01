@@ -1,4 +1,24 @@
 news:
+  - date: '06/2026'
+    description: 'ELM 4 (UPenn): a poster on the role of modal strength in English'
+    alink: '/files/abstracts/elm-2026.pdf'
+    category: poster
+
+  - date: '04/2026'
+    description: 'TU+11 (MIT): two talks on the role of structural cues in sentence processing and effects on frequency on syntactic choices.'
+    extra: '<a href="/files/abstracts/tu11-structural-cues.pdf">abstract1</a> · <a href="/files/abstracts/tu11-frequency.pdf">abstract2</a>'
+    category: talk
+
+  - date: '03/2026'
+    description: 'HSP 2026 (MIT): talk on the role of structural cues in processing, along with 3 posters!'
+    extra: '<a href="/files/abstracts/hsp-2026-structural-cues.pdf">talk abstract</a> · posters on <a href="/files/abstracts/hsp-2026-unaccusatives.pdf">production</a> · <a href="/files/abstracts/hsp-2026-surface.pdf">surface-level cues</a> · <a href="/files/abstracts/hsp-2026-frequency.pdf">frequency on syntax</a>'
+    category: talk
+
+  - date: '01/2026'
+    description: 'Published two proceedings paper on alternatives in Turkish polar questions.'
+    extra: '<a href="https://ling.auf.net/lingbuzz/009762">on covert movement</a> · <a href="https://ling.auf.net/lingbuzz/009763"> on constraining alternatives</a>'
+    category: publication
+
   - date: '09/2025'
     description: 'Visiting Researcher, UMass Amherst (Fall 2025); collaborating with Faruk Akkuş and Shota Momma on dissociating morphosyntactic vs. morphophonological timing.'
     category: milestone

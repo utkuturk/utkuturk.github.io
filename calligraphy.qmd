@@ -1,0 +1,307 @@
+---
+title: "calligraphy"
+aliases: [/calligraphy/]
+comments: false
+sidebar: false
+---
+
+<style>
+#title-block-header {
+  text-align: center;
+}
+
+#title-block-header .quarto-title .title,
+#title-block-header .title {
+  font-family: "Avenir Next Condensed", "Avenir Next", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+}
+
+.calligraphy-page {
+  max-width: 760px;
+  margin: 0.4rem auto 0;
+  padding: 0.25rem 0;
+}
+
+.calligraphy-page p,
+.calligraphy-page li {
+  color: inherit;
+  font-family: "Charter", "Iowan Old Style", Georgia, "Times New Roman", serif;
+  line-height: 1.72;
+  font-size: 1.04rem;
+}
+
+.calligraphy-page ul {
+  margin-bottom: 1rem;
+}
+
+.calligraphy-page h2 {
+  margin-top: 1.4rem;
+  padding-top: 0.7rem;
+  border-top: 1px solid var(--quarto-border-color, #d7d7d7);
+  font-family: "Avenir Next", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  text-transform: lowercase;
+  letter-spacing: 0.05em;
+  font-size: 1.05rem;
+  font-weight: 650;
+}
+
+.calligraphy-page h3 {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  font-family: "Avenir Next", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  letter-spacing: 0.02em;
+  font-size: 0.96rem;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+.calligraphy-lead {
+  margin-bottom: 0.8rem;
+  padding: 0.35rem 0 0.35rem 0.85rem;
+  border-left: 3px solid #8a6a4c;
+  font-size: 1.1rem;
+}
+
+.calligraphy-note {
+  font-style: italic;
+  opacity: 0.9;
+}
+
+.calligraphy-page img {
+  border-radius: 0.5rem;
+  border: 1px solid var(--quarto-border-color, #d7d7d7);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.dict-entry {
+  margin: 0.45rem 0 1rem;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid rgba(138, 106, 76, 0.35);
+  border-left: 4px solid #8a6a4c;
+  border-radius: 0.55rem;
+  background: rgba(138, 106, 76, 0.06);
+}
+
+.dict-head {
+  display: inline-block;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  font-family: "Avenir Next", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
+
+.dict-pos {
+  margin-left: 0.35rem;
+  font-style: italic;
+  opacity: 0.82;
+}
+
+.dict-row {
+  margin-top: 0.3rem;
+  line-height: 1.42;
+}
+
+.dict-label {
+  font-weight: 650;
+  font-variant: small-caps;
+  letter-spacing: 0.02em;
+}
+
+.install-figure {
+  margin: 0.45rem 0 1.05rem;
+  padding: 0.75rem;
+  border: 1px solid var(--quarto-border-color, #d7d7d7);
+  border-radius: 0.65rem;
+  background: rgba(0, 0, 0, 0.015);
+  display: grid;
+  grid-template-columns: minmax(210px, 1.2fr) minmax(180px, 0.8fr);
+  gap: 0.85rem;
+  align-items: center;
+}
+
+.install-reference {
+  grid-template-columns: minmax(140px, 0.6fr) minmax(230px, 1.4fr);
+}
+
+.install-reference .install-media {
+  max-width: 160px;
+  justify-self: center;
+}
+
+.install-media {
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  border-radius: 0.45rem;
+  padding: 0.35rem;
+  background: #fff;
+}
+
+.install-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0.35rem;
+  border: 0;
+  box-shadow: none;
+}
+
+.install-meta h4 {
+  margin: 0 0 0.45rem;
+  font-family: "Avenir Next", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  letter-spacing: 0.02em;
+  font-size: 0.95rem;
+  text-transform: lowercase;
+}
+
+.install-meta p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.install-meta .source-line {
+  margin-top: 0.5rem;
+  font-size: 0.86rem;
+  opacity: 0.85;
+}
+
+@media (max-width: 760px) {
+  .install-figure {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .calligraphy-lead {
+    border-left-color: #b5906c;
+  }
+
+  .calligraphy-page h2 {
+    border-top-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .calligraphy-page img {
+    border-color: rgba(255, 255, 255, 0.22);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.28);
+  }
+
+  .dict-entry {
+    border-color: rgba(181, 144, 108, 0.42);
+    border-left-color: #b5906c;
+    background: rgba(181, 144, 108, 0.12);
+  }
+
+  .install-figure {
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .install-media {
+    border-color: rgba(255, 255, 255, 0.22);
+    background: rgba(255, 255, 255, 0.04);
+  }
+}
+</style>
+
+::: {.calligraphy-page}
+
+<p class="calligraphy-lead">I do not think there is anything less expected than finding a linguist being drawn to patterns.</p>
+
+If you travel across Central Asia, or even look at the pictures of palaces that Seljuks and Central Asian dynasties built, you would see a lot of structures that are geometric to an extreme, where the abstraction hijacks the building.
+
+::: {.install-figure .install-reference}
+<div class="install-media">
+  <img src="https://pbs.twimg.com/media/DRp74e9WAAAMDqw.jpg" alt="Geometric calligraphic ornament in a Seljuk architectural setting.">
+</div>
+<div class="install-meta">
+  <h4>architectural reference</h4>
+  <p>Geometric inscription used as structure and ornament in Seljuk-era design language.</p>
+  <p class="source-line"><a href="https://x.com/PaulMMCooper/status/944203296704749568" target="_blank" rel="noopener">Source: Paul M. Cooper (@PaulMMCooper), shared on X</a></p>
+</div>
+:::
+
+::: {.install-figure .install-reference}
+<div class="install-media">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Elibelinde2.svg/250px-Elibelinde2.svg.png" alt="Elibelinde kilim motif pattern.">
+</div>
+<div class="install-meta">
+  <h4>kilim motif reference</h4>
+  <p>An <em>elibelinde</em> kilim motif, included here as a geometric counterpoint to architectural inscription patterns.</p>
+  <p class="source-line"><a href="https://commons.wikimedia.org/wiki/File:Elibelinde2.svg" target="_blank" rel="noopener">Source: Wikimedia Commons (File: Elibelinde2.svg)</a></p>
+</div>
+:::
+
+These surfaces also feel very close to Kilim patterns, which are also geometric and often feature repeated motifs. These motifs, along with same principles, of course appear in many parts around the world. But what is interesting about the Seljuk and Central Asian architecture is that they often incorporate <strong>calligraphy</strong> into their buildings. The writing was not to be read, but to be seen as part of the design.
+
+<p>These inscriptions below are not for reading, even though they technically have a meaning. They are motifs that are important to me. These inscriptions, very much like the feelings they were response to, exists in multiple formats. A <strong>cenin</strong>[^cenin] version, where it is hard to understand and handle. And a <strong>string</strong> version where the same structure is drawn as a more continuous thread and ready to be engaged.</p>
+
+
+## kaosperver
+
+
+::: {.install-figure}
+<div class="install-media">
+  <img src="/files/calligraphy/kaosperver_cubic.png" alt="Kaosperver in circular cubic Kufic.">
+</div>
+<div class="install-meta">
+  <h4>kaosperver -- cenin</h4>
+  <p>Where corners hold tension and the structure defines the word as an object.</p>
+</div>
+:::
+
+
+::: {.dict-entry}
+<span class="dict-head">kaosperver</span><span class="dict-pos">(coined adj./n.)</span>
+<div class="dict-row"><span class="dict-label">meaning:</span> chaos-loving; someone drawn to disorder.</div>
+<div class="dict-row"><span class="dict-label">formation:</span> Turkish <strong>kaos</strong> + Persian-origin suffix <strong>-perver</strong> ("one who fosters/loves," as in <em>vatanperver</em>).</div>
+<div class="dict-row"><span class="dict-label">etymology note:</span> <strong>kaos</strong> goes back to Greek <em>khaos</em> ("void, abyss"), transmitted through European languages before entering modern Turkish usage.</div>
+:::
+
+
+::: {.install-figure}
+<div class="install-media">
+  <img src="/files/calligraphy/kaosperver_string.png" alt="Kaosperver in string-style Kufic.">
+</div>
+<div class="install-meta">
+  <h4>kaosperver -- string</h4>
+  <p>Stretched into a thread, deliberately trading block tension for line and flow.</p>
+</div>
+:::
+
+## fırtınam
+
+
+
+::: {.install-figure}
+<div class="install-media">
+  <img src="/files/calligraphy/firtinam_cubic.jpeg" alt="Fırtınam in circular cubic Kufic.">
+</div>
+<div class="install-meta">
+  <h4>fırtınam -- cenin</h4>
+  <p>A contained <em>fırtınam</em>, held in a compact geometric frame despite the word’s meaning.</p>
+</div>
+:::
+
+::: {.dict-entry}
+<span class="dict-head">fırtınam</span><span class="dict-pos">(noun phrase, 1st person possessive)</span>
+<div class="dict-row"><span class="dict-label">meaning:</span> "my storm."</div>
+<div class="dict-row"><span class="dict-label">formation:</span> Turkish <strong>fırtına</strong> ("storm") + possessive suffix <strong>-m</strong> ("my"), often written without Turkish diacritics in Latin text.</div>
+<div class="dict-row"><span class="dict-label">etymology note:</span> <strong>fırtına</strong> is generally traced to Mediterranean borrowings from Italian/Venetian <strong>fortuna</strong> (ultimately Latin <strong>fortuna</strong>), likely via Greek and Ottoman Turkish forms such as <em>furtuna/fırtına</em>.</div>
+:::
+
+
+
+::: {.install-figure}
+<div class="install-media">
+  <img src="/files/calligraphy/firtinam_string.jpeg" alt="Fırtınam in string-style Kufic.">
+</div>
+<div class="install-meta">
+  <h4>fırtınam -- string</h4>
+  <p>Leans into movement and carries a windswept cadence while preserving a Kufic skeleton.</p>
+</div>
+:::
+
+:::
+
+[^cenin]: In Turkish, *cenin* means "fetus/embryo." 

@@ -1,5 +1,6 @@
 ---
 title: ""
+aliases: [/talks/]
 comments: false
 sidebar: false
 ---

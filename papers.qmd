@@ -1,5 +1,6 @@
 ---
 title: ""
+aliases: [/papers/]
 comments: false
 sidebar: false
 ---

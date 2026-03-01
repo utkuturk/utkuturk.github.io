@@ -8,6 +8,7 @@ project:
 website:
   title: "utku turk"
   site-url: https://www.utkuturk.com
+  search: false
 
 
   body-footer: |
@@ -36,7 +37,7 @@ website:
 
   navbar:
 
-    pinned: true
+    pinned: false
     right:
 
       - text: research

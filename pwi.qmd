@@ -1,5 +1,6 @@
 ---
 title: "Picture-Word Interference Experiment"
+aliases: [/pwi/]
 format:
   html:
     page-layout: full

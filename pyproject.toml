@@ -7,11 +7,15 @@ requires-python = ">=3.13"
 dependencies = [
     "clip",
     "einops>=0.8.1",
+    "elevenlabs>=2.36.1",
     "image>=1.5.33",
     "matplotlib>=3.10.8",
+    "mutagen>=1.47.0",
     "numpy>=2.4.1",
     "pandas>=2.3.3",
+    "praat-parselmouth>=0.4.7",
     "pyro-ppl>=1.9.1",
+    "python-dotenv>=1.2.1",
     "pyvips>=3.1.1",
     "seaborn>=0.13.2",
     "torch>=2.9.1",
@@ -22,3 +26,11 @@ dependencies = [
 
 [tool.uv.sources]
 clip = { git = "https://github.com/openai/CLIP.git" }
+
+[tool.uv.extra-build-dependencies]
+clip = ["setuptools<81"]
+
+[dependency-groups]
+dev = [
+    "jupyter>=1.1.1",
+]

@@ -1,6 +1,7 @@
 ---
 comments: false
 pagetitle: "research"
+aliases: [/research/]
 sidebar: false
 ---
 

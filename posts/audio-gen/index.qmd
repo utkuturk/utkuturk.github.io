@@ -1,0 +1,339 @@
+---
+title: "i promise this is the last one for a while: audio generation with elevenlabs"
+author: "Utku Turk"
+date: "2026-02-24"
+categories: [ai, experiments, audio, elevenlabs]
+image: "simple_example_praat.png"
+description: "you do not have to hear yourself in experiments, and you can generate experiment instructions with ai. here is how."
+embed-resources: true
+self-contained-math: true
+toc: true
+jupyter: oct14website-current
+format:
+  html:
+    code-overflow: wrap
+---
+
+
+Hi. Unfortunately, this blog turned into a mini series about AI stuff, and I promise this is the last one for a while. In this post, I share a quick way to generate sentence audio with AI. It still sounds synthetic sometimes, even if it no longer sounds robotic, so randomizing a few parameters helps. It is free online without coding. If you want to do it in bulk with more control, you can use the ElevenLabs API. It is 5 dollars a month, and you can cancel it anytime. 
+
+A bit of backstory first. In my first production experiment, we did a lot of handholding because it was online and we assumed people would struggle with the task. And yes, people **do** struggle in these kinds of experiments. Still, the extra handholding did not change much. One part of that handholding was audio instructions. Everyone who knows me knows I am very skeptical about how much attention participants pay in online experiments. Most of the time, people just do the easiest thing that still gets them through, so I did not fully trust that participants would read the instructions carefully. That is why I wanted audio instructions too.
+
+Since I am around many native English speakers, getting recordings was easy at first. Andrea Zukowski, with her insanely soothing voice, was one of the best people to ask, and she recorded several sentences for my first experiment. But this was not scalable. I could not keep asking her for every new experiment. At the same time, I was already knee-deep in AI voice-transcription tools for other parts of the project, like automatic transcription and forced alignment, so I thought: why not use AI here too?
+
+::: {.callout-note appearance="simple"}
+If you are reading this and thinking, "Is Utku's experiment just Utku prompting AI stuff?", the answer is no. The tools are useful, but there is still a lot of manual work. After generating pictures, I still had to sift through many options and verbs to find usable ones. The same goes for audio generation and transcription: you still need to review outputs and catch mistakes one by one.
+:::
+
+In the end, I did not use AI-generated audio in my English production experiments, but the code was ready. Later, Yagmur and I ran experiments in Turkish as part of a multilingual project initiated by Florian Schwarz. They were looking at strong vs. weak determiners across languages, related to his dissertation: [https://florianschwarz.net/FSDiss/FS-Diss_singlespace.pdf](https://florianschwarz.net/FSDiss/FS-Diss_singlespace.pdf). The title of the talk was *Exploring the contrast between weak and strong definite articles experimentally*. The experiment itself was designed as a game: participants heard sentences with either strong or weak determiners modifying nouns, then chose an item based on what they heard.
+
+Initially, I recorded the materials myself, and it sounded extremely unenthusiastic. I tried multiple takes, but if I were a participant hearing my own voice, I would probably quit the experiment or message me on Prolific asking if I was okay. So I asked: why not reuse the English pipeline and generate Turkish recordings? I was a bit worried, mainly because Turkish is usually not in the first wave of language support in AI tools. At the time, I was using `eleven_multilingual_v2`. Now they have `eleven_v3`, which is much better.
+
+The ElevenLabs API is straightforward to use: [https://elevenlabs.io/docs/developers/quickstart](https://elevenlabs.io/docs/developers/quickstart). It also gives you 10,000 free credits per month (about 10 minutes of recordings), which is generous and enough for many experiments. I am paying 5 dollars a month for the API when I need it and cancel it later, which gives you ~40 minutes of recording. If needed, you can pay 22 USD for one month and use their Professional Voice Cloning feature. That plan gives you 100k credits (about 100 minutes). Before running the code, get your API key from ElevenLabs: [https://elevenlabs.io/app/developers/api-keys](https://elevenlabs.io/app/developers/api-keys). After that, either set it as an environment variable or load it from a `.env` file with `dotenv`.
+
+
+```{python}
+import os
+from pathlib import Path
+from dotenv import load_dotenv
+from elevenlabs import VoiceSettings
+from elevenlabs.client import ElevenLabs
+import pandas as pd
+
+
+load_dotenv(dotenv_path=Path.home() / '.env.global')
+
+api_key = os.getenv("ELEVENLABS_API_KEY")
+
+client = ElevenLabs(
+    api_key=api_key,
+)
+```
+
+
+
+
+Now, we mainly need three things from the SDK:
+
+- `ElevenLabs()`: to initialize the client with your API key. Creates the connection to ElevenLabs' API.
+- `elevenlabs.text_to_speech.convert()`: The core function that converts your text into speech audio. Takes text input, voice ID, and settings, returns audio data.
+- `VoiceSettings()`: Configures voice parameters like:
+    - `stability`: Controls how much the voice varies. Higher values make it more consistent, lower values make it more dynamic.
+    - `similarity_boost`: Adjusts how closely the generated voice matches the original voice. Higher values make it sound more like the original, while lower values allow for more variation.
+    - `style`: Changes the speaking style of the voice (e.g., "default", "newscaster", "narration", etc.).
+    - `speed`: Modifies the speaking speed. Values greater than 1.0 make it faster, while values less than 1.0 make it slower.
+    - `pitch`: Alters the pitch of the voice. Values greater than 1.0 make it higher, while values less than 1.0 make it lower. 
+    - `use_speaker_boost`: Enhances the distinctiveness of the speaker's voice.
+
+
+Before all of this, we need to pick a voice. This is where I spend most of the time. ElevenLabs has many built-in voices, and you can also create your own: [https://elevenlabs.io/voices](https://elevenlabs.io/voices). You can filter by language, style, and more.
+
+After selecting a voice, you can get the voice ID from the URL. For example, if you choose "Ece" (a Turkish voice), the URL will look like `https://elevenlabs.io/voices/voice_id=gyxPK6bLXQAkBSCeAKvk`, and the voice ID is `gyxPK6bLXQAkBSCeAKvk`.
+
+
+A simple convert example. This is the main workhorse call that turns text into speech.
+
+```{python}
+sample_file = "simple_example.mp3"
+
+response = client.text_to_speech.convert(
+    voice_id="gyxPK6bLXQAkBSCeAKvk",
+    output_format="mp3_22050_32",
+    text="Diğer blog postlarını okumayı unutmayın!",
+    model_id="eleven_turbo_v2_5",
+    voice_settings=VoiceSettings(
+        stability=0.71,
+        similarity_boost=0.42,
+        style=0.36,
+        use_speaker_boost=True,
+        speed=0.9,
+    ),
+)
+
+with open(sample_file, "wb") as f:
+    for chunk in response:
+        if chunk:
+            f.write(chunk)
+
+print(f"Saved: {sample_file}")
+```
+
+```{python}
+#| code-fold: true
+#| code-summary: "Show audio preview code"
+from IPython.display import Audio, display
+
+display(Audio(filename=sample_file))
+```
+
+```{python}
+#| code-fold: true
+#| code-summary: "Show praat plot generation code"
+import numpy as np
+import matplotlib.pyplot as plt
+import parselmouth
+
+sound = parselmouth.Sound(sample_file)
+spectrogram = sound.to_spectrogram(window_length=0.03, maximum_frequency=5500)
+pitch = sound.to_pitch(time_step=0.01, pitch_floor=75, pitch_ceiling=500)
+formants = sound.to_formant_burg(
+    time_step=0.01,
+    max_number_of_formants=5,
+    maximum_formant=5500,
+    window_length=0.025,
+    pre_emphasis_from=50,
+)
+
+x = spectrogram.x_grid()
+y = spectrogram.y_grid()
+sg_db = 10 * np.log10(spectrogram.values + 1e-12)
+
+plt.figure(figsize=(8, 4))
+plt.pcolormesh(x, y, sg_db, shading="auto", cmap="gray_r")
+plt.ylim(0, 5500)
+plt.xlabel("Time (s)")
+plt.ylabel("Frequency (Hz)")
+# plt.title(f"Praat-style view: {sample_file}")
+
+pitch_values = pitch.selected_array["frequency"]
+pitch_values[pitch_values == 0] = np.nan
+plt.plot(pitch.xs(), pitch_values, color="deepskyblue", linewidth=2, label="Pitch")
+
+times = np.array(formants.ts())
+for idx, color in zip([1, 2, 3, 4], ["#d6eaf8", "#85c1e9", "#3498db", "#21618c"]):
+    vals = np.array([formants.get_value_at_time(idx, t) for t in times], dtype=float)
+    vals[(vals <= 0) | (vals > 5500)] = np.nan
+    plt.plot(times, vals, color=color, linewidth=1.2, alpha=0.9, label=f"F{idx}")
+
+plt.legend(loc="upper right", ncol=2)
+plt.tight_layout()
+praat_plot_file = "simple_example_praat.png"
+plt.savefig(praat_plot_file, dpi=300, bbox_inches="tight")
+print(f"Saved Praat plot: {praat_plot_file}")
+plt.show()
+```
+
+However, we should not use the exact same settings for every sentence. That would sound too monotone, and participants may lose interest, so we vary a few parameters to introduce controlled variation. For example, we can randomize speed, but we still do not want extreme variation. Good simple options are truncated exponential, log-normal, and normal distributions; the choice mostly depends on what you like. Let us plot them first. (You can also use uniform, but I do not like it much here.)
+
+Since we truncate each distribution, their final shapes differ slightly:
+
+- Exponential: Right skewed, more slow speech
+- Reverse Exponential: Left skewed, more fast speech
+- Log-normal: almost beta-like; the mean is around 1.0, but both tails are more likely.
+- Normal: symmetric; the mean is around 1.0, with less mass in the tails.
+
+```{python}
+#| code-fold: true
+#| code-summary: "Show distribution sampling code"
+
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+clip_low, clip_high = 0.85, 1.15
+n = 1000
+
+# Exponential: shifted to center around 1.0 (right-skewed)
+exp_samples = np.clip(0.85 + np.random.exponential(0.1, n), clip_low, clip_high)
+
+# Reverse Exponential: left-skewed (more fast speech)
+rev_exp_samples = np.clip(1.15 - np.random.exponential(0.1, n), clip_low, clip_high)
+
+# Log-normal: median at 1.0 (beta-like)
+lognorm_samples = np.clip(np.random.lognormal(0, 0.20, n), clip_low, clip_high)
+
+# Normal: centered at 1.0 (symmetric)
+norm_samples = np.clip(np.random.normal(1.0, 0.08, n), clip_low, clip_high)
+
+sns.set_style('white')
+fig, axes = plt.subplots(1, 4, figsize=(8, 2))
+
+distributions = [
+    (exp_samples, 'Exponential'),
+    (rev_exp_samples, 'Reverse Exp.'),
+    (lognorm_samples, 'Log-Normal'),
+    (norm_samples, 'Normal')
+]
+
+for ax, (samples, title) in zip(axes, distributions):
+    sns.kdeplot(samples, fill=True, ax=ax)
+    ax.set_xlim(0.7, 1.3)
+    ax.set_title(title)
+    ax.set_xlabel('')
+    ax.set_ylabel('')
+    ax.set_yticks([])
+    ax.spines['left'].set_visible(False)
+    ax.spines['top'].set_visible(False)
+    ax.spines['right'].set_visible(False)
+
+plt.tight_layout()
+plt.show()
+```
+
+
+
+For my own experiments, I use a clipped log-normal. In real life, speech is often a bit slower or faster than expected. I do not want too many sentences exactly at 1.0, but I also do not want many extremely slow or fast ones.
+
+For stability, similarity boost, and style, I keep variation small. I sample each around a preferred value with a low standard deviation, because I mainly want variation in speed.
+
+- stability: normal distribution around 0.71
+- similarity boost: normal distribution around 0.42
+- style: normal distribution around 0.36
+
+The function below, `text_to_speech_file`, takes text and a file name, generates audio, randomizes speed with a log-normal distribution, and randomizes stability/similarity/style with normal distributions. It then saves the result as an mp3 file.
+
+```{python}
+
+def text_to_speech_file(text: str, fname, clip_low = 0.85, clip_high = 1.15) -> str:
+    
+    speed = float(np.clip(np.random.lognormal(0, 0.20), clip_low, clip_high))
+    stability = float(np.clip(np.random.normal(0.71, 0.05), 0, 1))
+    similarity_boost = float(np.clip(np.random.normal(0.42, 0.05), 0, 1))
+    style = float(np.clip(np.random.normal(0.36, 0.05), 0, 1))
+
+    response = client.text_to_speech.convert(
+        voice_id="gyxPK6bLXQAkBSCeAKvk", 
+        output_format="mp3_22050_32",
+        text=text,
+        model_id="eleven_turbo_v2_5", 
+
+        voice_settings=VoiceSettings(
+            stability=stability,
+            similarity_boost=similarity_boost,
+            style=style,
+            use_speaker_boost=True,
+            speed=speed,
+        ),
+    )
+
+    save_file_path = f"{fname}" 
+
+    with open(save_file_path, "wb") as f:
+        for chunk in response:
+            if chunk:
+                f.write(chunk)
+
+    print(f"{save_file_path}: A new audio file was saved successfully!")
+
+    return save_file_path
+
+```
+
+
+Assuming you have a CSV file with `text` and `target_file` columns, the following code generates audio files row by row and saves each one with its target name.
+
+```{python}
+df = pd.read_csv('./data.csv')
+
+df = df[['item', 'condition', 'text', 'target_file']]
+
+df = df.drop_duplicates(subset=['target_file'])
+
+for index, row in df.iterrows():
+    text_to_speech_file(row['text'], row['target_file'])
+
+```
+
+And to quickly sanity-check what was generated, here's a small code for previewing the first few files in a Jupyter notebook. It checks if the generated files exist, and if they do, it creates an audio player for each one. If no files are found, it prompts you to run the generation cell first.
+
+```{python}
+#| code-fold: true
+#| code-summary: "Show df-audio preview code"
+from IPython.display import HTML, display
+
+preview_df = df.copy()
+preview_df["file_exists"] = preview_df["target_file"].apply(lambda f: Path(f).exists())
+preview_df = preview_df[preview_df["file_exists"]].head(6)
+
+def audio_player(path):
+    return (
+        f'<audio controls preload="none" style="width:220px;">'
+        f'<source src="{path}" type="audio/mpeg">'
+        f"Your browser does not support the audio element."
+        f"</audio>"
+    )
+
+if preview_df.empty:
+    print("No generated audio files found yet. Run the generation cell first.")
+else:
+    preview_df["preview"] = preview_df["target_file"].apply(audio_player)
+    display(
+        HTML(
+            preview_df[["item", "condition", "text", "target_file", "preview"]]
+            .to_html(index=False, escape=False)
+        )
+    )
+```
+
+This process is not perfect. Sometimes sentences end up too long or too short. You can check durations and regenerate files outside your preferred range. The code below checks each generated file and keeps only the ones longer than 4 seconds. Of course, 4 seconds is just the threshold I used for my experiment. You can set your own.
+
+
+```{python}
+import os
+from mutagen.mp3 import MP3
+
+def list_long_mp3_files(file_paths, max_duration=4):
+    long_files = []
+    for file_path in file_paths:
+        audio = MP3(file_path)
+        duration = audio.info.length
+        if duration > max_duration: 
+            long_files.append(os.path.basename(file_path))
+    return long_files
+
+folder_path = '.'
+all_files = [os.path.join(folder_path, f"{fname}") for fname in df['target_file']]
+long_files = list_long_mp3_files(all_files, max_duration=4)
+long_files_set = set(long_files)
+
+for index, row in df.iterrows():
+    if f"{row['target_file']}" in long_files_set:
+        text_to_speech_file(row['text'], row['target_file'])
+```
+
+A few extra notes.
+
+- In addition to normal text, you can give some special code in the text. For example, you can use `<break time="500ms"/>` to add a pause of 500 milliseconds. 
+- You can also utilize IPA phonetic transcription for better pronunciation. Interestingly, you can even put breaks between IPA symbols to manipulate data more. For example, instead of "cat", you can use `"k<break time='100ms'/>æ<break time='100ms'/>t"` to add slight pauses between the phonetic components. This is extremely useful if you want to align some recordings specifically.
+- You can also add narrative cues. For example, instead of just "The cat is on the table", you can use "'The cat is on the table,' she said in a surprised tone".
+- You can also add tags like `[whispers]`, `[sighs]`, `[excited]`, or sound effects like `[swallows]`.

@@ -8,6 +8,7 @@ description: "i am obssessed with early advance planning, but let me make sure a
 embed-resources: true
 self-contained-math: true
 toc: true
+jupyter: oct14website-current
 format:
   html:
     code-overflow: wrap
@@ -52,6 +53,8 @@ Another assumption I make is about CLIP/VLM. The input that CLIP takes is a writ
 **Levelt's Speech Production Model:**
 
 ```{mermaid}
+%%| fig-align: center
+
 graph LR
     %% Conceptual Stage
     C2((("sleep(x)")))
@@ -89,11 +92,34 @@ graph LR
     LX2 --> R2
     LX3 --> R3
     LX4 --> R4
+
+    %% Visual styling
+    style C2 fill:#e8f1fb,stroke:#2f5d8c,stroke-width:2px,color:#1f3552
+    style Lemma_Stage fill:#f2f6fc,stroke:#8fa4be,color:#2f5d8c
+    style Lexeme_Stage fill:#f4fbf7,stroke:#86a998,color:#2f5d4a
+    style Realization_Stage fill:#fff7ef,stroke:#c2a07b,color:#6b4f35
+
+    style F1 fill:#e7eef9,stroke:#5a7697,color:#274562
+    style F2 fill:#e7eef9,stroke:#5a7697,color:#274562
+    style F3 fill:#e7eef9,stroke:#5a7697,color:#274562
+    style F4 fill:#e7eef9,stroke:#5a7697,color:#274562
+    style L1 fill:#dceafd,stroke:#2f5d8c,color:#1f3552
+
+    style LX1 fill:#e8f5ee,stroke:#5c8a74,color:#264b3a
+    style LX2 fill:#e8f5ee,stroke:#5c8a74,color:#264b3a
+    style LX3 fill:#e8f5ee,stroke:#5c8a74,color:#264b3a
+    style LX4 fill:#e8f5ee,stroke:#5c8a74,color:#264b3a
+
+    style R1 fill:#fff2e4,stroke:#b4885d,color:#6b4f35
+    style R2 fill:#fff2e4,stroke:#b4885d,color:#6b4f35
+    style R3 fill:#fff2e4,stroke:#b4885d,color:#6b4f35
+    style R4 fill:#fff2e4,stroke:#b4885d,color:#6b4f35
 ```
 
 **CLIP Architecture:**
 
 ```{mermaid}
+%%| fig-align: center
 flowchart TD
     A[Picture] --> B[Image Encoder]
     C[Text] --> D[Text Encoder]
@@ -120,6 +146,7 @@ I have to say, writing their code is also a bit funny. You basically have to bui
 Models like [Qwen3-Omni](https://github.com/QwenLM/Qwen3-Omni) take both images and text as input, process them through vision encoders and language models together, and generate coherent text outputs. Unlike CLIP's similarity metric, multimodal LLMs can provide richer, more nuanced interpretations of visual scenes and answer complex questions about them. We will use both of them and compare here.
 
 ```{mermaid}
+%%| fig-align: center
 flowchart TD
     A[Picture] --> B[Vision Encoder]
     C[Text Prompt] --> D[Tokenizer]
@@ -520,7 +547,7 @@ sns.stripplot(data=df_all, x='VerbType', y='CLIP_Similarity',
 axes[0].set_xlabel('Verb Type', fontsize=14, fontweight='bold')
 axes[0].set_ylabel('CLIP Similarity Score', fontsize=14, fontweight='bold')
 axes[0].set_title('Full Sentence Similarity',
-                  fontsize=16, fontweight='bold', pad=20)
+                  fontsize=12, fontweight='bold', pad=14)
 
 for verb_type in ['Unergative', 'Unaccusative']:
     mean_val = df_all[df_all['VerbType'] == verb_type]['CLIP_Similarity'].mean()
@@ -538,7 +565,7 @@ sns.stripplot(data=df_all, x='VerbType', y='Subject_Salience',
 axes[1].set_xlabel('Verb Type', fontsize=14, fontweight='bold')
 axes[1].set_ylabel('Subject Salience Score', fontsize=14, fontweight='bold')
 axes[1].set_title('Subject Noun Identifiability',
-                  fontsize=16, fontweight='bold', pad=20)
+                  fontsize=12, fontweight='bold', pad=14)
 
 for verb_type in ['Unergative', 'Unaccusative']:
     mean_val = df_all[df_all['VerbType'] == verb_type]['Subject_Salience'].mean()
@@ -556,7 +583,7 @@ sns.stripplot(data=df_all, x='VerbType', y='VLM_Score',
 axes[2].set_xlabel('Verb Type', fontsize=14, fontweight='bold')
 axes[2].set_ylabel('Qwen-VL Match Score (1-10)', fontsize=14, fontweight='bold')
 axes[2].set_title('Scene Verification (Qwen-VL)',
-                  fontsize=16, fontweight='bold', pad=20)
+                  fontsize=12, fontweight='bold', pad=14)
 
 for verb_type in ['Unergative', 'Unaccusative']:
     mean_val = df_all[df_all['VerbType'] == verb_type]['VLM_Score'].mean()
@@ -629,15 +656,15 @@ def vlm_model(verb_type, obs=None):
         pyro.sample('obs', dist.OrderedLogistic(latent_propensity, cutpoints), obs=obs)
 
 # Run the MCMC samplers
-mcmc_clip = MCMC(NUTS(clip_model), num_samples=2000, warmup_steps=1000)
+mcmc_clip = MCMC(NUTS(clip_model), num_samples=2000, warmup_steps=1000, disable_progbar=True)
 mcmc_clip.run(verb_type_tensor, clip_tensor)
 clip_samples = mcmc_clip.get_samples()
 
-mcmc_subject = MCMC(NUTS(subject_model), num_samples=2000, warmup_steps=1000)
+mcmc_subject = MCMC(NUTS(subject_model), num_samples=2000, warmup_steps=1000, disable_progbar=True)
 mcmc_subject.run(verb_type_tensor, subject_tensor)
 subject_samples = mcmc_subject.get_samples()
 
-mcmc_vlm = MCMC(NUTS(vlm_model), num_samples=2000, warmup_steps=1000, num_chains=1)
+mcmc_vlm = MCMC(NUTS(vlm_model), num_samples=2000, warmup_steps=1000, num_chains=1, disable_progbar=True)
 mcmc_vlm.run(verb_type_tensor, vlm_score_tensor)
 vlm_samples = mcmc_vlm.get_samples()
 ```
@@ -648,27 +675,30 @@ After running the analysis, we can extract the posterior distributions for our `
 # Get posterior samples and print results
 clip_beta_mean = clip_samples['beta'].mean().item()
 clip_beta_hdi = torch.quantile(clip_samples['beta'], torch.tensor([0.025, 0.975]))
+clip_p_neg = (clip_samples['beta'] < 0).float().mean().item()
 
 print(f"\nCLIP Similarity - Bayesian Regression:")
 print(f"  Beta (VerbType effect): {clip_beta_mean:.3f}")
 print(f"  95% HDI: [{clip_beta_hdi[0]:.3f}, {clip_beta_hdi[1]:.3f}]")
-print(f"  P(beta < 0): {(clip_samples['beta'] < 0).float().mean():.3f}")
+print(f"  P(beta < 0): {clip_p_neg:.3f}")
 
 subject_beta_mean = subject_samples['beta'].mean().item()
 subject_beta_hdi = torch.quantile(subject_samples['beta'], torch.tensor([0.025, 0.975]))
+subject_p_neg = (subject_samples['beta'] < 0).float().mean().item()
 
 print(f"\nSubject Salience - Bayesian Regression:")
 print(f"  Beta (VerbType effect): {subject_beta_mean:.3f}")
 print(f"  95% HDI: [{subject_beta_hdi[0]:.3f}, {subject_beta_hdi[1]:.3f}]") 
-print(f"  P(beta < 0): {(subject_samples['beta'] < 0).float().mean():.3f}")
+print(f"  P(beta < 0): {subject_p_neg:.3f}")
 
 vlm_beta_mean = vlm_samples['beta'].mean().item()
 vlm_beta_hdi = torch.quantile(vlm_samples['beta'], torch.tensor([0.025, 0.975]))
+vlm_p_neg = (vlm_samples['beta'] < 0).float().mean().item()
 
 print(f"\nVLM Score - Ordered Logistic Regression:")
 print(f"  Beta (VerbType effect): {vlm_beta_mean:.3f}")
 print(f"  95% HDI: [{vlm_beta_hdi[0]:.3f}, {vlm_beta_hdi[1]:.3f}]")
-print(f"  P(beta < 0): {(vlm_samples['beta'] < 0).float().mean():.3f}")
+print(f"  P(beta < 0): {vlm_p_neg:.3f}")
 ```
 
 
@@ -710,14 +740,14 @@ for i, label in enumerate(labels):
     
     # 2. Plot the stacked lines (Bottom to Top: thinnest/widest first)
     # 95% Interval - Thin
-    ax.hlines(i, hdi_95[0], hdi_95[1], color=colors[i], linewidth=1.5, alpha=0.4, zorder=1)
+    ax.hlines(i, hdi_95[0], hdi_95[1], color=colors[i], linewidth=0.75, alpha=0.35, zorder=1)
     # 80% Interval - Medium
-    ax.hlines(i, hdi_80[0], hdi_80[1], color=colors[i], linewidth=5.0, alpha=0.7, zorder=2)
+    ax.hlines(i, hdi_80[0], hdi_80[1], color=colors[i], linewidth=1.5, alpha=0.65, zorder=2)
     # 50% Interval - Thick
-    ax.hlines(i, hdi_50[0], hdi_50[1], color=colors[i], linewidth=10.0, alpha=1.0, zorder=3)
+    ax.hlines(i, hdi_50[0], hdi_50[1], color=colors[i], linewidth=2.5, alpha=0.95, zorder=3)
     
     # 3. Plot the Mean point
-    ax.plot(mean_val, i, 'o', color='white', markersize=8, zorder=4)
+    ax.plot(mean_val, i, 'o', color='black', markersize=5, zorder=4)
     
     # 4. Perfectly Aligned Statistics
     p_dir = (samples < 0).mean() if mean_val < 0 else (samples > 0).mean()
@@ -731,26 +761,26 @@ for i, label in enumerate(labels):
 ax.axvline(x=0, color='black', linestyle='-', linewidth=1.5, alpha=0.6, zorder=0)
 
 # Arrow pointing Left (Negative Beta)
-ax.annotate('', xy=(-5, -1.0), xytext=(-0.5, -1.0),
+ax.annotate('', xy=(-5, -0.72), xytext=(-0.5, -0.72),
             arrowprops=dict(arrowstyle="->", color='gray', lw=1.5))
-ax.text(-2.75, -1.4, "Lower Scores for\nUnaccusatives", ha='center', color='gray', fontweight='bold')
+ax.text(-2.75, -0.98, "Lower Scores for\nUnaccusatives", ha='center', color='gray', fontweight='bold')
 
 # Arrow pointing Right (Positive Beta)
-ax.annotate('', xy=(2.5, -1.0), xytext=(0.5, -1.0),
+ax.annotate('', xy=(2.5, -0.45), xytext=(0.5, -0.45),
             arrowprops=dict(arrowstyle="->", color='gray', lw=1.5))
-ax.text(1.5, -1.4, "Lower Scores for\nUnergatives", ha='center', color='gray', fontweight='bold')
+ax.text(1.5, -0.70, "Lower Scores for\nUnergatives", ha='center', color='gray', fontweight='bold')
 
 # 6. Final Layout Polish
 ax.set_yticks(range(len(labels)))
 ax.set_yticklabels(labels, fontweight='bold', fontsize=12)
-ax.set_xlabel('Posterior Beta Weight (Unaccusative vs. Unergative)', fontsize=13, labelpad=45)
+ax.set_xlabel('Posterior Beta Weight (Unaccusative vs. Unergative)', fontsize=13, labelpad=35)
 
 # Lock limits so text and arrows don't shift
 ax.set_xlim(-6, 3)
-ax.set_ylim(-1.5, len(labels) - 0.5)
+ax.set_ylim(-1.15, len(labels) - 0.5)
 
 sns.despine(left=True, bottom=True)
-plt.subplots_adjust(right=0.75, bottom=0.2) # Make room for text on right and guide on bottom
+plt.subplots_adjust(right=0.75, bottom=0.18) # Make room for text on right and guide on bottom
 plt.savefig('./model_pyro.png', dpi=300, bbox_inches='tight')
 plt.show()
 ```
@@ -760,9 +790,9 @@ So, what do these models tell us? The results are quite clear: all three of our 
 
 Here's a quick summary of the findings from our Bayesian analysis:
 
-- **Scene Verification (VLM):** A strong negative effect (β ≈ -2.3, P(β<0) = 0.99). The VLM is very confident that the unaccusative sentences are a worse description of their corresponding images.
-- **Full Scene (CLIP):** A similarly strong negative effect (β ≈ -2.3, P(β<0) = 0.92). CLIP also finds a lower visual-textual fit for unaccusative scenes.
-- **Subject Salience (CLIP):** A moderate negative effect (β ≈ -1.5, P(β<0) = 0.83). The evidence is weaker here, with more uncertainty, but it still suggests that the subject is slightly harder to identify in unaccusative scenes.
+- **Scene Verification (VLM):** A strong negative effect (β ≈ `{python} f"{vlm_beta_mean:.2f}"`, P(β<0) = `{python} f"{vlm_p_neg:.2f}"`). The VLM is very confident that the unaccusative sentences are a worse description of their corresponding images.
+- **Full Scene (CLIP):** A similarly strong negative effect (β ≈ `{python} f"{clip_beta_mean:.2f}"`, P(β<0) = `{python} f"{clip_p_neg:.2f}"`). CLIP also finds a lower visual-textual fit for unaccusative scenes.
+- **Subject Salience (CLIP):** A moderate negative effect (β ≈ `{python} f"{subject_beta_mean:.2f}"`, P(β<0) = `{python} f"{subject_p_neg:.2f}"`). The evidence is weaker here, with more uncertainty, but it still suggests that the subject is slightly harder to identify in unaccusative scenes.
 
 Even before we get to the human data, the models are sending a clear signal: these two sets of pictures might not be perceived equally. The unaccusative scenes seem to have a lower "visual-textual fit", which means we have to be careful not to mistake this perceptual difficulty for a purely linguistic effect. 
 
