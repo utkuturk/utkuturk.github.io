@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/alchemy/index.html",
       "/posts/audio-gen/index.html",
       "/posts/clip/index.html",
       "/posts/generate-items/index.html",

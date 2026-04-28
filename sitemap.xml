@@ -6,7 +6,7 @@
   </url>
   <url>
     <loc>https://www.utkuturk.com/index.html</loc>
-    <lastmod>2026-02-25T00:21:21.903Z</lastmod>
+    <lastmod>2026-04-28T15:30:35.529Z</lastmod>
   </url>
   <url>
     <loc>https://www.utkuturk.com/papers.html</loc>
@@ -17,64 +17,68 @@
     <lastmod>2026-02-25T00:24:59.880Z</lastmod>
   </url>
   <url>
-    <loc>https://www.utkuturk.com/posts/yaml-rnotebook/index.html</loc>
-    <lastmod>2025-10-14T16:00:26.251Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.utkuturk.com/posts/as-if/index.html</loc>
-    <lastmod>2025-10-14T16:00:26.214Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.utkuturk.com/posts/mfa/index.html</loc>
-    <lastmod>2025-12-17T07:48:59.517Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.utkuturk.com/posts/misunderstanding-kate/index.html</loc>
-    <lastmod>2025-10-31T13:37:18.023Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.utkuturk.com/posts/audio-gen/index.html</loc>
-    <lastmod>2026-02-25T00:39:19.525Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.utkuturk.com/posts/j-glide/index.html</loc>
-    <lastmod>2025-10-14T16:00:26.216Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.utkuturk.com/teaching.html</loc>
-    <lastmod>2026-02-25T00:25:20.451Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.utkuturk.com/life.html</loc>
-    <lastmod>2026-02-25T00:24:53.638Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.utkuturk.com/research.html</loc>
-    <lastmod>2026-02-25T00:25:08.289Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.utkuturk.com/posts/clip/index.html</loc>
-    <lastmod>2026-02-24T22:53:23.400Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.utkuturk.com/posts/server-recordings/index.html</loc>
-    <lastmod>2025-12-17T07:48:58.328Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.utkuturk.com/posts/generate-items/index.html</loc>
-    <lastmod>2026-01-16T08:59:57.747Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.utkuturk.com/posts/ma-thesis/index.html</loc>
-    <lastmod>2025-12-17T07:49:00.605Z</lastmod>
+    <loc>https://www.utkuturk.com/posts/aws-s3-pcibex/index.html</loc>
+    <lastmod>2025-11-17T20:00:23.613Z</lastmod>
   </url>
   <url>
     <loc>https://www.utkuturk.com/posts/futileness-of-judgments/index.html</loc>
     <lastmod>2025-12-17T07:49:01.574Z</lastmod>
   </url>
   <url>
-    <loc>https://www.utkuturk.com/posts/aws-s3-pcibex/index.html</loc>
-    <lastmod>2025-11-17T20:00:23.613Z</lastmod>
+    <loc>https://www.utkuturk.com/posts/ma-thesis/index.html</loc>
+    <lastmod>2025-12-17T07:49:00.605Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.utkuturk.com/posts/generate-items/index.html</loc>
+    <lastmod>2026-01-16T08:59:57.747Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.utkuturk.com/posts/server-recordings/index.html</loc>
+    <lastmod>2025-12-17T07:48:58.328Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.utkuturk.com/posts/clip/index.html</loc>
+    <lastmod>2026-02-24T22:53:23.400Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.utkuturk.com/research.html</loc>
+    <lastmod>2026-02-25T00:25:08.289Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.utkuturk.com/life.html</loc>
+    <lastmod>2026-02-25T00:24:53.638Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.utkuturk.com/teaching.html</loc>
+    <lastmod>2026-02-25T00:25:20.451Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.utkuturk.com/posts/j-glide/index.html</loc>
+    <lastmod>2025-10-14T16:00:26.216Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.utkuturk.com/posts/audio-gen/index.html</loc>
+    <lastmod>2026-04-28T17:07:17.223Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.utkuturk.com/posts/misunderstanding-kate/index.html</loc>
+    <lastmod>2025-10-31T13:37:18.023Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.utkuturk.com/posts/mfa/index.html</loc>
+    <lastmod>2025-12-17T07:48:59.517Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.utkuturk.com/posts/as-if/index.html</loc>
+    <lastmod>2025-10-14T16:00:26.214Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.utkuturk.com/posts/yaml-rnotebook/index.html</loc>
+    <lastmod>2025-10-14T16:00:26.251Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.utkuturk.com/posts/alchemy/index.html</loc>
+    <lastmod>2026-04-28T17:03:16.751Z</lastmod>
   </url>
   <url>
     <loc>https://www.utkuturk.com/talks.html</loc>
