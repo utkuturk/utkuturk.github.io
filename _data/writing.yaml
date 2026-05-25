@@ -117,13 +117,13 @@ in_progress:
 proceedings:
   - authors: "Türk, U.; Neu, E.; Bakay, Ö.; Dillon, B.; Jarosz, G."
     year: 2026
-    topic: "psycholinguistics"
+    topic: "processing"
     title: "Quantifying the cross-linguistics effects of syncretism on agreement attraction"
     proceedings: "Society for Computation in Linguistics"
     pdf: "/files/papers/scil-turketal2026.pdf"
   - authors: ""
     year: 2026
-    topic: "psycholinguistics"
+    topic: "processing"
     title: " Frequency modulates structural choice in Turkish suspended affixation: a latent-process account"
     proceedings: ""
     arxiv: ""
