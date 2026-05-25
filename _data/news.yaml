@@ -1,7 +1,9 @@
 news:
-  - date: "May 2026"
+  - date: "05/2026"
     description: "Mayfest 2026: our yearly workshop this year focuses on production processes."
     extra: "<a href='https://linguistics.umd.edu/news/mayfest-2026-production'>website</a>"
+    category: milestone
+
   - date: "07/2026"
     description: "SCIL 2026: a talk on <a href ='/files/papers/scil-turkneu2026.pdf'>quantifying cross-linguistic syncretism with Transformer Attention</a> and a poster on <a href='/files/papers/scil-turketal2026.pdf'>effect of frequency on syntax in suspended-affixation</a>"
     category: talk

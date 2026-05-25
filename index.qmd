@@ -295,7 +295,7 @@ render_home_news <- function(limit = 10) {
 
   item_html <- vapply(rows, function(r) {
     suffix <- if (length(r$links)) paste0(" · ", paste(r$links, collapse = " · ")) else ""
-    sprintf("<li><time>%s</time> %s%s</li>", r$when, escape_html(r$desc), suffix)
+    sprintf("<li><time>%s</time> %s%s</li>", r$when, r$desc, suffix)
   }, character(1))
 
   paste0("<ul>\n", paste(item_html, collapse = "\n"), "\n</ul>")
