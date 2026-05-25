@@ -120,14 +120,13 @@ proceedings:
     topic: "processing"
     title: "Quantifying the cross-linguistics effects of syncretism on agreement attraction"
     proceedings: "Society for Computation in Linguistics"
-    pdf: "/files/papers/scil-turketal2026.pdf"
+    pdf: "/files/papers/scil-turkneu2026.pdf"
+    arxiv: "https://arxiv.org/abs/2605.21403"
   - authors: "Türk, U.; Neu, E.; Bakay, Ö.; Dillon, B.; Jarosz, G."
     year: 2026
     topic: "processing"
     title: " Frequency modulates structural choice in Turkish suspended affixation: a latent-process account"
-    proceedings: ""
-    arxiv: ""
-    pdf: ""
+    pdf: "/files/papers/scil-turketal2026.pdf"
   - authors: "Türk, U.; Hirsch, A."
     year: 2025
     topic: "semantics"
