@@ -1,92 +1,114 @@
 news:
-  - date: '06/2026'
-    description: 'ELM 4 (UPenn): a poster on the role of modal strength in English'
-    alink: '/files/abstracts/elm-2026.pdf'
+  - date: "May 2026"
+    description: "Mayfest 2026: our yearly workshop this year focuses on production processes."
+    extra: "<a href='https://linguistics.umd.edu/news/mayfest-2026-production'>website</a>"
+  - date: "07/2026"
+    description: "SCIL 2026: a talk on <a href ='/files/papers/scil-turkneu2026.pdf'>quantifying cross-linguistic syncretism with Transformer Attention</a> and a poster on <a href='/files/papers/scil-turketal2026.pdf'>effect of frequency on syntax in suspended-affixation</a>"
+    category: talk
+
+  - date: "06/2026"
+    description: "ELM 4 (UPenn): a poster on the role of modal strength in English"
+    alink: "/files/abstracts/elm-2026.pdf"
     category: poster
 
-  - date: '04/2026'
-    description: 'TU+11 (MIT): two talks on the role of structural cues in sentence processing and effects on frequency on syntactic choices.'
+  - date: "05/2026"
+    description: "FASL 35 (UCSC): a talk on status on (B/C/M/S[erbian]) prefixes in mental grammar"
+    alink: "/files/abstracts/fasl-35.pdf"
+    category: talk
+
+  - date: "04/2026"
+    description: "CLS 62: a talk on probabilistic cues and structural cues in agreement attraction"
+    slink: "/files/slides/cls_62.pdf"
+    category: talk
+
+  - date: "04/2026"
+    description: "TU+11 (MIT): two talks on the role of structural cues in sentence processing and effects on frequency on syntactic choices."
     extra: '<a href="/files/abstracts/tu11-structural-cues.pdf">abstract1</a> · <a href="/files/abstracts/tu11-frequency.pdf">abstract2</a>'
     category: talk
 
-  - date: '03/2026'
-    description: 'HSP 2026 (MIT): talk on the role of structural cues in processing, along with 3 posters!'
+  - date: "03/2026"
+    description: "HSP 2026 (MIT): talk on the role of structural cues in processing, along with 3 posters!"
     extra: '<a href="/files/abstracts/hsp-2026-structural-cues.pdf">talk abstract</a> · posters on <a href="/files/abstracts/hsp-2026-unaccusatives.pdf">production</a> · <a href="/files/abstracts/hsp-2026-surface.pdf">surface-level cues</a> · <a href="/files/abstracts/hsp-2026-frequency.pdf">frequency on syntax</a>'
     category: talk
 
-  - date: '01/2026'
-    description: 'Published two proceedings paper on alternatives in Turkish polar questions.'
+  - date: "02/2026"
+    description: "New preprint on insensitivity to surface cues and role of controllerhood association"
+    extra: '<a href="https://osf.io/preprints/psyarxiv/dwh8v_v4">preprint</a> · <a href="https://ling.auf.net/lingbuzz/009670">lingbuzz</a>'
+    category: publication
+
+  - date: "01/2026"
+    description: "Published two proceedings paper on alternatives in Turkish polar questions."
     extra: '<a href="https://ling.auf.net/lingbuzz/009762">on covert movement</a> · <a href="https://ling.auf.net/lingbuzz/009763"> on constraining alternatives</a>'
     category: publication
 
-  - date: '09/2025'
-    description: 'Visiting Researcher, UMass Amherst (Fall 2025); collaborating with Faruk Akkuş and Shota Momma on dissociating morphosyntactic vs. morphophonological timing.'
+  - date: "09/2025"
+    description: "Visiting Researcher, UMass Amherst (Fall 2025); collaborating with Faruk Akkuş and Shota Momma on dissociating morphosyntactic vs. morphophonological timing."
     category: milestone
 
-  - date: '04/2025'
-    description: 'Advanced to candidacy at UMD after defending my QP on the timing of agreement in sentence production.'
-    slink: '/files/slides/qpTurk.pdf'
+  - date: "04/2025"
+    description: "Advanced to candidacy at UMD after defending my QP on the timing of agreement in sentence production."
+    slink: "/files/slides/qpTurk.pdf"
     category: milestone
 
-  - date: '04/2025'
-    description: 'PLC 2025 talk: syntactic alternatives in Turkish polar questions (with Aron Hirsch).'
-    alink: '/files/abstracts/TurkHirschPLC2025.pdf'
+  - date: "04/2025"
+    description: "PLC 2025 talk: syntactic alternatives in Turkish polar questions (with Aron Hirsch)."
+    alink: "/files/abstracts/TurkHirschPLC2025.pdf"
     category: talk
 
-  - date: '03/2025'
-    description: 'HSP 2025 talk: register effects and response bias in agreement attraction.'
-    alink: '/files/abstracts/TurkHSP2025.pdf'
-    slink: '/files/slides/hsp2025.pdf'
+  - date: "03/2025"
+    description: "HSP 2025 talk: register effects and response bias in agreement attraction."
+    alink: "/files/abstracts/TurkHSP2025.pdf"
+    slink: "/files/slides/hsp2025.pdf"
     category: talk
 
-  - date: '03/2025'
-    description: 'TU+10 (USC): talk on register effects in agreement attraction; poster on scope freezing in Turkish (with Aron Hirsch).'
+  - date: "03/2025"
+    description: "TU+10 (USC): talk on register effects in agreement attraction; poster on scope freezing in Turkish (with Aron Hirsch)."
     extra: '<a href="/files/abstracts/TurkTU2025.pdf">talk abstract</a> · <a href="/files/abstracts/TurkHirschTU2025.pdf">poster abstract</a>'
     category: talk
 
-  - date: '01/2025'
-    description: 'LSA 2025 talk: Superiority effects in Turkish (with Sadira Lewis).'
-    slink: '/files/slides/LewisTurkLSA.pdf'
+  - date: "01/2025"
+    description: "LSA 2025 talk: Superiority effects in Turkish (with Sadira Lewis)."
+    slink: "/files/slides/LewisTurkLSA.pdf"
     category: talk
 
-  - date: '10/2024'
-    description: 'Puzzles of Agreement: relative timing of agreement vs. verb planning.'
-    slink: '/files/abstracts/TurkEtAl-puzzles.pdf'
+  - date: "10/2024"
+    description: "Puzzles of Agreement: relative timing of agreement vs. verb planning."
+    slink: "/files/abstracts/TurkEtAl-puzzles.pdf"
     category: talk
 
-  - date: '10/2024'
-    description: 'HSP 2025 site is live—submit your work!'
+  - date: "10/2024"
+    description: "HSP 2025 site is live—submit your work!"
     extra: '<a href="https://hsp2025.github.io/">website</a>'
     category: site
 
-  - date: '08/2024'
-    description: 'OUP chapter in press: suppletion and suspended affixation.'
-    pdf: '/files/papers/Turk2024.pdf'
+  - date: "08/2024"
+    description: "OUP chapter in press: suppletion and suspended affixation."
+    pdf: "/files/papers/Turk2024.pdf"
     extra: '<a href="https://lingbuzz.net/lingbuzz/008295">lingbuzz</a>'
     category: publication
 
-  - date: '07/2024'
-    description: 'Designed and taught a workshop on production experiments at the University of Oxford (with Colin Phillips, Allison Dods, and Eun-Kyoung Rosa Lee).'
-    hlink: 'https://utkuturk.com/mfa.html'
+  - date: "07/2024"
+    description: "Designed and taught a workshop on production experiments at the University of Oxford (with Colin Phillips, Allison Dods, and Eun-Kyoung Rosa Lee)."
+    hlink: "https://utkuturk.com/mfa.html"
     category: talk
 
-  - date: '05/2024'
-    description: 'HSP 2024 posters: agreement planning and task effects in production.'
+  - date: "05/2024"
+    description: "HSP 2024 posters: agreement planning and task effects in production."
     extra: '<a href="/files/abstracts/hsp-2024-agree.pdf">agreement planning</a> · <a href="/files/abstracts/hsp-2024-task.pdf">task effects</a>'
     category: talk
 
-  - date: '04/2024'
-    description: 'Book chapter on the phonemic status of Turkish glide [j] published.'
-    pdf: '/files/pdfs/CanalisEtAl2024.pdf'
+  - date: "04/2024"
+    description: "Book chapter on the phonemic status of Turkish glide [j] published."
+    pdf: "/files/pdfs/CanalisEtAl2024.pdf"
     category: publication
 
-  - date: '03/2024'
-    description: 'Paper on case syncretism and agreement attraction (with Pavel Logačev) published in Language, Cognition and Neuroscience.'
-    pdf: '/files/papers/TurkLogacev2024.pdf'
+  - date: "03/2024"
+    description: "Paper on case syncretism and agreement attraction (with Pavel Logačev) published in Language, Cognition and Neuroscience."
+    pdf: "/files/papers/TurkLogacev2024.pdf"
     extra: '<a href="https://doi.org/10.1080/23273798.2024.2324766">LCN</a>'
     category: publication
 
-  - date: '03/2023'
-    description: 'HSP 2023: talk on response bias and agreement attraction.'
-    slink: '/files/slides/hsp2023.pdf'
+  - date: "03/2023"
+    description: "HSP 2023: talk on response bias and agreement attraction."
+    slink: "/files/slides/hsp2023.pdf"
     category: talk

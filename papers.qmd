@@ -41,7 +41,8 @@ fmt_common_links <- function(x) {
   # Handle non-standard keys by checking if they exist
   if (nz(x$lingbuzz)) links <- c(links, sprintf('[<a href="%s" target="_blank" title="LingBuzz">lingbuzz</a>]', x$lingbuzz))
   if (nz(x$psyarxiv)) links <- c(links, sprintf('[<a href="%s" target="_blank" title="PsyArXiv">psyarxiv</a>]', x$psyarxiv))
-  
+  if (nz(x$arxiv))    links <- c(links, sprintf('[<a href="%s" target="_blank" title="ArXiv">arxiv</a>]', x$arxiv))
+
   if (length(links)) paste('<span class="paper-links">', paste(links, collapse=" "), '</span>') else ""
 }
 

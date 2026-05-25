@@ -115,8 +115,95 @@ h3[data-anchor-id="news"] .anchorjs-link {
     padding-left: 0.75rem;
     padding-right: 0.75rem;
   }
+
+  h2[data-anchor-id="essays"],
+  h3[data-anchor-id="news"] {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    user-select: none;
+  }
+
+  .accordion-chevron {
+    font-style: normal;
+    font-size: 0.85em;
+    margin-left: 0.4em;
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .accordion-chevron.closed {
+    transform: rotate(-90deg);
+  }
 }
 </style>
+
+<script>
+(function () {
+  function isMobile() { return window.innerWidth <= 991; }
+
+  function makeToggle(headerEl, contentEl, startOpen) {
+    var open = startOpen;
+
+    var chevron = document.createElement('span');
+    chevron.className = 'accordion-chevron';
+    chevron.setAttribute('aria-hidden', 'true');
+    chevron.textContent = '▾';
+    headerEl.appendChild(chevron);
+
+    function setOpen(val) {
+      open = val;
+      contentEl.style.display = open ? '' : 'none';
+      if (open) {
+        chevron.classList.remove('closed');
+      } else {
+        chevron.classList.add('closed');
+      }
+    }
+
+    setOpen(startOpen);
+
+    headerEl.addEventListener('click', function () { setOpen(!open); });
+  }
+
+  function init() {
+    if (!isMobile()) return;
+
+    // Essays accordion: h2 "essays" → #listing-listing
+    var essaysH2 = document.querySelector('h2[data-anchor-id="essays"]');
+    var listingDiv = document.getElementById('listing-listing');
+    if (essaysH2 && listingDiv) {
+      makeToggle(essaysH2, listingDiv, true);
+    }
+
+    // News accordion: h3 "news" → ul + more-link inside #news
+    var newsSection = document.getElementById('news');
+    if (newsSection) {
+      var newsH3 = newsSection.querySelector('h3[data-anchor-id="news"]');
+      if (newsH3) {
+        // Wrap everything after the h3 in a single div for toggling
+        var wrapper = document.createElement('div');
+        wrapper.className = 'news-accordion-content';
+        var siblings = [];
+        var el = newsH3.nextElementSibling;
+        while (el) { siblings.push(el); el = el.nextElementSibling; }
+        if (siblings.length) {
+          newsH3.parentNode.insertBefore(wrapper, siblings[0]);
+          siblings.forEach(function (s) { wrapper.appendChild(s); });
+          makeToggle(newsH3, wrapper, false); // start collapsed
+        }
+      }
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
 
 ::: {.home-hero .page-columns .page-full}
 <div class="home-hero-align">
@@ -140,7 +227,7 @@ h3[data-anchor-id="news"] .anchorjs-link {
 #| echo: false
 #| results: asis
 library(yaml)
-HOWMANY = 10
+HOWMANY = 8
 
 `%||%` <- function(a, b) if (is.null(a) || identical(a, "")) b else a
 

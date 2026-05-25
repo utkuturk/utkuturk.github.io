@@ -7,6 +7,7 @@ image: "simple_example_praat.png"
 description: "you do not have to hear yourself in experiments, and you can generate experiment instructions with ai. here is how."
 embed-resources: true
 self-contained-math: true
+freeze: true
 toc: true
 jupyter: oct14website-current
 format:
@@ -15,7 +16,7 @@ format:
 ---
 
 
-Hi. Unfortunately, this blog turned into a mini series about AI stuff, and I promise this is the last one for a while. In this post, I share a quick way to generate sentence audio with AI. It still sounds synthetic sometimes, even if it no longer sounds robotic, so randomizing a few parameters helps. It is free online without coding. If you want to do it in bulk with more control, you can use the ElevenLabs API. It is 5 dollars a month, and you can cancel it anytime. 
+Hi. Unfortunately, this blog turned into a mini series about AI stuff, and I promise this is the last one for a while. In this post, I share a quick way to generate sentence audio with AI. It still sounds synthetic sometimes, even if it no longer sounds robotic, so randomizing a few parameters helps. It is free online without coding. If you want to do it in bulk with more control, you can use the ElevenLabs API. It is 5 dollars a month, and you can cancel it anytime.
 
 A bit of backstory first. In my first production experiment, we did a lot of handholding because it was online and we assumed people would struggle with the task. And yes, people **do** struggle in these kinds of experiments. Still, the extra handholding did not change much. One part of that handholding was audio instructions. Everyone who knows me knows I am very skeptical about how much attention participants pay in online experiments. Most of the time, people just do the easiest thing that still gets them through, so I did not fully trust that participants would read the instructions carefully. That is why I wanted audio instructions too.
 
@@ -62,7 +63,7 @@ Now, we mainly need three things from the SDK:
     - `similarity_boost`: Adjusts how closely the generated voice matches the original voice. Higher values make it sound more like the original, while lower values allow for more variation.
     - `style`: Changes the speaking style of the voice (e.g., "default", "newscaster", "narration", etc.).
     - `speed`: Modifies the speaking speed. Values greater than 1.0 make it faster, while values less than 1.0 make it slower.
-    - `pitch`: Alters the pitch of the voice. Values greater than 1.0 make it higher, while values less than 1.0 make it lower. 
+    - `pitch`: Alters the pitch of the voice. Values greater than 1.0 make it higher, while values less than 1.0 make it lower.
     - `use_speaker_boost`: Enhances the distinctiveness of the speaker's voice.
 
 
@@ -225,17 +226,17 @@ The function below, `text_to_speech_file`, takes text and a file name, generates
 ```{python}
 
 def text_to_speech_file(text: str, fname, clip_low = 0.85, clip_high = 1.15) -> str:
-    
+
     speed = float(np.clip(np.random.lognormal(0, 0.20), clip_low, clip_high))
     stability = float(np.clip(np.random.normal(0.71, 0.05), 0, 1))
     similarity_boost = float(np.clip(np.random.normal(0.42, 0.05), 0, 1))
     style = float(np.clip(np.random.normal(0.36, 0.05), 0, 1))
 
     response = client.text_to_speech.convert(
-        voice_id="gyxPK6bLXQAkBSCeAKvk", 
+        voice_id="gyxPK6bLXQAkBSCeAKvk",
         output_format="mp3_22050_32",
         text=text,
-        model_id="eleven_turbo_v2_5", 
+        model_id="eleven_turbo_v2_5",
 
         voice_settings=VoiceSettings(
             stability=stability,
@@ -246,7 +247,7 @@ def text_to_speech_file(text: str, fname, clip_low = 0.85, clip_high = 1.15) -> 
         ),
     )
 
-    save_file_path = f"{fname}" 
+    save_file_path = f"{fname}"
 
     with open(save_file_path, "wb") as f:
         for chunk in response:
@@ -317,7 +318,7 @@ def list_long_mp3_files(file_paths, max_duration=4):
     for file_path in file_paths:
         audio = MP3(file_path)
         duration = audio.info.length
-        if duration > max_duration: 
+        if duration > max_duration:
             long_files.append(os.path.basename(file_path))
     return long_files
 
@@ -333,7 +334,7 @@ for index, row in df.iterrows():
 
 A few extra notes.
 
-- In addition to normal text, you can give some special code in the text. For example, you can use `<break time="500ms"/>` to add a pause of 500 milliseconds. 
+- In addition to normal text, you can give some special code in the text. For example, you can use `<break time="500ms"/>` to add a pause of 500 milliseconds.
 - You can also utilize IPA phonetic transcription for better pronunciation. Interestingly, you can even put breaks between IPA symbols to manipulate data more. For example, instead of "cat", you can use `"k<break time='100ms'/>æ<break time='100ms'/>t"` to add slight pauses between the phonetic components. This is extremely useful if you want to align some recordings specifically.
 - You can also add narrative cues. For example, instead of just "The cat is on the table", you can use "'The cat is on the table,' she said in a surprised tone".
 - You can also add tags like `[whispers]`, `[sighs]`, `[excited]`, or sound effects like `[swallows]`.

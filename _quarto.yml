@@ -10,7 +10,6 @@ website:
   site-url: https://www.utkuturk.com
   search: false
 
-
   body-footer: |
     <!-- 100% privacy-first analytics -->
     <script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
@@ -27,19 +26,9 @@ website:
       input-position: top
       theme: noborder_light
 
-
-
-
-
-
-
-
-
   navbar:
-
     pinned: false
     right:
-
       - text: research
         href: research.qmd
       - text: papers
@@ -66,19 +55,22 @@ website:
 format:
   html:
     grid:
-      body-width: 800px      # total page content width
-      sidebar-width: 260px    # left sidebar
-      margin-width: 260px     # right margin ("categories" column)
-      gutter-width: 1.5rem    # space between columns
-    theme: 
-        light: 
-          - cosmo 
-          - brand
-          - theme.scss
-        # dark: 
-        #   - darkly
-        #   - brand
-        #   - theme.scss
+      body-width: 800px # total page content width
+      sidebar-width: 260px # left sidebar
+      margin-width: 260px # right margin ("categories" column)
+      gutter-width: 1.5rem # space between columns
+    theme:
+      light:
+        - cosmo
+        - brand
+        - theme.scss
+      # dark:
+      #   - darkly
+      #   - brand
+      #   - theme.scss
     css: styles-v1.css
 metadata-files:
   - fragments/align-bar.yml
+
+# execute:
+#   freeze: auto

@@ -70,7 +70,7 @@ in_progress:
     year: 2025
     topic: "processing"
     status: "in prep."
-    title: "Review of \"Linguistic Illusions: A Case Study on Agreement Attraction\" by Dan Parker"
+    title: 'Review of "Linguistic Illusions: A Case Study on Agreement Attraction" by Dan Parker'
     note: "For Linguist List"
 
   - authors: "Türk, U."
@@ -114,8 +114,20 @@ in_progress:
   #   repo: "https://github.com/utkuturk/kind"
   #   note: "available upon request"
 
-
 proceedings:
+  - authors: "Türk, U.; Neu, E.; Bakay, Ö.; Dillon, B.; Jarosz, G."
+    year: 2026
+    topic: "psycholinguistics"
+    title: "Quantifying the cross-linguistics effects of syncretism on agreement attraction"
+    proceedings: "Society for Computation in Linguistics"
+    pdf: "/files/papers/scil-turketal2026.pdf"
+  - authors: ""
+    year: 2026
+    topic: "psycholinguistics"
+    title: " Frequency modulates structural choice in Turkish suspended affixation: a latent-process account"
+    proceedings: ""
+    arxiv: ""
+    pdf: ""
   - authors: "Türk, U.; Hirsch, A."
     year: 2025
     topic: "semantics"
