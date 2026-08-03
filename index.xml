@@ -10,7 +10,1347 @@
 <atom:link href="https://www.utkuturk.com/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.9.36</generator>
-<lastBuildDate>Sun, 26 Apr 2026 04:00:00 GMT</lastBuildDate>
+<lastBuildDate>Mon, 03 Aug 2026 04:00:00 GMT</lastBuildDate>
+<item>
+  <title>bayesian coef plots inside latex tables</title>
+  <dc:creator>Utku Turk</dc:creator>
+  <link>https://www.utkuturk.com/posts/bayesian-coef-tables/</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>For me one of the most exciting parts of any writing is thinking about plots and what I can do differently. I have tried many things for descriptive plots that show means and stuff, but I never really experimented with the bayesian coefficient plots. While I was doing my MA, I started using my advisor’s code for posterior distributions that do not show any abnormality, as below. It shows nice whiskers and is very easy to read. There is no unnecessary information. And sometimes, when I felt like simplifying that much was dishonest due to the shape of the distribution, I used the half-eye stats one.</p>
+<p><img src="https://www.utkuturk.com/posts/bayesian-coef-tables/old-bayes-fig.png" class="img-fluid" alt="The plot style I used to use."></p>
+<p>However, I realized that some people really enjoy tables and want them. I do not understand them really. The information gained from a table is too detailed if you ask me, and one only needs that much information if they are doing a similar project. And if that is the case, one should just try to rerun their code. There is of course the thing that with old papers (and even some new ones in prestigious journals still) there is no code or even data. So, I will give them that.</p>
+<p>However, I have to say, though some plots are horrendous, tables are almost always harder to read compared to a visualization. And sometimes, on top of that, they are ugly. When you scan a row like <code>-0.66 [-1.32, 0.00]</code>, you have to mentally place that interval on a scale, decide whether it crosses zero, and then compare it with the row above. Sometimes, you need to do this across multiple rows. Maybe some people have amazing working memory for this type of stuff, but to me it is almost impossible. One can of course use a table and a plot at the same time. But then it just cuts through so much text and is kind of an overkill.</p>
+<p>So, I landed on a kind of compromise, inspired by gt tables. Why not put a whisker plot inside a table? This can easily be done with tikz; us linguists already work with tikz or forest way too much, and the syntax is not that complicated. I can show the posterior mean and 95% CrIs for each row as numbers and as a visualization.</p>
+<p>We are going to build this step by step from an initial idea in latex, and then automate it with R. Here is our task list.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>in a hurry?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you just want the code and would rather figure it out yourself, everything in this post — the latex preamble and the R functions — is in <a href="https://gist.github.com/utkuturk/53a6b3c59cecbd3be5875086aa931d16">this github gist</a>.</p>
+</div>
+</div>
+<ul>
+<li>Write the table everyone writes first</li>
+<li>Fix the alignment</li>
+<li>Add the whisker column</li>
+<li>Automate the whole thing from a <code>brmsfit</code> object</li>
+</ul>
+<section id="the-table-everyone-writes-first" class="level2">
+<h2 class="anchored" data-anchor-id="the-table-everyone-writes-first">The table everyone writes first</h2>
+<p>Let’s be honest about where we all start. These days, one either goes to a latex table creator website, or uses their favorite AI, gives it the results, and makes it do a table. In either case, the results are dumped into a <code>tabular</code> environment like the following.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb1-1"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">\begin</span>{<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">tabular</span>}{|l|c|c|c|}</span>
+<span id="cb1-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\hline</span></span>
+<span id="cb1-3">Effect <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> Estimate <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> CrI <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> P <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\\</span></span>
+<span id="cb1-4"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\hline</span></span>
+<span id="cb1-5">Grammaticality <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> 6.39 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> [5.79, 7.03] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> 0.9999 <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\\</span></span>
+<span id="cb1-6">Attractor Number <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> 0.13 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> [-0.21, 0.48] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> 0.78 <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\\</span></span>
+<span id="cb1-7">Attractor Type <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> -0.06 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> [-0.49, 0.39] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> 0.4 <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\\</span></span>
+<span id="cb1-8">G x A <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> -0.66 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> [-1.32, 0.004] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> 0.026 <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\\</span></span>
+<span id="cb1-9">G x T <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> -1.35 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> [-2.22, -0.48] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> 0.0014 <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\\</span></span>
+<span id="cb1-10">A x T <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> 0.4 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> [-0.27, 1.08] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> 0.88 <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\\</span></span>
+<span id="cb1-11">G x A x T <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> -1.48 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> [-2.78, -0.17] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> 0.014 <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\\</span></span>
+<span id="cb1-12"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\hline</span></span>
+<span id="cb1-13"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">\end</span>{<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">tabular</span>}</span></code></pre></div></div>
+<p><img src="https://www.utkuturk.com/posts/bayesian-coef-tables/tab1-bad.png" class="img-fluid" alt="An ugly LaTeX table with vertical rules and unaligned numbers"></p>
+<p>Everything is technically there, yet it just looks so wrong. One can make it better and ask it to use an “APA” table.</p>
+<ul>
+<li><strong>Vertical rules and double <code>\hline</code>s.</strong> The <code>booktabs</code> documentation has been begging us not to do this since 1995. If you want to have fun, read the <code>booktabs</code> documentation; it is short and it is angry.</li>
+<li><strong>Ragged decimals.</strong> We have <code>0.4</code> next to <code>0.78</code>, which is also next to <code>0.9999</code>. The columns do not align, and your eye cannot compare magnitudes going down a column easily.</li>
+<li><strong>Hyphens as minus signs.</strong> In text mode <code>-0.66</code> typesets a hyphen, which is shorter than a real minus and slightly off-center. Once you see it, you cannot unsee it. Sorry.</li>
+<li><strong>Mixed precision in P.</strong> <code>0.9999</code>, <code>0.026</code>, and <code>0.4</code> suggest four, three, and one digits of certainty about a posterior probability. Though it is probably just because 0.4 is 0.4000, it still requires so much additional work from the reader.</li>
+</ul>
+</section>
+<section id="alignment" class="level2">
+<h2 class="anchored" data-anchor-id="alignment">Alignment</h2>
+<p>Three small tools actually fix most of the problems I mentioned above, and none of them require anything beyond what one already uses when writing latex.</p>
+<p>First, <code>booktabs</code> (<code>\toprule</code>, <code>\midrule</code>, <code>\bottomrule</code>) replaces the rules. Second, every number gets a fixed number of decimals and a proper math-mode minus, <code>$-$0.66</code>. Third — and I think this is the most important trick of this section — negative and positive numbers are aligned with a <em>phantom</em> text. Similarly, the greater-than and smaller-than parts are also aligned.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb2-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\newcommand</span>{<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">\pz</span>}{<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\phantom</span>{<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$-$</span>}}   <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">% invisible minus sign</span></span>
+<span id="cb2-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\newcommand</span>{<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">\pr</span>}{<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\mathrel</span>{<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\phantom</span>{&gt;}}} <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">% invisible &gt; for the P column</span></span></code></pre></div></div>
+<p>If you have not met <code>\phantom</code> before: it typesets nothing, but takes up exactly the space of its argument. So <code>\pz6.39</code> is <code>6.39</code> pushed right by the width of a minus sign, and it lines up perfectly under <code>$-$0.66</code>. The same idea rescues the P column, where some rows read <code>$&gt;0.99$</code> and others just <code>0.78</code>: prefixing the bare numbers with <code>\pr</code> (a phantom <code>&gt;</code> with relation spacing) keeps the digits in one column.</p>
+<p>And the last thing I do is that, inside the interval column, I put a <code>~</code> before the comma, which gives the lower bound a fixed right edge, so the commas stack vertically down the column. I find it easier to read.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb3-1"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">\begin</span>{<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">tabular</span>}{lccc}</span>
+<span id="cb3-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\toprule</span></span>
+<span id="cb3-3">  Effect <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\beta</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> 95<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\%</span> CrI <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> P(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\beta</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> &gt; 0$</span>) <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\\</span></span>
+<span id="cb3-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\midrule</span></span>
+<span id="cb3-5">  Grammaticality (G)      <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\pz</span>6.39 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> [<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\pz</span>5.79~, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\pz</span>7.03] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$&gt;0.99$</span>    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\\</span></span>
+<span id="cb3-6">  Attractor Number (A)    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\pz</span>0.13 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> [<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$-$</span>0.21~, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\pz</span>0.48] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\pr</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> 0.78$</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\\</span></span>
+<span id="cb3-7">  Attractor Type (T)      <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$-$</span>0.06 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> [<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$-$</span>0.49~, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\pz</span>0.39] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\pr</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> 0.40$</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\\</span></span>
+<span id="cb3-8">  G <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\times</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$</span> A            <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$-$</span>0.66 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> [<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$-$</span>1.32~, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\pz</span>0.00] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\pr</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> 0.03$</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\\</span></span>
+<span id="cb3-9">  G <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\times</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$</span> T            <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$-$</span>1.35 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> [<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$-$</span>2.22~, <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$-$</span>0.48] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$&lt;0.01$</span>    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\\</span></span>
+<span id="cb3-10">  A <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\times</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$</span> T            <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\pz</span>0.40 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> [<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$-$</span>0.27~, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\pz</span>1.08] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\pr</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> 0.88$</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\\</span></span>
+<span id="cb3-11">  G <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\times</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$</span> A <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\times</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$</span> T <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$-$</span>1.48 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> [<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$-$</span>2.78~, <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$-$</span>0.17] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\pr</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> 0.01$</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\\</span></span>
+<span id="cb3-12">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\bottomrule</span></span>
+<span id="cb3-13"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">\end</span>{<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">tabular</span>}</span></code></pre></div></div>
+<p><img src="https://www.utkuturk.com/posts/bayesian-coef-tables/tab2-aligned.png" class="img-fluid" alt="The same table with booktabs rules and aligned columns"></p>
+<p>Doesn’t it just look better right now? To be honest, if you just stop here, it already looks better compared to many published tables. But the reader still has to simulate a number line in their head and place the intervals in that space for comparison, which was the whole complaint we started with.</p>
+</section>
+<section id="the-whisker-column" class="level2">
+<h2 class="anchored" data-anchor-id="the-whisker-column">The whisker column</h2>
+<p>The core idea is to draw a tiny <code>tikzpicture</code> containing one horizontal CrI segment, two end parts of the error bar, a dot at the mean, and a vertical line at zero. When you think about it, the main plot I used to use contained nothing more than this. And then our column head is going to be our x-axis; we just have to make sure this is on a scale that is shared across all rows, and not carried over from one table to another. One important thing is that we will use <code>\renewcommand{}</code> before every table for <code>\dwmin</code> and <code>\dwmax</code> to have proper scales for each table.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb4-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\newcommand</span>{<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">\dwmin</span>}{-10}                        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">% left edge of scale</span></span>
+<span id="cb4-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\newcommand</span>{<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">\dwmax</span>}{10}                         <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">% right edge of scale</span></span>
+<span id="cb4-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\newlength</span>{<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\dwwidth</span>}<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\setlength</span>{<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\dwwidth</span>}{26mm}   <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">% column width</span></span>
+<span id="cb4-4"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\newlength</span>{<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\dwheight</span>}<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\setlength</span>{<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\dwheight</span>}{2.6mm}<span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">% whisker cap height</span></span></code></pre></div></div>
+<p>We will use an additional command: <code>\dw</code>. Each <code>\dw{lower}{mean}{upper}</code> cell rescales its three raw values to the <img src="https://latex.codecogs.com/png.latex?%5B0,%201%5D"> interval with <code>\pgfmathsetmacro</code>, so a coefficient of <code>0</code> always lands at the same horizontal position in every row:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb5-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">% \dw{lower}{estimate}{upper}</span></span>
+<span id="cb5-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\newcommand</span>{<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">\dw</span>}[3]{<span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%</span></span>
+<span id="cb5-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\pgfmathsetmacro</span>{<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\dwlo</span>}{(#1-(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\dwmin</span>))/((<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\dwmax</span>)-(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\dwmin</span>))}<span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%</span></span>
+<span id="cb5-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\pgfmathsetmacro</span>{<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\dwmd</span>}{(#2-(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\dwmin</span>))/((<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\dwmax</span>)-(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\dwmin</span>))}<span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%</span></span>
+<span id="cb5-5">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\pgfmathsetmacro</span>{<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\dwhi</span>}{(#3-(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\dwmin</span>))/((<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\dwmax</span>)-(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\dwmin</span>))}<span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%</span></span>
+<span id="cb5-6">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\pgfmathsetmacro</span>{<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\dwzero</span>}{(0-(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\dwmin</span>))/((<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\dwmax</span>)-(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\dwmin</span>))}<span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%</span></span>
+<span id="cb5-7">  <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">\begin</span>{<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">tikzpicture</span>}[baseline=-0.55ex, x=<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\dwwidth</span>, y=<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\dwheight</span>]</span>
+<span id="cb5-8">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\draw</span>[gray!25, line width=0.4pt] (0,0) -- (1,0);         <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">% track</span></span>
+<span id="cb5-9">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\draw</span>[gray!70, densely dashed, line width=0.4pt]</span>
+<span id="cb5-10">      (<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\dwzero</span>,-0.55) -- (<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\dwzero</span>,0.55);                     <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">% zero line</span></span>
+<span id="cb5-11">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\draw</span>[line width=0.7pt] (<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\dwlo</span>,0) -- (<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\dwhi</span>,0);          <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">% CrI</span></span>
+<span id="cb5-12">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\draw</span>[line width=0.5pt] (<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\dwlo</span>,-0.4) -- (<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\dwlo</span>,0.4);     <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">% errorbar low</span></span>
+<span id="cb5-13">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\draw</span>[line width=0.5pt] (<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\dwhi</span>,-0.4) -- (<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\dwhi</span>,0.4);     <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">% errorbar high</span></span>
+<span id="cb5-14">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\node</span>[circle, fill, inner sep=1.1pt] at (<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\dwmd</span>,0) {};    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">% mean</span></span>
+<span id="cb5-15">  <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">\end</span>{<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">tikzpicture</span>}<span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%</span></span>
+<span id="cb5-16">}</span></code></pre></div></div>
+<p>Two details do a lot of quiet work here, and it took me a lot of time to appreciate them, after many trials of getting them wrong. <code>baseline=-0.55ex</code> vertically centers the picture on the text line, so the whisker sits on the same baseline as the numbers in its row; without it, every whisker floats slightly above its row like it is trying to jump out of the cell. And setting the TikZ units to <code>x=\dwwidth, y=\dwheight</code> means every coordinate in the picture is written in scale-free <img src="https://latex.codecogs.com/png.latex?%5B0,%201%5D"> terms, so changing the column width later is a one-line edit instead of going through every piece of code again and again.</p>
+<p>The column header is a matching axis with tick labels. The <code>\ifdim</code> guard skips any tick that falls outside the current scale. It is especially important when you reuse the macros across tables with different ranges, which I needed to do since I had many experiments and models.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb6-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\newcommand</span>{<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">\dwaxis</span>}{<span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%</span></span>
+<span id="cb6-2">  <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">\begin</span>{<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">tikzpicture</span>}[baseline=-0.55ex, x=<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\dwwidth</span>, y=<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\dwheight</span>]</span>
+<span id="cb6-3">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\draw</span>[gray!50] (0,0) -- (1,0);</span>
+<span id="cb6-4">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\foreach</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\v</span> in {-3,0,3,6}{<span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%</span></span>
+<span id="cb6-5">      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\pgfmathsetmacro</span>{<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\p</span>}{(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\v</span>-(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\dwmin</span>))/((<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\dwmax</span>)-(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\dwmin</span>))}</span>
+<span id="cb6-6">      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\ifdim\p</span> pt&lt;0pt<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\else\ifdim\p</span> pt&gt;1pt<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\else</span></span>
+<span id="cb6-7">        <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\draw</span>[gray!50] (<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\p</span>,0) -- (<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\p</span>,0.5);</span>
+<span id="cb6-8">        <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\node</span>[font=<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\tiny</span>, above=-1pt] at (<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\p</span>,0.4) {<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\v</span>};</span>
+<span id="cb6-9">      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\fi\fi</span>}</span>
+<span id="cb6-10"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">\end</span>{<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">tikzpicture</span>}}</span></code></pre></div></div>
+<p>The table body then gains exactly one column. I preferred to put it at the end, but I guess one can put it right after the effect column.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb7-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\renewcommand</span>{<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">\dwmin</span>}{-3.5}</span>
+<span id="cb7-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\renewcommand</span>{<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">\dwmax</span>}{7.8}</span>
+<span id="cb7-3"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">\begin</span>{<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">tabular</span>}{lccc c}</span>
+<span id="cb7-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\toprule</span></span>
+<span id="cb7-5">  Effect <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\beta</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> 95<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\%</span> CrI <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> P(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\beta</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> &gt; 0$</span>) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\dwaxis\\</span></span>
+<span id="cb7-6">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\midrule</span></span>
+<span id="cb7-7">  Grammaticality (G): Gram vs.<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\ </span>Ungram    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\pz</span>6.39 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> [<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\pz</span>5.79~, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\pz</span>7.03] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$&gt;0.99$</span>    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\dw</span>{5.79}{6.39}{7.03}   <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\\</span></span>
+<span id="cb7-8">  Attractor Number (A): Pl vs.<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\ </span>Sg        <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\pz</span>0.13 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> [<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$-$</span>0.21~, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\pz</span>0.48] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\pr</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> 0.78$</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\dw</span>{-0.21}{0.13}{0.48}  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\\</span></span>
+<span id="cb7-9">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">% ... one \dw{lo}{mid}{hi} per row ...</span></span>
+<span id="cb7-10">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\bottomrule</span></span>
+<span id="cb7-11"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">\end</span>{<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">tabular</span>}</span></code></pre></div></div>
+<p><img src="https://www.utkuturk.com/posts/bayesian-coef-tables/tab3-whisker.png" class="img-fluid" alt="The aligned table with a dot-whisker column on a shared scale"></p>
+<p>Now the table answers, a lot more easily, the several questions I actually have as a reader: <em>does the interval cross zero?</em>, <em>how big is the variance?</em>, and <em>how does this effect compare to the others?</em>. One thing I need to repeat again before you copy this into six different tables: because <code>\dwmin</code>/<code>\dwmax</code> are plain macros, you NEED to re-scope them per table with <code>\renewcommand</code> inside the <code>table</code> environment. A <code>table</code> float is a TeX group, so the change stays local and the next table gets the defaults back. Do state the scale in the caption when you do this, and let the axis guard above quietly drop any tick that no longer fits.</p>
+</section>
+<section id="automating-it-from-a-brmsfit-with-r" class="level2">
+<h2 class="anchored" data-anchor-id="automating-it-from-a-brmsfit-with-r">Automating it from a <code>brmsfit</code> with R</h2>
+<p>I guess one can just manually type <code>\dw{-1.32}{-0.66}{0.00}</code> for every coefficient. I did that once in my first draft during my MA. And there were of course many errors, and I realized that I was not a great proofreader. There is also the problem of rewriting and copy-pasting them again and again every time I refit the model. Right now, I already extract tables from R, along with the in-text values for Beta, CrI, etc. So, why not just create an R function for the entire table with the tikz plot? We will need a few formatters, one function per cell type, one function per row, and a wrapper that walks over the fixed effects of a fitted <code>brms</code> model.</p>
+<p>Start with the number formatters. <code>fmt_num()</code> produces the aligned LaTeX number with phantoms.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1">fmt_num <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(x, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">digits =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>) {</span>
+<span id="cb8-2">  s <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sprintf</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">paste0</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"%."</span>, digits, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"f"</span>), <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">abs</span>(x))</span>
+<span id="cb8-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ifelse</span>(x <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">paste0</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"$-$"</span>, s), <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">paste0</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\\</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">pz"</span>, s))</span>
+<span id="cb8-4">}</span></code></pre></div></div>
+</div>
+<p>We will use similar code for the interval and probability cells as well. I think these are already good functions to use independently of this table.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1">fmt_ci <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(lo, hi, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">digits =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>) {</span>
+<span id="cb9-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">paste0</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"["</span>, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">fmt_num</span>(lo, digits), <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"~, "</span>, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">fmt_num</span>(hi, digits), <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"]"</span>)</span>
+<span id="cb9-3">}</span>
+<span id="cb9-4"></span>
+<span id="cb9-5">fmt_p <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(p, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">digits =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>) {</span>
+<span id="cb9-6">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> (p <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.99</span>) {</span>
+<span id="cb9-7">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">return</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"$&gt;0.99$"</span>)</span>
+<span id="cb9-8">  }</span>
+<span id="cb9-9">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> (p <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.01</span>) {</span>
+<span id="cb9-10">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">return</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"$&lt;0.01$"</span>)</span>
+<span id="cb9-11">  }</span>
+<span id="cb9-12">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">paste0</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"$</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\\</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">pr "</span>, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sprintf</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">paste0</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"%."</span>, digits, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"f"</span>), p), <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"$"</span>)</span>
+<span id="cb9-13">}</span></code></pre></div></div>
+</div>
+<p>Then, we will need to create the <code>\dw{}{}{}</code> line, which is just gluing the values we already have into a string.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1">dw_cell <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(lo, mid, hi, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">digits =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>) {</span>
+<span id="cb10-2">  r <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(x) <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sprintf</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">paste0</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"%."</span>, digits, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"f"</span>), x)</span>
+<span id="cb10-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">paste0</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\\</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">dw{"</span>, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">r</span>(lo), <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"}{"</span>, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">r</span>(mid), <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"}{"</span>, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">r</span>(hi), <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"}"</span>)</span>
+<span id="cb10-4">}</span></code></pre></div></div>
+</div>
+<p>Then we will combine all these functions along with a label, and use <code>&amp;</code> as a separator.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1">dw_row <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(label, mid, lo, hi, p, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">digits =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>) {</span>
+<span id="cb11-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">paste</span>(</span>
+<span id="cb11-3">    label,</span>
+<span id="cb11-4">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">fmt_num</span>(mid, digits),</span>
+<span id="cb11-5">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">fmt_ci</span>(lo, hi, digits),</span>
+<span id="cb11-6">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">fmt_p</span>(p),</span>
+<span id="cb11-7">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">dw_cell</span>(lo, mid, hi, digits),</span>
+<span id="cb11-8">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">sep =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">" &amp; "</span></span>
+<span id="cb11-9">  )</span>
+<span id="cb11-10">}</span></code></pre></div></div>
+</div>
+<p>Finally, the main code. It takes the draws, pulls out the fixed effects that are not the intercept<sup>1</sup>, extracts the information we need — mean, 2.5% and 97.5% quantiles, and the posterior probability of being positive — rounds them accordingly, and prints a complete <code>tabular</code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(brms)</span>
+<span id="cb12-2"></span>
+<span id="cb12-3">dw_table <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(fit, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">labels =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">NULL</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">digits =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>) {</span>
+<span id="cb12-4">  draws <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.matrix</span>(fit)</span>
+<span id="cb12-5">  bs <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">grep</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"^b_"</span>, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">colnames</span>(draws), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">value =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>)</span>
+<span id="cb12-6">  bs <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">setdiff</span>(bs, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"b_Intercept"</span>)</span>
+<span id="cb12-7"></span>
+<span id="cb12-8">  mid <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">colMeans</span>(draws[, bs, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">drop =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">FALSE</span>])</span>
+<span id="cb12-9">  lo <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">apply</span>(draws[, bs, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">drop =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">FALSE</span>], <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>, quantile, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.025</span>)</span>
+<span id="cb12-10">  hi <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">apply</span>(draws[, bs, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">drop =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">FALSE</span>], <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>, quantile, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.975</span>)</span>
+<span id="cb12-11">  p <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">colMeans</span>(draws[, bs, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">drop =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">FALSE</span>] <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)</span>
+<span id="cb12-12"></span>
+<span id="cb12-13">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> (<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">is.null</span>(labels)) {</span>
+<span id="cb12-14">    labels <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sub</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"^b_"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">""</span>, bs)</span>
+<span id="cb12-15">  }</span>
+<span id="cb12-16"></span>
+<span id="cb12-17">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># scale limits: round outward to the nearest 0.5, keep 0 inside</span></span>
+<span id="cb12-18">  dwmin <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">min</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">floor</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">min</span>(lo, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>, <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>)</span>
+<span id="cb12-19">  dwmax <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">max</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ceiling</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">max</span>(hi, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>)</span>
+<span id="cb12-20"></span>
+<span id="cb12-21">  rows <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mapply</span>(</span>
+<span id="cb12-22">    dw_row,</span>
+<span id="cb12-23">    labels,</span>
+<span id="cb12-24">    mid,</span>
+<span id="cb12-25">    lo,</span>
+<span id="cb12-26">    hi,</span>
+<span id="cb12-27">    p,</span>
+<span id="cb12-28">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">MoreArgs =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">digits =</span> digits)</span>
+<span id="cb12-29">  )</span>
+<span id="cb12-30"></span>
+<span id="cb12-31">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(</span>
+<span id="cb12-32">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">paste0</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\\</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">renewcommand{</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\\</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">dwmin}{"</span>, dwmin, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"}"</span>),</span>
+<span id="cb12-33">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">paste0</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\\</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">renewcommand{</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\\</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">dwmax}{"</span>, dwmax, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"}"</span>),</span>
+<span id="cb12-34">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\\</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">begin{tabular}{lccc c}"</span>,</span>
+<span id="cb12-35">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"  </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\\</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">toprule"</span>,</span>
+<span id="cb12-36">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"  Effect &amp; $</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\\</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">beta$ &amp; 95</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\\</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">% CrI &amp; P($</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\\</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">beta &gt; 0$) &amp; </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\\</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">dwaxis</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\\\\</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>,</span>
+<span id="cb12-37">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"  </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\\</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">midrule"</span>,</span>
+<span id="cb12-38">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">paste0</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"  "</span>, rows, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">" </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\\\\</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>),</span>
+<span id="cb12-39">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"  </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\\</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">bottomrule"</span>,</span>
+<span id="cb12-40">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\\</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">end{tabular}"</span></span>
+<span id="cb12-41">  )</span>
+<span id="cb12-42">}</span></code></pre></div></div>
+</div>
+<p>You can use this <code>dw_table()</code> function with the <code>writeLines()</code> function, which writes the output of a function into whatever file you want, in this case a <code>.tex</code> file.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1">fit <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">brm</span>(</span>
+<span id="cb13-2">  response <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> gram <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span></span>
+<span id="cb13-3">    att_num <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb13-4">    (<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> gram <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> att_num <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|</span> subject) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb13-5">    (<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> gram <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> att_num <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|</span> item),</span>
+<span id="cb13-6">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">family =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">bernoulli</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"logit"</span>),</span>
+<span id="cb13-7">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> d</span>
+<span id="cb13-8">)</span>
+<span id="cb13-9"></span>
+<span id="cb13-10"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">writeLines</span>(</span>
+<span id="cb13-11">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">dw_table</span>(</span>
+<span id="cb13-12">    fit,</span>
+<span id="cb13-13">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">labels =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Grammaticality (G)"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Attractor Number (A)"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"G $</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\\</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">times$ A"</span>)</span>
+<span id="cb13-14">  ),</span>
+<span id="cb13-15">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"exp1-coef-table.tex"</span></span>
+<span id="cb13-16">)</span></code></pre></div></div>
+</div>
+<p>Now, in your latex environment or overleaf, you can copy this file and use <code>\input{exp1-coef-table.tex}</code> inside a <code>table</code> environment. The R side only ever regenerates the body. When the model is refit, the table — numbers, whiskers, and scale — is automatically updated with it, and I do not need to do anything extra other than copying the file.</p>
+<p>You may need to adapt <code>dw_table()</code> to your own models: if you have a different family, different coefficient naming, or you want medians instead of means, the changes all live in the six lines that build <code>mid</code>, <code>lo</code>, <code>hi</code>, and <code>p</code>. Everything downstream is just string glue and should not care, unless your case is much more complicated. Again, all the code from this post is in <a href="https://gist.github.com/utkuturk/53a6b3c59cecbd3be5875086aa931d16">this github gist</a>.</p>
+
+
+</section>
+
+
+<script data-collect-dnt="true" async="" src="https://scripts.simpleanalyticscdn.com/latest.js"></script><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>my models are usually with contrast sum, and the intercept is not meaningful↩︎</p></li>
+</ol>
+</section></div> ]]></description>
+  <category>linguistics</category>
+  <category>plotting</category>
+  <category>statistics</category>
+  <guid>https://www.utkuturk.com/posts/bayesian-coef-tables/</guid>
+  <pubDate>Mon, 03 Aug 2026 04:00:00 GMT</pubDate>
+  <media:content url="https://www.utkuturk.com/posts/bayesian-coef-tables/tab3-whisker.png" medium="image" type="image/png" height="49" width="144"/>
+</item>
 <item>
   <title>just don’t forget people pursued alchemy for 2500 years</title>
   <dc:creator>Utku Turk</dc:creator>
@@ -7127,7 +8467,7 @@ font-style: inherit;">300</span>)</span>
 <span id="cb2-71"></span>
 <span id="cb2-72">p </span></code></pre></div></div>
 <div class="cell-output-display">
-<div id="fig-elephant" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Red–pink outline of an elephant drawn by a Fourier series, shown with axes.">
+<div id="fig-elephant" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Red–pink outline of an elephant drawn by a Fourier series, shown with axes." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-elephant-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://www.utkuturk.com/posts/misunderstanding-kate/index_files/figure-html/fig-elephant-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Red–pink outline of an elephant drawn by a Fourier series, shown with axes.">
