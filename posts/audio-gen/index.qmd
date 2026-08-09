@@ -2,8 +2,8 @@
 title: "i promise this is the last one for a while: audio generation with elevenlabs"
 author: "Utku Turk"
 date: "2026-02-24"
-categories: [ai, experiments, audio, elevenlabs]
-image: "simple_example_praat.png"
+categories: [tutorial, ai, experiments, audio, elevenlabs]
+image: "thumb-audio.png"
 description: "you do not have to hear yourself in experiments, and you can generate experiment instructions with ai. here is how."
 embed-resources: true
 self-contained-math: true

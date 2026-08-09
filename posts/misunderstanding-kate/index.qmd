@@ -2,7 +2,7 @@
 title: "misunderstanding Kate's talk on nonuniformity of phonology and phonetics"
 author: Utku Turk
 date: "2025-10-29"
-categories: [linguistics, misunderstanding, sound, turkish]
+categories: [opinion, linguistics, misunderstanding, sound, turkish]
 description: "Kate’s asymmetry meets Turkish rounding: evidence that’s gradient but syntactically bounded (also a rant about dual-process framings)"
 execute:
   message: false

@@ -110,6 +110,64 @@ h3[data-anchor-id="news"] .anchorjs-link {
   display: none !important;
 }
 
+/* heading + type pills share one line */
+.essays-head {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.1rem;
+  margin: 0 0 0.2rem;
+}
+
+.essays-head h2[data-anchor-id="essays"] {
+  margin: 0;
+}
+
+/* hidden until JS mounts it — the pills do nothing without JS anyway */
+.essay-types {
+  display: none;
+}
+
+.essay-types.ready {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.3rem;
+  line-height: 1.2;
+}
+
+.essay-type {
+  appearance: none;
+  -webkit-appearance: none;
+  background: #fff;
+  border: 1px solid #dcdcdc;
+  border-radius: 999px;
+  padding: 0.1rem 0.58rem;
+  font: inherit;
+  font-size: 0.76rem;
+  line-height: 1.5;
+  color: #666;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.essay-type:hover {
+  background: #fafafa;
+  border-color: #b9b9b9;
+  color: #1f1f1f;
+}
+
+.essay-type:focus-visible {
+  outline: 2px solid #1f6feb;
+  outline-offset: 1px;
+}
+
+.essay-type.active {
+  background: #1f1f1f;
+  border-color: #1f1f1f;
+  color: #fff;
+}
+
 @media (max-width: 991.98px) {
   .home-hero-align {
     padding-left: 0.75rem;
@@ -123,6 +181,12 @@ h3[data-anchor-id="news"] .anchorjs-link {
     align-items: center;
     justify-content: space-between;
     user-select: none;
+  }
+
+  /* give the heading its own row so the accordion chevron keeps the
+     right edge and the pills wrap underneath it */
+  .essays-head h2[data-anchor-id="essays"] {
+    flex: 1 1 100%;
   }
 
   .accordion-chevron {
@@ -145,6 +209,7 @@ h3[data-anchor-id="news"] .anchorjs-link {
 
   function makeToggle(headerEl, contentEl, startOpen) {
     var open = startOpen;
+    var contentEls = Array.isArray(contentEl) ? contentEl : [contentEl];
 
     var chevron = document.createElement('span');
     chevron.className = 'accordion-chevron';
@@ -154,7 +219,9 @@ h3[data-anchor-id="news"] .anchorjs-link {
 
     function setOpen(val) {
       open = val;
-      contentEl.style.display = open ? '' : 'none';
+      contentEls.forEach(function (el) {
+        if (el) el.style.display = open ? '' : 'none';
+      });
       if (open) {
         chevron.classList.remove('closed');
       } else {
@@ -170,11 +237,12 @@ h3[data-anchor-id="news"] .anchorjs-link {
   function init() {
     if (!isMobile()) return;
 
-    // Essays accordion: h2 "essays" → #listing-listing
+    // Essays accordion: h2 "essays" → type filter bar + #listing-listing
     var essaysH2 = document.querySelector('h2[data-anchor-id="essays"]');
     var listingDiv = document.getElementById('listing-listing');
+    var typeBar = document.getElementById('essay-types');
     if (essaysH2 && listingDiv) {
-      makeToggle(essaysH2, listingDiv, true);
+      makeToggle(essaysH2, [typeBar, listingDiv], true);
     }
 
     // News accordion: h3 "news" → ul + more-link inside #news
@@ -205,6 +273,101 @@ h3[data-anchor-id="news"] .anchorjs-link {
 })();
 </script>
 
+<script>
+// Essay type filter bar (all / opinion / tutorial / question).
+// Types are ordinary Quarto categories, so this just drives the same
+// listing filter that the per-post #tags use.
+(function () {
+  function enc(category) { return category ? btoa(encodeURIComponent(category)) : ''; }
+
+  function listingRoot() { return document.getElementById('listing-listing'); }
+
+  // Keep the bar's highlight in sync with whatever filter is active.
+  // A non-type category (e.g. #linguistics) leaves every button unlit,
+  // since the listing is filtered but not to one of the three types.
+  window.homeSyncEssayTypes = function (category) {
+    var bar = document.getElementById('essay-types');
+    if (!bar) return;
+    var active = category || '';
+    var buttons = bar.querySelectorAll('.essay-type');
+    for (var i = 0; i < buttons.length; i++) {
+      var isActive = (buttons[i].getAttribute('data-type') || '') === active;
+      buttons[i].classList.toggle('active', isActive);
+      buttons[i].setAttribute('aria-pressed', isActive ? 'true' : 'false');
+    }
+  };
+
+  function applyCategory(category) {
+    if (window.quartoListingCategory) window.quartoListingCategory(enc(category));
+    var root = listingRoot();
+    if (root) root.dataset.activeCategory = enc(category);
+    window.homeSyncEssayTypes(category);
+  }
+
+  // Quarto stores the active filter in the URL as #category=<value>
+  function categoryFromHash() {
+    var hash = window.location.hash ? window.location.hash.slice(1) : '';
+    var found = '';
+    hash.split('&').forEach(function (pair) {
+      var kv = pair.split('=');
+      if (kv[0] === 'category' && kv.length === 2) found = decodeURIComponent(kv[1]);
+    });
+    return found;
+  }
+
+  // Quarto puts the h2 and the bar in separate rows of the section's grid,
+  // so move both into one flex wrapper to get them on a single line.
+  function mount() {
+    var bar = document.getElementById('essay-types');
+    var heading = document.querySelector('h2[data-anchor-id="essays"]');
+    if (!bar) return null;
+
+    if (heading && !bar.closest('.essays-head')) {
+      var head = document.createElement('div');
+      head.className = 'essays-head';
+      heading.parentNode.insertBefore(head, heading);
+      head.appendChild(heading);
+      head.appendChild(bar);
+    }
+    bar.classList.add('ready');
+    return bar;
+  }
+
+  function init() {
+    var bar = mount();
+    if (!bar) return;
+
+    bar.addEventListener('click', function (event) {
+      var button = event.target.closest('.essay-type');
+      if (!button) return;
+      event.preventDefault();
+
+      var type = button.getAttribute('data-type') || '';
+      var root = listingRoot();
+      var current = root ? (root.dataset.activeCategory || '') : '';
+      // clicking the already-active type toggles back to unfiltered
+      if (type && current === enc(type)) type = '';
+      applyCategory(type);
+    });
+
+    // Restore state on load / back-forward navigation
+    var initial = categoryFromHash();
+    var root = listingRoot();
+    if (root) root.dataset.activeCategory = enc(initial);
+    window.homeSyncEssayTypes(initial);
+    window.addEventListener('hashchange', function () {
+      window.homeSyncEssayTypes(categoryFromHash());
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+
 ::: {.home-hero .page-columns .page-full}
 <div class="home-hero-align">
 <div class="home-hero-copy">
@@ -220,6 +383,15 @@ h3[data-anchor-id="news"] .anchorjs-link {
 :::
 
 ## essays
+
+```{=html}
+<div class="essay-types" id="essay-types" role="group" aria-label="filter essays by type">
+  <button type="button" class="essay-type active" data-type="" aria-pressed="true">all</button>
+  <button type="button" class="essay-type" data-type="opinion" aria-pressed="false">opinion</button>
+  <button type="button" class="essay-type" data-type="tutorial" aria-pressed="false">tutorial</button>
+  <button type="button" class="essay-type" data-type="question" aria-pressed="false">question</button>
+</div>
+```
 
 ::: {.column-margin .home-news}
 ### news

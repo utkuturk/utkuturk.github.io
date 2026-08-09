@@ -2,7 +2,7 @@
 title: "how to include r expressions in (quarto) yaml"
 author: Utku Turk
 date: "2020-01-23"
-categories: [technical, code]
+categories: [tutorial, technical, code]
 description: using yaml with embedded r expressions for cleaner, reusable quarto configs
 image: ./yaml.png
 execute: 

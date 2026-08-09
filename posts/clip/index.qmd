@@ -2,8 +2,8 @@
 title: "unaccusativity syntax or picture difficulty?"
 author: "Utku Turk"
 date: "2026-01-16"
-categories: [psycholinguistics, ai, experiments, CLIP, unaccusativity]
-image: "model_comparison_plot.png"
+categories: [question, psycholinguistics, ai, experiments, CLIP, unaccusativity]
+image: "thumb-clip.png"
 description: "i am obssessed with early advance planning, but let me make sure about some picture saliency"
 embed-resources: true
 self-contained-math: true

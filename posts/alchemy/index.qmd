@@ -2,7 +2,7 @@
 title: just don't forget people pursued alchemy for 2500 years
 author: Utku Turk
 date: "2026-04-26"
-categories: [linguistics, experiments]
+categories: [opinion, linguistics, experiments]
 description: 'experiments are *necessary* and quite often *not misleading*, our blind trust in them is misleading. and I do not think the answer lies in being more careful with your stats, though that is also a must.'
 references:
   - id: hammerly2019

@@ -2,7 +2,7 @@
 title: "saving pcibex recordings to s3 with a python lambda"
 author: "Utku Türk"
 date: 2025-10-30
-categories: [experiments, aws, pcibex]
+categories: [tutorial, experiments, aws, pcibex]
 image: ./map-lambda.png
 description: "modern replacement for the outdated JS guide in the original pcibex website."
 format:

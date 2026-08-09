@@ -2,7 +2,7 @@
 title: can ‘as if’ clauses be degree comparisons?
 author: Utku Turk
 date: "2022-05-10"
-categories: [linguistics, papers, meaning]
+categories: [question, linguistics, papers, meaning]
 description: turkish as if clauses specifically target gradable adverbials and adjectives, pointing to a degree-based analysis
 execute:
   echo: false

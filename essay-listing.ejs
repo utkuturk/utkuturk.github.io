@@ -10,8 +10,10 @@
       if (!thumb) {
         thumb = "/images/utkuturkumd.jpeg";
       }
+      const cats = (post.categories || []).map(c => String(c).toLowerCase());
+      const isOpinion = cats.includes("opinion");
     %>
-    <article class="essay-item" <%= metadataAttrs(post) %>>
+    <article class="essay-item<%= isOpinion ? " essay-item-opinion" : "" %>" <%= metadataAttrs(post) %>>
       <% if (thumb) { %>
         <div class="essay-thumb">
           <a href="<%= post.path %>">
@@ -32,9 +34,15 @@
         <% } %>
 
         <p class="essay-meta">
-          <% if (post.categories && post.categories.length) { %>
+          <%
+            // opinion/tutorial/question are shown by the filter bar above the
+            // listing, so keep them out of the per-post tag row
+            const essayTypes = ["opinion", "tutorial", "question"];
+            const tags = (post.categories || []).filter(c => !essayTypes.includes(String(c).toLowerCase()));
+          %>
+          <% if (tags.length) { %>
             <span class="essay-tags">
-              <% for (const cat of post.categories) { %>
+              <% for (const cat of tags) { %>
                 <a class="essay-tag" href="#listing-listing"
                    onclick="if (window.homeToggleListingTag) { return window.homeToggleListingTag('<%= utils.b64encode(cat) %>'); }">
                   #<%= cat %>
@@ -82,6 +90,17 @@
 
 .essay-item:last-child {
   border-bottom: 0;
+}
+
+/* opinion pieces get a very faint purple wash so they read as a
+   different kind of thing while scanning the list */
+.essay-item-opinion {
+  background: #faf8fd;
+  border-bottom: 0;
+  border-radius: 8px;
+  padding: 0.85rem 0.9rem;
+  margin-left: -0.9rem;
+  margin-right: -0.9rem;
 }
 
 .essay-item h3 {
@@ -168,6 +187,12 @@
     gap: 0.65rem;
   }
 
+  .essay-item-opinion {
+    padding: 0.7rem 0.6rem;
+    margin-left: -0.35rem;
+    margin-right: -0.35rem;
+  }
+
   .essay-thumb {
     flex-basis: 66px;
   }
@@ -202,12 +227,19 @@ window.homeToggleListingTag = function (categoryB64) {
   const listingRoot = document.getElementById("listing-listing");
   const current = listingRoot ? (listingRoot.dataset.activeCategory || "") : "";
 
-  if (current === categoryB64) {
+  const cleared = current === categoryB64;
+
+  if (cleared) {
     window.quartoListingCategory("");
     if (listingRoot) listingRoot.dataset.activeCategory = "";
   } else {
     window.quartoListingCategory(categoryB64);
     if (listingRoot) listingRoot.dataset.activeCategory = categoryB64;
+  }
+
+  // keep the type filter bar's highlight honest
+  if (window.homeSyncEssayTypes) {
+    window.homeSyncEssayTypes(cleared ? "" : decodeURIComponent(atob(categoryB64)));
   }
   return false;
 };

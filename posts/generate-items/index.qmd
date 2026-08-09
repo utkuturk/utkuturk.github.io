@@ -6,7 +6,7 @@ format:
   html:
     code-fold: true
     code-tools: true
-categories: [code, experiments, ai, technical]
+categories: [tutorial, code, experiments, ai, technical]
 execute: 
   eval: false
 image: ./image_1.jpg
