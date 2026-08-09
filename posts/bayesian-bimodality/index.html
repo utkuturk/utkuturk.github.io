@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Utku Türk">
-<meta name="dcterms.date" content="2026-06-10">
+<meta name="dcterms.date" content="2026-08-09">
 <meta name="description" content="really tired of people telling me ‘you do not know turkish’ (i am a native turkish speaker). so i set out to check whether there are two grammars in plural marking in turkish. i built jammalamadaka &amp; jin’s (2021) mode test from scratch in r, and tested bimodality in grammaticality judgments.">
 
-<title>are my participants one crowd or two? – utku turk</title>
+<title>honorific marking and bimodality: a case of two grammars – utku turk</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -212,6 +212,7 @@ window.Quarto = {
   <li><a href="#how-much-separation-does-it-need" id="toc-how-much-separation-does-it-need" class="nav-link" data-scroll-target="#how-much-separation-does-it-need">how much separation does it need?</a></li>
   <li><a href="#now-the-real-data" id="toc-now-the-real-data" class="nav-link" data-scroll-target="#now-the-real-data">now the real data</a></li>
   <li><a href="#adapting-this-to-your-own-data" id="toc-adapting-this-to-your-own-data" class="nav-link" data-scroll-target="#adapting-this-to-your-own-data">adapting this to your own data</a></li>
+  <li><a href="#the-whole-thing-in-one-block" id="toc-the-whole-thing-in-one-block" class="nav-link" data-scroll-target="#the-whole-thing-in-one-block">the whole thing in one block</a></li>
   </ul>
 </nav>
     </div>
@@ -220,7 +221,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">are my participants one crowd or two?</h1>
+<h1 class="title">honorific marking and bimodality: a case of two grammars</h1>
   <div class="quarto-categories">
     <div class="quarto-category">tutorial</div>
     <div class="quarto-category">statistics</div>
@@ -249,7 +250,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">June 10, 2026</p>
+      <p class="date">August 9, 2026</p>
     </div>
   </div>
   
@@ -310,19 +311,6 @@ window.Quarto = {
 </div>
 <p>So I went looking for a principled test. There is plenty available online: k-means, the dip test, gaussian mixture comparisons, each with three or four implementations in R. I did not like any of them, for reasons that will become clear in a second. What I ended up implementing is Jammalamadaka &amp; Jin (2021),<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> whose classical ingredient is Behboodian (1970).<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> They integrate the posterior directly over Behboodian’s exact conditions for where a mixture has its modes, which gets you posterior probabilities for the number of modes without asymptotic approximations and without picking a smoothing bandwidth.</p>
 <p>We are going to build the whole thing from scratch, in the order I wish someone had shown it to me. Here is the task list.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>in a hurry?
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Nothing in this post needs any code other than what is written here. If you do not want to read the derivation and just want to run the test on your own data, scroll down and copy three functions: <code>is_unimodal()</code>, <code>gibbs_bimodal()</code>, and <code>bimodality_test()</code>.</p>
-</div>
-</div>
 <ul>
 <li>Write down the model and notice that two components is not two modes</li>
 <li>Derive the exact condition for two peaks</li>
@@ -1103,6 +1091,103 @@ Figure&nbsp;6: Left: observed mean per condition (filled) and the posterior comp
 <h2 class="anchored" data-anchor-id="adapting-this-to-your-own-data">adapting this to your own data</h2>
 <p>The pieces are small on purpose, so most changes are local. If your outcome is not roughly Gaussian, and per-participant proportions are not, run this on a transformed scale (the logit of a smoothed proportion works) rather than patching the sampler, because the closed forms in the Gibbs blocks are the only reason it is thirty lines. Bear in mind that the transform can change the verdict, since a floor spike that reads as a mode on the raw scale gets stretched somewhere else on the logit scale. And if a big share of your sample sits on exactly one value, as mine did in one of the conditions, no amount of transforming will help: you want a spike and slab prior, and this is not that model. Check the fitted <span class="math inline">\(\sigma\)</span> before you believe a verdict, because a <span class="math inline">\(\sigma\)</span> well below the others in your design usually means a component has been spent on a pile-up rather than on a group. If you want unequal component variances, <code>is_unimodal()</code> is the thing that breaks first: Behboodian’s condition assumes a shared <span class="math inline">\(\sigma\)</span>, and there is no equally clean boundary in the general case. And if you want different priors, everything you need is in the <code>xi</code>, <code>s2</code>, <code>m</code>, <code>nu</code> lines at the top of <code>gibbs_bimodal()</code> and the matching lines in <code>prior_prob_unimodal()</code>. Change <em>both</em>, since the Bayes factor is only meaningful if the prior you divide by is the prior you sampled from.</p>
 <p>Two things I would underline for anyone borrowing this. Test the components-versus-modes distinction explicitly, because the trap dataset is three lines of R and it is precisely the case that breaks naive model comparison. And report the Bayes factor rather than the posterior probability, because the prior walks into <span class="math inline">\(\Omega_1\)</span> far more often than you would guess.</p>
+</section>
+<section id="the-whole-thing-in-one-block" class="level2">
+<h2 class="anchored" data-anchor-id="the-whole-thing-in-one-block">the whole thing in one block</h2>
+<p>Everything above, with nothing else attached. Base R only. Give <code>bimodality_test()</code> a numeric vector and it hands back the posterior draws, the prior and posterior probability of bimodality, and <span class="math inline">\(\log_{10} B_{10}\)</span>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Behboodian (1970): is p*N(mu1, sigma^2) + (1-p)*N(mu2, sigma^2) unimodal?</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Vectorised over all four arguments.</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>is_unimodal <span class="ot">&lt;-</span> <span class="cf">function</span>(mu1, mu2, sigma, p) {</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  D <span class="ot">&lt;-</span> <span class="fu">abs</span>(mu1 <span class="sc">-</span> mu2) <span class="sc">/</span> (<span class="dv">2</span> <span class="sc">*</span> sigma)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  s <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">pmax</span>(D<span class="sc">^</span><span class="dv">2</span> <span class="sc">-</span> <span class="dv">1</span>, <span class="dv">0</span>)) <span class="co"># 0 when D &lt;= 1, avoids NaN</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  wiggle_top <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">log</span>(D <span class="sc">-</span> s) <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> D <span class="sc">*</span> s</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  D <span class="sc">&lt;=</span> <span class="dv">1</span> <span class="sc">|</span> <span class="fu">abs</span>(<span class="fu">log</span>(p <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">-</span> p))) <span class="sc">&gt;=</span> wiggle_top</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="co"># P(Omega_0): Monte Carlo over the prior, no data involved.</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>prior_prob_unimodal <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">n_draws =</span> <span class="dv">50000</span>, <span class="at">m =</span> <span class="dv">1</span>, <span class="at">nu =</span> <span class="dv">4</span>) {</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>  s2 <span class="ot">&lt;-</span> <span class="fu">var</span>(x)</span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>  xi <span class="ot">&lt;-</span> <span class="fu">unname</span>(<span class="fu">quantile</span>(x, <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>)))</span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>  sig2 <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">/</span> <span class="fu">rgamma</span>(n_draws, nu <span class="sc">/</span> <span class="dv">2</span>, <span class="at">rate =</span> s2 <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>  mu1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n_draws, xi[<span class="dv">1</span>], <span class="fu">sqrt</span>(sig2 <span class="sc">/</span> m))</span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>  mu2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n_draws, xi[<span class="dv">2</span>], <span class="fu">sqrt</span>(sig2 <span class="sc">/</span> m))</span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>  p <span class="ot">&lt;-</span> <span class="fu">runif</span>(n_draws)</span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(<span class="fu">is_unimodal</span>(<span class="fu">pmin</span>(mu1, mu2), <span class="fu">pmax</span>(mu1, mu2), <span class="fu">sqrt</span>(sig2), p))</span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Gibbs sampler for the equal-variance two-component mixture.</span></span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Stored draws are relabelled so that mu1 &lt; mu2.</span></span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>gibbs_bimodal <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">n_iter =</span> <span class="dv">12000</span>, <span class="at">burn_in =</span> <span class="dv">2000</span>, <span class="at">m =</span> <span class="dv">1</span>, <span class="at">nu =</span> <span class="dv">4</span>) {</span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">length</span>(x)</span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>  s2 <span class="ot">&lt;-</span> <span class="fu">var</span>(x)</span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>  xi <span class="ot">&lt;-</span> <span class="fu">unname</span>(<span class="fu">quantile</span>(x, <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>)))</span>
+<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a>  mu <span class="ot">&lt;-</span> xi</span>
+<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a>  sig2 <span class="ot">&lt;-</span> <span class="fu">var</span>(x) <span class="sc">/</span> <span class="dv">2</span></span>
+<span id="cb24-30"><a href="#cb24-30" aria-hidden="true" tabindex="-1"></a>  p <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb24-31"><a href="#cb24-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-32"><a href="#cb24-32" aria-hidden="true" tabindex="-1"></a>  draws <span class="ot">&lt;-</span> <span class="fu">matrix</span>(</span>
+<span id="cb24-33"><a href="#cb24-33" aria-hidden="true" tabindex="-1"></a>    <span class="cn">NA_real_</span>,</span>
+<span id="cb24-34"><a href="#cb24-34" aria-hidden="true" tabindex="-1"></a>    n_iter <span class="sc">-</span> burn_in,</span>
+<span id="cb24-35"><a href="#cb24-35" aria-hidden="true" tabindex="-1"></a>    <span class="dv">5</span>,</span>
+<span id="cb24-36"><a href="#cb24-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="cn">NULL</span>, <span class="fu">c</span>(<span class="st">"mu1"</span>, <span class="st">"mu2"</span>, <span class="st">"sigma"</span>, <span class="st">"p"</span>, <span class="st">"bimodal"</span>))</span>
+<span id="cb24-37"><a href="#cb24-37" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb24-38"><a href="#cb24-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-39"><a href="#cb24-39" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (t <span class="cf">in</span> <span class="fu">seq_len</span>(n_iter)) {</span>
+<span id="cb24-40"><a href="#cb24-40" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1. labels</span></span>
+<span id="cb24-41"><a href="#cb24-41" aria-hidden="true" tabindex="-1"></a>    d1 <span class="ot">&lt;-</span> p <span class="sc">*</span> <span class="fu">dnorm</span>(x, mu[<span class="dv">1</span>], <span class="fu">sqrt</span>(sig2))</span>
+<span id="cb24-42"><a href="#cb24-42" aria-hidden="true" tabindex="-1"></a>    d2 <span class="ot">&lt;-</span> (<span class="dv">1</span> <span class="sc">-</span> p) <span class="sc">*</span> <span class="fu">dnorm</span>(x, mu[<span class="dv">2</span>], <span class="fu">sqrt</span>(sig2))</span>
+<span id="cb24-43"><a href="#cb24-43" aria-hidden="true" tabindex="-1"></a>    z <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">+</span> (<span class="fu">runif</span>(n) <span class="sc">&gt;</span> d1 <span class="sc">/</span> (d1 <span class="sc">+</span> d2))</span>
+<span id="cb24-44"><a href="#cb24-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-45"><a href="#cb24-45" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. means</span></span>
+<span id="cb24-46"><a href="#cb24-46" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>) {</span>
+<span id="cb24-47"><a href="#cb24-47" aria-hidden="true" tabindex="-1"></a>      nj <span class="ot">&lt;-</span> <span class="fu">sum</span>(z <span class="sc">==</span> j)</span>
+<span id="cb24-48"><a href="#cb24-48" aria-hidden="true" tabindex="-1"></a>      xbarj <span class="ot">&lt;-</span> <span class="cf">if</span> (nj <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="fu">mean</span>(x[z <span class="sc">==</span> j]) <span class="cf">else</span> <span class="dv">0</span></span>
+<span id="cb24-49"><a href="#cb24-49" aria-hidden="true" tabindex="-1"></a>      mu[j] <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(</span>
+<span id="cb24-50"><a href="#cb24-50" aria-hidden="true" tabindex="-1"></a>        <span class="dv">1</span>,</span>
+<span id="cb24-51"><a href="#cb24-51" aria-hidden="true" tabindex="-1"></a>        (m <span class="sc">*</span> xi[j] <span class="sc">+</span> nj <span class="sc">*</span> xbarj) <span class="sc">/</span> (m <span class="sc">+</span> nj),</span>
+<span id="cb24-52"><a href="#cb24-52" aria-hidden="true" tabindex="-1"></a>        <span class="fu">sqrt</span>(sig2 <span class="sc">/</span> (m <span class="sc">+</span> nj))</span>
+<span id="cb24-53"><a href="#cb24-53" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb24-54"><a href="#cb24-54" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb24-55"><a href="#cb24-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-56"><a href="#cb24-56" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3. variance</span></span>
+<span id="cb24-57"><a href="#cb24-57" aria-hidden="true" tabindex="-1"></a>    b <span class="ot">&lt;-</span> (s2 <span class="sc">+</span> <span class="fu">sum</span>((x <span class="sc">-</span> mu[z])<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> m <span class="sc">*</span> <span class="fu">sum</span>((mu <span class="sc">-</span> xi)<span class="sc">^</span><span class="dv">2</span>)) <span class="sc">/</span> <span class="dv">2</span></span>
+<span id="cb24-58"><a href="#cb24-58" aria-hidden="true" tabindex="-1"></a>    sig2 <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">/</span> <span class="fu">rgamma</span>(<span class="dv">1</span>, <span class="at">shape =</span> (nu <span class="sc">+</span> n <span class="sc">+</span> <span class="dv">2</span>) <span class="sc">/</span> <span class="dv">2</span>, <span class="at">rate =</span> b)</span>
+<span id="cb24-59"><a href="#cb24-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-60"><a href="#cb24-60" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 4. weight</span></span>
+<span id="cb24-61"><a href="#cb24-61" aria-hidden="true" tabindex="-1"></a>    n1 <span class="ot">&lt;-</span> <span class="fu">sum</span>(z <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb24-62"><a href="#cb24-62" aria-hidden="true" tabindex="-1"></a>    p <span class="ot">&lt;-</span> <span class="fu">rbeta</span>(<span class="dv">1</span>, n1 <span class="sc">+</span> <span class="dv">1</span>, n <span class="sc">-</span> n1 <span class="sc">+</span> <span class="dv">1</span>)</span>
+<span id="cb24-63"><a href="#cb24-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-64"><a href="#cb24-64" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (t <span class="sc">&gt;</span> burn_in) {</span>
+<span id="cb24-65"><a href="#cb24-65" aria-hidden="true" tabindex="-1"></a>      o <span class="ot">&lt;-</span> <span class="fu">order</span>(mu)</span>
+<span id="cb24-66"><a href="#cb24-66" aria-hidden="true" tabindex="-1"></a>      draws[t <span class="sc">-</span> burn_in, ] <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb24-67"><a href="#cb24-67" aria-hidden="true" tabindex="-1"></a>        mu[o],</span>
+<span id="cb24-68"><a href="#cb24-68" aria-hidden="true" tabindex="-1"></a>        <span class="fu">sqrt</span>(sig2),</span>
+<span id="cb24-69"><a href="#cb24-69" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (o[<span class="dv">1</span>] <span class="sc">==</span> <span class="dv">1</span>) p <span class="cf">else</span> <span class="dv">1</span> <span class="sc">-</span> p,</span>
+<span id="cb24-70"><a href="#cb24-70" aria-hidden="true" tabindex="-1"></a>        <span class="sc">!</span><span class="fu">is_unimodal</span>(mu[<span class="dv">1</span>], mu[<span class="dv">2</span>], <span class="fu">sqrt</span>(sig2), p)</span>
+<span id="cb24-71"><a href="#cb24-71" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb24-72"><a href="#cb24-72" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb24-73"><a href="#cb24-73" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb24-74"><a href="#cb24-74" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>(draws)</span>
+<span id="cb24-75"><a href="#cb24-75" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb24-76"><a href="#cb24-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-77"><a href="#cb24-77" aria-hidden="true" tabindex="-1"></a><span class="co"># Bayes factor for bimodality: posterior odds divided by prior odds.</span></span>
+<span id="cb24-78"><a href="#cb24-78" aria-hidden="true" tabindex="-1"></a>bimodality_test <span class="ot">&lt;-</span> <span class="cf">function</span>(x, ...) {</span>
+<span id="cb24-79"><a href="#cb24-79" aria-hidden="true" tabindex="-1"></a>  fit <span class="ot">&lt;-</span> <span class="fu">gibbs_bimodal</span>(x, ...)</span>
+<span id="cb24-80"><a href="#cb24-80" aria-hidden="true" tabindex="-1"></a>  M <span class="ot">&lt;-</span> <span class="fu">nrow</span>(fit)</span>
+<span id="cb24-81"><a href="#cb24-81" aria-hidden="true" tabindex="-1"></a>  post1 <span class="ot">&lt;-</span> <span class="fu">min</span>(<span class="fu">max</span>(<span class="fu">mean</span>(fit<span class="sc">$</span>bimodal), <span class="dv">1</span> <span class="sc">/</span> M), <span class="dv">1</span> <span class="sc">-</span> <span class="dv">1</span> <span class="sc">/</span> M)</span>
+<span id="cb24-82"><a href="#cb24-82" aria-hidden="true" tabindex="-1"></a>  pri0 <span class="ot">&lt;-</span> <span class="fu">prior_prob_unimodal</span>(x)</span>
+<span id="cb24-83"><a href="#cb24-83" aria-hidden="true" tabindex="-1"></a>  bf10 <span class="ot">&lt;-</span> (post1 <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">-</span> post1)) <span class="sc">*</span> (pri0 <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">-</span> pri0))</span>
+<span id="cb24-84"><a href="#cb24-84" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(</span>
+<span id="cb24-85"><a href="#cb24-85" aria-hidden="true" tabindex="-1"></a>    <span class="at">fit =</span> fit,</span>
+<span id="cb24-86"><a href="#cb24-86" aria-hidden="true" tabindex="-1"></a>    <span class="at">post_bimodal =</span> post1,</span>
+<span id="cb24-87"><a href="#cb24-87" aria-hidden="true" tabindex="-1"></a>    <span class="at">prior_bimodal =</span> <span class="dv">1</span> <span class="sc">-</span> pri0,</span>
+<span id="cb24-88"><a href="#cb24-88" aria-hidden="true" tabindex="-1"></a>    <span class="at">log10_bf =</span> <span class="fu">log10</span>(bf10)</span>
+<span id="cb24-89"><a href="#cb24-89" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb24-90"><a href="#cb24-90" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Run more than one seed before you believe a verdict, and look at the fitted <code>sigma</code> and the component means, not only the Bayes factor.</p>
 
 
 </section>

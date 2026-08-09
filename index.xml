@@ -12,7 +12,7 @@
 <generator>quarto-1.9.36</generator>
 <lastBuildDate>Sun, 09 Aug 2026 04:00:00 GMT</lastBuildDate>
 <item>
-  <title>are my participants one crowd or two?</title>
+  <title>honorific marking and bimodality: a case of two grammars</title>
   <dc:creator>Utku Türk</dc:creator>
   <link>https://www.utkuturk.com/posts/bayesian-bimodality/</link>
   <description><![CDATA[ 
@@ -206,19 +206,6 @@ font-style: inherit;">"Y"</span></span>
 </div>
 <p>So I went looking for a principled test. There is plenty available online: k-means, the dip test, gaussian mixture comparisons, each with three or four implementations in R. I did not like any of them, for reasons that will become clear in a second. What I ended up implementing is Jammalamadaka &amp; Jin (2021),<sup>2</sup> whose classical ingredient is Behboodian (1970).<sup>3</sup> They integrate the posterior directly over Behboodian’s exact conditions for where a mixture has its modes, which gets you posterior probabilities for the number of modes without asymptotic approximations and without picking a smoothing bandwidth.</p>
 <p>We are going to build the whole thing from scratch, in the order I wish someone had shown it to me. Here is the task list.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>in a hurry?
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Nothing in this post needs any code other than what is written here. If you do not want to read the derivation and just want to run the test on your own data, scroll down and copy three functions: <code>is_unimodal()</code>, <code>gibbs_bimodal()</code>, and <code>bimodality_test()</code>.</p>
-</div>
-</div>
 <ul>
 <li>Write down the model and notice that two components is not two modes</li>
 <li>Derive the exact condition for two peaks</li>
@@ -3915,6 +3902,658 @@ Figure&nbsp;6: Left: observed mean per condition (filled) and the posterior comp
 <h2 class="anchored" data-anchor-id="adapting-this-to-your-own-data">adapting this to your own data</h2>
 <p>The pieces are small on purpose, so most changes are local. If your outcome is not roughly Gaussian, and per-participant proportions are not, run this on a transformed scale (the logit of a smoothed proportion works) rather than patching the sampler, because the closed forms in the Gibbs blocks are the only reason it is thirty lines. Bear in mind that the transform can change the verdict, since a floor spike that reads as a mode on the raw scale gets stretched somewhere else on the logit scale. And if a big share of your sample sits on exactly one value, as mine did in one of the conditions, no amount of transforming will help: you want a spike and slab prior, and this is not that model. Check the fitted <img src="https://latex.codecogs.com/png.latex?%5Csigma"> before you believe a verdict, because a <img src="https://latex.codecogs.com/png.latex?%5Csigma"> well below the others in your design usually means a component has been spent on a pile-up rather than on a group. If you want unequal component variances, <code>is_unimodal()</code> is the thing that breaks first: Behboodian’s condition assumes a shared <img src="https://latex.codecogs.com/png.latex?%5Csigma">, and there is no equally clean boundary in the general case. And if you want different priors, everything you need is in the <code>xi</code>, <code>s2</code>, <code>m</code>, <code>nu</code> lines at the top of <code>gibbs_bimodal()</code> and the matching lines in <code>prior_prob_unimodal()</code>. Change <em>both</em>, since the Bayes factor is only meaningful if the prior you divide by is the prior you sampled from.</p>
 <p>Two things I would underline for anyone borrowing this. Test the components-versus-modes distinction explicitly, because the trap dataset is three lines of R and it is precisely the case that breaks naive model comparison. And report the Bayes factor rather than the posterior probability, because the prior walks into <img src="https://latex.codecogs.com/png.latex?%5COmega_1"> far more often than you would guess.</p>
+</section>
+<section id="the-whole-thing-in-one-block" class="level2">
+<h2 class="anchored" data-anchor-id="the-whole-thing-in-one-block">the whole thing in one block</h2>
+<p>Everything above, with nothing else attached. Base R only. Give <code>bimodality_test()</code> a numeric vector and it hands back the posterior draws, the prior and posterior probability of bimodality, and <img src="https://latex.codecogs.com/png.latex?%5Clog_%7B10%7D%20B_%7B10%7D">.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Behboodian (1970): is p*N(mu1, sigma^2) + (1-p)*N(mu2, sigma^2) unimodal?</span></span>
+<span id="cb24-2"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Vectorised over all four arguments.</span></span>
+<span id="cb24-3">is_unimodal <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(mu1, mu2, sigma, p) {</span>
+<span id="cb24-4">  D <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">abs</span>(mu1 <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> mu2) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> (<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> sigma)</span>
+<span id="cb24-5">  s <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sqrt</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">pmax</span>(D<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)) <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 0 when D &lt;= 1, avoids NaN</span></span>
+<span id="cb24-6">  wiggle_top <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">log</span>(D <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> s) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> D <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> s</span>
+<span id="cb24-7">  D <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">abs</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">log</span>(p <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> (<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> p))) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;=</span> wiggle_top</span>
+<span id="cb24-8">}</span>
+<span id="cb24-9"></span>
+<span id="cb24-10"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># P(Omega_0): Monte Carlo over the prior, no data involved.</span></span>
+<span id="cb24-11">prior_prob_unimodal <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(x, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">n_draws =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">50000</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">m =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">nu =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>) {</span>
+<span id="cb24-12">  s2 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">var</span>(x)</span>
+<span id="cb24-13">  xi <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">unname</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">quantile</span>(x, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.25</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.75</span>)))</span>
+<span id="cb24-14">  sig2 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rgamma</span>(n_draws, nu <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">rate =</span> s2 <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)</span>
+<span id="cb24-15">  mu1 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rnorm</span>(n_draws, xi[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>], <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sqrt</span>(sig2 <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> m))</span>
+<span id="cb24-16">  mu2 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rnorm</span>(n_draws, xi[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>], <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sqrt</span>(sig2 <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> m))</span>
+<span id="cb24-17">  p <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">runif</span>(n_draws)</span>
+<span id="cb24-18">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">is_unimodal</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">pmin</span>(mu1, mu2), <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">pmax</span>(mu1, mu2), <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sqrt</span>(sig2), p))</span>
+<span id="cb24-19">}</span>
+<span id="cb24-20"></span>
+<span id="cb24-21"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Gibbs sampler for the equal-variance two-component mixture.</span></span>
+<span id="cb24-22"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Stored draws are relabelled so that mu1 &lt; mu2.</span></span>
+<span id="cb24-23">gibbs_bimodal <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(x, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">n_iter =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">12000</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">burn_in =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2000</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">m =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">nu =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>) {</span>
+<span id="cb24-24">  n <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">length</span>(x)</span>
+<span id="cb24-25">  s2 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">var</span>(x)</span>
+<span id="cb24-26">  xi <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">unname</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">quantile</span>(x, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.25</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.75</span>)))</span>
+<span id="cb24-27"></span>
+<span id="cb24-28">  mu <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> xi</span>
+<span id="cb24-29">  sig2 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">var</span>(x) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span></span>
+<span id="cb24-30">  p <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span></span>
+<span id="cb24-31"></span>
+<span id="cb24-32">  draws <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">matrix</span>(</span>
+<span id="cb24-33">    <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">NA_real_</span>,</span>
+<span id="cb24-34">    n_iter <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> burn_in,</span>
+<span id="cb24-35">    <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>,</span>
+<span id="cb24-36">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">dimnames =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>(<span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">NULL</span>, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"mu1"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"mu2"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"sigma"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"p"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"bimodal"</span>))</span>
+<span id="cb24-37">  )</span>
+<span id="cb24-38"></span>
+<span id="cb24-39">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> (t <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">seq_len</span>(n_iter)) {</span>
+<span id="cb24-40">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 1. labels</span></span>
+<span id="cb24-41">    d1 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> p <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">dnorm</span>(x, mu[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>], <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sqrt</span>(sig2))</span>
+<span id="cb24-42">    d2 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> (<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> p) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">dnorm</span>(x, mu[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>], <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sqrt</span>(sig2))</span>
+<span id="cb24-43">    z <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> (<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">runif</span>(n) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> d1 <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> (d1 <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> d2))</span>
+<span id="cb24-44"></span>
+<span id="cb24-45">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 2. means</span></span>
+<span id="cb24-46">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> (j <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>) {</span>
+<span id="cb24-47">      nj <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(z <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> j)</span>
+<span id="cb24-48">      xbarj <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> (nj <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>) <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(x[z <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> j]) <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">else</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span></span>
+<span id="cb24-49">      mu[j] <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rnorm</span>(</span>
+<span id="cb24-50">        <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,</span>
+<span id="cb24-51">        (m <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> xi[j] <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> nj <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> xbarj) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> (m <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> nj),</span>
+<span id="cb24-52">        <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sqrt</span>(sig2 <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> (m <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> nj))</span>
+<span id="cb24-53">      )</span>
+<span id="cb24-54">    }</span>
+<span id="cb24-55"></span>
+<span id="cb24-56">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 3. variance</span></span>
+<span id="cb24-57">    b <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> (s2 <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>((x <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> mu[z])<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> m <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>((mu <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> xi)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span></span>
+<span id="cb24-58">    sig2 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rgamma</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">shape =</span> (nu <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> n <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">rate =</span> b)</span>
+<span id="cb24-59"></span>
+<span id="cb24-60">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 4. weight</span></span>
+<span id="cb24-61">    n1 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(z <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)</span>
+<span id="cb24-62">    p <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rbeta</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, n1 <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, n <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> n1 <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)</span>
+<span id="cb24-63"></span>
+<span id="cb24-64">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> (t <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> burn_in) {</span>
+<span id="cb24-65">      o <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">order</span>(mu)</span>
+<span id="cb24-66">      draws[t <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> burn_in, ] <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(</span>
+<span id="cb24-67">        mu[o],</span>
+<span id="cb24-68">        <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sqrt</span>(sig2),</span>
+<span id="cb24-69">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> (o[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>] <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>) p <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">else</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> p,</span>
+<span id="cb24-70">        <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">!</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">is_unimodal</span>(mu[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>], mu[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>], <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sqrt</span>(sig2), p)</span>
+<span id="cb24-71">      )</span>
+<span id="cb24-72">    }</span>
+<span id="cb24-73">  }</span>
+<span id="cb24-74">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.data.frame</span>(draws)</span>
+<span id="cb24-75">}</span>
+<span id="cb24-76"></span>
+<span id="cb24-77"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Bayes factor for bimodality: posterior odds divided by prior odds.</span></span>
+<span id="cb24-78">bimodality_test <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(x, ...) {</span>
+<span id="cb24-79">  fit <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gibbs_bimodal</span>(x, ...)</span>
+<span id="cb24-80">  M <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">nrow</span>(fit)</span>
+<span id="cb24-81">  post1 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">min</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">max</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(fit<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>bimodal), <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> M), <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> M)</span>
+<span id="cb24-82">  pri0 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">prior_prob_unimodal</span>(x)</span>
+<span id="cb24-83">  bf10 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> (post1 <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> (<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> post1)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> (pri0 <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> (<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> pri0))</span>
+<span id="cb24-84">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>(</span>
+<span id="cb24-85">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fit =</span> fit,</span>
+<span id="cb24-86">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">post_bimodal =</span> post1,</span>
+<span id="cb24-87">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">prior_bimodal =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> pri0,</span>
+<span id="cb24-88">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">log10_bf =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">log10</span>(bf10)</span>
+<span id="cb24-89">  )</span>
+<span id="cb24-90">}</span></code></pre></div></div>
+</div>
+<p>Run more than one seed before you believe a verdict, and look at the fitted <code>sigma</code> and the component means, not only the Bayes factor.</p>
 
 
 </section>
