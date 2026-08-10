@@ -378,7 +378,7 @@ h3[data-anchor-id="news"] .anchorjs-link {
 </div>
 
 ::: {.column-margin .home-hero-sidebar-photo}
-![](/images/utkuturkumd.jpeg)
+![](/images/utku-gacademic.jpg)
 :::
 :::
 
@@ -399,19 +399,25 @@ h3[data-anchor-id="news"] .anchorjs-link {
 #| echo: false
 #| results: asis
 library(yaml)
-HOWMANY = 8
+HOWMANY <- 8
 
 `%||%` <- function(a, b) if (is.null(a) || identical(a, "")) b else a
 
 parse_news_date <- function(s) {
   s <- trimws(as.character(s %||% ""))
-  if (grepl("^\\d{4}-\\d{2}-\\d{2}$", s)) return(as.Date(s))
-  if (grepl("^\\d{4}-\\d{2}$", s)) return(as.Date(paste0(s, "-01")))
+  if (grepl("^\\d{4}-\\d{2}-\\d{2}$", s)) {
+    return(as.Date(s))
+  }
+  if (grepl("^\\d{4}-\\d{2}$", s)) {
+    return(as.Date(paste0(s, "-01")))
+  }
   if (grepl("^\\d{2}/\\d{4}$", s)) {
     p <- strsplit(s, "/", fixed = TRUE)[[1]]
     return(as.Date(sprintf("%s-%s-01", p[2], p[1])))
   }
-  if (grepl("^\\d{4}$", s)) return(as.Date(paste0(s, "-01-01")))
+  if (grepl("^\\d{4}$", s)) {
+    return(as.Date(paste0(s, "-01-01")))
+  }
   as.Date(NA)
 }
 
@@ -429,14 +435,18 @@ valid_chr <- function(x) {
 }
 
 link_html <- function(url, label) {
-  if (!valid_chr(url)) return(NULL)
+  if (!valid_chr(url)) {
+    return(NULL)
+  }
   sprintf('<a href="%s">%s</a>', escape_html(as.character(url)), label)
 }
 
 render_home_news <- function(limit = 10) {
   paths <- c("_data/news.yaml", "data/news.yaml")
   path <- paths[which(file.exists(paths))[1]]
-  if (is.na(path)) return('<ul><li><em>news.yaml not found</em></li></ul>')
+  if (is.na(path)) {
+    return('<ul><li><em>news.yaml not found</em></li></ul>')
+  }
 
   x <- yaml::read_yaml(path)
   items <- if (!is.null(x$news)) x$news else x
@@ -449,7 +459,9 @@ render_home_news <- function(limit = 10) {
       link_html(it$slink %||% NULL, "slides"),
       link_html(it$pdf %||% NULL, "pdf")
     )
-    if (valid_chr(it$extra %||% NULL)) links <- c(links, as.character(it$extra))
+    if (valid_chr(it$extra %||% NULL)) {
+      links <- c(links, as.character(it$extra))
+    }
 
     list(
       date = d,
@@ -460,15 +472,27 @@ render_home_news <- function(limit = 10) {
   })
 
   ord <- order(
-    vapply(rows, function(r) if (is.na(r$date)) as.Date("0001-01-01") else r$date, as.Date("0001-01-01")),
+    vapply(
+      rows,
+      function(r) if (is.na(r$date)) as.Date("0001-01-01") else r$date,
+      as.Date("0001-01-01")
+    ),
     decreasing = TRUE
   )
   rows <- head(rows[ord], limit)
 
-  item_html <- vapply(rows, function(r) {
-    suffix <- if (length(r$links)) paste0(" · ", paste(r$links, collapse = " · ")) else ""
-    sprintf("<li><time>%s</time> %s%s</li>", r$when, r$desc, suffix)
-  }, character(1))
+  item_html <- vapply(
+    rows,
+    function(r) {
+      suffix <- if (length(r$links)) {
+        paste0(" · ", paste(r$links, collapse = " · "))
+      } else {
+        ""
+      }
+      sprintf("<li><time>%s</time> %s%s</li>", r$when, r$desc, suffix)
+    },
+    character(1)
+  )
 
   paste0("<ul>\n", paste(item_html, collapse = "\n"), "\n</ul>")
 }

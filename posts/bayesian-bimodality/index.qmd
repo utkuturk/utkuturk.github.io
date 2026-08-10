@@ -14,7 +14,7 @@ image: ./thumb-hist.png
 # swap to ./thumb-region.png for the (D, p) map instead
 ---
 
-Whenever I discuss some Turkish datum with my Turkish friends, I usually count to 20, and one of them says "haha, Utku should learn Turkish first". They eventually come around and see my nuanced grammaticality judgments. The same thing happened with ellipsis, with *as if*, with focus marking, and with questions.[^otherpost] The one I could never shake, though, is register marking with plural. Here is the pair:
+Whenever I discuss some Turkish datum with my Turkish friends, I usually count to 20, and one of them says "haha, Utku should learn Turkish first". They eventually come around and see my nuanced grammaticality judgments. The same thing happened with ellipsis, with *as if*, with focus marking, and with questions.[^otherpost] The one I could never shake, though, is register marking with plural, and the pair that started all of this is below.
 
 [^otherpost]: I wrote a whole other post on why impromptu grammaticality judgments are usually a waste of everyone's time: [what might they really mean when they say 'but it's not grammatical to me'?](../futileness-of-judgments/).
 
@@ -25,9 +25,9 @@ For many speakers of Turkish, both of these are ungrammatical. The subject is si
 
 Years later I went back to that experiment and ran another one with 170 participants. I had sentences like (1) and their counterparts with an informal addressee, *lan*. Everything at the end of this post is about those conditions.
 
-When I plotted per-participant acceptance rates, the histogram did not look like one hump around the mean. It looked flat, with people sitting at every rate from 0 to 1 and no crowd anywhere in particular, which is what you get when a group down near 0 who reject the structure and a group up near 1 who take it are smeared together. If that is what is going on, then "mean acceptance was 0.45" describes nobody. Half the room is low, the other half is high, and 0.45 is the gap between them.
+When I plotted per-participant acceptance rates, the histogram did not look like one hump around the mean. It looked flat, with people sitting at every rate from 0 to 1 and no crowd anywhere in particular, which is what you get when a group down near 0 who reject the structure and a group up near 1 who take it are smeared together. If that is what is going on, then reporting a mean acceptance of 0.45 describes nobody in the room, since the people are bunched at the two ends and 0.45 is the stretch of the scale where hardly anyone actually landed.
 
-The trouble is that "I squinted at the histogram and saw two humps" is not a method. Bimodality is exactly the kind of thing eyes invent, especially when you want it. Remember that [famous tweet](https://x.com/MatthewBJane/status/1623526094979874817)? Famous among nerds like me, anyway. When can you actually *see* a correlation? Forget weak ones up to 0.3, even 0.5 or 0.6 are not visible to the naked eye.
+The trouble is that "I squinted at the histogram and saw two humps" is not a method. Bimodality is exactly the kind of thing eyes invent, especially when you want it. There is a [tweet](https://x.com/MatthewBJane/status/1623526094979874817) that went around a few years ago, at least among the sort of people I follow, showing scatterplots at correlations from 0.1 up to 0.9 and asking which of them you can honestly see; anything below 0.3 is hopeless, and even 0.5 or 0.6 read as noise until somebody tells you the number.
 
 ```{r}
 library(MASS)
@@ -61,14 +61,9 @@ ggplot(df_ranked, aes(x = X_rank, y = Y_rank)) +
   )
 ```
 
-So I went looking for a principled test. There is plenty available online: k-means, the dip test, gaussian mixture comparisons, each with three or four implementations in R. I did not like any of them, for reasons that will become clear in a second. What I ended up implementing is Jammalamadaka & Jin (2021),^[Jammalamadaka, S. R., & Jin, X. (2021). *A Bayesian Test for the Number of Modes in a Gaussian Mixture.* Asian Journal of Statistical Sciences, 1(1), 9–22.] whose classical ingredient is Behboodian (1970).^[Behboodian, J. (1970). *On the modes of a mixture of two normal distributions.* Technometrics, 12(1), 131–139.] They integrate the posterior directly over Behboodian's exact conditions for where a mixture has its modes, which gets you posterior probabilities for the number of modes without asymptotic approximations and without picking a smoothing bandwidth.
+So I went looking for something more principled, and there is plenty of it available online: k-means, the dip test, gaussian mixture comparisons, each with three or four implementations in R. I did not like any of them, for reasons that will become clear in a second. What I ended up implementing is Jammalamadaka & Jin (2021),^[Jammalamadaka, S. R., & Jin, X. (2021). *A Bayesian Test for the Number of Modes in a Gaussian Mixture.* Asian Journal of Statistical Sciences, 1(1), 9–22.] whose classical ingredient is Behboodian (1970).^[Behboodian, J. (1970). *On the modes of a mixture of two normal distributions.* Technometrics, 12(1), 131–139.] They integrate the posterior directly over Behboodian's exact conditions for where a mixture has its modes, which gets you posterior probabilities for the number of modes without asymptotic approximations and without picking a smoothing bandwidth.
 
-We are going to build the whole thing from scratch, in the order I wish someone had shown it to me. Here is the task list.
-
-::: {.callout-tip}
-## in a hurry?
-Nothing in this post needs any code other than what is written here. If you do not want to read the derivation and just want to run the test on your own data, skip to [the whole thing in one block](#the-whole-thing-in-one-block) at the bottom and copy that. It is four functions and no dependencies beyond base R: `is_unimodal()`, `prior_prob_unimodal()`, `gibbs_bimodal()`, and `bimodality_test()`.
-:::
+We are going to build the whole thing from scratch, in the order I wish someone had shown it to me, which runs roughly as follows.
 
 - Write down the model and notice that two components is not two modes
 - Derive the exact condition for two peaks
@@ -97,7 +92,7 @@ $$
 
 with $\varphi$ the standard normal density, means $\mu_1, \mu_2$, and mixing weight $p \in (0,1)$.
 
-One could fit this two-component model, fit a one-component model, compare them, and go home. But "the data want two components" is not the same claim as "the density has two peaks". Below is a mixture that is honestly two-component, with the components right there as dashed lines, whose density has exactly one mode. Two components does not buy you two visible behaviors, and two visible behaviors is what I am after.
+One could fit this two-component model, fit a one-component model, compare them, and go home. But "the data want two components" is not the same claim as "the density has two peaks". Below is a mixture that is honestly two-component, with the components right there as dashed lines, whose density has exactly one mode. Fitting two components therefore does not get me the thing I actually want, which is evidence that people are behaving in two visibly different ways.
 
 ```{r}
 #| label: fig-trap
@@ -129,15 +124,15 @@ data.frame(x = grid) |>
   labs(x = NULL, y = "density")
 ```
 
-The two humps blur into one because the means are too close relative to $\sigma$. The number of components is a fact about how you *parameterised* the curve. The number of modes is a fact about the *shape* of the curve. My linguistic question, one grammar or two, is about the shape. Jammalamadaka & Jin test the shape directly, and they can get away with it because for this particular model the shape question has an exact answer.
+The two humps blur into one because the means are too close relative to $\sigma$. The number of components is a fact about how you happened to *parameterise* the curve, whereas the number of modes is a fact about the *shape* it ends up with, and my linguistic question, one grammar or two, is a question about the shape. Jammalamadaka & Jin test the shape directly, and they can get away with it because for this particular model the shape question has an exact answer.
 
 ## when exactly does the valley appear?
 
-This is the only section with real math in it. If you want to skip it, here is the summary:
+This is the only section with real math in it, so if you would rather not follow the derivation, the whole of it comes down to this:
 
 > A mixture of two bell curves only forms two separate peaks if the underlying groups are far enough apart and reasonably balanced in size.
 >
-> If their averages are within two standard deviations of each other, they collapse into a single hump no matter what proportions you use. Even with plenty of separation, a big imbalance ruins the effect: a 99/1 split turns the minority group into a subtle shoulder rather than a summit of its own.
+> If their averages sit within two standard deviations of each other they collapse into a single hump whatever proportions you use, and even with plenty of separation a lopsided split flattens the effect, so that a 99/1 mixture shows its minority group as a shoulder on the side of the main peak rather than as a peak of its own.
 
 Fix the parameters and ask how many local maxima the function has. Take $\mu_1 < \mu_2$ and standardise. Let $y$ be the distance from the midpoint of the means in standard deviation units, and let
 
@@ -169,11 +164,11 @@ $$
 r'(y) \;=\; -\frac{1}{D-y} - \frac{1}{D+y} + 2D \;=\; 2D\left(1 - \frac{1}{D^2 - y^2}\right).
 $$
 
-Two cases, and this is the whole theorem.
+There are two cases, and between them they are the whole theorem.
 
 If $D \le 1$, then $D^2 - y^2 \le 1$ everywhere on the interval, so $r'(y) \le 0$. That makes $r$ monotone decreasing, from $+\infty$ at the left edge to $-\infty$ at the right, and a monotone curve crosses any horizontal line exactly once. One critical point, one mode, whatever the weights are. If the means are within two standard deviations of each other, bimodality is impossible. That is what the trap figure above is exploiting, where $D = 0.8$.
 
-If $D > 1$, then $r'(y) > 0$ exactly when $y^2 < D^2 - 1$, so the curve decreases, rises between $y_\pm = \mp\sqrt{D^2-1}$, and decreases again. It has a wiggle in the middle. A horizontal line that passes through the wiggle crosses three times, giving two modes with the antimode between them, and a line above or below it still crosses once.
+If $D > 1$, then $r'(y) > 0$ exactly when $y^2 < D^2 - 1$, so the curve decreases, rises between $y_\pm = \mp\sqrt{D^2-1}$, and decreases again, which puts a wiggle in the middle of it. A horizontal line that passes through the wiggle crosses three times, giving two modes with the antimode between them, and a line above or below it still crosses once.
 
 ```{r}
 #| label: fig-wiggle
@@ -209,7 +204,7 @@ D \le 1
 \left|\log\frac{p}{1-p}\right| \;\ge\; r(y_+) .
 $$
 
-This is Behboodian's (1970) condition. You need *separation* ($D > 1$) and *balance* (weights close enough to $\tfrac12$) to get two peaks. Well-separated means with a 99/1 split still look like one hump, because the minority component is a shoulder.
+Which is Behboodian's (1970) condition: you need *separation* ($D > 1$) and *balance* (weights close enough to $\tfrac12$) at the same time before two peaks appear. Well-separated means with a 99/1 split still look like one hump, because the minority component is a shoulder.
 
 ## the condition as one function
 
@@ -225,7 +220,7 @@ is_unimodal <- function(mu1, mu2, sigma, p) {
 }
 ```
 
-I do not trust a formula I just derived, and neither should you. So let us check it against brute force. Count the modes numerically by evaluating the density on a fine grid and counting sign changes of the slope, then throw random parameters at both and see whether they ever disagree.
+I would not trust a formula I had just derived on the first pass, so before leaning on it anywhere let me check it against brute force by counting the modes numerically, evaluating the density on a fine grid and counting sign changes of the slope, then throw random parameters at both and see whether they ever disagree.
 
 ```{r}
 #| label: verify
@@ -252,7 +247,7 @@ mean(agree)
 
 The closed form and the brute-force count agree on `r sprintf("%.1f%%", 100 * mean(agree))` of `r length(agree)` random parameter sets, and any disagreement can only live right on the boundary, where the second mode is a grid-resolution artifact anyway.
 
-Here is the same condition as a picture. This map *is* the test, and everything after this point is machinery for asking which side of it the posterior lives on.
+Drawn as a picture the same condition gives the map below, and that map is the test in its entirety; everything after this point is machinery for asking which side of the boundary the posterior lives on.
 
 ```{r}
 #| label: fig-region
@@ -279,7 +274,7 @@ ggplot(data.frame(D = Dg, lo = crit_p(Dg), hi = 1 - crit_p(Dg))) +
 
 ## turning the map into a bayesian test
 
-Here is the reframing that makes this a *test*, and I do think it is clever. Instead of comparing a one-component model against a two-component model, we keep one single model, the two-component mixture, and cut its parameter space $\Theta = \{(\mu_1, \mu_2, \sigma, p)\}$ into two regions along the boundary we just drew:
+The reframing that turns all of this into a *test* is the part I find genuinely clever. Instead of comparing a one-component model against a two-component model, we keep one single model, the two-component mixture, and cut its parameter space $\Theta = \{(\mu_1, \mu_2, \sigma, p)\}$ into two regions along the boundary we just drew:
 
 $$
 \Omega_0 = \{\theta : f_\theta \text{ is unimodal}\}, \qquad
@@ -293,9 +288,9 @@ B_{10} \;=\; \frac{P(\Omega_1 \mid x)\,/\,P(\Omega_0 \mid x)}{P(\Omega_1)\,/\,P(
 \;=\; \frac{\text{posterior odds of bimodality}}{\text{prior odds of bimodality}} .
 $$
 
-That division by the prior odds is the part that matters. A diffuse prior on two means will often scatter them far apart, so the prior can already sit substantially inside $\Omega_1$ before it has seen a single data point. We will compute that number below and it is not small. A posterior probability of bimodality of 0.6 therefore means nothing on its own. The question is how far the data moved you, and $B_{10}$ is that. I will report $\log_{10} B_{10}$ on the usual Jeffreys scale: 0 to 0.5 is barely worth mentioning, 0.5 to 1 substantial, 1 to 2 strong, above 2 decisive, with negative values pointing toward unimodality.
+Dividing by the prior odds is what makes the number worth anything, because a diffuse prior on two means will often scatter them far apart, so the prior can already sit substantially inside $\Omega_1$ before it has seen a single data point. We will compute that number below and it is not small. A posterior probability of bimodality of 0.6 therefore means nothing on its own. The question worth asking is how far the data moved you from wherever the prior already sat, and that is what $B_{10}$ measures. I will report $\log_{10} B_{10}$ on the usual Jeffreys scale: 0 to 0.5 is barely worth mentioning, 0.5 to 1 substantial, 1 to 2 strong, above 2 decisive, with negative values pointing toward unimodality.
 
-We need two numbers, and the rest of the post is getting them:
+So the whole thing comes down to two numbers, and the rest of the post is about getting hold of them:
 
 - $P(\Omega_1)$, the prior probability of bimodality.
 - $P(\Omega_1 \mid x)$, the posterior probability. This one needs a sampler.
@@ -310,11 +305,11 @@ $$
 
 with $\nu = 4$ and $s^2 = \operatorname{var}(x)$, so the prior expects component variance around half the pooled variance. Components should be tighter than the blob they jointly form, but the prior stays diffuse about how much tighter. Then $\xi_1, \xi_2$ sit at the data's 25th and 75th percentiles, which nudges toward "two components somewhere in the data's range" without hard-coding the answer, and $m = 1$ makes the prior on each mean worth exactly one observation.
 
-One thing deserves its own paragraph. The mixture likelihood is invariant under swapping the labels, $(p, \mu_1, \mu_2) \mapsto (1-p, \mu_2, \mu_1)$, so the posterior contains two mirror-image copies of itself and a sampler will wander between them. This is the label-switching problem. Jammalamadaka & Jin handle it by truncating $p$ to $(0, \tfrac12]$, which keeps exactly one copy by defining component 1 as the minority component. That works, but on my data it also made the chain sticky enough that the Bayes factor moved by a full order of magnitude between seeds.[^stick] So I do the other standard thing instead: sample freely, then relabel each stored draw so that $\mu_1 < \mu_2$. Nothing is lost either way, since Behboodian's condition only depends on $|\mu_1 - \mu_2|$ and $\left|\log\frac{p}{1-p}\right|$, both of which survive a swap.
+There is one wrinkle here that is worth spelling out, because it bit me later on. The mixture likelihood is invariant under swapping the labels, $(p, \mu_1, \mu_2) \mapsto (1-p, \mu_2, \mu_1)$, so the posterior contains two mirror-image copies of itself and a sampler will happily wander between them, which is the label-switching problem. Jammalamadaka & Jin handle it by truncating $p$ to $(0, \tfrac12]$, which keeps exactly one copy by defining component 1 as the minority component. That works, but on my data it also made the chain sticky enough that the Bayes factor moved by a full order of magnitude between seeds.[^stick] So I do the other standard thing instead: sample freely, then relabel each stored draw so that $\mu_1 < \mu_2$. Nothing is lost either way, since Behboodian's condition only depends on $|\mu_1 - \mu_2|$ and $\left|\log\frac{p}{1-p}\right|$, both of which survive a swap.
 
 [^stick]: I only noticed this because I reran the thing with a different seed while writing the last section. Check your chains against seeds. It costs one line.
 
-The one piece with no closed form is the prior probability $P(\Omega_0)$ itself, because the bimodal region has a curved boundary. So we integrate by Monte Carlo: sample parameters straight from the priors, with no data involved, and ask each draw which side of the map it landed on.
+The one piece with no closed form is the prior probability $P(\Omega_0)$ itself, because the bimodal region has a curved boundary, so we integrate it by Monte Carlo: sample parameters straight from the priors, with no data involved, and ask each draw which side of the map it landed on.
 
 ```{r}
 #| label: prior-prob
@@ -329,11 +324,11 @@ prior_prob_unimodal <- function(x, n_draws = 50000, m = 1, nu = 4) {
 }
 ```
 
-That is one of the two numbers done.
+With that the prior side of the Bayes factor is taken care of, and the only thing still missing is the posterior.
 
 ## the gibbs sampler, one block at a time
 
-For the posterior side we need to sample $(\mu_1, \mu_2, \sigma^2, p)$ given the data. The standard trick is data augmentation: introduce latent labels $z_i \in \{1, 2\}$ saying which component observation $i$ came from, with $P(z_i = 1) = p$. Once the labels are given, the mixture falls apart into two ordinary Gaussian problems and conjugacy hands us every full conditional for free. Four blocks, then one loop.
+For the posterior side we need to sample $(\mu_1, \mu_2, \sigma^2, p)$ given the data. The standard trick is data augmentation: introduce latent labels $z_i \in \{1, 2\}$ saying which component observation $i$ came from, with $P(z_i = 1) = p$. Once the labels are given, the mixture falls apart into two ordinary Gaussian problems and conjugacy hands us every full conditional for free. That leaves four blocks to write, which then go into a single loop.
 
 **Block 1, the labels.** Given the parameters, each $z_i$ is an independent coin flip weighted by how well each component explains $x_i$:
 
@@ -379,9 +374,9 @@ n1 <- sum(z == 1)
 p <- rbeta(1, n1 + 1, n - n1 + 1)
 ```
 
-And then the step that makes this a mode test rather than a component test: after each sweep, pass the current $(\mu_1, \mu_2, \sigma, p)$ through `is_unimodal()` and write the verdict down next to the draw. The posterior probability of bimodality is the fraction of post-burn-in sweeps that landed in $\Omega_1$. No density estimation, no bridge sampling, no second model, just counting.
+And then the step that makes this a mode test rather than a component test: after each sweep, pass the current $(\mu_1, \mu_2, \sigma, p)$ through `is_unimodal()` and write the verdict down next to the draw. The posterior probability of bimodality is then the fraction of post-burn-in sweeps that landed in $\Omega_1$, which takes no density estimation, no bridge sampling and no second model to compare against, only counting.
 
-Glued together, that is the whole sampler. The `order()` at the end is the relabelling I mentioned above; it only touches what gets stored, never the chain itself.
+Glued together the four blocks come to the following, where the `order()` near the end is the relabelling I mentioned above and touches only what gets stored, never the chain itself.
 
 ```{r}
 #| label: gibbs
@@ -442,7 +437,7 @@ gibbs_bimodal <- function(x, n_iter = 12000, burn_in = 2000, m = 1, nu = 4) {
 }
 ```
 
-Both numbers exist now, so the wrapper is three lines of arithmetic. The one fiddly bit is clamping the posterior fraction away from exact 0 and 1: with $M$ draws you cannot tell a probability of 0 from one below $1/M$, and a $-\infty$ in a results table is not informative.
+With both numbers available the wrapper is three lines of arithmetic, and the only fiddly part is clamping the posterior fraction away from exact 0 and 1: with $M$ draws you cannot tell a probability of 0 from one below $1/M$, and a $-\infty$ in a results table is not informative.
 
 ```{r}
 #| label: bf
@@ -463,7 +458,7 @@ bimodality_test <- function(x, ...) {
 
 ## lying to it first
 
-Let us try it on made-up data. If the code cannot get these right, then whatever it says about *efendim* is a random number. Three datasets, each with $n = 166$, which is the size of my per-participant samples:
+Before pointing any of this at the real data I want to try it on data I made up myself, because if the code cannot get these three cases right then whatever it says about *efendim* is a random number. Three datasets, each with $n = 166$, which is the size of my per-participant samples:
 
 - **two crowds**: a balanced mixture with means $4\sigma$ apart ($D = 2$, deep inside the bimodal region). The method should say bimodal, loudly.
 - **one crowd**: a single Gaussian. The generating truth is not even a mixture, so the method should back off.
@@ -485,7 +480,7 @@ fake <- list(
 results <- lapply(fake, bimodality_test)
 ```
 
-First, what does the sampler believe? For each dataset, the data as a histogram with 100 mixture densities drawn from the posterior on top.
+Before the verdicts it is worth seeing what the sampler actually believes about each dataset, so below is each one as a histogram with 100 mixture densities drawn from its posterior laid over the top.
 
 ```{r}
 #| label: fig-posterior-fits
@@ -526,7 +521,7 @@ ggplot() +
   labs(x = NULL, y = "density")
 ```
 
-Then the verdicts. The prior probability of bimodality is computed per dataset, since the prior is scaled by the data; the posterior probability is the fraction of Gibbs draws in $\Omega_1$; and $\log_{10} B_{10}$ is how far the data moved the odds between them.
+The verdicts come out of three quantities: the prior probability of bimodality, computed per dataset because the prior is scaled by the data; the posterior probability, which is the fraction of Gibbs draws landing in $\Omega_1$; and $\log_{10} B_{10}$, which is how far the data moved the odds between the two.
 
 ```{r}
 #| label: fake-table
@@ -542,11 +537,11 @@ tibble(
 
 The prior probability of bimodality sits around `r round(mean(sapply(results, \(r) r$prior_bimodal)), 2)`, so the prior is already mildly bimodality-friendly, which is why reporting a posterior probability on its own would flatter the hypothesis and why the Bayes factor divides it out. The two-crowds data lands at $\log_{10} B_{10} = `r round(results[[1]]$log10_bf, 2)`$, decisive, and the one-crowd data goes firmly negative.
 
-The trap is the one I cared about. The posterior spaghetti shows the sampler using both components, and yet essentially every posterior draw lands in $\Omega_0$, so the evidence comes out *against* bimodality ($\log_{10} B_{10} = `r round(results[[3]]$log10_bf, 2)`$). A one-versus-two-component comparison gets this case wrong by construction.
+The trap is the case I actually cared about, and it behaves the way it has to: the posterior spaghetti shows the sampler using both components, and yet essentially every posterior draw lands in $\Omega_0$, so the evidence comes out *against* bimodality ($\log_{10} B_{10} = `r round(results[[3]]$log10_bf, 2)`$), which is the case a one-versus-two-component comparison would get wrong by construction rather than by bad luck.
 
 ## how much separation does it need?
 
-One more thing before trusting it: where does the verdict flip? Simulate balanced mixtures at increasing separations, hold $n = 166$, and run the whole pipeline at each.
+The last thing I wanted before trusting any of this was to see where the verdict flips, so I simulated balanced mixtures at increasing separations, held $n = 166$, and ran the whole pipeline at each of them.
 
 ```{r}
 #| label: fig-sweep
@@ -571,11 +566,11 @@ ggplot(data.frame(D = seps / 2, lbf = sweep), aes(D, lbf)) +
   labs(x = "true D of the generating mixture", y = expression(log[10] ~ B[10]))
 ```
 
-Everywhere up to $D = 1$ the evidence is actively *for* unimodality, which is right, since at the boundary the generating density still has exactly one peak. Then the verdict turns over fast. A mixture just above $D = 1$ has a barely-there second mode, and it takes surprisingly little extra separation before 166 points can pin it down. Each point is a single simulated dataset, so there is Monte Carlo jitter in the curve.
+Everywhere up to $D = 1$ the evidence is actively *for* unimodality, which is right, since at the boundary the generating density still has exactly one peak. After that the verdict turns over quickly, because a mixture just above $D = 1$ has a barely-there second mode, and it takes surprisingly little extra separation before 166 points can pin it down. Each point is a single simulated dataset, so there is Monte Carlo jitter in the curve.
 
 ## now the real data
 
-The four conditions I care about all have a plural verb. Two of them have the formal vocative *efendim*, two have informal *lan*, and within each pair the attractor noun is either singular or plural. If there are two grammars, the formal conditions should be bimodal, because a subpopulation accepts plural agreement licensed by a formal addressee with no plural subject anywhere in the sentence. The informal conditions should not be, because without the licensor almost everyone should reject the structure.
+All four of the conditions I care about put a plural verb on a singular subject, which is the configuration that started this whole thing. Two of them have the formal vocative *efendim*, two have informal *lan*, and within each pair the attractor noun is either singular or plural. If there are two grammars, the formal conditions should be bimodal, because a subpopulation accepts plural agreement licensed by a formal addressee with no plural subject anywhere in the sentence. The informal conditions should not be, because without the licensor almost everyone should reject the structure.
 
 `honorific-plural.csv` is the trial-level data from that experiment, one row per judgment. Four of the 170 participants failed the practice items and are already dropped, so everything below runs on 166.
 
@@ -779,27 +774,27 @@ p_hist <- ggplot() +
 p_mean + p_hist
 ```
 
-Start with the formal conditions, because they are the reason I ran the experiment and they are the part I would defend. Both come out bimodal, and the peaks land where the linguistic story says they should. With a plural attractor the modes are at 0.24 and 0.76 with the components weighted roughly 60/40, and with a singular attractor they are at 0.18 and 0.73 at 71/29. The upper peak is a group that takes the sentence, not a group that is unsure about it, and it is there whether or not the sentence contains a plural noun to blame the agreement on. That is the two-grammar result: *efendim* licenses plural agreement for some speakers and not for others, and the attractor does not change who is in which group. Informal/plural attractor is the control, and it behaves like one. Its fitted components are at 0.13 and 0.60, but the minority one holds about a quarter of the participants, which is not balanced enough to clear Behboodian's threshold. One peak, and a Bayes factor of zero.
+The formal conditions are the reason I ran the experiment in the first place and they are the part of this I would defend, so start there. Both come out bimodal, with peaks landing where the linguistic story says they ought to. With a plural attractor the modes are at 0.24 and 0.76 with the components weighted roughly 60/40, and with a singular attractor they are at 0.18 and 0.73 at 71/29. The upper peak is a group that takes the sentence, not a group that is unsure about it, and it is there whether or not the sentence contains a plural noun to blame the agreement on. That is the two-grammar result: *efendim* licenses plural agreement for some speakers and not for others, and the attractor does not change who is in which group. Informal/plural attractor is the control, and it behaves like one. Its fitted components are at 0.13 and 0.60, but the minority one holds about a quarter of the participants, which is not balanced enough to clear Behboodian's threshold, so the fitted density keeps a single peak and the Bayes factor comes out at zero.
 
-Then there is informal/singular attractor, which the test also calls bimodal and which is not the same animal at all. Look at where its modes are. In the formal panels the second peak is out near 0.75, well into accepting territory. Here it is at 0.51, which is a group sitting at chance rather than a group that accepts anything, and the lower peak is at 0.07, which is not a low-acceptance group either. It is the 87 participants out of 166 who gave the condition a flat zero.
+Then there is informal/singular attractor, which the test also calls bimodal and which is not the same animal at all, and the modes are where you can see it. In the formal panels the second peak sits out near 0.75, well into accepting territory, whereas here it lands at 0.51, which describes a group sitting at chance rather than a group that accepts anything. The lower peak is at 0.07, and that is not a low-acceptance group either; it is the 87 participants out of 166 who gave the condition a flat zero.
 
-The antimode makes it worse. In the formal conditions the dip falls around 0.54, near the middle of the scale, with 59% and 72% of participants below it. In informal/singular the dip is at 0.36 with 79% of participants below it, and the histogram in that panel is still falling steeply right through it. There is no valley in the data at 0.36. The model put one there.
+The antimode makes the mismatch worse rather than better, since in the formal conditions the dip falls around 0.54, near the middle of the scale, with 59% and 72% of participants below it, whereas in informal/singular it lands at 0.36 with 79% of participants below it, and the histogram in that panel is still falling steeply as it passes through. Whatever the fitted curve is doing at 0.36, the data underneath it has no valley there.
 
-The table says why. Informal/singular has the *smallest* distance between its components of all four conditions, 0.44 against 0.54 and 0.56 for the formal ones, and yet the *largest* $D$ at 1.81. Both can only be true if $\sigma$ shrinks, and it does, to 0.12 against roughly 0.17 everywhere else. That is the model straining to cover a tight pile at the boundary. A shared-variance Gaussian mixture has exactly one $\sigma$ and no point mass anywhere in it, so the only way it can put a lot of density on the single value 0 is to make both components narrow, and once they are narrow a modest gap buys a second mode for free.
+The reason for that is sitting in the table, where informal/singular turns out to have the *smallest* distance between its components of all four conditions, 0.44 against 0.54 and 0.56 for the formal ones, and yet the *largest* $D$ at 1.81. Both can only be true if $\sigma$ shrinks, and it does, to 0.12 against roughly 0.17 everywhere else. That is the model straining to cover a tight pile at the boundary. A shared-variance Gaussian mixture has exactly one $\sigma$ and no point mass anywhere in it, so the only way it can put a lot of density on the single value 0 is to make both components narrow, and once they are narrow a modest gap buys a second mode for free.
 
-What that condition wants is a spike and slab, a point mass at zero for the people who reject the structure outright and a distribution over everyone else. That is not a model this post contains. So I read informal/singular as the machinery failing on a shape it cannot represent, not as evidence for a second grammar. The result I am claiming is the formal one.
+What that condition wants is a spike and slab, a point mass at zero for the people who reject the structure outright and a distribution over everyone else, and that is not a model this post contains anywhere. So I read informal/singular as the machinery failing on a shape it has no way to represent rather than as evidence for a second grammar, which leaves the formal conditions as the result I am actually prepared to claim.
 
-The other caveat is about resolution, and it applies to all four. Five items per participant means an individual rate carries a binomial standard error of about 0.22, which is most of the spread visible in the histograms. The right version of this analysis puts the mixture on the counts rather than on the rates, so that the measurement noise is modelled instead of being handed to the mixture as if it were between-participant variation. That is a different post.
+The other caveat is about resolution, and it applies to all four. Five items per participant means an individual rate carries a binomial standard error of about 0.22, which is most of the spread visible in the histograms. The right version of this analysis puts the mixture on the counts rather than on the rates, so that the measurement noise is modelled instead of being handed to the mixture as if it were between-participant variation, which is a longer job than this post and one I have not done yet.
 
 ## adapting this to your own data
 
 The pieces are small on purpose, so most changes are local. If your outcome is not roughly Gaussian, and per-participant proportions are not, run this on a transformed scale (the logit of a smoothed proportion works) rather than patching the sampler, because the closed forms in the Gibbs blocks are the only reason it is thirty lines. Bear in mind that the transform can change the verdict, since a floor spike that reads as a mode on the raw scale gets stretched somewhere else on the logit scale. And if a big share of your sample sits on exactly one value, as mine did in one of the conditions, no amount of transforming will help: you want a spike and slab prior, and this is not that model. Check the fitted $\sigma$ before you believe a verdict, because a $\sigma$ well below the others in your design usually means a component has been spent on a pile-up rather than on a group. If you want unequal component variances, `is_unimodal()` is the thing that breaks first: Behboodian's condition assumes a shared $\sigma$, and there is no equally clean boundary in the general case. And if you want different priors, everything you need is in the `xi`, `s2`, `m`, `nu` lines at the top of `gibbs_bimodal()` and the matching lines in `prior_prob_unimodal()`. Change *both*, since the Bayes factor is only meaningful if the prior you divide by is the prior you sampled from.
 
-Two things I would underline for anyone borrowing this. Test the components-versus-modes distinction explicitly, because the trap dataset is three lines of R and it is precisely the case that breaks naive model comparison. And report the Bayes factor rather than the posterior probability, because the prior walks into $\Omega_1$ far more often than you would guess.
+If you do borrow this, there are two things I would underline. Test the components-versus-modes distinction explicitly, because the trap dataset is three lines of R and it is precisely the case that breaks naive model comparison. And report the Bayes factor rather than the posterior probability, because the prior walks into $\Omega_1$ far more often than you would guess.
 
 ## the whole thing in one block
 
-Everything above, with nothing else attached. Base R only. Give `bimodality_test()` a numeric vector and it hands back the posterior draws, the prior and posterior probability of bimodality, and $\log_{10} B_{10}$.
+Everything above with nothing else attached, in base R, so that handing `bimodality_test()` a numeric vector gets you back the posterior draws, the prior and posterior probability of bimodality, and $\log_{10} B_{10}$.
 
 ```{r}
 #| label: all-in-one
