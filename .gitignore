@@ -5,3 +5,6 @@
 .pages-worktree/
 ../.pages-worktree/
 .claude/*
+
+# machine-specific: points quarto at the python that owns the jupyter kernels
+_environment
