@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/marr-and-weight/index.html",
       "/posts/bayesian-bimodality/index.html",
       "/posts/bayesian-coef-tables/index.html",
       "/posts/alchemy/index.html",

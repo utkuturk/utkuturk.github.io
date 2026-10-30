@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 770 332" width="770" height="332" role="img" aria-label="Linear comparison: only the laptop is visible; the mass changes are too small to draw" font-family="Inter, system-ui, -apple-system, Helvetica, Arial, sans-serif">
+<text x="0" y="24" font-size="13" fill="#0b0b0b" text-anchor="start" font-weight="600" >the whole laptop</text>
+<text x="0" y="44" font-size="12" fill="#52514e" text-anchor="start" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">1,550 g</text>
+<line x1="300" y1="6" x2="300" y2="50" stroke="#d9d8d4"/>
+<rect x="300" y="12" width="460.0" height="26" rx="4" fill="#2a78d6"/>
+<text x="0" y="82" font-size="13" fill="#0b0b0b" text-anchor="start" font-weight="600" >battery, charged vs. empty</text>
+<text x="0" y="102" font-size="12" fill="#52514e" text-anchor="start" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">0.000000003 g</text>
+<line x1="300" y1="64" x2="300" y2="108" stroke="#d9d8d4"/>
+<text x="310" y="82" font-size="12" fill="#52514e" text-anchor="start" font-weight="400" >too small to draw</text>
+<text x="310" y="102" font-size="12" fill="#52514e" text-anchor="start" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">width on this chart: 0.0000000008 px</text>
+<text x="0" y="140" font-size="13" fill="#0b0b0b" text-anchor="start" font-weight="600" >700 GB, empty vs. full (extreme case)</text>
+<text x="0" y="160" font-size="12" fill="#52514e" text-anchor="start" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">0.0000000000000001 g</text>
+<line x1="300" y1="122" x2="300" y2="166" stroke="#d9d8d4"/>
+<text x="310" y="140" font-size="12" fill="#52514e" text-anchor="start" font-weight="400" >too small to draw</text>
+<text x="310" y="160" font-size="12" fill="#52514e" text-anchor="start" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">width on this chart: 0.00000000000000003 px</text>
+<text x="0" y="198" font-size="13" fill="#0b0b0b" text-anchor="start" font-weight="600" >a Kindle, full vs. empty (Kubiatowicz)</text>
+<text x="0" y="218" font-size="12" fill="#52514e" text-anchor="start" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">0.000000000000000001 g</text>
+<line x1="300" y1="180" x2="300" y2="224" stroke="#d9d8d4"/>
+<text x="310" y="198" font-size="12" fill="#52514e" text-anchor="start" font-weight="400" >too small to draw</text>
+<text x="310" y="218" font-size="12" fill="#52514e" text-anchor="start" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">width on this chart: 0.0000000000000000003 px</text>
+<text x="0" y="256" font-size="12" fill="#52514e" text-anchor="start" font-weight="400" >if the laptop's bar were as wide as…</text>
+<text x="250" y="256" font-size="12" fill="#52514e" text-anchor="start" font-weight="400" >the battery's bar would be</text>
+<text x="480" y="256" font-size="12" fill="#52514e" text-anchor="start" font-weight="400" >and the games' bar</text>
+<text x="0" y="280" font-size="13" fill="#0b0b0b" text-anchor="start" font-weight="600" >Turkey (≈ 1,600 km)</text>
+<text x="250" y="280" font-size="13" fill="#0b0b0b" text-anchor="start" font-weight="400" >0.003 mm (a bacterium)</text>
+<text x="480" y="280" font-size="13" fill="#0b0b0b" text-anchor="start" font-weight="400" >0.0000000001 mm (1/1,000 of an atom)</text>
+<text x="0" y="302" font-size="13" fill="#0b0b0b" text-anchor="start" font-weight="600" >the equator (≈ 40,000 km)</text>
+<text x="250" y="302" font-size="13" fill="#0b0b0b" text-anchor="start" font-weight="400" >0.07 mm (a hair)</text>
+<text x="480" y="302" font-size="13" fill="#0b0b0b" text-anchor="start" font-weight="400" >0.000000003 mm (1/40 of an atom)</text>
+</svg>
