@@ -1,4 +1,9 @@
 news:
+  - date: "10/2026"
+    description: "Paper on language-derived mental objects and posterior alpha power (with Xinchi Yu, Allison Dods, Xing Tian, and Ellen Lau) published in Journal of Neurolinguistics."
+    extra: '<a href="https://doi.org/10.1016/j.jneuroling.2026.101383">JNeuroling</a>'
+    category: publication
+
   - date: "05/2026"
     description: "Mayfest 2026: our yearly workshop this year focuses on production processes."
     extra: "<a href='https://linguistics.umd.edu/news/mayfest-2026-production'>website</a>"

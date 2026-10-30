@@ -1,0 +1,72 @@
+# Edit this file to update the CV. Entries appear in file order.
+- institution: "University of Maryland"
+  url: "https://umd.edu/"
+  location: "College Park, MD"
+  dates: "2022-2027 (expected)"
+  details:
+    - - text: "Ph.D., Linguistics"
+        bold: true
+      - " (advisors: "
+      - text: "Colin Phillips"
+        url: "https://www.colinphillips.net/"
+      - " & "
+      - text: "Ellen Lau"
+        url: "https://ellenlau.net/"
+      - ")"
+    - "Certificate in NACS (Neuro and Cognitive Sciences)"
+- institution: "University of Massachussets"
+  url: "https://www.umass.edu/linguistics/"
+  location: "Amherst, MA, USA"
+  dates: "Fall 2025"
+  details:
+    - "Visiting Researcher, Linguistics (hosts: Shota Momma, Faruk Akkuş)"
+    - - "Area of Study: "
+      - text: "Morphological planning and A-bar dependencies in Turkish"
+        italic: true
+- institution: "Boğaziçi University"
+  url: "https://boun.edu.tr/"
+  location: "Turkey"
+  dates: "2017-2022"
+  details:
+    - - text:
+          - "M.A. in "
+          - text: "Linguistics"
+            url: "https://linguistics.boun.edu.tr/"
+        bold: true
+      - " (advisor: "
+      - text: "Pavel Logačev"
+        url: "https://scholar.google.com/citations?user=fhbdTJIAAAAJ&hl=en"
+      - ")"
+    - - "Thesis title: "
+      - text:
+          - text: "Agreement Attraction in Turkish"
+            italic: true
+        url: "https://utkuturk.com/ma/"
+- institution: "Masaryk University"
+  url: "https://www.muni.cz/en"
+  location: "Czechia"
+  dates: "Spring 2020"
+  details:
+    - - "Visiting Researcher, Linguistics (hosts: "
+      - text: "Pavel Caha"
+        url: "https://www.muni.cz/en/people/53172-pavel-caha"
+      - ")"
+    - - "Area of Study: "
+      - text: "case containment in Turkish, adjectival structure"
+        italic: true
+- institution: "Boğaziçi University"
+  url: "https://boun.edu.tr/"
+  location: "Turkey"
+  dates: "2012-2017"
+  details:
+    - - text:
+          - "B.A. in "
+          - text: "Translation Studies"
+            url: "https://transint.boun.edu.tr/"
+        bold: true
+    - - "Minor "
+      - text: "in Spanish-Turkish translation"
+        italic: true
+    - - "Exchange student "
+      - text: "in UCLA Linguistics"
+        italic: true

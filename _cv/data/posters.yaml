@@ -1,0 +1,118 @@
+# Edit this file to update the CV. Entries appear in file order.
+- authors: "Neu, Eva and Türk, Utku and Bakay, Özge and Dillon, Brian and Jarosz, Gaja"
+  year: 2026
+  title: "Frequency modulates structural choice in Turkish suspended affixation: a latent-process account."
+  venue: "Poster presented at SCiL: Society for Computation in Linguistics within ACL 2026, San Diego, CA."
+  notes:
+    - text: "Also presented as a poster in HSP 2026 at MIT."
+- authors: "Boukendour, Sarah and Türk, Utku and Williams, Alexander and Hacquard, Valentine"
+  year: 2026
+  title: "Modal Competition in Inferential Contexts: Evidence from Force-Choice Experiments."
+  venue: "Poster presented at ELM4: Experiments in Linguistics Meaning, University of Pennsylvania, Philadelphia, PA."
+- authors: "Türk, Utku and Lau, Ellen and Phillips, Colin"
+  year: 2026
+  title: "When do we plan agreement: Evidence from unaccusatives and agreement attraction."
+  venue: "Poster presented in Human Sentence Processing (HSP 2026), Massachusetts Institute of Technology, Boston, MA."
+- authors: "Türk, Utku"
+  year: 2026
+  title: "(In)sensitivity to surface-level heuristics: A case from Turkish verbal attractors."
+  venue: "Poster presented in Human Sentence Processing (HSP 2026), Massachusetts Institute of Technology, Boston, MA."
+- authors: "Türk, Utku and Hirsch, Aron"
+  year: 2025
+  title: "Turkish allows covert scrambling."
+  venue: "Poster presented at TU+10 (10th Workshop on Turkic and Languages in Contact with Turkic), University of Southern California, Los Angeles, CA."
+  links:
+    - kind: "abstract"
+      url: "https://utkuturk.com/files/abstracts/TurkHirschTU2025.pdf"
+- authors: "Türk, Utku and Phillips, Colin"
+  year: 2024
+  title: "Speech timing evidence on the (in)dependence of root and inflection access in production."
+  venue: "Poster presented at Human Sentence Processing (HSP 2024), University of Michigan, Ann Arbor, MI."
+  links:
+    - kind: "abstract"
+      url: "https://utkuturk.com/files/abstracts/hsp-2024-agree.pdf"
+- authors: "Dods, Allison and Macdonald, Allison and Türk, Utku and Mancha, Sebastián and Phillips, Colin"
+  year: 2024
+  title: "Is the octopus regenerating?: Comparing timing effects in sentence recall and picture description tasks."
+  venue: "Poster presented at Human Sentence Processing (HSP 2024), University of Michigan, Ann Arbor, MI."
+  links:
+    - kind: "abstract"
+      url: "https://utkuturk.com/files/abstracts/hsp-2024-task.pdf"
+- authors: "Türk, Utku"
+  year: 2023
+  title: "Obviation problem in Turkish."
+  venue: "Poster presented at TU+8 (8th Workshop on Turkic and Languages in Contact with Turkic), Harvard University, Cambridge, MA."
+  links:
+    - kind: "abstract"
+      url: "https://utkuturk.com/files/slides/obv2023.pdf"
+    - kind: "poster"
+      url: "https://utkuturk.com/files/slides/tuplus2023.pdf"
+- authors: "Türk, Utku and Caha, Pavel"
+  year: 2021
+  title: "Nanosyntactic analysis of Turkish cases."
+  venue: "Poster presented at TU+6 (6th Workshop on Turkic and Languages in Contact with Turkic); online (University of Toronto)."
+  links:
+    - kind: "abstract"
+      url: "https://utkuturk.com/files/abstracts/nanocase2021.pdf"
+    - kind: "handout"
+      url: "https://utkuturk.com/files/handouts/nanocase2021.pdf"
+    - kind: "pdf"
+      url: "https://utkuturk.com/files/papers/TurkCaha2021.pdf"
+- authors: "Türk, Utku and Bayar, Kaan and Özercan, Ayşegül Dilara and Özateş, Şaziye Betül"
+  year: 2020
+  title: "First steps towards Universal Dependencies for Laz."
+  venue: "Associated short paper in UDW 2020 proceedings.."
+  links:
+    - kind: "pdf"
+      url: "https://utkuturk.com/files/papers/TurkEtAl2020.pdf"
+    - kind: "poster"
+      url: "https://utkuturk.com/files/slides/coling.pdf"
+- authors: "Türk, Utku and Logačev, Pavel"
+  year: 2020
+  title: "The role of shallow processing in agreement attraction."
+  venue: "Poster presented at the 33rd Annual CUNY Conference on Human Sentence Processing; online (Amherst, MA)."
+  links:
+    - kind: "abstract"
+      url: "https://utkuturk.com/files/abstracts/cuny_shallow.pdf"
+    - kind: "data"
+      url: "https://osf.io/x9pv7/"
+    - kind: "poster"
+      url: "https://utkuturk.com/files/slides/cuny_shallow.pdf"
+- authors: "Özdemir, Semra and Türk, Utku"
+  year: 2020
+  title: "An investigation into the nature of the Turkish glide [j]."
+  venue: "Poster presented at TU+5 (5th Workshop on Turkic and Languages in Contact with Turkic), University of Delaware, USA."
+  links:
+    - kind: "abstract"
+      url: "https://utkuturk.com/files/abstracts/glide2020.pdf"
+    - kind: "poster"
+      url: "https://utkuturk.com/files/slides/tu_glide.pdf"
+- authors: "Türk, Utku"
+  year: 2020
+  title: "Tackling the augmentative puzzle in Turkish."
+  venue: "Poster presented at TU+5 (5th Workshop on Turkic and Languages in Contact with Turkic), University of Delaware, USA."
+  links:
+    - kind: "abstract"
+      url: "https://utkuturk.com/files/abstracts/augmentative_tuplus.pdf"
+    - kind: "poster"
+      url: "https://utkuturk.com/files/slides/aug_poster.pdf"
+- authors: "Türk, Utku and Atmaca, Furkan and Özateş, Şaziye Betül and Köksal, Abdullatif and Öztürk Başaran, Balkız and Güngör, Tunga and Özgür, Arzucan"
+  year: 2019
+  title: "Turkish treebanking: Unifying and constructing efforts."
+  venue: "Associated paper in LAW XIII proceedings.."
+  links:
+    - kind: "pdf"
+      url: "https://utkuturk.com/files/papers/TurkEtAl2019b.pdf"
+    - kind: "poster"
+      url: "https://utkuturk.com/files/slides/law_poster.pdf"
+- authors: "Türk, Utku"
+  year: 2019
+  title: "Nanosyntax of augmentative in Turkish: Interfix -cI- analysis."
+  venue: "Poster presented at the 4th American International Morphology Meeting (AIMM4), Stony Brook University, NY."
+  links:
+    - kind: "poster"
+      url: "https://utkuturk.com/files/slides/aug_poster.pdf"
+- authors: "Türk, Utku"
+  year: 2019
+  title: "Nanosyntax of augmentative in Turkish: Interfix -cI- analysis."
+  venue: "Poster presented at the 13th Linguistics Student Conference, Ankara University, Turkey."

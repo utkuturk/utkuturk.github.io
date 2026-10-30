@@ -1,0 +1,98 @@
+# Edit this file to update the CV. Entries appear in file order.
+- authors: "Türk, Utku, Neu, Eva"
+  year: 2026
+  title: "Quantifying the cross-linguistics effects of syncretism on agreement attraction."
+  venue: "Society for Computation in Linguistics."
+  links:
+    - kind: "pdf"
+      url: "https://doi.org/10.18653/v1/2026.scil-main.16"
+    - kind: "github"
+      url: "https://github.com/utkuturk/scil_TurkNeu2026"
+- authors: "Türk, Utku, Neu, Eva, Bakay, Özge, Dillon, Brian; Jarosz, Gaja"
+  year: 2026
+  title: "Frequency modulates structural choice in Turkish suspended affixation: a latent-process account."
+  venue: "Society for Computation in Linguistics."
+  links:
+    - kind: "pdf"
+      url: "https://doi.org/10.18653/v1/2026.scil-main.32"
+    - kind: "github"
+      url: "https://github.com/utkuturk/freq_derivational_sa"
+- authors: "Türk, Utku and Hirsch, Aron"
+  year: 2026
+  title: "Towards a theory of scope rigidity: A case of focus sensitive question particles."
+  venue: "Proceedings of TU+10 (10th Workshop on Turkic and Languages in Contact with Turkic)."
+  links:
+    - kind: "doi"
+      url: "https://doi.org/10.3765/c0ddx832"
+    - kind: "pdf"
+      url: "https://www.utkuturk.com/files/papers/TurkHirsch2025a.pdf"
+- authors: "Türk, Utku and Hirsch, Aron"
+  year: 2026
+  title: "Syntactic alternatives in Turkish polar questions."
+  venue: "Proceedings of the 49th Penn Linguistics Conference (PLC 49)."
+  links:
+    - kind: "doi"
+      url: "https://doi.org/10.48659/8yrh-f297"
+    - kind: "pdf"
+      url: "https://www.utkuturk.com/files/papers/TurkHirsch2025b.pdf"
+- authors: "Lewis, Sadira and Türk, Utku"
+  year: 2026
+  title: "Superiority Effects With Wh-Adjuncts in Turkish."
+  venue: "Proceedings of the Linguistic Society of America."
+  links:
+    - kind: "doi"
+      url: "https://doi.org/10.3765/plsa.v10i1.5931."
+    - kind: "pdf"
+      url: "https://www.utkuturk.com/files/papers/LewisTurk2025.pdf"
+- authors: "Türk, Utku and Demirok, Ömer"
+  year: 2021
+  title: "Hypothetical comparison in Turkish."
+  venue: "Proceedings of the 6th Workshop on Turkic and Languages in Contact with Turkic."
+  links:
+    - kind: "doi"
+      url: "https://doi.org/10.3765/ptu.v6i1.5054"
+    - kind: "pdf"
+      url: "https://www.utkuturk.com/files/papers/TurkDemirok2021.pdf"
+- authors: "Türk, Utku and Caha, Pavel"
+  year: 2021
+  title: "Nanosyntactic analysis of Turkish cases."
+  venue: "Proceedings of the 6th Workshop on Turkic and Languages in Contact with Turkic."
+  links:
+    - kind: "doi"
+      url: "https://doi.org/10.3765/ptu.v6i1.5051"
+    - kind: "pdf"
+      url: "https://www.utkuturk.com/files/papers/TurkCaha2021.pdf"
+- authors: "Türk, Utku"
+  year: 2020
+  title: "Tackling the augmentative puzzle in Turkish."
+  venue: "Proceedings of the 5th Workshop on Turkic and Languages in Contact with Turkic."
+  links:
+    - kind: "doi"
+      url: "https://doi.org/10.3765/ptu.v5i1.4771"
+    - kind: "pdf"
+      url: "https://www.utkuturk.com/files/papers/Turk2020.pdf"
+- authors: "Türk, Utku and Bayar, Kaan and Özercan, Ayşegül Dilara and Öztürk, Görkem Yiğit and Özateş, Şaziye Betül"
+  year: 2020
+  title: "First steps towards Universal Dependencies for Laz."
+  venue: "Proceedings of the Fourth Workshop on Universal Dependencies (UDW 2020)."
+  links:
+    - kind: "pdf"
+      url: "https://aclanthology.org/2020.udw-1.21/"
+- authors: "Türk, Utku and Atmaca, Furkan and Özateş, Şaziye Betül and Köksal, Abdullatif and Öztürk Başaran, Balkız and Güngör, Tunga and Özgür, Arzucan"
+  year: 2019
+  title: "Turkish treebanking: Unifying and constructing efforts."
+  venue: "Proceedings of the 13th Linguistic Annotation Workshop."
+  links:
+    - kind: "doi"
+      url: "https://doi.org/10.18653/v1/W19-4019"
+    - kind: "pdf"
+      url: "https://www.aclweb.org/anthology/W19-4019/"
+- authors: "Türk, Utku and Atmaca, Furkan and Özateş, Şaziye Betül and Öztürk Başaran, Balkız and Güngör, Tunga and Özgür, Arzucan"
+  year: 2019
+  title: "Improving the annotations in the Turkish Universal Dependency Treebank."
+  venue: "Proceedings of the Third Workshop on Universal Dependencies (UDW, SyntaxFest 2019)."
+  links:
+    - kind: "doi"
+      url: "https://doi.org/10.18653/v1/W19-8013"
+    - kind: "pdf"
+      url: "https://www.aclweb.org/anthology/W19-8013"

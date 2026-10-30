@@ -10,13 +10,30 @@ dissertation:
     topic: "processing"
 
 journal_articles:
+  - authors: "Yu, X.; Türk, U.; Dods, A.; Tian, X.; Lau, E."
+    year: 2027
+    topic: "processing"
+    title: "Language-derived mental object load suppresses posterior alpha power"
+    journal: "Journal of Neurolinguistics"
+    volume: "81"
+    pages: "101383"
+    doi: "10.1016/j.jneuroling.2026.101383"
+    preprint: "https://www.biorxiv.org/content/10.1101/2025.05.02.651748v1"
+
   - authors: "Türk, U."
     year: 2026
     topic: "processing"
     title: "(In)sensitivity to surface-level heuristics: A case from Turkish verbal attractors"
-    journal: "Submitted"
+    status: "minor revisions submitted"
     url: "http://psyarxiv.com/dwh8v"
     lingbuzz: "https://ling.auf.net/lingbuzz/009670"
+
+  - authors: "Lacina, R.; Türk, U."
+    year: 2026
+    topic: "processing"
+    title: 'Review of "Linguistic Illusions: A Case Study on Agreement Attraction" by Dan Parker'
+    journal: "Journal of Linguistics"
+    status: "in press"
 
   - authors: "Türk, U.; Logacev, P."
     year: 2024
@@ -39,13 +56,6 @@ journal_articles:
     url: "https://link.springer.com/article/10.1007/s10579-021-09558-0"
     pdf: "../files/pdfs/TurkEtAl2022.pdf"
 
-  - authors: "Yu, X.; Türk, U.; Dods, A.; Tian, X.; Lau, E."
-    year: 2025
-    topic: "processing"
-    status: "submitted"
-    title: "Non-visually-derived mental objects tax 'visual' pointers"
-    preprint: "https://www.biorxiv.org/content/10.1101/2025.05.02.651748v1"
-
 book_chapters:
   - authors: "Türk, U."
     year: 2025
@@ -67,12 +77,49 @@ book_chapters:
     pdf: "../files/pdfs/CanalisEtAl2024.pdf"
 
 in_progress:
-  - authors: "Türk, U."
-    year: 2025
+  - authors: "Türk, U.; Phillips, C."
+    year: 2026
     topic: "processing"
     status: "in prep."
-    title: 'Review of "Linguistic Illusions: A Case Study on Agreement Attraction" by Dan Parker'
-    note: "For Linguist List"
+    title: "When do attractors attract? Controllerhood viability gates agreement attraction"
+
+  - authors: "Türk, U.; Polinsky, M."
+    year: 2026
+    topic: "semantics"
+    status: "in prep."
+    title: "Nowhere except under negation? Russian exceptive constructions in native and heritage grammars"
+
+  - authors: "Türk, U.; Momma, S."
+    year: 2026
+    topic: "processing"
+    status: "in prep."
+    title: "Early features, late forms: The timing of tense planning in sentence production"
+    repo: "https://github.com/utkuturk/tense-timing"
+
+  - authors: "Bakay, Ö.; Türk, U.; Demiray, D.; Dillon, B."
+    year: 2026
+    topic: "processing"
+    status: "in prep."
+    title: "Evidence for the role of abstract subjecthood in Turkish agreement comprehension"
+    repo: "https://github.com/utkuturk/nom-vs-gen-attraction"
+
+  - authors: "Schwarz, F.; Renans, A.; … & Türk, U."
+    year: 2026
+    topic: "semantics"
+    status: "in prep."
+    title: "Weak and strong definites across languages: Experimental evidence"
+
+  - authors: "Türk, U."
+    year: 2026
+    topic: "processing"
+    status: "in prep."
+    title: "Grammaticality asymmetry in attraction survives response bias manipulation"
+
+  - authors: "Türk, U."
+    year: 2026
+    topic: "morphology"
+    status: "in prep."
+    title: "Allocutivity and grammar competition in Turkish person marking"
 
   - authors: "Türk, U."
     year: 2025

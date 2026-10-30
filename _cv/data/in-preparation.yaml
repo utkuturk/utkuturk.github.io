@@ -1,0 +1,46 @@
+# Edit this file to update the CV. Entries appear in file order.
+- authors: "Türk, Utku and Phillips, Colin"
+  title: "When do attractors attract? Controllerhood viability gates agreement attraction."
+  title-italic: true
+- authors: "Türk, Utku and Polinsky, Masha"
+  title: "Nowhere except under negation? Russian exceptive constructions in native and heritage grammars"
+  title-italic: true
+- authors: "Türk, Utku and Momma, Shota"
+  title: "Early features, late forms: The timing of tense planning in sentence production."
+  title-italic: true
+  links:
+    - kind: "github"
+      url: "https://github.com/utkuturk/tense-timing"
+- authors: "Bakay, Özge and Türk, Utku and Demiray, Duygu and Dillon, Brian"
+  title: "Evidence for the role of abstract subjecthood in Turkish agreement comprehension."
+  title-italic: true
+  links:
+    - kind: "github"
+      url: "https://github.com/utkuturk/nom-vs-gen-attraction"
+- authors: "Türk, Utku"
+  title: "Grammaticality asymmetry in attraction survives response bias manipulation."
+  title-italic: true
+  links:
+    - kind: "github"
+      url: "https://github.com/utkuturk/response_bias_turkish"
+- authors: "Schwarz, F., Renans, A., … & Türk, Utku"
+  title: "Weak and strong definites across languages: Experimental evidence"
+  title-italic: true
+- authors: "Türk, Utku"
+  title: "Allocutivity and Grammar Competition in Turkish person marking."
+  title-italic: true
+  links:
+    - kind: "github"
+      url: "https://github.com/utkuturk/attraction_honorific_turkish"
+- authors: "Türk, Utku"
+  title: "Response bias in Turkish agreement attraction."
+  title-italic: true
+  links:
+    - kind: "github"
+      url: "https://github.com/utkuturk/attraction_meta"
+- authors: "Türk, Utku"
+  title: "The role of register in agreement attraction."
+  title-italic: true
+  links:
+    - kind: "github"
+      url: "https://github.com/utkuturk/attraction_honorific_turkish"

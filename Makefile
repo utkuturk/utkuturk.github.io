@@ -3,6 +3,7 @@
 # =========================
 # Usage:
 #   make render             # local 'quarto render'
+#   make cv                 # compile _cv/cv.typ -> files/cv.pdf
 #   make publish            # render + push built site to gh-pages
 #   make bootstrap-pages    # one-time: create gh-pages branch (if missing)
 #   make clean              # clean build artifacts
@@ -30,16 +31,22 @@ CNAME          ?= www.utkuturk.com   # <— default CNAME
 # Detect if gh-pages exists on remote
 REMOTE_HAS_PAGES := $(shell git ls-remote --exit-code --heads origin $(PUBLISH_BRANCH) >/dev/null 2>&1 && echo yes || echo no)
 
-.PHONY: help render clean bootstrap-pages publish _ensure_worktree _teardown_worktree
+.PHONY: help render cv clean bootstrap-pages publish _ensure_worktree _teardown_worktree
 
 help:
 	@echo "Targets:"
 	@echo "  make render            - Render the Quarto site locally"
+	@echo "  make cv                - Compile _cv/cv.typ into files/cv.pdf"
 	@echo "  make publish           - Render locally and publish to '$(PUBLISH_BRANCH)'"
 	@echo "  make bootstrap-pages   - One-time bootstrap for '$(PUBLISH_BRANCH)' branch"
 	@echo "  make clean             - Clean build artifacts"
 
 # ----- Build -----
+# _cv/ is skipped by Quarto (leading underscore), so only the PDF is published
+cv:
+	@typst compile --root _cv --font-path _cv/fonts _cv/cv.typ files/cv.pdf
+	@echo "==> CV built at files/cv.pdf"
+
 render:
 	@echo "==> Rendering site locally with Quarto…"
 	@quarto render

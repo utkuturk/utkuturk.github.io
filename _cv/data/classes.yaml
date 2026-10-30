@@ -1,0 +1,157 @@
+# Edit this file to update the CV. Entries appear in file order.
+- institution: "University of Maryland"
+  location: "College Park, MD"
+  roles:
+    - role: "Instructor"
+      department: "at the Department of Linguistics"
+      dates: "2026"
+      courses:
+        - term: "Fall '25"
+          title: "Ling 499U: Topics in Psycholinguistics; How words are built"
+          links:
+            - text: "website"
+              url: "https://utkuturk.com/ling449u/"
+    - role: "Graduate Assistant"
+      department: "at the Department of Linguistics"
+      dates: "2022-2025"
+      courses:
+        - term: "Fall '25"
+          title: "Department-wide experimental and statistics helper"
+        - term: "Spring '25"
+          title: "Ling 200: Introduction to Linguistics"
+        - term: "Fall '24"
+          title: "Ling 440: Grammars & Cognition"
+        - term: "Spring '24"
+          title: "Arhu 299: Machine Learning in Language and Art"
+          links:
+            - text: "syl"
+              url: "https://utkuturk.com/files/syli/299_s24.pdf"
+        - term: "Fall '23"
+          title: "Ling 240: Language & Mind"
+          links:
+            - text: "syl"
+              url: "https://utkuturk.com/files/syli/240_f23.pdf"
+    - role: "Experimental Instructor"
+      department: "at the Department of Linguistics"
+      dates: "2024"
+      courses:
+        - term: "Fall '24"
+          title: "Ling 640: Psycholinguistics"
+- institution: "University of Oxford"
+  location: "UK"
+  roles:
+    - role: "Workshop Instructor"
+      department: "at the Department of Linguistics"
+      dates: "2024"
+      courses:
+        - term: "Summer '24"
+          title: "Workshop on Sentence Production and Employing Production Experiments"
+- institution: "Boğaziçi University"
+  location: "Turkey"
+  roles:
+    - role: "Teaching Assistant"
+      department: "at the Department of Linguistics"
+      dates: "2018-2022"
+      courses:
+        - term: "Spring '22"
+          title: "Ling 360: Computational Methods in Linguistics"
+          links:
+            - text: "syl"
+              url: "https://utkuturk.com/files/syli/360_s22.pdf"
+        - term: "Spring '22"
+          title: "Ling 314: Syntax & Semantics of Turkish"
+          links:
+            - text: "syl"
+              url: "https://utkuturk.com/files/syli/314_s22.pdf"
+        - term: "Fall '21"
+          title: "Ling 101: Intro to Linguistics"
+          links:
+            - text: "syl"
+              url: "https://utkuturk.com/files/syli/101_f21.pdf"
+        - term: "Fall '21"
+          title: "Ling 203: Syntax"
+          links:
+            - text: "syl"
+              url: "https://utkuturk.com/files/syli/203_f21.pdf"
+        - term: "Spring '21"
+          title: "Ling 101: Intro to Linguistics"
+          links:
+            - text: "syl"
+              url: "https://utkuturk.com/files/syli/101_s21.pdf"
+        - term: "Spring '21"
+          title: "Ling 314: Syntax & Semantics of Turkish"
+          links:
+            - text: "syl"
+              url: "https://utkuturk.com/files/syli/314_s21.pdf"
+        - term: "Spring '21"
+          title: "Ling 484: Comp. Methods in Linguistics"
+          links:
+            - text: "syl"
+              url: "https://utkuturk.com/files/syli/484_s21.pdf"
+        - term: "Fall '20"
+          title: "Ling 101: Intro to Linguistics"
+          links:
+            - text: "syl"
+              url: "https://utkuturk.com/files/syli/101_f20.pdf"
+        - term: "Fall '20"
+          title: "Ling 203: Syntax"
+          links:
+            - text: "syl"
+              url: "https://utkuturk.com/files/syli/203_f20.pdf"
+        - term: "Fall '20"
+          title: "Ling 411: Linguistic Methodology"
+          links:
+            - text: "syl"
+              url: "https://utkuturk.com/files/syli/411_f20.pdf"
+        - term: "Spring '20"
+          title: "Ling 202: Morphology"
+          links:
+            - text: "syl"
+              url: "https://utkuturk.com/files/syli/202_s20.pdf"
+        - term: "Spring '20"
+          title: "Ling 206: Language Typology"
+        - term: "Fall '19"
+          title: "Ling 101: Intro to Linguistics"
+          links:
+            - text: "syl"
+              url: "https://utkuturk.com/files/syli/101_f19.pdf"
+        - term: "Fall '19"
+          title: "Ling 313: Phonology & Morphology of Turkish"
+          links:
+            - text: "syl"
+              url: "https://utkuturk.com/files/syli/313_f19.pdf"
+        - term: "Spring '19"
+          title: "Ling 101: Intro to Linguistics"
+          links:
+            - text: "syl"
+              url: "https://utkuturk.com/files/syli/101_s19.pdf"
+        - term: "Spring '19"
+          title: "Ling 314: Syntax & Semantics of Turkish"
+          links:
+            - text: "syl"
+              url: "https://utkuturk.com/files/syli/314_s19.pdf"
+        - term: "Fall '18"
+          title: "Ling 313: Phonology & Morphology of Turkish"
+          links:
+            - text: "syl"
+              url: "https://utkuturk.com/files/syli/313_f18.pdf"
+        - term: "Spring '18"
+          title: "Ling 101: Intro to Linguistics"
+          links:
+            - text: "syl"
+              url: "https://utkuturk.com/files/syli/101_s18.pdf"
+        - term: "Spring '18"
+          title: "Ling 102: Intro to Linguistics II"
+          links:
+            - text: "syl"
+              url: "https://utkuturk.com/files/syli/102_s18.pdf"
+        - term: "Spring '12"
+          title: "Ling 102: Intro to Linguistics II"
+    - role: "Class Assistant"
+      department: "at the Turkish Language and Culture Program"
+      dates: "2018-2019"
+      courses:
+        - term: "Summer 2019"
+          title: "S25: Upper Intermediate Turkish Classes"
+        - term: "Summer 2018"
+          title: "S30: Advanced Turkish Classes"

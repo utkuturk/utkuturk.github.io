@@ -1,0 +1,11 @@
+# Edit this file to update the CV. Entries appear in file order.
+- title: "Modern languages"
+  items:
+    - "Turkish: native"
+    - "English: proficient"
+    - "Spanish: proficient in reading"
+- title: "Programming & Experimenting"
+  items:
+    - "R & Stan & Python"
+    - "Typst & LaTeX & JS"
+    - "OpenSesame & PCIbex & PsychoPy"

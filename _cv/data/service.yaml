@@ -1,0 +1,119 @@
+# Edit this file to update the CV. Entries appear in file order.
+- title: "Reviewing"
+  items:
+    - text:
+        - text: "Journal Article Reviewer"
+          italic: true
+        - ", Journal of Memory and Language, Glossa Linguistics, Glossa Psycholinguistics, Journal of Psycholinguistic Research"
+    - text:
+        - text: "Reviewer"
+          italic: true
+        - ", Advances in Iranian Linguistics III"
+    - text:
+        - text: "Software Reviewer"
+          italic: true
+        - ", rOpenSci, pangoling R package. "
+        - text: "review available here."
+          url: "https://github.com/ropensci/software-review/issues/575#issuecomment-1566746683"
+    - text:
+        - text: "Reviewer"
+          italic: true
+        - ", Computational Psycholinguistic Meeting 2025 & 2026"
+    - text:
+        - text: "Reviewer"
+          italic: true
+        - ", DM meets Nano 2025"
+    - text:
+        - text: "Proceedings reviewer"
+          italic: true
+        - ", 5th/6th/11th Workshop on Turkic and Languages in Contact with Turkish. "
+        - text: "LSA Archive"
+          url: "https://journals.linguisticsociety.org/proceedings/index.php/tu/issue/archive"
+        - "."
+- title: "Conference Service"
+  items:
+    - text:
+        - text: "Organization Committee"
+          italic: true
+        - ", MayFest Production 2026"
+    - text:
+        - text: "Organization Committee"
+          italic: true
+        - ", Human Sentence Processing (HSP) Conference (2025)"
+    - text:
+        - text: "Organization Committee"
+          italic: true
+        - ", MayFest Constraints on Meaning 2025"
+    - text:
+        - text: "Conference chair"
+          italic: true
+        - ", Student Conference on Linguistics, Istanbul, Turkey. "
+        - text:
+            - text: "scol 2022"
+              smallcaps: true
+          url: "http://scol.boun.edu.tr/scol22"
+    - text:
+        - text: "Conference chair"
+          italic: true
+        - ", "
+        - text:
+            - text: "Busctel 2020"
+              smallcaps: true
+            - ": Boğaziçi University Student Conference in Theoretical and Experimental Linguistics"
+          url: "https://busctel.boun.edu.tr"
+        - ". Department of Linguistics, Boğaziçi University"
+    - text:
+        - text: "Co-organizer and Reviewer"
+          italic: true
+        - ", "
+        - text:
+            - text: "Busctel 2019"
+              smallcaps: true
+          url: "https://busctel19.weebly.com"
+    - text:
+        - text: "Co-organizer and Reviewer"
+          italic: true
+        - ", "
+        - text:
+            - text: "Busctel 2018"
+              smallcaps: true
+          url: "https://busctel18.weebly.com"
+- title: "Administrative work"
+  items:
+    - text:
+        - text: "Senator"
+          italic: true
+        - ", University of Maryland "
+        - break: true
+        - "(2025 - "
+        - text: "ongoing"
+          italic: true
+        - ")"
+    - text:
+        - text: "Organizer"
+          italic: true
+        - ", B"
+        - text: "{ehavioral,aby,rain,yte}"
+          mono: true
+        - "Ling Workshop, University of Maryland Linguistics "
+        - break: true
+        - "(2024 - "
+        - text: "ongoing"
+          italic: true
+        - ")"
+    - text:
+        - text: "Graduate Student Representative"
+          italic: true
+        - ", University of Maryland Linguistics (2024-2025)"
+    - text:
+        - text: "Board Member"
+          italic: true
+        - ", University of Maryland Language Science Center Graduate Student Board. "
+        - break: true
+        - " (2023 - 2025)"
+    - text:
+        - text: "Committee Member"
+          italic: true
+        - ", University of Maryland Linguistics Colloquium Committee. "
+        - break: true
+        - " (2023 - 2025)"

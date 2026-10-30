@@ -1,0 +1,143 @@
+# Edit this file to update the CV. Entries appear in file order.
+- authors: "Türk, Utku and Neu, Eva"
+  year: 2026
+  title: "Quantifying the cross-linguistic effects of syncretism on agreement attraction."
+  venue: "Talk presented at SCiL: Society for Computation in Linguistics within ACL 2026, San Diego, CA."
+- authors: "Bakay, Özge and Türk, Utku and Demiray, Duygu and Dillon, Brian"
+  title: "Evidence for the role of abstract subjecthood in Turkish agreement comprehension."
+  venue: "Talk presented at the 38th Annual Conference on Human Sentence Processing (HSP 2026), Massachusetts Institute of Technology, MA"
+  notes:
+    - text: "Also presented as a talk at the TU+11 (11th Workshop on Turkic and Languages in Contact with Turkic), MIT and as a talk in CLS 62: Chicago Linguistics Society"
+- authors: "Neu, Eva and Türk, Utku and Bakay, Özge and Dillon, Brian and Jarosz, Gaja"
+  title: "Frequency modulates structural choice in Turkish suspended affixation: a latent-process account."
+  venue: "Talk presented at the TU+11 (11th Workshop on Turkic and Languages in Contact with Turkic), MIT."
+- authors: "Türk, Utku"
+  year: 2025
+  title: "Turkish register manipulation eliminates grammaticality asymmetry in attraction and challenges retrieval based accounts."
+  venue: "Talk presented at the 38th Annual Conference on Human Sentence Processing (HSP 2025), University of Maryland, College Park, MD."
+  links:
+    - kind: "abstract"
+      url: "https://www.utkuturk.com/files/abstracts/TurkHSP2025.pdf"
+  notes:
+    - text: "Also presented as a talk in TU+10 (10th Workshop on Turkic and Languages in Contact with Turkic), University of Southern California, Los Angeles, CA."
+      links:
+        - kind: "abstract"
+          url: "https://utkuturk.com/files/abstracts/TurkTU2025.pdf"
+- authors: "Türk, Utku and Hirsch, Aron"
+  year: 2025
+  title: "Syntactic alternatives in Turkish polar questions."
+  venue: "Talk presented at PLC 49 (40th Penn Linguistics Circle), University of Pennsylvania, Philadelphia, PA."
+  links:
+    - kind: "abstract"
+      url: "https://utkuturk.com/files/abstracts/TurkHirschPLC2025.pdf"
+- authors: "Lewis, Sadira and Türk, Utku"
+  year: 2025
+  title: "Superiority effects with adjuncts in Turkish."
+  venue: "Talk presented at the Linguistic Society of America Annual Meeting (LSA 2025), Philadelphia, PA."
+  links:
+    - kind: "slides"
+      url: "https://utkuturk.com/files/slides/LewisTurkLSA.pdf"
+- authors: "Türk, Utku and Lau, Ellen and Phillips, Colin"
+  year: 2024
+  title: "When do we plan agreement in our speech: Case from agreement attraction in unaccusatives."
+  venue: "Talk presented at Puzzles of Agreement."
+  links:
+    - kind: "slides"
+      url: "https://utkuturk.com/files/abstracts/TurkEtAl-puzzles.pdf"
+- authors: "Türk, Utku and Logačev, Pavel"
+  year: 2023
+  title: "Novel analysis of response bias challenges representational accounts in attraction."
+  venue: "Talk presented at Human Sentence Processing (HSP 2023), University of Pittsburgh, Pittsburgh, PA."
+  links:
+    - kind: "abstract"
+      url: "https://utkuturk.com/files/abstracts/hsp-2023-bias.pdf"
+    - kind: "slides"
+      url: "https://utkuturk.com/files/slides/hsp2023.pdf"
+- authors: "Sampanis, Konstantinos and Türk, Utku and Gülsün, Umut"
+  year: 2021
+  title: "Defining borrowing hierarchies in the light of sociolinguistic and geodemographic causation: Contact-induced morphosyntactic change in Asia Minor Greek."
+  venue: "Talk presented at SLE 54 (Annual Meeting of the Societas Linguistica Europaea); online."
+  links:
+    - kind: "abstract"
+      url: "https://utkuturk.com/files/abstracts/sle2021.pdf"
+- authors: "Türk, Utku and Atmaca, Furkan and Özateş, Şaziye Betül and Berk, Gözde and Bedir, Talha and Köksal, Abdullatif and Öztürk Başaran, Balkız and Güngör, Tunga and Özgür, Arzucan"
+  year: 2020
+  title: "The more the merrier: A new dependency treebank for Turkish."
+  venue: "Talk presented at ICTL 20 (International Conference on Turkish Linguistics); online (Eskişehir, Turkey)."
+- authors: "Türk, Utku and Demirok, Ömer"
+  year: 2021
+  title: "Hypothetical comparison in Turkish."
+  venue: "Talk presented at PLC 45: Penn Linguistics Circle, University of Pennsylvania, Philadelphia, PA."
+  links:
+    - kind: "abstract"
+      url: "https://utkuturk.com/files/abstracts/hypocomparison2021.pdf"
+    - kind: "handout"
+      url: "https://utkuturk.com/files/handouts/hypocomparison2021.pdf"
+    - kind: "pdf"
+      url: "https://utkuturk.com/files/papers/TurkDemirok2021.pdf"
+  notes:
+    - text: "Also presented as a talk in TU+6 (6th Workshop on Turkic and Languages in Contact with Turkic) in University of Toronto."
+- authors: "Türk, Utku"
+  year: 2021
+  title: "When vowel harmony has a say in morpho-syntax: A case from suspended affixation."
+  venue: "Talk presented at ConSOLE 29, University of Leiden; online."
+  links:
+    - kind: "abstract"
+      url: "https://utkuturk.com/files/abstracts/vh_suspaffix.pdf"
+    - kind: "slides"
+      url: "https://utkuturk.com/files/slides/vh_suspaffix.pdf"
+- authors: "Canalis, Stefano and Özdemir, Semra and Türk, Utku and Tunçer, Ümit Can"
+  year: 2021
+  title: "When glides are obstruents, or Turkish [j]."
+  venue: "Talk presented at the 18th Old World Conference in Phonology (OCP 18); online (Ibiza)."
+  links:
+    - kind: "abstract"
+      url: "https://utkuturk.com/files/abstracts/glide2021.pdf"
+    - kind: "slides"
+      url: "https://utkuturk.com/files/slides/glidesocp.pdf"
+  notes:
+    - text:
+        - "Also presented as a talk at "
+        - text: "ICTL 20 (International Conference on Turkish Linguistics), Eskişehir, Turkey"
+          italic: true
+- authors: "Türk, Utku and Logačev, Pavel"
+  year: 2020
+  title: "The role of shallow processing in agreement attraction."
+  venue: "Talk presented at Linguistic Evidence 2020, Universität Tübingen, Germany."
+  links:
+    - kind: "abstract"
+      url: "https://utkuturk.com/files/abstracts/le2020_shallow.pdf"
+    - kind: "slides"
+      url: "https://utkuturk.com/files/slides/LE2020.pdf"
+- authors: "Türk, Utku and Atmaca, Furkan and Özateş, Şaziye Betül and Öztürk Başaran, Balkız and Güngör, Tunga and Özgür, Arzucan"
+  year: 2019
+  title: "Improving the annotations in the Turkish Universal Dependency Treebank."
+  venue: "Also presented at the 33rd National Linguistics Conference (Mersin University, Turkey) 2019-05-09/2019-05-10.."
+  links:
+    - kind: "pdf"
+      url: "https://utkuturk.com/files/papers/TurkEtAl2019a.pdf"
+    - kind: "slides"
+      url: "https://utkuturk.com/files/slides/syntaxfest2019.pdf"
+- authors: "Türk, Utku"
+  year: 2019
+  title: "Decomposing Turkish augmentatives."
+  venue: "Talk presented at the 16th Workshop on Syntax, Semantics, and Phonology, Universidad Complutense de Madrid, Spain."
+  links:
+    - kind: "abstract"
+      url: "https://utkuturk.com/files/abstracts/wossp.pdf"
+    - kind: "slides"
+      url: "https://utkuturk.com/files/slides/wossp.pdf"
+- authors: "Türk, Utku"
+  year: 2019
+  title: "Is accusative case really the case?"
+  venue: "Talk presented at the 13th Linguistics Student Conference, Ankara University, Turkey."
+  links:
+    - kind: "slides"
+      url: "https://utkuturk.com/files/slides/accusative.pdf"
+- authors: "Türk, Utku and Dikmen, Furkan"
+  year: 2019
+  title: "Obligatory adjuncts within Turkish impersonals."
+  venue: "Talk presented at the 13th Linguistics Student Conference, Ankara University, Turkey."
+  links:
+    - kind: "slides"
+      url: "https://utkuturk.com/files/slides/adjuncts.pdf"

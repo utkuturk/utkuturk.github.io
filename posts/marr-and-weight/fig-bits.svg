@@ -1,0 +1,281 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 770 442" width="770" height="442" role="img" aria-label="An SSD before and after: about half 1s both times, but the charge in the cells changes" font-family="Inter, system-ui, -apple-system, Helvetica, Arial, sans-serif">
+<text x="0" y="82" font-size="14" fill="#0b0b0b" text-anchor="start" font-weight="600" >the 1s and 0s</text>
+<text x="0" y="100" font-size="12" fill="#52514e" text-anchor="start" font-weight="400" >what is saved</text>
+<text x="0" y="270" font-size="14" fill="#0b0b0b" text-anchor="start" font-weight="600" >the electric charge</text>
+<text x="0" y="288" font-size="12" fill="#52514e" text-anchor="start" font-weight="400" >what the drive holds</text>
+<text x="160" y="18" font-size="15" fill="#0b0b0b" text-anchor="start" font-weight="600" >before</text>
+<text x="160" y="36" font-size="12" fill="#52514e" text-anchor="start" font-weight="400" >leftovers of old files and factory tests</text>
+<rect x="160" y="52" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="174.5" y="71" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">100</text>
+<rect x="160" y="240" width="29" height="29" rx="4" fill="#6da7ec" stroke="none"/>
+<text x="174.5" y="259" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">100</text>
+<rect x="191" y="52" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="205.5" y="71" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">111</text>
+<rect x="191" y="240" width="29" height="29" rx="4" fill="#eef4fc" stroke="#d9d8d4"/>
+<text x="205.5" y="259" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">111</text>
+<rect x="222" y="52" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="236.5" y="71" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">001</text>
+<rect x="222" y="240" width="29" height="29" rx="4" fill="#184f95" stroke="none"/>
+<text x="236.5" y="259" font-size="9" fill="#fff" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">001</text>
+<rect x="253" y="52" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="267.5" y="71" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">100</text>
+<rect x="253" y="240" width="29" height="29" rx="4" fill="#6da7ec" stroke="none"/>
+<text x="267.5" y="259" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">100</text>
+<rect x="284" y="52" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="298.5" y="71" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">001</text>
+<rect x="284" y="240" width="29" height="29" rx="4" fill="#184f95" stroke="none"/>
+<text x="298.5" y="259" font-size="9" fill="#fff" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">001</text>
+<rect x="315" y="52" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="329.5" y="71" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">001</text>
+<rect x="315" y="240" width="29" height="29" rx="4" fill="#184f95" stroke="none"/>
+<text x="329.5" y="259" font-size="9" fill="#fff" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">001</text>
+<rect x="346" y="52" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="360.5" y="71" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">010</text>
+<rect x="346" y="240" width="29" height="29" rx="4" fill="#256abf" stroke="none"/>
+<text x="360.5" y="259" font-size="9" fill="#fff" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">010</text>
+<rect x="377" y="52" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="391.5" y="71" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">100</text>
+<rect x="377" y="240" width="29" height="29" rx="4" fill="#6da7ec" stroke="none"/>
+<text x="391.5" y="259" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">100</text>
+<rect x="160" y="83" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="174.5" y="102" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">100</text>
+<rect x="160" y="271" width="29" height="29" rx="4" fill="#6da7ec" stroke="none"/>
+<text x="174.5" y="290" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">100</text>
+<rect x="191" y="83" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="205.5" y="102" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">111</text>
+<rect x="191" y="271" width="29" height="29" rx="4" fill="#eef4fc" stroke="#d9d8d4"/>
+<text x="205.5" y="290" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">111</text>
+<rect x="222" y="83" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="236.5" y="102" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">011</text>
+<rect x="222" y="271" width="29" height="29" rx="4" fill="#3987e5" stroke="none"/>
+<text x="236.5" y="290" font-size="9" fill="#fff" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">011</text>
+<rect x="253" y="83" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="267.5" y="102" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">001</text>
+<rect x="253" y="271" width="29" height="29" rx="4" fill="#184f95" stroke="none"/>
+<text x="267.5" y="290" font-size="9" fill="#fff" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">001</text>
+<rect x="284" y="83" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="298.5" y="102" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">000</text>
+<rect x="284" y="271" width="29" height="29" rx="4" fill="#0d366b" stroke="none"/>
+<text x="298.5" y="290" font-size="9" fill="#fff" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">000</text>
+<rect x="315" y="83" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="329.5" y="102" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">101</text>
+<rect x="315" y="271" width="29" height="29" rx="4" fill="#9ec5f4" stroke="none"/>
+<text x="329.5" y="290" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">101</text>
+<rect x="346" y="83" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="360.5" y="102" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">111</text>
+<rect x="346" y="271" width="29" height="29" rx="4" fill="#eef4fc" stroke="#d9d8d4"/>
+<text x="360.5" y="290" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">111</text>
+<rect x="377" y="83" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="391.5" y="102" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">101</text>
+<rect x="377" y="271" width="29" height="29" rx="4" fill="#9ec5f4" stroke="none"/>
+<text x="391.5" y="290" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">101</text>
+<rect x="160" y="114" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="174.5" y="133" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">100</text>
+<rect x="160" y="302" width="29" height="29" rx="4" fill="#6da7ec" stroke="none"/>
+<text x="174.5" y="321" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">100</text>
+<rect x="191" y="114" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="205.5" y="133" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">011</text>
+<rect x="191" y="302" width="29" height="29" rx="4" fill="#3987e5" stroke="none"/>
+<text x="205.5" y="321" font-size="9" fill="#fff" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">011</text>
+<rect x="222" y="114" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="236.5" y="133" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">010</text>
+<rect x="222" y="302" width="29" height="29" rx="4" fill="#256abf" stroke="none"/>
+<text x="236.5" y="321" font-size="9" fill="#fff" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">010</text>
+<rect x="253" y="114" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="267.5" y="133" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">110</text>
+<rect x="253" y="302" width="29" height="29" rx="4" fill="#cde2fb" stroke="none"/>
+<text x="267.5" y="321" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">110</text>
+<rect x="284" y="114" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="298.5" y="133" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">101</text>
+<rect x="284" y="302" width="29" height="29" rx="4" fill="#9ec5f4" stroke="none"/>
+<text x="298.5" y="321" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">101</text>
+<rect x="315" y="114" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="329.5" y="133" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">010</text>
+<rect x="315" y="302" width="29" height="29" rx="4" fill="#256abf" stroke="none"/>
+<text x="329.5" y="321" font-size="9" fill="#fff" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">010</text>
+<rect x="346" y="114" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="360.5" y="133" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">111</text>
+<rect x="346" y="302" width="29" height="29" rx="4" fill="#eef4fc" stroke="#d9d8d4"/>
+<text x="360.5" y="321" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">111</text>
+<rect x="377" y="114" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="391.5" y="133" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">001</text>
+<rect x="377" y="302" width="29" height="29" rx="4" fill="#184f95" stroke="none"/>
+<text x="391.5" y="321" font-size="9" fill="#fff" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">001</text>
+<rect x="160" y="145" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="174.5" y="164" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">111</text>
+<rect x="160" y="333" width="29" height="29" rx="4" fill="#eef4fc" stroke="#d9d8d4"/>
+<text x="174.5" y="352" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">111</text>
+<rect x="191" y="145" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="205.5" y="164" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">101</text>
+<rect x="191" y="333" width="29" height="29" rx="4" fill="#9ec5f4" stroke="none"/>
+<text x="205.5" y="352" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">101</text>
+<rect x="222" y="145" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="236.5" y="164" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">110</text>
+<rect x="222" y="333" width="29" height="29" rx="4" fill="#cde2fb" stroke="none"/>
+<text x="236.5" y="352" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">110</text>
+<rect x="253" y="145" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="267.5" y="164" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">100</text>
+<rect x="253" y="333" width="29" height="29" rx="4" fill="#6da7ec" stroke="none"/>
+<text x="267.5" y="352" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">100</text>
+<rect x="284" y="145" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="298.5" y="164" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">010</text>
+<rect x="284" y="333" width="29" height="29" rx="4" fill="#256abf" stroke="none"/>
+<text x="298.5" y="352" font-size="9" fill="#fff" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">010</text>
+<rect x="315" y="145" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="329.5" y="164" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">101</text>
+<rect x="315" y="333" width="29" height="29" rx="4" fill="#9ec5f4" stroke="none"/>
+<text x="329.5" y="352" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">101</text>
+<rect x="346" y="145" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="360.5" y="164" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">000</text>
+<rect x="346" y="333" width="29" height="29" rx="4" fill="#0d366b" stroke="none"/>
+<text x="360.5" y="352" font-size="9" fill="#fff" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">000</text>
+<rect x="377" y="145" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="391.5" y="164" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">110</text>
+<rect x="377" y="333" width="29" height="29" rx="4" fill="#cde2fb" stroke="none"/>
+<text x="391.5" y="352" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">110</text>
+<text x="160" y="196" font-size="12" fill="#52514e" text-anchor="start" font-weight="400" >50 ones, 46 zeros (52% 1s)</text>
+<text x="160" y="384" font-size="12" fill="#0b0b0b" text-anchor="start" font-weight="600" >average charge level: 3.2</text>
+<text x="470" y="18" font-size="15" fill="#0b0b0b" text-anchor="start" font-weight="600" >after</text>
+<text x="470" y="36" font-size="12" fill="#52514e" text-anchor="start" font-weight="400" >the games written over them</text>
+<rect x="470" y="52" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="484.5" y="71" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">001</text>
+<rect x="470" y="240" width="29" height="29" rx="4" fill="#184f95" stroke="none"/>
+<text x="484.5" y="259" font-size="9" fill="#fff" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">001</text>
+<rect x="501" y="52" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="515.5" y="71" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">110</text>
+<rect x="501" y="240" width="29" height="29" rx="4" fill="#cde2fb" stroke="none"/>
+<text x="515.5" y="259" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">110</text>
+<rect x="532" y="52" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="546.5" y="71" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">011</text>
+<rect x="532" y="240" width="29" height="29" rx="4" fill="#3987e5" stroke="none"/>
+<text x="546.5" y="259" font-size="9" fill="#fff" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">011</text>
+<rect x="563" y="52" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="577.5" y="71" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">111</text>
+<rect x="563" y="240" width="29" height="29" rx="4" fill="#eef4fc" stroke="#d9d8d4"/>
+<text x="577.5" y="259" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">111</text>
+<rect x="594" y="52" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="608.5" y="71" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">111</text>
+<rect x="594" y="240" width="29" height="29" rx="4" fill="#eef4fc" stroke="#d9d8d4"/>
+<text x="608.5" y="259" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">111</text>
+<rect x="625" y="52" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="639.5" y="71" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">111</text>
+<rect x="625" y="240" width="29" height="29" rx="4" fill="#eef4fc" stroke="#d9d8d4"/>
+<text x="639.5" y="259" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">111</text>
+<rect x="656" y="52" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="670.5" y="71" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">010</text>
+<rect x="656" y="240" width="29" height="29" rx="4" fill="#256abf" stroke="none"/>
+<text x="670.5" y="259" font-size="9" fill="#fff" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">010</text>
+<rect x="687" y="52" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="701.5" y="71" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">011</text>
+<rect x="687" y="240" width="29" height="29" rx="4" fill="#3987e5" stroke="none"/>
+<text x="701.5" y="259" font-size="9" fill="#fff" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">011</text>
+<rect x="470" y="83" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="484.5" y="102" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">001</text>
+<rect x="470" y="271" width="29" height="29" rx="4" fill="#184f95" stroke="none"/>
+<text x="484.5" y="290" font-size="9" fill="#fff" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">001</text>
+<rect x="501" y="83" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="515.5" y="102" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">011</text>
+<rect x="501" y="271" width="29" height="29" rx="4" fill="#3987e5" stroke="none"/>
+<text x="515.5" y="290" font-size="9" fill="#fff" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">011</text>
+<rect x="532" y="83" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="546.5" y="102" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">000</text>
+<rect x="532" y="271" width="29" height="29" rx="4" fill="#0d366b" stroke="none"/>
+<text x="546.5" y="290" font-size="9" fill="#fff" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">000</text>
+<rect x="563" y="83" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="577.5" y="102" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">010</text>
+<rect x="563" y="271" width="29" height="29" rx="4" fill="#256abf" stroke="none"/>
+<text x="577.5" y="290" font-size="9" fill="#fff" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">010</text>
+<rect x="594" y="83" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="608.5" y="102" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">111</text>
+<rect x="594" y="271" width="29" height="29" rx="4" fill="#eef4fc" stroke="#d9d8d4"/>
+<text x="608.5" y="290" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">111</text>
+<rect x="625" y="83" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="639.5" y="102" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">010</text>
+<rect x="625" y="271" width="29" height="29" rx="4" fill="#256abf" stroke="none"/>
+<text x="639.5" y="290" font-size="9" fill="#fff" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">010</text>
+<rect x="656" y="83" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="670.5" y="102" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">110</text>
+<rect x="656" y="271" width="29" height="29" rx="4" fill="#cde2fb" stroke="none"/>
+<text x="670.5" y="290" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">110</text>
+<rect x="687" y="83" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="701.5" y="102" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">001</text>
+<rect x="687" y="271" width="29" height="29" rx="4" fill="#184f95" stroke="none"/>
+<text x="701.5" y="290" font-size="9" fill="#fff" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">001</text>
+<rect x="470" y="114" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="484.5" y="133" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">111</text>
+<rect x="470" y="302" width="29" height="29" rx="4" fill="#eef4fc" stroke="#d9d8d4"/>
+<text x="484.5" y="321" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">111</text>
+<rect x="501" y="114" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="515.5" y="133" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">010</text>
+<rect x="501" y="302" width="29" height="29" rx="4" fill="#256abf" stroke="none"/>
+<text x="515.5" y="321" font-size="9" fill="#fff" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">010</text>
+<rect x="532" y="114" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="546.5" y="133" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">110</text>
+<rect x="532" y="302" width="29" height="29" rx="4" fill="#cde2fb" stroke="none"/>
+<text x="546.5" y="321" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">110</text>
+<rect x="563" y="114" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="577.5" y="133" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">001</text>
+<rect x="563" y="302" width="29" height="29" rx="4" fill="#184f95" stroke="none"/>
+<text x="577.5" y="321" font-size="9" fill="#fff" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">001</text>
+<rect x="594" y="114" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="608.5" y="133" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">000</text>
+<rect x="594" y="302" width="29" height="29" rx="4" fill="#0d366b" stroke="none"/>
+<text x="608.5" y="321" font-size="9" fill="#fff" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">000</text>
+<rect x="625" y="114" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="639.5" y="133" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">001</text>
+<rect x="625" y="302" width="29" height="29" rx="4" fill="#184f95" stroke="none"/>
+<text x="639.5" y="321" font-size="9" fill="#fff" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">001</text>
+<rect x="656" y="114" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="670.5" y="133" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">000</text>
+<rect x="656" y="302" width="29" height="29" rx="4" fill="#0d366b" stroke="none"/>
+<text x="670.5" y="321" font-size="9" fill="#fff" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">000</text>
+<rect x="687" y="114" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="701.5" y="133" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">000</text>
+<rect x="687" y="302" width="29" height="29" rx="4" fill="#0d366b" stroke="none"/>
+<text x="701.5" y="321" font-size="9" fill="#fff" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">000</text>
+<rect x="470" y="145" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="484.5" y="164" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">010</text>
+<rect x="470" y="333" width="29" height="29" rx="4" fill="#256abf" stroke="none"/>
+<text x="484.5" y="352" font-size="9" fill="#fff" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">010</text>
+<rect x="501" y="145" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="515.5" y="164" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">101</text>
+<rect x="501" y="333" width="29" height="29" rx="4" fill="#9ec5f4" stroke="none"/>
+<text x="515.5" y="352" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">101</text>
+<rect x="532" y="145" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="546.5" y="164" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">101</text>
+<rect x="532" y="333" width="29" height="29" rx="4" fill="#9ec5f4" stroke="none"/>
+<text x="546.5" y="352" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">101</text>
+<rect x="563" y="145" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="577.5" y="164" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">000</text>
+<rect x="563" y="333" width="29" height="29" rx="4" fill="#0d366b" stroke="none"/>
+<text x="577.5" y="352" font-size="9" fill="#fff" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">000</text>
+<rect x="594" y="145" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="608.5" y="164" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">111</text>
+<rect x="594" y="333" width="29" height="29" rx="4" fill="#eef4fc" stroke="#d9d8d4"/>
+<text x="608.5" y="352" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">111</text>
+<rect x="625" y="145" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="639.5" y="164" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">101</text>
+<rect x="625" y="333" width="29" height="29" rx="4" fill="#9ec5f4" stroke="none"/>
+<text x="639.5" y="352" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">101</text>
+<rect x="656" y="145" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="670.5" y="164" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">001</text>
+<rect x="656" y="333" width="29" height="29" rx="4" fill="#184f95" stroke="none"/>
+<text x="670.5" y="352" font-size="9" fill="#fff" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">001</text>
+<rect x="687" y="145" width="29" height="29" rx="4" fill="#fff" stroke="#d9d8d4"/>
+<text x="701.5" y="164" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">110</text>
+<rect x="687" y="333" width="29" height="29" rx="4" fill="#cde2fb" stroke="none"/>
+<text x="701.5" y="352" font-size="9" fill="#0b0b0b" text-anchor="middle" font-weight="400" font-family="Fira Code, ui-monospace, Menlo, monospace">110</text>
+<text x="470" y="196" font-size="12" fill="#52514e" text-anchor="start" font-weight="400" >49 ones, 47 zeros (51% 1s)</text>
+<text x="470" y="384" font-size="12" fill="#0b0b0b" text-anchor="start" font-weight="600" >average charge level: 3.7</text>
+<text x="470" y="402" font-size="12" fill="#52514e" text-anchor="start" font-weight="400" >28 of 32 cells changed charge</text>
+<text x="160" y="432" font-size="11" fill="#52514e" text-anchor="start" font-weight="400" >less charge</text>
+<rect x="228" y="422" width="20" height="12" rx="2" fill="#eef4fc" stroke="#d9d8d4"/>
+<rect x="250" y="422" width="20" height="12" rx="2" fill="#cde2fb" stroke="none"/>
+<rect x="272" y="422" width="20" height="12" rx="2" fill="#9ec5f4" stroke="none"/>
+<rect x="294" y="422" width="20" height="12" rx="2" fill="#6da7ec" stroke="none"/>
+<rect x="316" y="422" width="20" height="12" rx="2" fill="#3987e5" stroke="none"/>
+<rect x="338" y="422" width="20" height="12" rx="2" fill="#256abf" stroke="none"/>
+<rect x="360" y="422" width="20" height="12" rx="2" fill="#184f95" stroke="none"/>
+<rect x="382" y="422" width="20" height="12" rx="2" fill="#0d366b" stroke="none"/>
+<text x="410" y="432" font-size="11" fill="#52514e" text-anchor="start" font-weight="400" >more charge</text>
+</svg>

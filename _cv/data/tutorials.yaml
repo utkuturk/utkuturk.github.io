@@ -1,0 +1,16 @@
+# Edit this file to update the CV. Entries appear in file order.
+- authors: "Türk, Utku"
+  title: "generating consistent linguistic experiment materials with AI."
+  links:
+    - kind: "website"
+      url: "https://www.utkuturk.com/posts/generate-items/"
+- authors: "Türk, Utku"
+  title: "saving pcibex recordings to s3 with a python lambda."
+  links:
+    - kind: "website"
+      url: "https://www.utkuturk.com/posts/aws-s3-pcibex/"
+- authors: "Türk, Utku"
+  title: "montreal forced aligner workflow for pcibex production experiments."
+  links:
+    - kind: "website"
+      url: "https://www.utkuturk.com/posts/mfa/"

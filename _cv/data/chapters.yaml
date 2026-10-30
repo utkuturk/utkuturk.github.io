@@ -1,0 +1,23 @@
+# Edit this file to update the CV. Entries appear in file order.
+- authors: "Türk, Utku"
+  year: 2025
+  title: "Controlling morphosyntactic competition through phonology."
+  venue: "Nanosyntax and the Lexicalization Algorithm (pp. 411–440). Eds. P. Caha, K. De Clercq, & G. Vanden Wyngaerd. Oxford University Press."
+  links:
+    - kind: "doi"
+      url: "https://doi.org/10.1093/9780198947158.003.0014"
+    - kind: "pdf"
+      url: "https://www.utkuturk.com/files/papers/Turk2024.pdf"
+    - kind: "github"
+      url: "https://github.com/utkuturk/SA_NanoChapter"
+- authors: "Canalis, Stefano and Özdemir, Semra and Türk, Utku and Tunçer, Ümit Can"
+  year: 2024
+  title: "The phonological nature of the Turkish front glide."
+  venue: "Selected Essays on Turkish Linguistics: The Anadolu Meeting."
+  links:
+    - kind: "doi"
+      url: "https://doi.org/10.1093/9780198947158.003.0014"
+    - kind: "pdf"
+      url: "https://www.utkuturk.com/files/pdfs/CanalisEtAl2024.pdf"
+    - kind: "github"
+      url: "https://github.com/utkuturk/turkishglides"

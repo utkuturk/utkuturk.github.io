@@ -1,0 +1,39 @@
+# Edit this file to update the CV. Entries appear in file order.
+- authors: "Yu, Xinchi and Türk, Utku and Dods, Allison and Tian, Xing and Lau, Ellen"
+  year: 2027
+  title: "Language-derived mental object load suppresses posterior alpha power."
+  venue: "Journal of Neurolinguistics, 81, 101383."
+  links:
+    - kind: "doi"
+      url: "https://doi.org/10.1016/j.jneuroling.2026.101383"
+    - kind: "biorxiv"
+      url: "https://www.biorxiv.org/content/10.1101/2025.05.02.651748v1"
+    - kind: "openmaterial"
+      url: "https://osf.io/k4nvd/"
+- authors: "Lacina, Radim and Türk, Utku"
+  status: "In Press"
+  title: "Review of ‘Linguistic Illusions: A Case Study on Agreement Attraction’ by Dan Parker."
+  venue: "Journal of Linguistics."
+- authors: "Türk, Utku and Logačev, Pavel"
+  year: 2024
+  title: "Agreement attraction in Turkish: The case of genitive attractors."
+  venue: "Language, Cognition and Neuroscience."
+  links:
+    - kind: "doi"
+      url: "https://doi.org/10.1080/23273798.2024.2324766"
+    - kind: "pdf"
+      url: "https://www.utkuturk.com/files/pdfs/TurkLogacev2024-cnl-preprint.pdf"
+    - kind: "github"
+      url: "https://github.com/utkuturk/tr_short_agreement_attraction"
+    
+- authors: "Türk, Utku and Atmaca, Furkan and Özateş, Şaziye Betül and Berk, Gözde and Bedir, Seyyit Talha and Köksal, Abdullatif and Öztürk Başaran, Balkız and Güngör, Tunga and Özgür, Arzucan"
+  year: 2022
+  title: "Resources for Turkish dependency parsing: Introducing the BOUN Treebank and the BoAT annotation tool."
+  venue: "Language Resources and Evaluation."
+  links:
+    - kind: "doi"
+      url: "https://doi.org/10.1007/s10579-021-09558-0"
+    - kind: "arxiv"
+      url: "https://arxiv.org/abs/2002.10416"
+    - kind: "github"
+      url: "https://github.com/boun-tabi/BoAT"

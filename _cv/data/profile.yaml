@@ -1,0 +1,20 @@
+# Edit this file to update the CV. Entries appear in file order.
+name: "Utku Turk"
+author-name: "Türk, Utku"
+document-title: "Curriculum Vitae"
+date: "auto"
+address:
+  - "1401 Marie Mount Hall"
+  - "University of Maryland"
+  - "College Park, MD, 20742"
+website:
+  text: "utkuturk.com"
+  url: "https://utkuturk.com"
+social:
+  - kind: "github"
+    url: "http://github.com/utkuturk"
+  - kind: "twitter"
+    url: "https://twitter.com/utkuturkling"
+  - text: "Bluesky"
+    url: "https://bsky.app/profile/utkuturk.com"
+email: "utkuturk@umd.edu"

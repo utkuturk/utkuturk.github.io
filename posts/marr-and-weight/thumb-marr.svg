@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800" role="img" aria-label="A level balance scale with a 1 on one pan and a 0 on the other" font-family="Inter, system-ui, -apple-system, Helvetica, Arial, sans-serif">
+<rect width="800" height="800" fill="#fff"/>
+<line x1="250" y1="700" x2="550" y2="700" stroke="#1a1a1a" stroke-width="16" stroke-linecap="round"/>
+<line x1="400" y1="700" x2="400" y2="540" stroke="#1a1a1a" stroke-width="16" stroke-linecap="round"/>
+<line x1="150" y1="540" x2="650" y2="540" stroke="#1a1a1a" stroke-width="16" stroke-linecap="round"/>
+<circle cx="400" cy="540" r="20" fill="#1a1a1a"/>
+<line x1="170" y1="540" x2="170" y2="462" stroke="#1a1a1a" stroke-width="16" stroke-linecap="round"/>
+<line x1="630" y1="540" x2="630" y2="462" stroke="#1a1a1a" stroke-width="16" stroke-linecap="round"/>
+<path d="M 75 432 H 265 L 235 462 H 105 Z" fill="#c8c8c8"/>
+<path d="M 535 432 H 725 L 695 462 H 565 Z" fill="#c8c8c8"/>
+<text x="170" y="418" font-size="260" font-weight="600" text-anchor="middle" fill="#1a1a1a" font-family="Source Serif Pro, Source Serif 4, Georgia, serif">1</text>
+<text x="630" y="418" font-size="260" font-weight="600" text-anchor="middle" fill="#1a1a1a" font-family="Source Serif Pro, Source Serif 4, Georgia, serif">0</text>
+</svg>

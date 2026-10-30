@@ -43,11 +43,11 @@ My primary focus at the moment is on the flexibility that speakers show when pla
 </div>
 
 <div class="ref-item topic-processing">
-<span class="ref-text">**Türk, U.** (2026). (In)sensitivity to surface-level heuristics: A case from Turkish verbal attractors. *Submitted to Cognition*. <span class="paper-links">[<a href="http://psyarxiv.com/dwh8v" target="_blank" title="Paper">paper</a>]</span></span>
+<span class="ref-text">**Türk, U.** (2026). (In)sensitivity to surface-level heuristics: A case from Turkish verbal attractors. *Minor revisions submitted to Cognition*. <span class="paper-links">[<a href="http://psyarxiv.com/dwh8v" target="_blank" title="Paper">paper</a>]</span></span>
 </div>
 
 <div class="ref-item topic-processing">
-<span class="ref-text">Xu, X., **Türk, U.**, Dods, A., Tian, X., Lau, E. (2025). Non-visually-derived mental objects tax ‘visual’ pointers. *(submitted)*. <span class="paper-links">[<a href="https://www.biorxiv.org/content/10.1101/2025.05.02.651748v1" target="_blank" title="Paper">paper</a>]</span></span>
+<span class="ref-text">Yu, X., **Türk, U.**, Dods, A., Tian, X., Lau, E. (2027). Language-derived mental object load suppresses posterior alpha power. *Journal of Neurolinguistics*, 81, 101383. <span class="paper-links">[<a href="https://doi.org/10.1016/j.jneuroling.2026.101383" target="_blank" title="doi">doi</a>] [<a href="https://www.biorxiv.org/content/10.1101/2025.05.02.651748v1" target="_blank" title="Preprint">preprint</a>]</span></span>
 </div>
 :::
 :::
