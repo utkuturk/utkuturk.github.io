@@ -661,3 +661,91 @@ body.hero-view-active .margin-header {
 
   /* Hide bio if it really doesn't fit */
 }
+
+/* =========================================
+   COMMENTS (htmlcommentbox.com)
+   The widget injects its own <style> inside #HCB_comment_box,
+   so every rule here is prefixed with #comments to outrank it.
+   ========================================= */
+#comments {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #eee;
+}
+
+#comments #HCB_comment_box {
+  height: auto; /* widget sets 100%, which stretches with the grid row */
+  font-family: inherit;
+  letter-spacing: normal;
+  color: #333;
+}
+
+#comments #HCB_comment_box h3 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+#comments #HCB_comment_box .comment {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid #eee;
+}
+
+#comments #HCB_comment_box .author { font-weight: 600; }
+#comments #HCB_comment_box .date { font-size: 0.8rem; color: #777; }
+#comments #HCB_comment_box .hcb-comment-body { font-size: 0.95rem; line-height: 1.55; }
+
+#comments #HCB_comment_box .hcb-comment-tb button {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #555;
+}
+#comments #HCB_comment_box .hcb-comment-tb button:hover { color: #000; text-decoration: underline; }
+
+#comments #HCB_comment_box #hcb_form textarea,
+#comments #HCB_comment_box #hcb_form #hcb_form_name {
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: #333;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: none;
+  padding: 10px 12px;
+}
+#comments #HCB_comment_box #hcb_form textarea:focus,
+#comments #HCB_comment_box #hcb_form #hcb_form_name:focus {
+  background-color: #fff;
+  border-color: #333;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
+}
+
+/* buttons: same pill shape as .hero-links */
+#comments #HCB_comment_box #hcb_form .btn,
+#comments #HCB_comment_box #HCB_comment_form_box .btn {
+  font-family: inherit;
+  letter-spacing: normal;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 6px 16px;
+  border-radius: 9999px;
+  border: 1px solid #333;
+  background-color: #333;
+  color: #fff;
+  transition: all 0.2s ease;
+}
+#comments #HCB_comment_box #hcb_form .btn:hover,
+#comments #HCB_comment_box #HCB_comment_form_box .btn:hover { background-color: #000; border-color: #000; }
+
+#comments #HCB_comment_box #hcb_form .btn-secondary,
+#comments #HCB_comment_box #HCB_comment_form_box .btn-secondary {
+  border-color: transparent;
+  background-color: #f3f3f3;
+  color: #333;
+}
+#comments #HCB_comment_box #hcb_form .btn-secondary:hover,
+#comments #HCB_comment_box #HCB_comment_form_box .btn-secondary:hover { background-color: #e0e0e0; border-color: transparent; }
+
+#comments #HCB_comment_box #hcb_form .home-desc,
+#comments #HCB_comment_box #hcb_form .home-desc a { font-size: 0.8rem; color: #777; }

@@ -3707,6 +3707,80 @@ display: none;
 }
 
 }
+
+#comments {
+margin-top: 3rem;
+padding-top: 1.5rem;
+border-top: 1px solid #eee;
+}
+#comments #HCB_comment_box {
+height: auto; 
+font-family: inherit;
+letter-spacing: normal;
+color: #333;
+}
+#comments #HCB_comment_box h3 {
+font-size: 1.25rem;
+margin-bottom: 1rem;
+}
+#comments #HCB_comment_box .comment {
+margin-bottom: 1.5rem;
+padding-bottom: 1.25rem;
+border-bottom: 1px solid #eee;
+}
+#comments #HCB_comment_box .author { font-weight: 600; }
+#comments #HCB_comment_box .date { font-size: 0.8rem; color: #777; }
+#comments #HCB_comment_box .hcb-comment-body { font-size: 0.95rem; line-height: 1.55; }
+#comments #HCB_comment_box .hcb-comment-tb button {
+font-size: 0.85rem;
+font-weight: 500;
+color: #555;
+}
+#comments #HCB_comment_box .hcb-comment-tb button:hover { color: #000; text-decoration: underline; }
+#comments #HCB_comment_box #hcb_form textarea,
+#comments #HCB_comment_box #hcb_form #hcb_form_name {
+font-family: inherit;
+font-size: 0.95rem;
+color: #333;
+background-color: #f9f9f9;
+border: 1px solid #ddd;
+border-radius: 8px;
+box-shadow: none;
+padding: 10px 12px;
+}
+#comments #HCB_comment_box #hcb_form textarea:focus,
+#comments #HCB_comment_box #hcb_form #hcb_form_name:focus {
+background-color: #fff;
+border-color: #333;
+outline: none;
+box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
+}
+
+#comments #HCB_comment_box #hcb_form .btn,
+#comments #HCB_comment_box #HCB_comment_form_box .btn {
+font-family: inherit;
+letter-spacing: normal;
+font-size: 0.9rem;
+font-weight: 500;
+padding: 6px 16px;
+border-radius: 9999px;
+border: 1px solid #333;
+background-color: #333;
+color: #fff;
+transition: all 0.2s ease;
+}
+#comments #HCB_comment_box #hcb_form .btn:hover,
+#comments #HCB_comment_box #HCB_comment_form_box .btn:hover { background-color: #000; border-color: #000; }
+#comments #HCB_comment_box #hcb_form .btn-secondary,
+#comments #HCB_comment_box #HCB_comment_form_box .btn-secondary {
+border-color: transparent;
+background-color: #f3f3f3;
+color: #333;
+}
+#comments #HCB_comment_box #hcb_form .btn-secondary:hover,
+#comments #HCB_comment_box #HCB_comment_form_box .btn-secondary:hover { background-color: #e0e0e0; border-color: transparent; }
+#comments #HCB_comment_box #hcb_form .home-desc,
+#comments #HCB_comment_box #hcb_form .home-desc a { font-size: 0.8rem; color: #777; }
 </style>
 </head>
 
@@ -5360,35 +5434,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
   </script>
-<input type="hidden" id="giscus-base-theme" value="noborder_light">
-<input type="hidden" id="giscus-alt-theme" value="noborder_light">
-<script>
-  function loadGiscus() {
-    // Function to get the theme based on body class
-    const getTheme = () => {
-      let baseTheme = document.getElementById('giscus-base-theme').value;
-      let altTheme = document.getElementById('giscus-alt-theme').value;
-      return document.body.classList.contains('quarto-dark') ? altTheme : baseTheme;
-    };
-    const script = document.createElement("script");
-    script.src = "https://giscus.app/client.js";
-    script.async = true;
-    script.dataset.repo = "utkuturk/utkuturk.github.io";
-    script.dataset.repoId = "R_kgDOQCZuMw";
-    script.dataset.category = "General";
-    script.dataset.categoryId = "DIC_kwDOQCZuM84CxOt1";
-    script.dataset.mapping = "title";
-    script.dataset.reactionsEnabled = "1";
-    script.dataset.emitMetadata = "0";
-    script.dataset.inputPosition = "top";
-    script.dataset.theme = getTheme();
-    script.dataset.lang = "en";
-    script.crossOrigin = "anonymous";
-    // Append the script to the desired div instead of at the end of the body
-    document.getElementById("quarto-content").appendChild(script);
-  }
-  loadGiscus();
-</script>
 </div> <!-- /content -->
 
 
