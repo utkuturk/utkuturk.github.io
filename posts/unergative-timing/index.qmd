@@ -1,0 +1,177 @@
+---
+title: "finding when each speaker plans the verb"
+author: "Utku Turk"
+date: "2026-11-04"
+categories: [psycholinguistics, sentence production, methods, code]
+description: "Momma & Ferreira (2019, section 7) use a word's frequency effect to find, per speaker, when the verb is retrieved. Step by step, in code."
+draft: true
+---
+
+<!-- OUTLINE ONLY. Bullets + preliminary code. Code runs on SIMULATED data (no access to the real data). -->
+
+## 1. Why this post
+
+- Bottom line: Momma & Ferreira (2019, *Cognitive Psychology* 114, 101228), section 7, give a way to locate *when* each speaker retrieves a word without depending on semantic interference being strong or well timed.
+- The paper explains it in about two paragraphs. I think space forced this. I want to spell out (a) each computational step and (b) which hypothesis each step stands in for.
+- Payoff: once the logic is clear, advance-planning experiments can lean on a per-speaker timing estimate and stop depending on one distractor SOA and one fixed analysis window.
+- Surprisal as a replacement for frequency (section 7 below).
+
+## 2. The problem the method solves
+
+- Design: picture-word interference with sentences like *The octopus below the spoon is boiling* (unaccusative) vs. *...is swimming* (unergative). Distractor words appear on screen; related vs. unrelated distractor.
+- Logic of PWI: if a related distractor slows speech, the target lemma was being retrieved around then. Interference timing = retrieval timing.
+- Hypothesis (argument structure): unaccusative verb is retrieved before the subject noun is produced. Unergative verb has no such need, so it can be retrieved whenever.
+- Results in Exp. 1-3: unaccusative interference at subject-noun onset; **no** unergative interference in any single region (before-verb region = the two words before the verb, e.g. *spoon is*).
+- Two candidate reasons:
+  - distractors don't work on these verbs (Exp. 4 and 5 say they do);
+  - unergative retrieval time varies across speakers, and the distractor comes too early relative to a late retrieval (time-lag hypothesis).
+- Averaging over speakers hides an effect that sits in different regions for different speakers. That is the reason for per-speaker estimation.
+
+## 3. The method, step by step
+
+Each step: what they do, then the hypothesis it carries.
+
+1. **Take unergative trials only.**
+   - Why: for unaccusatives the retrieval is argued to be fixed (before the subject), so there is nothing to locate.
+2. **Split each trial into regions.** Production time per region (word duration plus any pause), from forced alignment (P2FA).
+   - Regions are sentence positions: onset+determiner, subject noun, preposition, determiner, adjunct noun, auxiliary. (TODO: confirm exact list against Fig. 18.)
+3. **Get verb frequency per item** (SUBTLEX-US, Brysbaert & New, 2009).
+4. **For each speaker and region, correlate production time with the frequency of the *upcoming* verb** (Pearson's r, across that speaker's trials).
+   - Hypothesis link: frequency effects arise mainly at word-form encoding. For unergatives, lemma retrieval and word-form encoding should be close in time ("no reason to retrieve the lemma far ahead of the form"). So the region where verb frequency slows or speeds production approximates when the verb is being retrieved.
+   - Prediction: higher frequency, faster production, so r is negative where retrieval happens.
+5. **Pick the region with the most negative r, per speaker.**
+   - Reported: mean r in the chosen region = -.32; most common chosen region = adjunct noun (*spoon*); 175 of 219 speakers chose preposition or later.
+6. **z-score production time within speaker and region.** Regions differ in scale (adjunct noun is much longer than the auxiliary), so raw values are not comparable across the chosen regions.
+   - Side effect: z-scores can be negative, so the Inverse Gaussian models used elsewhere in the paper are out. They use Gaussian mixed models.
+7. **Keep each speaker's chosen region only; model relatedness there.**
+   - Gaussian LMM, unergative trials only: Relatedness, SOA (difference coded: -150 vs 0; mean of those vs 300), Experiment (dummy coded), Relatedness x SOA.
+   - Reported: Relatedness b = -0.09, SE = 0.02, z = -3.63; Relatedness x SOA2 b = -0.15, SE = 0.08, p = .058.
+8. **Interpretation.** Interference shows up once each speaker is analyzed at their own region; the paper calls the analysis exploratory.
+
+## 4. What to flag when reading section 7
+
+- Selection logic: frequency picks the region, relatedness is tested in it. Frequency and relatedness are separate manipulations, so this is not obviously circular, but picking the max over several noisy correlations can still pick up noise. A permutation check is cheap (code below).
+- Per-speaker r rests on that speaker's trials only. The number of unergative trials per speaker is small, so each r is noisy. (TODO: get trial counts from the method section.)
+- Text says p = .003 for Relatedness, Table 15 says .0003 with z = -3.63; the Experiment1 row has estimate -0.04 with z = -0.08 (not consistent with SE = 0.05). Check against the data before citing p-values.
+- The frequency effect is a proxy. The method needs the frequency effect to appear at the same time as the interference effect for the same word.
+
+## 5. Preliminary code (simulated data)
+
+Setup: speakers differ in the region where verb retrieval occurs; frequency slows that region; related distractors slow that same region.
+
+```{r}
+#| label: sim
+#| eval: false
+library(tidyverse)
+library(lme4)
+set.seed(1)
+
+regions <- c("onset", "subj", "prep", "det", "adj", "aux")
+n_spk <- 60; n_trial <- 48
+
+# each speaker's true retrieval region
+true_reg <- sample(regions, n_spk, replace = TRUE,
+                   prob = c(.05, .10, .20, .15, .35, .15))
+
+d <- expand_grid(spk = 1:n_spk, trial = 1:n_trial, region = regions) |>
+  group_by(spk, trial) |>
+  mutate(
+    logfreq = rnorm(1),                    # verb log frequency, shared across regions in a trial
+    related = rbinom(1, 1, .5)
+  ) |>
+  ungroup() |>
+  mutate(
+    hit = region == true_reg[spk],
+    rt  = 250 + rnorm(n(), 0, 60) +
+          hit * (-25 * logfreq + 30 * related)   # freq and interference only where retrieval occurs
+  )
+```
+
+Steps 4-5: per-speaker, per-region correlation, then the most negative.
+
+```{r}
+#| label: pick-region
+#| eval: false
+chosen <- d |>
+  group_by(spk, region) |>
+  summarise(r = cor(rt, logfreq), .groups = "drop") |>
+  group_by(spk) |>
+  slice_min(r, n = 1) |>
+  ungroup() |>
+  select(spk, chosen_region = region, r)
+
+mean(chosen$r)                          # compare: paper reports -.32
+table(factor(chosen$chosen_region, regions))  # compare: paper's Fig. 18
+mean(chosen$chosen_region == true_reg)  # recovery rate (only knowable in simulation)
+```
+
+Steps 6-7: z-score within speaker x region, keep the chosen region, test relatedness.
+
+```{r}
+#| label: model
+#| eval: false
+d_sel <- d |>
+  group_by(spk, region) |> mutate(z = as.numeric(scale(rt))) |> ungroup() |>
+  inner_join(chosen, by = "spk") |>
+  filter(region == chosen_region)
+
+m_chosen <- lmer(z ~ related + (1 + related | spk), data = d_sel)
+# baseline: one fixed region for everyone (what the standard analysis does)
+m_fixed  <- lmer(scale(rt) ~ related + (1 + related | spk),
+                 data = filter(d, region == "adj"))
+summary(m_chosen)$coefficients
+summary(m_fixed)$coefficients
+```
+
+Selection-bias check: shuffle frequency within speaker, redo the selection, see how large a relatedness effect appears by chance.
+
+```{r}
+#| label: perm
+#| eval: false
+perm_once <- function(d) {
+  d <- d |> group_by(spk, region) |> mutate(logfreq = sample(logfreq)) |> ungroup()
+  ch <- d |> group_by(spk, region) |>
+    summarise(r = cor(rt, logfreq), .groups = "drop") |>
+    group_by(spk) |> slice_min(r, n = 1) |> ungroup()
+  s <- d |> group_by(spk, region) |> mutate(z = as.numeric(scale(rt))) |> ungroup() |>
+    inner_join(ch, by = "spk") |> filter(region == region)
+  coef(lm(z ~ related, data = s))[["related"]]
+}
+null_b <- replicate(200, perm_once(d))
+mean(null_b)  # should sit near 0 if selection on frequency does not bias relatedness
+```
+
+## 6. Linking back to advance planning
+
+- What the per-speaker region buys: an index of retrieval timing for a *specific word in a specific speaker*, that can then be used as a predictor or as the analysis window.
+- It does not need interference. Frequency (a property of the item) is manipulated for free by item choice.
+- It can be run in any production task with word-level timing from forced alignment.
+- Open design questions:
+  - how many trials per speaker are enough for a stable chosen region (simulate: vary `n_trial`);
+  - whether chosen regions are stable within a speaker across sessions (split-half reliability);
+  - whether the chosen region predicts anything else (e.g. where interference with a *different* distractor lands).
+
+## 7. Surprisal instead of frequency
+
+- Frequency is context-free. A verb in *The octopus below the spoon is ___* has an in-context probability that depends on the subject and the sentence.
+- Surprisal = -log P(verb | preceding words), from a language model. For the picture-elicited sentences the context is fixed per item, so each item gets one surprisal value.
+- Same step 4 with `surprisal` in place of `logfreq`; prediction: higher surprisal, slower region.
+- Questions to settle:
+  - does the surprisal effect sit at the same region as frequency (word-form) or earlier (lemma/selection)? If earlier, the two together could separate lemma from form timing, which the frequency proxy cannot do;
+  - the speaker's actual context is the picture, not just the words, so LM surprisal is an approximation;
+  - frequency and surprisal are correlated across items; fit both and see which survives.
+
+```{r}
+#| label: surprisal
+#| eval: false
+# sketch: surprisal of the verb given the sentence frame, with any causal LM
+# (Python side: transformers; read the token log-probs of the verb after the frame)
+# then join to the trial table by item and replace logfreq in the pick-region step
+```
+
+## 8. Still to do
+
+- Get the real data/trial counts (not in the PDF) or write it as a method-only post.
+- Confirm region list from Fig. 18 and the SOA coding.
+- Run the simulation, replace `eval: false`, add one figure (chosen-region histogram, simulated vs. paper).
+- Decide whether the main figure is a flow diagram (steps 1-7 with the hypothesis under each).

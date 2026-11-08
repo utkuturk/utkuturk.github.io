@@ -1,4 +1,9 @@
 news:
+  - date: "11/2026"
+    description: "Teaching LING 449U (How words are built) at the University of Maryland: a seminar on morphology and language production, covering production models, Distributed Morphology, and Nanosyntax, with a student-run experiment."
+    extra: '<a href="https://www.utkuturk.com/ling449u/">course page</a>'
+    category: milestone
+
   - date: "10/2026"
     description: "Paper on language-derived mental objects and posterior alpha power (with Xinchi Yu, Allison Dods, Xing Tian, and Ellen Lau) published in Journal of Neurolinguistics."
     extra: '<a href="https://doi.org/10.1016/j.jneuroling.2026.101383">JNeuroling</a>'

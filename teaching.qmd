@@ -35,7 +35,47 @@ cv <- yaml::read_yaml("_data/teaching.yaml")
 # ---------- sections ----------
 
 
-cat("## Workshops\n\n")
+dagger <- function(t) if (isTRUE(t$recitation)) " <sup>&dagger;</sup>" else ""
+
+umd_rows <- function(items) {
+  if (is.null(items) || !length(items)) return(invisible())
+  out <- vapply(items, function(t) {
+    title <- nz_chr(t$title)
+    prof  <- nz_chr(t$prof)
+    popul <- nz_chr(t$popul)
+    school<- nz_chr(t$school)
+    syl   <- nz_chr(t$syl)
+    url   <- nz_chr(t$url)
+    notes <- nz_chr(t$notes)
+
+    links <- c()
+    if (syl != "") links <- c(links, sprintf('[<a href="%s" target="_blank">syllabus</a>]', syl))
+    if (url != "") links <- c(links, sprintf('[<a href="%s" target="_blank">web</a>]', url))
+    links_html <- if (length(links)) paste(links, collapse = " ") else ""
+
+    notes_html <- if (notes != "") sprintf('<br /><em>%s</em>', notes) else ""
+
+    # Only add <br /> for links if they exist
+    link_line <- if (links_html != "") paste0("<br />", links_html) else ""
+
+    right <- sprintf(
+    '<strong>%s%s</strong>%s<br />%s%s%s%s',
+    title, dagger(t),
+    if (prof != "") paste0(" — with ", prof) else "",
+    if (popul != "") paste0(popul, " students, ") else "",
+    school,
+    link_line,
+    notes_html
+    )
+    teach_row(t$date, right)
+  }, character(1))
+  cat(paste(out, collapse = "\n"), "\n")
+}
+
+cat("## Class Instructor\n\n### University of Maryland\n\n")
+umd_rows(cv$instructorumd)
+
+cat("\n\n## Workshops\n\n")
 if (!is.null(cv$workshops) && length(cv$workshops)) {
   out <- vapply(cv$workshops, function(w) {
     title <- nz_chr(w$title)
@@ -74,41 +114,8 @@ if (!is.null(cv$invitedlect) && length(cv$invitedlect)) {
   cat(paste(out, collapse = "\n"), "\n")
 }
 
-cat("\n\n## Teaching Assistant\n\n### University of Maryland\n\n")
-
-if (!is.null(cv$teachingumd) && length(cv$teachingumd)) {
-  out <- vapply(cv$teachingumd, function(t) {
-    title <- nz_chr(t$title)
-    prof  <- nz_chr(t$prof)
-    popul <- nz_chr(t$popul)
-    school<- nz_chr(t$school)
-    syl   <- nz_chr(t$syl)
-    url   <- nz_chr(t$url)
-    notes <- nz_chr(t$notes)
-
-    links <- c()
-    if (syl != "") links <- c(links, sprintf('[<a href="%s" target="_blank">syllabus</a>]', syl))
-    if (url != "") links <- c(links, sprintf('[<a href="%s" target="_blank">web</a>]', url))
-    links_html <- if (length(links)) paste(links, collapse = " ") else ""
-
-    notes_html <- if (notes != "") sprintf('<br /><em>%s</em>', notes) else ""
-
-    # Only add <br /> for links if they exist
-    link_line <- if (links_html != "") paste0("<br />", links_html) else ""
-
-    right <- sprintf(
-    '<strong>%s</strong>%s<br />%s students, %s%s%s',
-    title,
-    if (prof != "") paste0(" — with ", prof) else "",
-    if (popul != "") popul else "—",
-    school,
-    link_line,
-    notes_html
-    )
-    teach_row(t$date, right)
-  }, character(1))
-  cat(paste(out, collapse = "\n"), "\n")
-}
+cat("\n\n## Teaching Assistant\n\n<em>&dagger; also recitation instructor</em>\n\n### University of Maryland\n\n")
+umd_rows(cv$teachingumd)
 
 cat("\n\n### Boğaziçi University\n\n")
 
@@ -128,8 +135,8 @@ if (!is.null(cv$teaching) && length(cv$teaching)) {
     links_html <- if (length(links)) paste(links, collapse = " ") else ""
 
     right <- sprintf(
-      '<strong>%s</strong>%s<br />%s students, %s<br />%s%s',
-      title,
+      '<strong>%s%s</strong>%s<br />%s students, %s<br />%s%s',
+      title, dagger(t),
       if (prof != "") paste0(" — with ", prof) else "",
       if (popul != "") popul else "—",
       school,
