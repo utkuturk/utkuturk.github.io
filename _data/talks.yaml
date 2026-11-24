@@ -1,4 +1,12 @@
 conferences:
+  - title: "Planning Ahead, Case by Case: How early do speakers plan case?"
+    author: "**Turk, U.**"
+    topic: "processing"
+    conf: "Language Science Lunch Talk, Language Science Center"
+    year: 2026
+    istalk: TRUE
+    place: "UMD, College Park, MD, USA"
+    slide: /files/slides/lslt-case2026.pdf
   - title: Quantifying the cross-linguistic effects of syncretism on agreement attraction
     author: "**Turk, U., Neu, E.**"
     topic: "processing"

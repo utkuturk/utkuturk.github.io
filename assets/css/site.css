@@ -1,0 +1,365 @@
+/* Keep Quarto's default navbar look and remove the search button. */
+#quarto-search {
+  display: none !important;
+}
+
+/* Center navbar content and keep it aligned with page width. */
+#quarto-header .navbar-container {
+  max-width: 1084px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2rem;
+  padding-right: 1.1rem;
+}
+
+/* Make navbar blend into page background. */
+#quarto-header {
+  position: static !important;
+  top: auto !important;
+  background: transparent !important;
+}
+
+#quarto-header .navbar {
+  background: transparent !important;
+  box-shadow: none !important;
+  border-bottom: 0 !important;
+}
+
+body.nav-fixed {
+  padding-top: 0 !important;
+}
+
+#quarto-header.headroom--not-top .navbar,
+#quarto-header.headroom--pinned:not(.headroom--top) .navbar,
+#quarto-header.headroom--unpinned:not(.headroom--top) .navbar {
+  background: #fff !important;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08) !important;
+}
+
+#quarto-header .navbar-title,
+#quarto-header .nav-link,
+#quarto-header .navbar-brand {
+  color: #1f1f1f !important;
+}
+
+#quarto-header .nav-link:hover,
+#quarto-header .nav-link:focus,
+#quarto-header .navbar-brand:hover,
+#quarto-header .navbar-brand:focus {
+  color: #000 !important;
+}
+
+#quarto-header .nav-link i,
+#quarto-header .nav-link .menu-text {
+  color: inherit !important;
+}
+
+/* Small circular photo next to site title in navbar. */
+#quarto-header .navbar-brand-logo .navbar-logo {
+  width: 36px !important;
+  height: 36px !important;
+  min-width: 36px;
+  min-height: 36px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover !important;
+  border-radius: 50%;
+  display: block;
+}
+
+#quarto-header .navbar-brand-container {
+  margin-left: 1.6rem !important;
+  margin-right: 0.85rem !important;
+}
+
+#quarto-header .navbar-brand {
+  display: inline-flex;
+  align-items: center;
+}
+
+#quarto-header .navbar-collapse {
+  flex-grow: 0;
+}
+
+#quarto-header .navbar-nav.ms-auto {
+  margin-left: 0.85rem !important;
+}
+
+#quarto-header .navbar-nav .nav-link {
+  padding-left: 0.35rem;
+  padding-right: 0.35rem;
+  border-radius: 0.3rem;
+  transition: color 0.18s ease, background-color 0.18s ease;
+}
+
+#quarto-header .navbar-nav .nav-link:hover,
+#quarto-header .navbar-nav .nav-link:focus {
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+@media (min-width: 992px) {
+  #quarto-header .navbar-nav .nav-item {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  #quarto-header .navbar-nav .nav-item + .nav-item::before {
+    content: "/";
+    color: #777;
+    margin: 0 0.35rem 0 0.1rem;
+  }
+}
+
+.ref-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 1.5em;
+  /* vertical spacing between items */
+  line-height: 1.55;
+}
+
+.ref-num {
+  min-width: 2.5em;
+  /* reserve space for number column */
+  text-align: right;
+  /* font-weight: 600; */
+  margin-right: 1em;
+  flex-shrink: 0;
+}
+
+
+.teach-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 1.5em;
+  line-height: 1.5;
+}
+
+.teach-term {
+  min-width: 6em;
+  /* space for the [Term] label */
+  text-align: right;
+  font-weight: 600;
+  margin-right: 1em;
+  flex-shrink: 0;
+}
+
+/* Tiny, sidebar-friendly styles */
+.sidebar-news {
+  font-size: .85rem;
+  line-height: 1.25;
+  margin: .75rem 0
+}
+
+.sidebar-news__title {
+  font-size: 1rem;
+  margin: 0 0 .5rem
+}
+
+.sidebar-news__list {
+  margin: 0;
+  padding-left: 1rem;
+  list-style: disc
+}
+
+.sidebar-news__item {
+  margin: 0 0 .35rem
+}
+
+.sidebar-news__date {
+  font-weight: 600;
+  margin-right: .35rem;
+  white-space: nowrap
+}
+
+.sidebar-news__links {
+  white-space: nowrap
+}
+
+.sidebar-news__more {
+  display: inline-block;
+  margin-top: .25rem;
+  font-size: .85em
+}
+
+/* If the sidebar is tight, uncomment: */
+/* .sidebar-news{max-height:12rem; overflow:auto} */
+
+/* If you want no bullets, swap the list style: */
+/* .sidebar-news__list{list-style:none;padding-left:0} */
+
+.sidebar .quarto-listing-category-title::after {
+  content: "blog topics";
+}
+
+.sidebar .quarto-listing-category-title {
+  visibility: hidden;
+  position: relative;
+}
+
+.sidebar .quarto-listing-category-title::after {
+  visibility: visible;
+  position: absolute;
+  left: 0;
+}
+
+/* =========================================
+   LEGEND STYLING
+   ========================================= */
+.legend-box {
+  background-color: #f9f9f9;
+  border: 1px solid #eee;
+  padding: 10px 15px;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  font-size: 0.9em;
+  color: #555;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 15px;
+}
+
+/* whole pill carries its topic color (--topic is set by the .topic-* classes below) */
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 4px 10px;
+  border-radius: 4px;
+  color: #333;
+  background-color: color-mix(in srgb, var(--topic) 22%, white);
+  transition: background-color 0.2s, box-shadow 0.2s;
+  user-select: none;
+}
+
+.legend-item:hover {
+  background-color: color-mix(in srgb, var(--topic) 38%, white);
+}
+
+.legend-item.active {
+  background-color: color-mix(in srgb, var(--topic) 60%, white);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-weight: 500;
+}
+
+/* Utility to hide filtered items */
+.hidden {
+  display: none !important;
+}
+
+/* =========================================
+   TOPIC INDICATORS & ICON LINKS
+   ========================================= */
+.ref-item {
+  padding-left: 10px;
+  border-left: 4px solid #eee;
+  /* Default neutral border */
+  margin-bottom: 12px;
+  transition: border-left-color 0.3s ease;
+}
+
+/* Topic colors */
+.topic-processing {
+  --topic: #2a9d8f;
+  border-left-color: var(--topic);
+}
+
+/* Teal */
+.topic-resource {
+  --topic: #e9c46a;
+  border-left-color: var(--topic);
+}
+
+/* Yellow */
+.topic-semantics {
+  --topic: #f4a261;
+  border-left-color: var(--topic);
+}
+
+/* Orange */
+.topic-morphology {
+  --topic: #e76f51;
+  border-left-color: var(--topic);
+}
+
+/* Red-Orange */
+.topic-phonology {
+  --topic: #8f2a9d;
+  border-left-color: var(--topic);
+}
+
+/* Purple */
+.topic-syntax {
+  --topic: #264653;
+  border-left-color: var(--topic);
+}
+
+/* Dark Blue */
+
+/* Icon Styling */
+.paper-links a {
+  /* margin-left removed to fix [ abstract] spacing */
+  color: blue;
+  font-size: 1em;
+  text-decoration: underline;
+  text-transform: lowercase;
+  transition: color 0.2s ease;
+}
+
+.paper-links a:hover {
+  color: darkblue;
+  text-decoration: underline;
+}
+
+/* =========================================
+   NIGHT MODE (Darcula) overrides for the hard-coded light colors above
+   ========================================= */
+body.quarto-dark #quarto-header.headroom--not-top .navbar,
+body.quarto-dark #quarto-header.headroom--pinned:not(.headroom--top) .navbar,
+body.quarto-dark #quarto-header.headroom--unpinned:not(.headroom--top) .navbar {
+  background: #2b2b2b !important;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+}
+body.quarto-dark #quarto-header .navbar-title,
+body.quarto-dark #quarto-header .nav-link,
+body.quarto-dark #quarto-header .navbar-brand {
+  color: #a9b7c6 !important;
+}
+body.quarto-dark #quarto-header .nav-link:hover,
+body.quarto-dark #quarto-header .nav-link:focus,
+body.quarto-dark #quarto-header .navbar-brand:hover,
+body.quarto-dark #quarto-header .navbar-brand:focus {
+  color: #ffffff !important;
+}
+body.quarto-dark #quarto-header .navbar-nav .nav-link:hover,
+body.quarto-dark #quarto-header .navbar-nav .nav-link:focus {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+body.quarto-dark .legend-box {
+  background-color: #313335;
+  border-color: #4e5254;
+  color: #a9b7c6;
+}
+body.quarto-dark .legend-item {
+  color: #e0e0e0;
+  background-color: color-mix(in srgb, var(--topic) 30%, #2b2b2b);
+}
+body.quarto-dark .legend-item:hover {
+  background-color: color-mix(in srgb, var(--topic) 48%, #2b2b2b);
+}
+body.quarto-dark .legend-item.active {
+  background-color: color-mix(in srgb, var(--topic) 70%, #2b2b2b);
+}
+body.quarto-dark .ref-item {
+  border-left-color: #4e5254;
+}
+body.quarto-dark .topic-syntax {
+  --topic: #6897bb; /* the light-mode navy disappears on the dark background */
+}
+body.quarto-dark .paper-links a {
+  color: #589df6;
+}
+body.quarto-dark .paper-links a:hover {
+  color: #8bb8f8;
+}
+

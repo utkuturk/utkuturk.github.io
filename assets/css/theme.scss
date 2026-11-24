@@ -1,14 +1,16 @@
 /*-- scss:uses --*/
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rethink+Sans:ital,wght@0,400..800;1,400..800&family=Spectral:ital,wght@0,400;0,600;1,400;1,600&family=Fira+Code:wght@300&display=swap');
 
 /*-- scss:defaults --*/
 $font-weight-normal: 400;
 $font-weight-bold:   600;
 
-$font-family-sans-serif: "Inter", system-ui, -apple-system, "Segoe UI",
+// Pairing: Rethink Sans for headings and UI, Spectral for body text.
+$font-family-sans-serif: "Rethink Sans", system-ui, -apple-system, "Segoe UI",
   Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+$font-family-base: "Spectral", Georgia, "Times New Roman", serif;
 
-$headings-font-family: "Inter", system-ui, -apple-system, sans-serif;
+$headings-font-family: $font-family-sans-serif;
 $font-family-monospace: "Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco,
   Consolas, "Liberation Mono", "Courier New", monospace;
 
@@ -31,4 +33,14 @@ h1, h2, h3, h4, h5, h6,
   font-family: $headings-font-family;
   font-weight: $headings-font-weight;
   letter-spacing: -0.01em; /* subtle tightening like the reference */
+}
+
+/* navigation and small UI widgets stay in the sans */
+.navbar,
+.sidebar,
+#TOC,
+.legend-box,
+.essay-types,
+.home-news {
+  font-family: $font-family-sans-serif;
 }

@@ -5,6 +5,7 @@ comments: false
 format:
   html:
     toc: false
+    css: assets/css/news.css
 execute:
   echo: false
   freeze: false
@@ -124,111 +125,3 @@ knitr::asis_output(html)
 
 
 ```
-
-<style>
-
-/* ========== layout ========== */
-.news-highlights {
-  margin: 1.25rem 0 1rem;
-}
-.news-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: .85rem;
-}
-
-/* ========== highlight cards ========== */
-.news-card {
-  background: var(--quarto-body-bg, #fff);
-  border: 1px solid var(--quarto-border-color, #e5e7eb);
-  border-radius: .9rem;
-  padding: .9rem 1rem;
-}
-.news-card-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: .5rem;
-  margin-bottom: .35rem;
-}
-
-/* ========== feed list ========== */
-.news-feed h2 {
-  margin-top: 1rem;
-}
-.news-items {
-  list-style: none;
-  padding: 0;
-  margin: .5rem 0 0 0;
-}
-.news-item {
-  padding: .7rem .25rem;
-  border-bottom: 1px dashed var(--quarto-border-color, #e5e7eb);
-}
-.news-item:last-child {
-  border-bottom: 0;
-}
-.news-line {
-  display: flex;
-  align-items: center;
-  gap: .5rem;
-  flex-wrap: wrap;
-  margin-bottom: .15rem;
-}
-
-/* ========== atoms ========== */
-.news-badge {
-  font-size: .8em;
-  padding: .1rem .5rem;
-  border: 1px solid var(--quarto-border-color, #e5e7eb);
-  border-radius: 999px;
-  line-height: 1;
-}
-.news-when {
-  font-weight: 600;
-  white-space: nowrap;
-  opacity: .9;
-}
-.news-desc {
-  line-height: 1.4;
-}
-.news-links {
-  margin-top: .2rem;
-  font-size: .95em;
-  white-space: nowrap;
-}
-
-/* ========== links ========== */
-.news-links a {
-  text-decoration: none;
-  border-bottom: 1px dotted currentColor;
-  transition: opacity .15s ease, border-color .15s ease;
-}
-.news-links a:hover,
-.news-links a:focus {
-  opacity: .8;
-  border-bottom-color: transparent;
-}
-
-/* ========== small screens ========== */
-@media (max-width: 640px) {
-  .news-grid { grid-template-columns: 1fr; }
-  .news-item { padding: .6rem 0; }
-}
-
-/* ========== dark-mode tweaks (optional) ========== */
-@media (prefers-color-scheme: dark) {
-  .news-card {
-    background: rgba(255,255,255,.03);
-    border-color: rgba(255,255,255,.12);
-  }
-  .news-item {
-    border-bottom-color: rgba(255,255,255,.12);
-  }
-  .news-badge {
-    border-color: rgba(255,255,255,.2);
-  }
-}
-
-
-</style>

@@ -13,16 +13,15 @@ sidebar: false
 ---
 
 ::: {.legend-box}
-**Legend:**
-<span class="legend-item" data-topic="topic-processing"><span class="legend-color topic-processing"></span>Processing</span>
-<span class="legend-item" data-topic="topic-semantics"><span class="legend-color topic-semantics"></span>Semantics</span>
-<span class="legend-item" data-topic="topic-morphology"><span class="legend-color topic-morphology"></span>Morphology</span>
-<span class="legend-item" data-topic="topic-phonology"><span class="legend-color topic-phonology"></span>Phonology</span>
-<span class="legend-item" data-topic="topic-syntax"><span class="legend-color topic-syntax"></span>Syntax</span>
-<span class="legend-item" data-topic="topic-resource"><span class="legend-color topic-resource"></span>Resources</span>
+<span class="legend-item topic-processing" data-topic="topic-processing">Processing</span>
+<span class="legend-item topic-semantics" data-topic="topic-semantics">Semantics</span>
+<span class="legend-item topic-morphology" data-topic="topic-morphology">Morphology</span>
+<span class="legend-item topic-phonology" data-topic="topic-phonology">Phonology</span>
+<span class="legend-item topic-syntax" data-topic="topic-syntax">Syntax</span>
+<span class="legend-item topic-resource" data-topic="topic-resource">Resources</span>
 :::
 
-<script src="/files/filter-v1.js"></script>
+<script src="/assets/js/filter.js"></script>
 
 # Experimental Work
 

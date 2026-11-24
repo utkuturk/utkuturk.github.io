@@ -14,6 +14,9 @@
   status: "In Press"
   title: "Review of ‘Linguistic Illusions: A Case Study on Agreement Attraction’ by Dan Parker."
   venue: "Journal of Linguistics."
+  links:
+    - kind: "pdf"
+      url: "https://go.umd.edu/turkreviewpdf"
 - authors: "Türk, Utku and Logačev, Pavel"
   year: 2024
   title: "Agreement attraction in Turkish: The case of genitive attractors."
@@ -25,7 +28,7 @@
       url: "https://www.utkuturk.com/files/pdfs/TurkLogacev2024-cnl-preprint.pdf"
     - kind: "github"
       url: "https://github.com/utkuturk/tr_short_agreement_attraction"
-    
+
 - authors: "Türk, Utku and Atmaca, Furkan and Özateş, Şaziye Betül and Berk, Gözde and Bedir, Seyyit Talha and Köksal, Abdullatif and Öztürk Başaran, Balkız and Güngör, Tunga and Özgür, Arzucan"
   year: 2022
   title: "Resources for Turkish dependency parsing: Introducing the BOUN Treebank and the BoAT annotation tool."
