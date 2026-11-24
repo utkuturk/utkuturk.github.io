@@ -35,10 +35,14 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-944c0fc47460458ebcb0f4c408dea72c.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-944c0fc47460458ebcb0f4c408dea72c.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-453f83c8b375a5c5565cd6eaf77816eb.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-944c0fc47460458ebcb0f4c408dea72c.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-e895a9c69c873f4b7b777d6b7e53457f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-45911def67ffd1a9d38c4fced5a77821.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-80d49ee5057e9989f2ee5c32606f9bbe.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-45911def67ffd1a9d38c4fced5a77821.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/quarto-contrib/academicons-1.9.4/all.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/academicons-1.9.4/size.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -67,10 +71,173 @@ gtag('config', 'G-V0SVR4S6DQ', { 'anonymize_ip': true});
 </script>
 
 
-<link rel="stylesheet" href="styles-v1.css">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/calligraphy.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -128,6 +295,7 @@ gtag('config', 'G-V0SVR4S6DQ', { 'anonymize_ip': true});
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -145,6 +313,7 @@ gtag('config', 'G-V0SVR4S6DQ', { 'anonymize_ip': true});
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
+
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -165,204 +334,6 @@ gtag('config', 'G-V0SVR4S6DQ', { 'anonymize_ip': true});
 </header>
 
 
-<style>
-#title-block-header {
-  text-align: center;
-}
-
-#title-block-header .quarto-title .title,
-#title-block-header .title {
-  font-family: "Avenir Next Condensed", "Avenir Next", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-  font-size: clamp(2rem, 4vw, 2.6rem);
-  font-weight: 650;
-  letter-spacing: 0.04em;
-  text-transform: lowercase;
-}
-
-.calligraphy-page {
-  max-width: 760px;
-  margin: 0.4rem auto 0;
-  padding: 0.25rem 0;
-}
-
-.calligraphy-page p,
-.calligraphy-page li {
-  color: inherit;
-  font-family: "Charter", "Iowan Old Style", Georgia, "Times New Roman", serif;
-  line-height: 1.72;
-  font-size: 1.04rem;
-}
-
-.calligraphy-page ul {
-  margin-bottom: 1rem;
-}
-
-.calligraphy-page h2 {
-  margin-top: 1.4rem;
-  padding-top: 0.7rem;
-  border-top: 1px solid var(--quarto-border-color, #d7d7d7);
-  font-family: "Avenir Next", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-  text-transform: lowercase;
-  letter-spacing: 0.05em;
-  font-size: 1.05rem;
-  font-weight: 650;
-}
-
-.calligraphy-page h3 {
-  margin-top: 1rem;
-  margin-bottom: 0.5rem;
-  font-family: "Avenir Next", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-  letter-spacing: 0.02em;
-  font-size: 0.96rem;
-  font-weight: 600;
-  opacity: 0.9;
-}
-
-.calligraphy-lead {
-  margin-bottom: 0.8rem;
-  padding: 0.35rem 0 0.35rem 0.85rem;
-  border-left: 3px solid #8a6a4c;
-  font-size: 1.1rem;
-}
-
-.calligraphy-note {
-  font-style: italic;
-  opacity: 0.9;
-}
-
-.calligraphy-page img {
-  border-radius: 0.5rem;
-  border: 1px solid var(--quarto-border-color, #d7d7d7);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-}
-
-.dict-entry {
-  margin: 0.45rem 0 1rem;
-  padding: 0.75rem 0.9rem;
-  border: 1px solid rgba(138, 106, 76, 0.35);
-  border-left: 4px solid #8a6a4c;
-  border-radius: 0.55rem;
-  background: rgba(138, 106, 76, 0.06);
-}
-
-.dict-head {
-  display: inline-block;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  font-family: "Avenir Next", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-}
-
-.dict-pos {
-  margin-left: 0.35rem;
-  font-style: italic;
-  opacity: 0.82;
-}
-
-.dict-row {
-  margin-top: 0.3rem;
-  line-height: 1.42;
-}
-
-.dict-label {
-  font-weight: 650;
-  font-variant: small-caps;
-  letter-spacing: 0.02em;
-}
-
-.install-figure {
-  margin: 0.45rem 0 1.05rem;
-  padding: 0.75rem;
-  border: 1px solid var(--quarto-border-color, #d7d7d7);
-  border-radius: 0.65rem;
-  background: rgba(0, 0, 0, 0.015);
-  display: grid;
-  grid-template-columns: minmax(210px, 1.2fr) minmax(180px, 0.8fr);
-  gap: 0.85rem;
-  align-items: center;
-}
-
-.install-reference {
-  grid-template-columns: minmax(140px, 0.6fr) minmax(230px, 1.4fr);
-}
-
-.install-reference .install-media {
-  max-width: 160px;
-  justify-self: center;
-}
-
-.install-media {
-  border: 1px solid rgba(0, 0, 0, 0.14);
-  border-radius: 0.45rem;
-  padding: 0.35rem;
-  background: #fff;
-}
-
-.install-media img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: 0.35rem;
-  border: 0;
-  box-shadow: none;
-}
-
-.install-meta h4 {
-  margin: 0 0 0.45rem;
-  font-family: "Avenir Next", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-  letter-spacing: 0.02em;
-  font-size: 0.95rem;
-  text-transform: lowercase;
-}
-
-.install-meta p {
-  margin: 0;
-  font-size: 0.95rem;
-  line-height: 1.55;
-}
-
-.install-meta .source-line {
-  margin-top: 0.5rem;
-  font-size: 0.86rem;
-  opacity: 0.85;
-}
-
-@media (max-width: 760px) {
-  .install-figure {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .calligraphy-lead {
-    border-left-color: #b5906c;
-  }
-
-  .calligraphy-page h2 {
-    border-top-color: rgba(255, 255, 255, 0.2);
-  }
-
-  .calligraphy-page img {
-    border-color: rgba(255, 255, 255, 0.22);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.28);
-  }
-
-  .dict-entry {
-    border-color: rgba(181, 144, 108, 0.42);
-    border-left-color: #b5906c;
-    background: rgba(181, 144, 108, 0.12);
-  }
-
-  .install-figure {
-    border-color: rgba(255, 255, 255, 0.2);
-    background: rgba(255, 255, 255, 0.03);
-  }
-
-  .install-media {
-    border-color: rgba(255, 255, 255, 0.22);
-    background: rgba(255, 255, 255, 0.04);
-  }
-}
-</style>
 <div class="calligraphy-page">
 <p class="calligraphy-lead">
 I do not think there is anything less expected than finding a linguist being drawn to patterns.
@@ -499,6 +470,19 @@ Leans into movement and carries a windswept cadence while preserving a Kufic ske
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {
