@@ -4,8 +4,10 @@ conferences:
     topic: "processing"
     conf: "Language Science Lunch Talk, Language Science Center"
     year: 2026
+    month: October
     istalk: TRUE
     place: "UMD, College Park, MD, USA"
+    abs: https://linguistics.umd.edu/events/language-science-lunch-talk-utku-turk
     slide: /files/slides/lslt-case2026.pdf
   - title: Quantifying the cross-linguistic effects of syncretism on agreement attraction
     author: "**Turk, U., Neu, E.**"
@@ -34,6 +36,15 @@ conferences:
     year: 2026
     isposter: TRUE
     # abs:     /files/abstracts/tu11-frequency.pdf
+  - title: "Anatomy of morphological planning in sentence production"
+    author: "**Turk, U.**"
+    topic: "processing"
+    conf: "Mayfest 2026: Production"
+    year: 2026
+    month: May
+    isposter: TRUE
+    place: "UMD, College Park, MD, USA"
+    poster: /files/slides/mayfest2026-poster.pdf
   - title: Tracking structural cues or relying on probabilistic inference in Turkish agreement?
     author: "Bakay, Ō., **Turk, U.**, Demiray, D., Dillon, B."
     topic: "processing"
